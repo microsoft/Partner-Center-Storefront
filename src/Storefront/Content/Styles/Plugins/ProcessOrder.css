@@ -1,0 +1,17 @@
+﻿#ProcessOrderContainer {
+    margin: 15px;
+}
+
+.confirmation-done-button {
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.confirmation-table {
+    min-width: 500px;
+}
+
+.confirmation-total {
+    font-weight: 700;
+    font-size: 16px;
+}

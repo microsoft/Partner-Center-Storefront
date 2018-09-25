@@ -1,0 +1,69 @@
+﻿#OfferListContainer {
+    height: 100%;
+    width: 100%;
+}
+
+    #OfferListContainer #offerList {
+        display: none;
+        height: 100%;
+        width: 100%;
+    }
+
+        #OfferListContainer #offerList .MicrosoftOfferDetails {
+            font-size: 14px;
+            color: black;
+        }
+
+            #OfferListContainer #offerList .MicrosoftOfferDetails .Name {
+                font-size: 20px;
+                font-weight: 500;
+            }
+
+            #OfferListContainer #offerList .MicrosoftOfferDetails .Id {
+                font-size: 16px;
+            }
+
+            #OfferListContainer #offerList .MicrosoftOfferDetails .Category {
+                display: inline-block;
+                margin-top: 10px;
+            }
+
+            #OfferListContainer #offerList .MicrosoftOfferDetails .Billing {
+            }
+
+            #OfferListContainer #offerList .MicrosoftOfferDetails .Description {
+                font-size: 12px;
+                font-style: oblique;
+                display: inline-block;
+                margin-top: 10px;
+            }
+
+            #OfferListContainer #offerList .MicrosoftOfferDetails label {
+                cursor: pointer;
+            }
+
+        #OfferListContainer #offerList .PartnerOfferDetails {
+            font-size: 14px;
+        }
+
+            #OfferListContainer #offerList .PartnerOfferDetails .Title {
+                font-size: 20px;
+                font-weight: 500;
+            }
+
+            #OfferListContainer #offerList .PartnerOfferDetails .SubTitle {
+                font-size: 16px;
+            }
+
+            #OfferListContainer #offerList .PartnerOfferDetails table {
+                width: 100%;
+            }
+
+                #OfferListContainer #offerList .PartnerOfferDetails table td {
+                    width: 50%;
+                    vertical-align: top;
+                }
+
+            #OfferListContainer #offerList .PartnerOfferDetails ul {
+                margin: 0px;
+            }

@@ -1,0 +1,89 @@
+﻿#NotificationsPanel {
+    width: 100%;
+    min-width: 1024px;
+    position: absolute;
+    z-index: 100;
+    left: 0px;
+    top: 41px;
+    vertical-align: middle;
+    font-size: 13px;
+    color: white;
+    display: none;
+    overflow-y: auto;
+    max-height: 600px;
+}
+
+    #NotificationsPanel table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #NotificationsPanel td {
+        height: 48px;
+    }
+
+    #NotificationsPanel img {
+        vertical-align: middle;
+    }
+
+    #NotificationsPanel span {
+        vertical-align: middle;
+    }
+
+.Notification {
+    background-color: rgba(29,29,29, 0.97);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    display: none;
+}
+
+    .Notification:last-child {
+        border-bottom: none;
+    }
+
+.NotificationIcon {
+    padding-right: 2px;
+    vertical-align: middle;
+    width: 30px;
+}
+
+.NotificationButtons {
+    text-align: right;
+    width: 1px;
+    white-space: nowrap;
+}
+
+    .NotificationButtons img {
+        padding-right: 3px;
+    }
+
+    .NotificationButtons > div {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 10px;
+    }
+
+.NotificationButton {
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    text-align: center;
+    height: 15%;
+}
+
+    .NotificationButton:hover {
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        background: rgba(48,48,48,0.5);
+        cursor: pointer;
+    }
+
+    .NotificationButton img {
+        vertical-align: middle;
+    }
+
+    .NotificationButton span {
+        vertical-align: middle;
+    }
+
+.Spacer {
+    padding-left: 1px;
+}

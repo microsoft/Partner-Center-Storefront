@@ -1,0 +1,33 @@
+﻿<div id="AddSubscriptionsPageContainer">    
+    <label class="section">@Resources.AddSubscriptions</label>
+
+    <form id="Form">
+        <!-- ko stopBinding: true -->
+        <div id="AddSubscriptionsViewContainer"></div>        
+        <!-- /ko -->
+        <div id="validation_summary" class="error"></div><br />
+        <a id="SubmitButton" class="submitButton" data-bind="click: onSubmitClicked">@Resources.PlaceOrderCaption</a>
+        <a id="SubmitButton" class="submitButton" data-bind="click: onCancelClicked">@Resources.Cancel</a>
+    </form>
+
+    <script>
+        $("#Form").validate({
+            invalidHandler: function () {
+                $("#validation_summary").text("@Resources.InvalidInputInFormCaption");
+            },
+            errorContainer: "#validation_summary",
+            errorPlacement: function(error, element) {
+                    error.insertAfter(element);                
+            },
+            rules: {
+            },
+            messages: {
+            },
+            submitHandler: function (form) {
+
+            }
+        });
+    </script>
+
+
+</div>

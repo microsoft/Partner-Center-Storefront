@@ -1,0 +1,67 @@
+﻿<form id="PaymentForm">
+    <table class="FullSize" cellpadding="5" data-bind="fadeVisible: viewModel.IsSet">
+        <tr>
+            <td colspan="2" class="Header">
+                @Resources.PaymentConfigurationHeader
+            </td>
+        </tr>
+        <tr>
+            <td class="Subtext BottomPadded" colspan="2">
+                @Resources.PaymentConfigurationSubTextPrefix
+                <a href="https://www.paypal.com/" class="Link" target="_blank">
+                    @Resources.PayPalWebsiteCaption
+                </a>
+                @Resources.PaymentConfigurationSubTextPostfix
+            </td>
+        </tr>
+        <tr>
+            <td class="TitleCell">
+                @Resources.PayPalClientIdCaption<label class="Required"><label>*</label></label>
+            </td>
+            <td class="Subtext">
+                <input id="PayPalClientId" name="PayPalClientId" type="text" class="InputField FullWidthInput" data-bind="textinput: viewModel.ClientId" /><br />
+                @Resources.PayPalClientIdSubText
+            </td>
+        </tr>
+        <tr>
+            <td class="TitleCell">
+                @Resources.PayPalClientSecretCaption <label class="Required"><label>*</label></label>
+            </td>
+            <td class="Subtext">
+                <input type="password" id="PayPalClientSecret" name="PayPalClientSecret" class="InputField FullWidthInput VerticalCenter" data-bind="textInput: viewModel.ClientSecret" />
+                <br />
+                @Resources.PayPalClientSecretSubText
+            </td>
+        </tr>
+        <tr>
+            <td class="TitleCell">
+                @Resources.PayPalAccountTypeCaption <label class="Required"><label>*</label></label>
+            </td>
+            <td class="Subtext">
+                <select id="PayPaylMode" name="PayPaylMode" class="InputField HalfWidthInput VerticalCenter" data-bind="value:viewModel.AccountType, options: viewModel.SupportedAccountTypes, optionsText: 'Title'" />
+                <br />
+                @Resources.PayPalAccountTypeSubText
+            </td>
+        </tr>
+        <tr>
+            <td class="FullHeight"></td>
+        </tr>
+    </table>
+</form>
+
+<script>
+    $("#PaymentForm").validate({
+            rules: {
+                PayPalClientId: {
+                    required: true
+                },
+                PayPalClientSecret: {
+                    required: true
+                }
+            },
+            messages: {
+            },
+            submitHandler: function (form) {
+            }
+        });
+</script>

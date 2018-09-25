@@ -1,0 +1,15 @@
+﻿<div id="PrimaryNavigation" data-bind="template: { name: template, data: $data }"></div>
+
+<!-- Renders a tile based primary navigation -->
+<script id="tileBasedPrimaryNavigation-template" type="text/html">
+    <div id="TileBasedPrimaryNavigation">
+        <div id="PrimaryNavigationTiles" data-bind="foreach: webPortal.tiles()">
+            <!-- ko ifnot: Hidden -->
+            <div class="Tile" data-bind="style: { backgroundColor: Color }, attr: { title: DisplayName }, event: { click: $parent.tileSelected.bind($data, $parent) }">
+                <img class="TileImage" data-bind="attr: { src: Tile }" />
+                <label class="TileText" data-bind="text: DisplayName" />
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+</script>

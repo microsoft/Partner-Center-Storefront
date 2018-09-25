@@ -1,0 +1,225 @@
+﻿/** {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}*/
+
+html, body {
+    margin: 0px 0px 0px 0px;
+    font-family: 'Segoe UI';
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: auto;
+}
+
+.Link {
+    cursor: pointer;
+    opacity: 0.9;
+    color: rgb(41, 142, 186);
+    font-weight: 100;
+}
+
+    .Link:hover {
+        opacity: 1.0;
+    }
+
+.FitToContent {
+    width: 1px;
+}
+
+.FullSize {
+    width: 100%;
+    height: 100%;
+}
+
+.FullWidth {
+    width: 100%;
+}
+
+.FullHeight {
+    height: 100%;
+}
+
+.PointerCursor {
+    cursor: pointer;
+}
+
+.HoverableLink {
+}
+
+    .HoverableLink:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+
+.MetroNormal {
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.MetroMediumLight {
+    font-size: 18px !important;
+    font-weight: lighter;
+}
+
+.MetroSmall {
+    font-size: 13px;
+    font-weight: normal;
+}
+
+/* The main content area styles */
+
+#ContentPanel {
+    display: block;
+    position: absolute;
+    float: right;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    min-height: 600px;
+    min-width: 1024px;
+    z-index: 1;
+    font-size: 12px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    color: #464443;
+    margin: 0;
+}
+
+    #ContentPanel > div {
+        display: none;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        padding: 0px;
+        margin: 0px;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
+#GlobalProgressIndicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -200px;
+    width: 400px;
+    height: 30px;
+    z-index: 99;
+}
+
+#BackgroundShader {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: gray;
+    opacity: 0.7;
+}
+
+#DialogBox {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    top: 35%;
+    left: 0;
+    z-index: 101;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 18px;
+    color: white;
+}
+
+    #DialogBox > table {
+        position: absolute;
+        top: 50%;
+        padding-left: 15%;
+        padding-right: 15%;
+        width: 100%;
+        vertical-align: middle;
+        visibility: hidden;
+    }
+
+.DialogBoxTitle {
+    font-size: 24px;
+}
+
+.ErrorMessage {
+    font-size: 18px;
+    font-weight: 500;
+    color: #fe2e2e;
+    width: 100%;
+}
+
+.HelpLink {
+    color: #7EAEDC;
+    font-size: 14px;
+}
+
+    .HelpLink a {
+        color: #7EAEDC;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+        .HelpLink a:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+div.ErrorBox {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 25%;
+    font-size: 20px;
+}
+
+    div.ErrorBox table {
+        margin: 0 auto;
+        text-align: center;
+        color: #ffffff;
+        background-color: rgba(51, 51, 51, 0.95);
+        width: 300px;
+        height: 300px;
+    }
+
+.ErrorCode {
+    font-size: 100px;
+    font-weight: lighter;
+}
+
+.ErrorCodeString {
+    font-size: 25px;
+    font-weight: lighter;
+    text-transform: uppercase;
+    vertical-align: text-top;
+}
+
+.ErrorReason {
+    margin: 0 auto;
+    color: rgba(51, 51, 51, 0.95);
+    width: 500px;
+}
+
+    .ErrorReason a {
+        color: #7EAEDC;
+    }
+
+#UserInfoMenu table {
+    right: 0px;
+}
+
+.VerticalCenter {
+    vertical-align: middle;
+}

@@ -1,0 +1,50 @@
+﻿<div id="NotificationsPanel" data-bind="template: { name: template, data: $data }" onclick="window.event.cancelBubble = true;"></div>
+
+<!-- Renders the notifications panel -->
+<script id="notificationPanel-template" type="text/html">
+    <div id="ClearAllNotifications" class="Notification" data-bind="slideDown: displayClearAllNotifications, duration: animation.animationDuration">
+        <table>
+            <tr>
+                <td>
+                    <span class="MetroMediumLight" data-bind="text: notificationsSummary"></span>
+                </td>
+                <td class="NotificationButtons">
+                    <table>
+                        <tr>
+                            <td class="NotificationButton" data-bind="click: onClearAllNotificationsClicked">
+                                <img src="/Content/Images/WebPortal/cross.png" />
+                                <span>@Resources.ClearAll</span>
+                            </td>
+                            <td class="Spacer"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- ko foreach: notifications -->
+    <div class="Notification" data-bind="attr: { id: id }">
+        <table>
+            <tr>
+                <td class="NotificationIcon">
+                    <img data-bind="attr: { src: icon }" />
+                </td>
+                <td>
+                    <span data-bind="text: message"></span>
+                </td>
+                <td class="NotificationButtons">
+                    <table>
+                        <tr data-bind="foreach: buttons">
+                            <td class="NotificationButton" data-bind="click: onClick.bind($data, $parent)">
+                                <img data-bind="attr: { src: icon }" />
+                                <span data-bind="text: displayName"></span>
+                            </td>
+                            <td class="Spacer"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- /ko -->
+</script>

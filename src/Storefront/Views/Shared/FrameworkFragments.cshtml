@@ -1,0 +1,16 @@
+﻿<div id="ContentPanel">
+    <progress id="GlobalProgressIndicator" data-bind="visible: isProgressShown"></progress>
+    <div data-bind="html: content"></div>
+</div>
+
+@* Render framework services, views and plugins UI templates *@
+@foreach (string template in ViewBag.Templates)
+{
+    Html.RenderPartial(template);
+}
+
+@if (!HttpContext.Current.IsDebuggingEnabled)
+{
+    @* We are in release mode, render the non start up classes now and send them to the browser *@
+    @Scripts.Render("~/WebPortalClasses/")
+}

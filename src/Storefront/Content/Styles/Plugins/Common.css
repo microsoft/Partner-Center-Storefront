@@ -1,0 +1,291 @@
+﻿.main-title-text {
+    font-size: 36px;
+}
+
+.title-text {
+    font-size: 32px;
+}
+
+.subtitle-text {
+    font-size: 20px;
+}
+
+.medium-text {
+    font-size: 14px;
+}
+
+.offer-title {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.offer-notes {
+    padding-left: 12px;
+}
+
+.left-padded {
+    padding-left: 20px;
+}
+
+.right-padded {
+    padding-right: 20px;
+}
+
+.order-quantity {
+    width: 40px;
+    margin-left: 10px;
+}
+
+.offer-price {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.abovemedium-text {
+    font-size: 18px;
+}
+
+.emphasized-text {
+    font-size: 24px;
+}
+
+.link {
+    cursor: pointer;
+    color: blue;
+    text-decoration: none;
+}
+
+    .link:hover {
+        text-decoration: underline;
+    }
+
+.center {
+    text-align: center;
+}
+
+.fit-to-content {
+    width: 1%;
+}
+
+.left-aligned {
+    text-align: left;
+}
+
+
+.right-aligned {
+    text-align: right;
+}
+
+.section {
+    font-size: 32px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+    .section:first-of-type {
+        margin-top: 0px;
+    }
+
+.titleCell {
+    float: left;
+    width: 250px;
+}
+
+.row {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    clear: left;
+}
+
+    .row:first-of-type {
+        padding-top: 0px;
+    }
+
+.button {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #098ee6;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    .button:hover {
+        background: #3cb0fd;
+        background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+        text-decoration: none;
+    }
+
+.border-divider {
+    border-top: 1px dashed black;
+}
+
+.section-divider {
+    border-top: 1px solid gray;
+}
+
+
+.left-float {
+    float: left;
+}
+
+.submitButton {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #098ee6;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    .submitButton:hover {
+        background: #3cb0fd;
+        background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+        text-decoration: none;
+    }
+
+.error {
+    color: red;
+    display: inline;
+    font-weight: 100;
+    font-size: 12px;
+}
+
+.Required {
+    font-size: 12px;
+    padding-left: 2px;
+}
+
+    .Required label {
+        color: red;
+    }
+
+.Header {
+    border-bottom: 1px solid rgba(190, 190, 190, 0.5);
+    padding-bottom: 10px;
+    font-size: 32px;
+}
+
+.Subtext {
+    font-size: 13px;
+    font-weight: 100;
+}
+
+.TitleCell {
+    white-space: nowrap;
+    width: 1px;
+    padding-right: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+.BottomPadded {
+    padding-bottom: 50px;
+}
+
+.InputField {
+    height: 30px;
+    border-radius: 2px;
+    border: 1px solid rgba(200, 200, 200, 0.9);
+    color: #464443;
+    font-size: 16px !important;
+    font-weight: 100 !important;
+    padding: 3px 3px 3px 10px;
+}
+
+.InputSearchField {
+    height: 30px;
+    width: 200px;
+    border: none;
+    color: #464443;
+    padding: 0px 0px 0px 0px;
+    margin: 0px,0px,0px,0px;
+    align-items: center;
+    outline: none;
+}
+
+.SearchFieldSet {
+    background-color: white;
+    border: 1px solid rgba(200, 200, 200, 0.9);
+    padding: 0px 0px 0px 0px;
+    margin: 0px,0px,0px,0px;
+}
+
+.InputSearchButton {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    padding: 2px,0px,0px,0px;
+    margin: 4px,4px,4px,4px;
+    outline: none;
+    align-items: center;
+}
+
+.FullWidthInput {
+    width: 700px;
+    min-width: 600px;
+    margin-right: 10px;
+}
+
+.HalfWidthInput {
+    width: 340px;
+    min-width: 295px;
+}
+
+.PaddingLeft {
+    padding-left: 5px;
+}
+
+select {
+    box-sizing: content-box;
+}
+
+.payment-total {
+    margin-right: 20px;
+    float: right;
+    display: inline-block;
+}
+
+    .payment-total label {
+        text-align: right;
+        font-size: 24px;
+    }
+
+.subscriptions-table {
+    width: 100%;
+}
+
+.Hidden {
+    display: none;
+}
+
+.Hoverable {
+    cursor: pointer;
+}
+
+.verticalCenteredProgress {
+    position: relative;
+    top: calc(50% - 85px);
+}
+
+.product-logo {
+    height: 30px;
+}

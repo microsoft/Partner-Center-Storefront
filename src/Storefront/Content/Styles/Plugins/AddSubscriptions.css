@@ -1,0 +1,100 @@
+﻿#SubscriptionsList {
+    display: none;
+    height: 500px;
+    border-top: 1px solid #E5DFD2;
+    margin-bottom: 10px;
+}
+
+.add-plan-header {    
+    margin-bottom: 50px;
+    margin-left: 15px;
+}
+
+#availableSubscriptions {
+    width: 500px;
+    height: 30px;
+}
+
+.first-payment-total-container {
+    margin-right: 20px;
+    float: right;
+    display: inline-block;
+}
+
+    .first-payment-total-container label {
+        text-align: right;
+        font-size: 24px;
+    }
+
+.offer-title {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.offer-license {
+    font-size: 14px;
+    font-weight: 100;
+}
+
+.offer-notes {
+    padding-left: 12px;
+}
+
+.offer-notes li {
+    white-space: normal;
+}
+
+.left-padded {
+    padding-left: 20px;
+}
+
+.right-padded {
+    padding-right: 20px;
+}
+
+.order-quantity {
+    width: 40px;
+    margin-left: 10px;
+}
+
+.offer-price {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.monthly-fee {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.remove-link {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.empty-offers-error-message {
+    position: relative;
+    height: 100%;
+}
+
+.empty-offers-error-message label {
+    position: absolute;
+    top: 50%;
+    font-size: 28px;
+}
+
+.PortalOfferList {
+    display: none;
+    height: 100%;
+    width: 100%;    
+    margin-top: 20px;
+}
+
+#PartnerOffersCatalog {
+    display: inline-block;
+}
+
+.PortalOfferCaption {
+    padding-bottom: 20px;
+}
+

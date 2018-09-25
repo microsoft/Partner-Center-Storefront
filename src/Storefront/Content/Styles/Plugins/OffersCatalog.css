@@ -1,0 +1,13 @@
+﻿.NewRow {
+    clear: left;
+}
+
+.OfferCatalog {
+    float: left;
+    width: 280px;
+    margin: 20px;
+}
+
+    .OfferCatalog > div {
+        min-height: 280px;
+    }

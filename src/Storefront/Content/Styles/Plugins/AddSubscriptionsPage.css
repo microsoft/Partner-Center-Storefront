@@ -1,0 +1,26 @@
+﻿#AddSubscriptionsPageContainer {
+    margin: 20px;
+}
+
+    #AddSubscriptionsPageContainer .product-title {
+        font-size: 40px;
+        font-weight: 100;
+        margin-bottom: 10px;
+        display: inline-block;
+    }
+
+    #AddSubscriptionsPageContainer .add-subscriptions-label {
+        font-size: 20px;
+        font-weight: 100;
+        display: inline-block;
+    }
+
+    #AddSubscriptionsPageContainer #AddSubscriptionsViewContainer {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    #AddSubscriptionsPageContainer #SubmitButton {
+        margin-top: 20px;
+        display: inline-block;
+    }

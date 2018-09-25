@@ -1,0 +1,164 @@
+﻿<form id="AddOrUpdateOfferForm">
+    <table id="AddOrUpdateOfferContainer">
+        <tbody>
+            <!-- ko if: viewModel.ShowProgress() -->
+            <tr>
+                <td colspan="2" class="FullHeight"></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="Progress">
+                    <img src="~/Content/Images/Plugins/ripple.gif" />
+                </td>
+            </tr>
+            <!-- /ko -->
+            <!-- ko if: viewModel.IsSet() -->
+            <!-- ko if: viewModel.MicrosoftOffer() -->
+            <tr>
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="ThumbnailUriContainer">
+                                <img class="product-logo" data-bind="attr: { src: viewModel.MicrosoftOffer().ThumbnailUri }" />
+                            </td>
+                            <td class="MicrosoftOfferDetails">
+                                <label class="Name" data-bind="text: viewModel.MicrosoftOffer().Offer.Name"></label> @Resources.Dash <label class="Id" data-bind="text: viewModel.MicrosoftOffer().Offer.Id"></label><br />
+                                <label class="Category" data-bind="text: viewModel.MicrosoftOffer().Offer.Category.Name"></label>@Resources.Comma <label data-bind="text: viewModel.MicrosoftOffer().Offer.Billing"></label> @Resources.BillingTypeListRowCaption<br />
+                                <label data-bind="text: viewModel.IsAvailableForPurchaseCaption()"></label>@Resources.Comma <label data-bind="text: viewModel.IsOfferAutoRenewableCaption()"></label><br />
+                                <label data-bind="text: viewModel.AllowedQuantityCaption()"></label><br />
+                                <label class="Description" data-bind="text: viewModel.MicrosoftOffer().Offer.Description"></label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="section Underlined">
+                <td colspan="2" class="FullWidth">
+                    <label>@Resources.Customization</label>
+                </td>
+            </tr>
+            <tr class="InlineBlock">
+                <td class="CustomizationHeader">
+                    @Resources.YourOfferingTitleCaption <label class="Required"><label>*</label></label>
+                </td>
+                <td>
+                    <input id="OfferTitle" name="OfferTitle" class="InputField" type="text" data-bind="textInput : viewModel.Title">
+                </td>
+            </tr>
+            <tr class="InlineBlock">
+                <td class="CustomizationHeader">
+                    @Resources.YourOfferingSubtitleCaption
+                </td>
+                <td>
+                    <input class="InputField" type="text" data-bind="textInput : viewModel.SubTitle">
+                </td>
+            </tr>
+            <tr class="InlineBlock FullWidth">
+                <td class="CustomizationHeader">
+                    @Resources.YourAnnualPriceCaption <label class="Required"><label>*</label></label>
+                </td>
+                <td>
+                    <input id="OfferPrice" name="OfferPrice" class="Price" type="text" data-bind="textInput : viewModel.Price"> <label class="MetroMediumLight">@ViewBag.CurrencySymbol</label>
+                </td>
+            </tr>
+            <tr class="DetailedFeaturesContainer">
+                <td class="DetailedFeatures">
+                    @Resources.FeaturesCaption
+                </td>
+                <td>
+                    <!-- ko if: viewModel.Features().length == 0 -->
+                    <label class="Link AddLink" title="@Resources.AddOfferFeaturesTooltip" data-bind="click: onAddNewOfferFeature.bind($data, 0, $data)">@Resources.AddCaption</label>
+                    <!-- /ko -->
+                    <!-- ko foreach: viewModel.Features -->
+                    <div class="DetailRow">
+                        <input placeholder="@Resources.OfferFeaturePlaceHolder" class="Detail" type="text" data-bind="textInput : $rawData">
+                        <img src="~/Content/Images/WebPortal/plus-black.png" title="@Resources.AddOfferFeatureTooltip" class="Link VerticalCenter" data-bind="click: $parent.onAddNewOfferFeature.bind($parent, $index(), $parent)" />
+                        <img src="~/Content/Images/WebPortal/cross-black.png" title="@Resources.RemoveOfferFeatureTooltip" class="Link VerticalCenter" data-bind="click: $parent.onRemoveOfferFeature.bind($parent, $index(), $parent)" />
+                    </div>
+                    <!-- /ko -->
+                </td>
+            </tr>
+            <tr class="DetailedFeaturesContainer">
+                <td class="DetailedFeatures">
+                    @Resources.SummaryListRowCaption
+                </td>
+                <td>
+                    <!-- ko if: viewModel.Summary().length == 0 -->
+                    <label class="Link AddLink" title="@Resources.AddSummaryPointsTooltip" data-bind="click: onAddNewOfferSummary.bind($data, 0, $data)">@Resources.AddCaption</label>
+                    <!-- /ko -->
+                    <!-- ko foreach: viewModel.Summary -->
+                    <div class="DetailRow">
+                        <input placeholder="@Resources.OfferSummaryPlaceHolder" class="Detail" type="text" data-bind="textInput : $rawData">
+                        <img src="~/Content/Images/WebPortal/plus-black.png" title="@Resources.AddSummaryPointTooltip" class="Link VerticalCenter" data-bind="click: $parent.onAddNewOfferSummary.bind($parent, $index(), $parent)" />
+                        <img src="~/Content/Images/WebPortal/cross-black.png" title="@Resources.RemoveSummaryPointTooltip" class="Link VerticalCenter" data-bind="click: $parent.onRemoveOfferSummary.bind($parent, $index(), $parent)" />
+                    </div>
+                    <!-- /ko -->
+                </td>
+            </tr>
+            <!-- /ko -->
+            <tr>
+                <td colspan="2" class="FullHeight"></td>
+            </tr>
+            <!-- /ko -->
+        </tbody>
+    </table>
+</form>
+
+<script id="offerPicker-template" type="text/html">
+    <div id="OfferSelectionWizard">
+        <table  style="width:100%">
+            <tr width="100%">
+                <td width="100%" >
+                   <div style="float:left"><label>@Resources.SelectMicrosoftOfferCaption</label>  </div> 
+                    <div style="float:right" >
+                        <form >
+                                <fieldset class="SearchFieldSet" style="background-color:white;padding-top: 0px;padding-bottom: 0px;border: 0px;" >
+                                <input class="InputSearchField" placeholder="@Resources.SelectSearchByOffersPlaceholder" data-bind="value: searchTerm, valueUpdate: 'afterkeydown' " />
+                                <button class="InputSearchButton" data-bind="click: searchButtonClicked" style="padding-top: 8px;height:30px;padding-bottom: 8px;margin-top: 0px;margin-bottom: 0px;"><img src="/Content/Images/WebPortal/search.png" @*width="25" height="25"*@></button>
+                                </fieldset>
+                                </form>  
+                        
+                        </div> 
+                    </td>
+           
+            </tr>
+        </table>
+     
+        <!-- ko stopBinding: true -->
+        <div id="offerList" class="MicrosoftOfferList"></div>
+        <!-- /ko -->
+
+        <div class="OfferErrorMessage">
+            <label data-bind="text: errorMessage" class="MetroMediumLight error"></label>
+        </div>
+    </div>
+</script>
+
+<script>
+
+    $.validator.addMethod("validateprice", function (value, element) {
+        Globalize.culture("@Resources.Culture.Name");        
+        var evalExpr = this.optional(element) || !isNaN(Globalize.parseFloat(value));
+        if (evalExpr == true) {
+            // validate if number is > 0.
+            if (Globalize.parseFloat(value) <= 0)
+                return false; 
+        }        
+        return evalExpr;
+    }, "@Resources.OfferPriceShouldBeMoreThanZero");
+
+    $("#AddOrUpdateOfferForm").validate({
+            rules: {
+                OfferTitle: {
+                    required: true
+                },
+                OfferPrice: {
+                    required: true,
+                    validateprice:true
+                }
+            },
+            messages: {
+            },
+            submitHandler: function (form) {
+            }
+        });
+</script>

@@ -1,0 +1,134 @@
+﻿<div id="ProcessOrderContainer">
+    <div class="row">
+        <label data-bind="text: viewModel.PageTitle"></label>
+    </div>
+    <!-- ko if: viewModel.CustomerRegistrationInfo -->
+    <div class="row">
+        <label class="section">@Resources.Confirmation</label><br />
+        <label>@Resources.ConfirmationMessage</label>
+    </div>
+    <div class="row">
+        <label class="section">@Resources.SetupInformation</label>
+    </div>
+    <div class="row section-divider">
+        <div class="titleCell">
+            <label>@Resources.MicrosoftId</label>
+        </div>
+        <div class="left-float">
+            <label data-bind="text: viewModel.CustomerRegistrationInfo().MicrosoftId"></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="titleCell">
+            <label>@Resources.AdminUserAccount</label>
+        </div>
+        <div class="left-float">
+            <label data-bind="text: viewModel.CustomerRegistrationInfo().AdminUserAccount"></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="titleCell">
+            <label>@Resources.PasswordLabel</label>
+        </div>
+        <div class="left-float">
+            <label data-bind="text: viewModel.CustomerRegistrationInfo().Password"></label>
+        </div>
+    </div>
+    <div class="row">
+        <img src="~/Content/Images/WebPortal/notification-info.png" />
+        <label> @Resources.RegistrationConfirmationPasswordNoticeCaption</label>
+    </div>
+    <div class="row">
+        <div class="titleCell">
+            <label>@Resources.CustomerPrimaryContactCaption</label>
+        </div>
+        <div class="left-float">
+            <!-- ko foreach: viewModel.ContactInformation -->
+            <label data-bind="text: $data"></label><br />
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="titleCell">
+            <label>@Resources.CustomerOrganizationNameCaption</label>
+        </div>
+        <div class="left-float">
+            <label data-bind="text: viewModel.CustomerRegistrationInfo().CompanyName"></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="titleCell">
+            <label>@Resources.Address</label>
+        </div>
+        <div class="left-float">
+            <!-- ko foreach: viewModel.Address -->
+            <label data-bind="text: $data"></label><br />
+            <!-- /ko -->
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: viewModel.showSubscriptions -->
+    <div class="row">
+        <label class="section">@Resources.Subscriptions</label>
+    </div>
+    <!-- Subscriptions List -->
+    <div class="row section-divider">
+        <table class="subscriptions-table" cellspacing="5" cellpadding="5">
+            <tbody>
+                <tr class="medium-text">
+                    <td>
+                        @Resources.Subscription
+                    </td>
+                    <td class="right-aligned">
+                        @Resources.UserLicencesCaption
+                    </td>
+                    <td class="right-aligned">
+                        @Resources.SubscriptionSummaryRateCaption
+                    </td>
+                    <td class="right-aligned">
+                        @Resources.AnnualPriceCaption
+                    </td>
+                    <td />
+                </tr>
+                <!-- ko foreach: viewModel.Subscriptions -->
+                <tr>
+                    <td>
+                        <label class="medium-text" data-bind="text: $data.FriendlyName"></label>
+                        <label> - @Resources.SubscriptionSummaryAnnualCommitmentExpiryCaption </label><label data-bind="text: $data.SubscriptionExpiryDate"></label>
+                    </td>
+                    <td class="right-aligned">
+                        <label data-bind="text: $data.LicensesTotal"></label>
+                    </td>
+                    <td class="right-aligned">
+                        <label data-bind="text: $data.PortalOfferPrice"></label>
+                    </td>
+                    <td class="right-aligned">
+                        <label data-bind="text: $data.SubscriptionTotal"></label>
+                    </td>
+                </tr>
+                <!-- /ko -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="border-divider"></td>
+                </tr>
+                <tr class="subscriptions-total">
+                    <td colspan="3">
+                        @Resources.Total
+                    </td>
+                    <td class="right-aligned">
+                        <label data-bind="text: viewModel.TotalPrice"></label>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: viewModel.showDoneButton -->
+    <div class="row">
+        <a class="button confirmation-done-button" data-bind="click: onDoneClicked">@Resources.Done</a>
+    </div>
+    <!-- /ko -->
+</div>

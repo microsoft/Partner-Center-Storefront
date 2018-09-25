@@ -1,0 +1,225 @@
+﻿#HeaderBar {
+    width: 100%;
+    height: 41px !important;
+    background-color: rgba(255, 255, 255, 0);
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+    border-spacing: 0px;
+    border-collapse: separate;
+    min-width: 1024px;
+}
+
+    #HeaderBar > tr > td {
+        vertical-align: middle;
+    }
+
+.HeaderSpacer {
+    width: 5px;
+}
+
+/* The logo section in the header bar, this includes the product icon and title */
+
+#LogoSection {
+    width: 1px;
+    height: 100%;
+    font-weight: 400;
+    font-size: 18px;
+    color: white;
+    vertical-align: middle;
+    padding: 0;
+    white-space: nowrap;
+}
+
+    #LogoSection:hover {
+        cursor: pointer;
+    }
+
+    #LogoSection img {
+        vertical-align: middle;
+        width: 75px;
+        margin-left: 2px;
+    }
+
+    #LogoSection span {
+        display: block;
+        padding-left: 3px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 400px;
+    }
+
+/* The vertical | that separates the product logo section from the active tile section */
+#VerticalSeparator {
+    padding-right: 11px;
+    padding-left: 10px;
+    width: 1%;
+}
+
+    #VerticalSeparator > span {
+        border-right: 1px solid white;
+        vertical-align: middle;
+    }
+
+/* Title section in the top bar, it includes the tile icon, title and a drop down tile selector. */
+
+#TitleSection {
+    width: 1px;
+    padding: 0;
+    margin: 0;
+    border-spacing: 0px;
+    border-collapse: separate;
+}
+
+    #TitleSection > table {
+        padding: 0;
+        margin: 0;
+        border-spacing: 0;
+        border-collapse: separate;
+        height: 100%;
+        white-space: nowrap;
+    }
+
+#ActiveTile {
+    width: 1px;
+    max-width: 200px;
+    height: 100%;
+    font-weight: 400;
+    font-size: 18px;
+    color: white;
+    vertical-align: middle;
+    padding: 0;
+    padding-right: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+    #ActiveTile > img {
+        vertical-align: middle;
+    }
+
+    #ActiveTile:hover {
+        cursor: pointer;
+    }
+
+#TileSelector {
+    height: 100%;
+    vertical-align: middle;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+    #TileSelector:hover {
+        cursor: pointer;
+    }
+
+/* Actions section */
+
+#ActionsSection {
+    padding-left: 30px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: 36px;
+    border-spacing: 0px;
+    border-collapse: separate;
+}
+
+/* Notifications section */
+
+#NotificationsSection {
+    padding: 0;
+    width: 32px;
+    min-width: 32px;
+    font-size: 12px;
+    color: white;
+    white-space: nowrap;
+    text-align: center;
+}
+
+    #NotificationsSection > table {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    #NotificationsSection img {
+        vertical-align: middle;
+        width: 17px;
+    }
+
+/*
+    User information section in the top bar. This contains the user name and avatar and a drop down menu for sign out and other actions .
+*/
+
+#UserInfoSection {
+    padding: 0;
+    text-align: right;
+    width: 1px;
+    max-width: 400px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+    #UserInfoSection:hover {
+        cursor: pointer;
+    }
+
+    #UserInfoSection > table {
+        width: 100%;
+        height: 100%;
+        text-align: right;
+    }
+
+#UserName {
+    font-weight: 400;
+    font-size: 12px;
+    color: white;
+    vertical-align: middle;
+}
+
+#Avatar {
+    height: 32px;
+    width: 32px;
+    padding-right: 4px;
+}
+
+#HeaderBar .Link {
+    color: white;
+    opacity: 0.8;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+    #HeaderBar .Link:visited {
+        color: white;
+        text-decoration: none;
+    }
+
+    #HeaderBar .Link:hover {
+        color: white;
+        opacity: 1.0;
+        text-decoration: none;
+    }
+
+#LinksSection {
+    white-space: nowrap;
+    color: white;
+}
+
+.ContactUsContainer {
+    padding-top: 100px;
+}
+
+    .ContactUsContainer > table {
+        margin: auto;
+        min-width: 600px;
+    }
+
+    .ContactUsContainer .ContactUsHeader {
+        border-bottom: 1px solid White;
+    }
+
+    .ContactUsContainer a {
+        color: cyan !important;
+        text-decoration: none;
+    }

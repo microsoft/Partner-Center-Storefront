@@ -1,0 +1,127 @@
+﻿<div id="CustomerAccountContainer" class="FullSize">
+    <!-- ko if: viewModel.ShowProgress() -->
+    <div class="Progress FullSize center">
+        <img class="verticalCenteredProgress" src="~/Content/Images/Plugins/ripple.gif" />
+    </div>
+    <!-- /ko -->
+    <!-- ko if: viewModel.IsSet() -->
+    <div class="subscriptions-content">
+        <div class="Padded">
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <label class="section">@Resources.LicenseBasedSubscriptionsCaption</label>
+                            </div>
+                        </td>
+                        <td class="right-aligned">
+                            <label class="link Link medium-text" data-bind="click: onAddSubscriptionsClicked">@Resources.BuyMoreSubscriptionsMessage</label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row section-divider"></div>
+            <table class="subscriptions-table" cellspacing="1" cellpadding="5">
+                <tbody>
+                    <tr class="medium-text">
+                        <td width="60%">
+                            <label>@Resources.LicenseNameCaption</label>
+                        </td>
+                        <td class="right-aligned" width="20%"></td>
+                        <td class="center">
+                            <label>@Resources.LicenseQuantityCaption</label>
+                        </td>
+                        <td>
+                            <label>@Resources.LicenseStatusCaption</label>
+                        </td>
+                        <td class="right-aligned">
+                            <label>@Resources.LicenseCreatedDateCaption</label>
+                        </td>
+                    </tr>
+                    <!-- ko foreach: viewModel.CustomerManagedSubscriptions -->
+                    <tr class="SubscriptionRow">
+                        <td>
+                            <label class="abovemedium-text" data-bind="text: $data.FriendlyName"></label>
+                            <label data-bind="text: ' - ' + $data.SubscriptionId"></label>
+                        </td>
+                        <td class="right-aligned">
+                            <label class="Link medium-text subscription-action" data-bind="visible: IsRenewable, click: $parent.onRenewSubscriptionClicked">@Resources.SubscriptionSummaryRenewLinkCaption</label>
+                            <label class="Link medium-text subscription-action" data-bind="visible: IsEditable, click: $parent.onUpdateSubscriptionClicked">@Resources.AddMoreLicensesCaption</label>
+                        </td>
+                        <td class="center">
+                            <label data-bind="text: $data.LicensesTotal"></label>
+                        </td>
+                        <td>
+                            <label data-bind="text: $data.Status"></label>
+                        </td>
+                        <td class="right-aligned">
+                            <label data-bind="text: $data.CreationDate"></label>
+                        </td>
+                    </tr>
+                    <!-- /ko -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6" class="border-divider"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: viewModel.IsSet() -->
+    <div class="subscriptions-content">
+        <div class="Padded">
+            <div class="row">
+                <label class="section">@Resources.PartnerManagedSubscriptionsCaption</label>
+            </div>
+            <div class="row section-divider"></div>
+            <table class="subscriptions-table" cellspacing="1" cellpadding="5">
+                <tbody>
+                    <tr class="medium-text">
+                        <td width="80%">
+                            <label>@Resources.LicenseNameCaption</label>
+                        </td>
+
+                        <td class="center">
+                            <label>@Resources.LicenseQuantityCaption</label>
+                        </td>
+                        <td>
+                            <label>@Resources.LicenseStatusCaption</label>
+                        </td>
+                        <td class="right-aligned">
+                            <label>@Resources.LicenseCreatedDateCaption</label>
+                        </td>
+
+                    </tr>
+                    <!-- ko foreach: viewModel.PartnerManagedSubscriptions -->
+                    <tr class="SubscriptionRow">
+                        <td>
+                            <label class="abovemedium-text" data-bind="text: $data.OfferName"></label>
+                            <label data-bind="text: ' - ' + $data.Id"></label>
+                        </td>
+                        <td class="center">
+                            <label data-bind="text: $data.Quantity"></label>
+                        </td>
+                        <td>
+                            <label data-bind="text: $data.Status"></label>
+                        </td>
+                        <td class="right-aligned">
+                            <label data-bind="text: $data.CreationDate"></label>
+                        </td>
+
+                    </tr>
+                    <!-- /ko -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6" class="border-divider"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>

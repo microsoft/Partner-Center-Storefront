@@ -1,0 +1,171 @@
+﻿<div id="HeaderBarContainer" data-bind="template: { name: 'headerBar-template', data: $data }"></div>
+
+<!-- Renders a the product logo and the active tile -->
+<script id="TitleSection-template" type="text/html">
+    <table cellpadding="0" cellspacing="0" style="height: 100%">
+        <tr>
+            <td id="LogoSection" title="@Resources.GoToHomePageCaption" data-bind="click: onLogoClicked, event: { mouseover: onHover.bind($data, '#LogoSection') , mouseout: onUnhover.bind($data, '#LogoSection') }">
+                <table>
+                    <tr>
+                        @if (ViewBag.OrganizationLogo != null)
+                        {
+                            <td>
+                                <img style="max-height: 35px;" src="@ViewBag.OrganizationLogo" />
+                            </td>
+                        }
+                        <td>
+                            <span id="LogoTitle">@ViewBag.OrganizationName</span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td id="VerticalSeparator">
+                <span id="Pipe"></span>
+            </td>
+            <td id="TitleSection" data-bind="attr: { title: webPortal.activeTile().DisplayName }">
+                <table>
+                    <tr>
+                        <td id="ActiveTile" data-bind="click: onActiveTileClicked, event: { mouseover: onHover.bind($data, '#ActiveTile') , mouseout: onUnhover.bind($data, '#ActiveTile') }">
+                            <span id="ActiveTileTitle" data-bind="text: webPortal.activeTile().DisplayName"></span>
+                        </td>
+                        <td id="TileSelector" title="@Resources.ViewTilesTooltip" data-bind="click: onTileSelectorClicked, clickBubble: false, event: { mouseover: onHover.bind($data, '#TileSelector') , mouseout: onUnhover.bind($data, '#TileSelector') }">
+                            <img src="/Content/Images/WebPortal/down-arrow.png" style="transition: transform 500ms;" data-bind="style: { transform: tileSelectorDirection }" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</script>
+
+<!-- Renders the header bar  -->
+<script id="headerBar-template" type="text/html">
+    <!-- the display style was put here to prevent a race condition between showing the header bar and downloading the header bar CSS -->
+    <table id="HeaderBar" style="display: none;" data-bind="style: { backgroundColor: webPortal.activeTile().Color }">
+        <tr>
+            <!-- ko foreach: sections -->
+            <td data-bind="attr: { id: id, style: style }, style: { backgroundColor: webPortal.activeTile().Color }, template: { name: template, data: $data }"></td>
+            <!-- /ko -->
+        </tr>
+    </table>
+</script>
+
+<!-- Renders the actions section in the header bar -->
+<script id="actionsHeaderBarSection-template" type="text/html">
+    <!-- Use the actions manager user control to render the actions -->
+    <div style="height: 100%;" data-bind="template: { name: actionBarSevice.actionsManager.actionsTemplate, data: actionBarSevice.actionsManager }"></div>
+</script>
+
+<!-- Renders the links section -->
+
+@if (@ViewBag.ContactUs != null && @ViewBag.ContactSales != null)
+{
+    <script>
+        window.contactUs = {
+            email: '@ViewBag.ContactUs.Email',
+            phone: '@ViewBag.ContactUs.Phone'
+        }
+
+        window.contactSales = {
+            email: '@ViewBag.ContactSales.Email',
+            phone: '@ViewBag.ContactSales.Phone'
+        }
+    </script>
+}
+
+<script id="linksHeaderBarSection-template" type="text/html">
+    <table id="LinksSection" cellpadding="0" cellspacing="0">
+        <tr>
+            <td style="padding-left: 10px; padding-right: 10px;">
+                <label class="Link" title="@Resources.ContactUsTooltip" data-bind="click: onContactUsClicked">@Resources.ContactUs</label>
+            </td>
+            <!-- ko ifnot: isLoggedIn-->
+            <td style="padding-left: 10px; padding-right: 10px;">
+                <a class="Link" data-bind="click: onLoginClicked">@Resources.Login</a>
+            </td>
+            <!-- /ko -->
+        </tr>
+    </table>
+</script>
+
+<script id="contactUs-template" type="text/html">
+    <div class="FullWidth MetroMediumLight ContactUsContainer">
+        <table cellpadding="10" cellspacing="10">
+            <tr>
+                <td colspan="2" class="MetroNormal ContactUsHeader">
+                    @Resources.ContactUs
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Resources.ContactUsEmailCaption
+                </td>
+                <td>
+                    <a class="Link" data-bind="text: contactUs.email, attr: { href: contactUs.emailLink }"></a>
+                </td>
+            </tr>
+            <tr>
+                <td class="FitToContent">
+                    @Resources.ContactUsPhoneCaption
+                </td>
+                <td>
+                    <a class="Link" data-bind="text: contactUs.phone, attr: { href: contactUs.phoneLink }"></a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="MetroNormal ContactUsHeader">
+                    @Resources.ContactSales
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Resources.ContactUsEmailCaption
+                </td>
+                <td>
+                    <a class="Link" data-bind="text: contactSales.email, attr: { href: contactSales.emailLink }"></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Resources.ContactUsPhoneCaption
+                </td>
+                <td>
+                    <a class="Link" data-bind="text: contactSales.phone, attr: { href: contactSales.phoneLink }"></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</script>
+
+<!-- Renders the notifications section -->
+<script id="notificationsHeaderBarSection-template" type="text/html">
+    <table cellpadding="0" cellspacing="0" title="@Resources.NotificationSectionTooltip" data-bind="style: { display: notificationsSectionVisible }, click: onNotificationsSectionClicked, clickBubble: false, event: { mouseover: onHover.bind($data, '#NotificationsSection > table') , mouseout: onUnhover.bind($data, '#NotificationsSection > table') }">
+        <tr>
+            <td>
+                <img style="vertical-align: middle" src="/Content/Images/WebPortal/notifications.png" />
+                <span style="vertical-align: middle">
+                    <b data-bind="text: notificationsCount"></b>
+                </span>
+            </td>
+        </tr>
+    </table>
+</script>
+
+<!-- Renders the user section -->
+<script id="userSection-template" type="text/html">
+    <table cellpadding="0" cellspacing="0">
+        <tr id="UserInfoMenu" data-bind="clickBubble: false">
+            <!-- ko if: userMenuSevice() -->
+            <!-- ko foreach: userMenuSevice().actionsManager.actions -->
+            <td class="Action" data-bind="attr: { id: elementId, title: tooltip }, click: onClick, style: { backgroundColor: backgroundColor, opacity: opacity, cursor: cursor }, event: { mouseover: onHover, mouseout: onUnhover }">
+                <span id="UserName" data-bind="text: displayName"></span>
+                <img id="Avatar" src="Content/Images/WebPortal/avatar.png" />
+                <!-- ko if: hasChildren -->
+                <div data-bind="template: { name:'leafActions-template', data: $data }"></div>
+                <!-- /ko -->
+            </td>
+            <!-- /ko -->
+            <!-- /ko -->
+        </tr>
+    </table>
+</script>

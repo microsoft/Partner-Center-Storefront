@@ -1,0 +1,76 @@
+﻿/* The background used to shadow the rest of the page when the dialog is shown */
+#DialogBackgroundOverlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    min-width: 1024px;
+    min-height: 600px;
+    background-color: lightgray;
+    opacity: 0.6;
+}
+
+/* Used to shadow the dialog itself to disable interacting with it while an operation is in progress */
+#DialogShader {
+    z-index: 102;
+    vertical-align: middle;
+    text-align: center;
+    display: none;
+    opacity: 0.6;
+    background-color: gray;
+}
+
+/* A metro style dialog implementation */
+.MetroDialog {
+    position: absolute;
+    min-height: 300px;
+    width: 100%;
+    height: 80%;
+    top: 10%;
+    left: 0;
+    z-index: 101;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 18px;
+    color: white;
+    display: none;
+    background-color: rgba(90, 90, 90, 1.0);
+}
+
+    .MetroDialog > table {
+        position: absolute;
+        top: 0%;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+#DialogProgressIndicator {
+    width: 400px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -15px;
+    z-index: 103;
+    display: none;
+}
+
+#DialogContentContainer {
+}
+
+#DialogContent {
+    height: 100%;
+    width: 100%;
+    font-size: 18px;
+    font-weight: normal;
+    overflow: auto;
+}

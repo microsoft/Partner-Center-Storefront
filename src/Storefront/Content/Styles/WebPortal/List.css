@@ -1,0 +1,172 @@
+﻿.EmptyListMessageContainer {
+    display: table;
+}
+
+.EmptyListMessage {
+    vertical-align: middle;
+    text-align: center;
+    display: table-cell;
+    color:black;
+}
+
+.ListColumnHeader {
+    vertical-align: sub;
+    display: inline-block;
+    color: #464443;
+    font-size: 16px;
+    font-family: "Segoe UI";
+    font-weight: 600;
+}
+
+.ListSection {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    border-spacing: 0px;
+    table-layout: fixed;
+}
+
+#ListHeaders td {
+    border-bottom: 1px solid #E5DFD2;
+    border-right: 1px solid #E5DFD2;
+    padding: 10px;
+    text-align: left;
+}
+
+.StatusBarHeader {
+    padding: 0px !important;
+    width: 6px !important;
+    border-left: 6px solid transparent !important;
+    border-right-width: 0px !important;
+    box-sizing: border-box;
+}
+
+.SelectionHeader {
+    padding: 0px !important;
+    text-align: center !important;
+    width: 20px !important;
+    border-right-width: 0px !important;
+}
+
+.ScrollBarEmulator {
+    padding: 0px !important;
+    width: 16px !important;
+}
+
+.SortDirection {
+    padding-left: 2px;
+    vertical-align: baseline;
+}
+
+.ListBody {
+    overflow: auto;
+    height: 100%;
+}
+
+div.ListBodyContainer {
+    width: 100%;
+    overflow: auto;
+    margin: 0 auto;
+}
+
+.ListRow {
+    height: auto;
+}
+
+.Cell {
+    color: #464443;
+    background-color: #FFFFFF;
+    border-top: 1px rgba(0, 0, 0, 0) solid;
+    border-bottom: 1px solid #E5DFD2;
+    padding: 10px;
+    border-right: 1px solid rgba(0,0,0,0);
+}
+
+.StatusBarCell {
+    padding: 0px !important;
+    width: 6px !important;
+    border-left-width: 6px !important;
+    border-left-style: solid !important;
+    box-sizing: border-box;
+}
+
+.SelectionCell {
+    padding: 0px !important;
+    text-align: center !important;
+    width: 20px !important;
+    border-right-width: 0px !important;
+}
+
+.Selected {
+    background-color: #DAE9FC;
+    border-bottom: 1px #66A9D9 solid;
+}
+
+.DrawTopBorder {
+    border-top: 1px #66A9D9 solid;
+}
+
+.ClickableCell {
+    cursor: pointer;
+    color: #3aa0cc;
+}
+
+    .ClickableCell:hover {
+        background-color: rgba(220, 220, 220, 0.2);
+    }
+
+.ClickableWhileSelected {
+    cursor: pointer;
+    color: #3aa0cc;
+}
+
+    .ClickableWhileSelected:hover {
+        background-color: #CAD9EC;
+    }
+
+.ListFooter {
+    border-bottom: 1px solid #E5DFD2;
+    background-color: rgba(229, 223, 210, 0.9);
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    color: #3aa0cc;
+}
+
+    .ListFooter label {
+        padding-right: 10px;
+    }
+
+.DisabledPageLink {
+    color: #464443;
+    cursor: auto;
+}
+
+.OverflowWithEllipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 0px;
+}
+
+.OverflowSortHeaderWithEllipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: calc(100% - 15px); /* We need to accomodate the sort icon */
+}
+
+.OverflowHeaderWithEllipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.ZeroMaxWidth {
+    max-width: 0px;
+}
+
+.ScrollBarPadding {
+    padding-right: 16px; /* Used to compensate the table header with the scrollbar width displayed in the body */
+}

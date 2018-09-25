@@ -1,0 +1,38 @@
+﻿<script id="login-template" type="text/html">
+    <form>
+        <table cellpadding="2" class="login-container">
+            <tbody>
+                <tr>
+                    <td class="user-name-cell">
+                        <label>@Resources.UserNameLabel</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="login-input" type="text" autofocus data-bind="textInput: userName">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="password-cell">
+                        <label>@Resources.PasswordLabel</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="login-input" type="password" data-bind="textInput: password">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" data-bind="checked: rememberMe">@Resources.RememberMe
+                    </td>
+                </tr>
+                <tr>
+                    <td class="error">
+                        <label data-bind="text: errorMessage, visible: isInErrorState"></label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</script>

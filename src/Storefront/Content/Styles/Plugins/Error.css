@@ -1,0 +1,28 @@
+﻿body {
+    background-image: radial-gradient(rgb(40, 40, 40), rgb(0, 128, 128));
+    text-align: center;
+    padding-top: 200px;
+    font-family: "Segoe UI";
+}
+
+    body > div {
+        color: white;
+        display: inline;
+        font-weight: 100;
+    }
+
+.organizationName {
+    font-size: 80px;
+}
+
+.errorMessage {
+    font-size: 28px;
+}
+
+.links {
+    font-size: 20px;
+}
+
+    .links a {
+        color: white;
+    }

@@ -1,0 +1,97 @@
+﻿<script>
+    /// <reference path="~/Scripts/_references.js" />
+
+    /*
+        Maintains the web portal configuration.
+    */
+    // read the passed supplemental configuration
+    var portalConfiguration = JSON.parse('@Html.Raw(@Model)');
+
+    if (!portalConfiguration) {
+        // TODO: this is a serious error, redirect to the error page
+        window.location = "/Home/Error?statusCode=500&&errorMessage=MissingConfig";
+    }
+
+    // define configuration containers in case they were not present in the WebPortalConfiguration.JSON file
+    portalConfiguration.SplashScreen = portalConfiguration.SplashScreen || {};
+    portalConfiguration.PrimaryNavigation = portalConfiguration.PrimaryNavigation || {};
+    portalConfiguration.HeaderBar = portalConfiguration.HeaderBar || {};
+    portalConfiguration.ActionBar = portalConfiguration.ActionBar || {};
+    portalConfiguration.ContentPanel = portalConfiguration.ContentPanel || {};
+    portalConfiguration.Notifications = portalConfiguration.Notifications || {};
+    portalConfiguration.Journey = portalConfiguration.Journey || {};
+
+    // Add dynamic configuration behavior...
+
+    /*
+        Returns the assigned splash screen implementation.
+    */
+    portalConfiguration.SplashScreen.getImplementation = function (webPortal) {
+        var animation = new Microsoft.WebPortal.Utilities.Animation(Microsoft.WebPortal.Effects.Fade, 500);
+        return new Microsoft.WebPortal.Core.StandardSplashScreen(webPortal, animation);
+    }
+    
+    /*
+        Returns the assigned primary navigation implementation.
+    */
+    portalConfiguration.PrimaryNavigation.getImplementation = function (webPortal) {
+        var animation = new Microsoft.WebPortal.Utilities.Animation(Microsoft.WebPortal.Effects.SlideDown, 500);
+        return new Microsoft.WebPortal.Services.PrimaryNavigation(webPortal, animation, webPortal.Configuration.PrimaryNavigation.Template);
+    }
+
+        
+    /*
+        The default animation the content panel will use to show and hide its content.
+    */
+    portalConfiguration.ContentPanel.getDefaultAnimation = function () {
+        return new Microsoft.WebPortal.Utilities.Animation(Microsoft.WebPortal.Effects.Fade, 650);
+    }
+
+    /*
+        The default animation used to show and hide the notifications
+    */
+    portalConfiguration.Notifications.getDefaultAnimation = function () {
+        return new Microsoft.WebPortal.Utilities.VerticalSlideAnimation(500);
+    }
+
+    /*
+        The default header bar animation used to show and hide it.
+    */
+    portalConfiguration.HeaderBar.getDefaultAnimation = function () {
+        return new Microsoft.WebPortal.Utilities.Animation(Microsoft.WebPortal.Effects.SlideDown, 800);
+    }
+
+    /*
+        The animation to perform when an action is added to the action bar.
+    */
+    portalConfiguration.ActionBar.getAddActionAnimation = function () {
+        return new Microsoft.WebPortal.Utilities.Animation(Microsoft.WebPortal.Effects.SweepFadeLeft, 200);
+    }
+
+    /*
+        The animation to perform when an action is removed from the action bar.
+    */
+    portalConfiguration.ActionBar.getRemoveActionAnimation = function () {
+        return new Microsoft.WebPortal.Utilities.Animation(Microsoft.WebPortal.Effects.Fade, 400);
+    }
+
+    /*
+        The journey animations
+    */
+    portalConfiguration.Journey.getJourneyStartAnimation = function () {
+        return new Microsoft.WebPortal.Utilities.Animation(Microsoft.WebPortal.Effects.Fade, 500);
+    }
+
+    portalConfiguration.Journey.getJourneyAdvanceAnimation = function () {
+        return new Microsoft.WebPortal.Utilities.Animation(Microsoft.WebPortal.Effects.Fade, 500);
+    }
+
+    portalConfiguration.Journey.getJourneyRetractAnimation = function () {
+        return new Microsoft.WebPortal.Utilities.Animation(Microsoft.WebPortal.Effects.Fade, 500);
+    }
+
+    /* View animation */
+    portalConfiguration.getDefaultViewAnimation = function () {
+        return new Microsoft.WebPortal.Utilities.Animation(Microsoft.WebPortal.Effects.Fade, 300);
+    }
+</script>

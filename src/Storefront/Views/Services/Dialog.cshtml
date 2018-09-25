@@ -1,0 +1,35 @@
+﻿<!-- ko stopBinding: true -->
+<div style="overflow: auto">
+    <div id="Dialog" data-bind="template: { name: template, data: $data }, css: cssClass, style: { width: width }">
+    </div>
+    <progress id="DialogProgressIndicator" data-bind="fadeVisible: isProgressShown, duration: 150"></progress>
+</div>
+<div id="DialogShader" data-bind="fadeVisible: isProgressShown, duration: 150, css: cssClass, style: { width: width }"></div>
+<div id="DialogBackgroundOverlay" data-bind="fadeVisible: isShown, duration: animation.animationDuration, style: { width: width, height: height }"></div>
+<!-- /ko -->
+
+<script id="MetroDialog-template" type="text/html">
+    <table id="DialogContentContainer">
+        <tr>
+            <td style="height: 100%;">
+                <div id="DialogContent" class="DialogContent" data-bind="template: { name: contentTemplate(), data: contentViewModel() }, style: { maxHeight: maxHeight }"></div>
+            </td>
+        </tr>
+        <tr>
+            <td style="height:60px; padding-top: 5px;">
+                <!-- ko if : buttons().length > 0 -->
+                <table style="width: 100%;">
+                    <tr>
+                        <td class="NotificationButtons" style="width:1%" data-bind="foreach: buttons">
+                            <div class="NotificationButton" data-bind="click: onClick.bind($data, $parent)" style="height:100%;">
+                                <img data-bind="attr: { src: icon }" style="height:32px;" />
+                                <span data-bind="text: displayName"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <!-- /ko -->
+            </td>
+        </tr>
+    </table>
+</script>

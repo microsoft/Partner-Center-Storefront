@@ -1,0 +1,100 @@
+﻿<div id="CustomerSubscriptionsContainer" class="FullSize">
+    <!-- ko if: viewModel.ShowProgress() -->
+    <div class="Progress FullSize center">
+        <img class="verticalCenteredProgress" src="~/Content/Images/Plugins/ripple.gif" />
+    </div>
+    <!-- /ko -->
+    <!-- ko if: viewModel.IsSet() -->
+    <div class="subscriptions-content">
+        <table class="subscriptions-table">
+            <tbody>
+                <tr>
+                    <td width="80%">
+                        <label class="section">@Resources.OrdersCaption</label>
+                    </td>
+                  </tr>
+                <tr>
+                    <td colspan="2" class="section-divider"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="subscriptions-table" cellspacing="1" cellpadding="5">
+            <tbody>
+                <tr class="medium-text">
+                    <td>
+                        @Resources.Subscription
+                    </td>
+                    <td>
+                        @Resources.UserLicencesCaption
+                    </td>
+                    <td>
+                        @Resources.SubscriptionSummaryRateCaption
+                    </td>
+                    <td class="right-aligned">
+                        *@Resources.SubscriptionSummaryAnnualPricePrefixCaption
+                    </td>
+                    <td />
+                    <td />
+                </tr>
+
+                <!-- ko foreach: viewModel.SubscriptionsSummary().Subscriptions -->
+                <tr class="SubscriptionRow">
+                    <td>
+                        <label class="abovemedium-text" data-bind="text: $data.FriendlyName"></label>
+                        <label> - @Resources.SubscriptionSummaryAnnualCommitmentExpiryCaption </label><label data-bind="text: $data.SubscriptionExpiryDate"></label>
+                    </td>
+                    <td class="left-aligned">
+                        <label data-bind="text: $data.LicensesTotal"></label>
+                    </td>
+                    <td>
+                        <label data-bind="text: $data.PortalOfferPrice"></label>
+                    </td>
+                    <td class="right-aligned">
+                        <label data-bind="text: $data.SubscriptionTotal"></label>
+                    </td>
+                    <td class="collapse_down" data-bind="click: $parent.onToggleClicked" />
+                </tr>
+                <!-- ko foreach: SubscriptionOrderHistory -->
+                <tr class="SubscriptionHistoryRow">
+                    <td>                        
+                        <label data-bind="text: $data.OperationType + ' - ' + $data.OrderDate"></label>
+                    </td>
+                    <td class="left-aligned">
+                        <label data-bind="text: $data.SeatsBought"></label>
+                    </td>
+                    <td>
+                        <label data-bind="text: $data.PricePerSeat"></label>
+                    </td>
+                    <td class="right-aligned">
+                        <label data-bind="text: $data.OrderTotal"></label>
+                    </td>
+                    <td />
+                    <td />
+                </tr>
+                <!-- /ko -->
+                <!-- /ko -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" class="border-divider"></td>
+                </tr>
+                <tr class="subscriptions-total">
+                    <td colspan="3">
+                        @Resources.Total
+                    </td>
+                    <td class="right-aligned">
+                        <label data-bind="text: viewModel.SubscriptionsSummary().SummaryTotal"></label>
+                    </td>
+                    <td />
+                    <td />
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        *@Resources.SubscriptionSummaryProratepriceCaption
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /ko -->
+</div>

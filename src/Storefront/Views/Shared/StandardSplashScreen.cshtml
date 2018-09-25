@@ -1,0 +1,21 @@
+﻿<!-- The standard splash screen template -->
+<script id="StandardSplashScreen-template" type="text/html">
+    <div class="StandardSplashScreen">
+        <table id="Content">
+            <tr>
+                <td colspan="2">
+                    <label id="ProductTitle">@ViewBag.OrganizationName</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="FitToContent">
+                    <label id="Message" data-bind="text: message"></label>
+                </td>
+                <td>
+                    <progress id="LoadingIndicator" data-bind="visible: showLoadingIndicator"></progress>
+                    <label id="Retry" class="Link" data-bind="visible: showRetryButton, click: onRetry">@Resources.RetryCapital</label>
+                </td>
+            </tr>
+        </table>
+    </div>
+</script>

@@ -1,0 +1,60 @@
+﻿<table id="AdminConsoleContainer">
+    <tr>
+        <td></td>
+        <td class="WelcomeMessageContainer">
+            <label>
+                @Resources.WelcomeCaptionPrefix <label class="UserName" data-bind="text: userName"></label> @Resources.WelcomeCaptionSuffix
+            </label>
+        </td>
+        <td></td>
+    </tr>
+    <!-- ko if: viewModel.ShowProgress() -->
+    <tr>
+        <td></td>
+        <td class="Progress">
+            <label class="MetroMediumLight">@Resources.DashboardBuildingProgressMessage</label><br />
+            <img src="~/Content/Images/Plugins/ripple.gif" />
+        </td>
+        <td></td>
+    </tr>
+    <!-- /ko -->
+    <!-- ko if: viewModel.IsSet() -->
+    <tr>
+        <td></td>
+        <td class="PromptMessage">
+            <label data-bind="text: viewModel.PromptMessage"></label>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="SetupSectionTitle">
+            <label class="Link MetroNormal" title="@Resources.BrandingSectionTooltip" data-bind="click: onConfigureBranding">
+                @Resources.CompanyBrandingConfigurationCaption
+            </label>
+            <img class="SetupSectionStatus" data-bind="attr: { src: viewModel.Branding.Icon(), title: viewModel.Branding.Tooltip() }">
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="SetupSectionTitle">
+            <label class="Link MetroNormal" title="@Resources.OffersSectionTooltip" data-bind="click: onConfigureOffers">
+                @Resources.OffersConfigurationCaption
+            </label>
+            <img class="SetupSectionStatus" data-bind="attr: { src: viewModel.Offers.Icon(), title: viewModel.Offers.Tooltip() }">
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="SetupSectionTitle">
+            <label class="Link MetroNormal" title="@Resources.PaymentSectionTooltip" data-bind="click: onConfigurePayment">
+                @Resources.PaymentConfigurationCaption
+            </label>
+            <img class="SetupSectionStatus" data-bind="attr: { src: viewModel.Payment.Icon(), title: viewModel.Payment.Tooltip() }">
+        </td>
+        <td></td>
+    </tr>
+    <!-- /ko -->
+</table>

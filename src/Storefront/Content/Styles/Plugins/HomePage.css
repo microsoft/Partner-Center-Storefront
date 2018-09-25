@@ -1,0 +1,106 @@
+﻿.offers-header {
+    margin: auto;
+    position: relative;
+    vertical-align: top;
+    height: 1px;
+}
+
+.banner {
+    max-height: 250px;
+}
+
+.office-title {
+    left: calc(50% - 430px);
+    top: 100px;
+    text-align: center;
+    position: absolute;
+}
+
+.offers-main-title {
+    padding: 20px;
+}
+
+.most-popular-cell {
+    border: 1px solid black;
+    border-image: none;
+    height: 50px;
+    border-collapse: collapse;
+    background-color: gray;
+    border-bottom-width: 0px;
+    color: white;
+    font-size: 18px;
+}
+
+.spacer-cell {
+    width: 25px;
+}
+
+.offer-cell {
+    width: 225px;
+    vertical-align: top;
+    padding: 40px 20px 40px 20px;
+    text-align: center;
+    border: solid black 1px;
+}
+
+.offer-main-title {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.offer-subtitle {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.learn-more {
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.offer-icon {
+    margin-bottom: 50px;
+    height: 34px;
+}
+
+.offer-features {
+    height: 250px;
+}
+
+.offer-price {
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.buy-now {
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.footer {
+    width: 100%;
+    height: 50px;
+    color: white;
+    background-color: #3D3C3A;
+    position: relative;
+}
+
+    .footer .rightAlignedElement {
+        float: right;
+        padding-right: 20px;
+        color: white !important;
+    }
+
+.PortalNotConfigured {
+    padding-top: 50px;
+    vertical-align: top;
+}
+
+#PartnerOffersCatalogView {
+    display: inline-block;
+    margin: auto;
+}

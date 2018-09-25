@@ -1,0 +1,31 @@
+﻿#GrandBrandingContainer {
+    padding: 15px;
+}
+
+#BrandingContainer {
+    display: none;
+}
+    #BrandingContainer > tbody > tr > td {
+        vertical-align: top;
+        padding-bottom: 20px;
+    }
+
+    #BrandingContainer input[type=file] {
+        display: none;
+    }
+
+    #BrandingContainer #ContactUsPhone {
+        margin-right: 10px;
+    }
+
+    #BrandingContainer #ContactUsEmailLabel {
+        margin-right: 10px;
+    }
+
+    #BrandingContainer #ContactSalesPhone {
+        margin-right: 10px;
+    }
+
+    #BrandingContainer #ContactSalesEmailLabel {
+        margin-right: 10px;
+    }

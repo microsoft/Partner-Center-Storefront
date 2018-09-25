@@ -1,0 +1,58 @@
+﻿#CustomerSubscriptionsContainer {
+}
+
+    #CustomerSubscriptionsContainer .subscriptions-content {
+        padding: 15px;
+    }
+
+.subscriptions-title-row {
+    width: 500px;
+    position: relative;
+}
+
+.subscriptions-links {
+    position: absolute;
+    top: 42%;
+    right: 0px;
+}
+
+    .subscriptions-links a {
+        margin-right: 5px;
+        margin-left: 5px;
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+.subscriptions-total {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.collapse_up,
+.collapse_down {
+    padding: 4px 21px 4px 4px;
+    cursor: pointer;
+}
+
+.collapse_up {
+    background: url(data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///xUVFf///yH5BAEAAAMALAAAAAALAAsAAAIRnC2nKLnT4or00Puy3rx7VQAAOw==) no-repeat center left !important;
+    background-size: 15px;
+}
+
+.collapse_down {
+    background: url(data:image/gif;base64,R0lGODlhCwALAJEAAAAAAP///xUVFf///yH5BAEAAAMALAAAAAALAAsAAAIPnI+py+0/hJzz0IruwjsVADs=) no-repeat center left !important;
+    background-size: 15px;
+}
+
+
+tr.SubscriptionRow {
+    display: table-row;
+}
+
+tr.SubscriptionHistoryRow {
+    display: none;
+}
+
+.subscription-action {
+    display: block;
+}
