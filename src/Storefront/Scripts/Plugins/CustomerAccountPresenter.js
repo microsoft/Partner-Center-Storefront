@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.CustomerAccountPresenter = function (webPortal, feature, context) {
+﻿Microsoft.WebPortal.CustomerAccountPresenter = function (webPortal, feature, context) {
     /// <summary>
     /// Manages the offers experience. 
     /// </summary>

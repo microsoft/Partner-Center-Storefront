@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.CustomerRegistrationPresenter = function (webPortal, feature, context) {
+﻿Microsoft.WebPortal.CustomerRegistrationPresenter = function (webPortal, feature, context) {
     /// <summary>
     /// Manages the offers experience. 
     /// </summary>
@@ -9,13 +7,13 @@ Microsoft.WebPortal.CustomerRegistrationPresenter = function (webPortal, feature
     this.base.constructor.call(this, webPortal, feature, "Home", "/Template/CustomerRegistration/");
 
     this.addSubscriptionsView = new Microsoft.WebPortal.Views.AddSubscriptionsView(webPortal, "#AddSubscriptionsViewContainer", context);
-    this.customerProfileView = new Microsoft.WebPortal.Views.NewCustomerProfileView(webPortal, "#CustomerProfileContainer");    
+    this.customerProfileView = new Microsoft.WebPortal.Views.NewCustomerProfileView(webPortal, "#CustomerProfileContainer");
 
     this.context = context;
     this.customerRegistrationInfo;
     this.isPosting = false;
 
-    var self = this;    
+    var self = this;
 
     this.onFormSubmit = function () {
         if (self.isPosting) {
@@ -38,12 +36,12 @@ Microsoft.WebPortal.CustomerRegistrationPresenter = function (webPortal, feature
 
             // if client id is already present then skip the create Customer call. 
             // Call Create Customer if customer is not registered (or is retring due an error from the past).  
-            var customerId = this.customerProfileView.viewModel.CustomerMicrosoftID();            
-            if (!customerId) {               
+            var customerId = this.customerProfileView.viewModel.CustomerMicrosoftID();
+            if (!customerId) {
                 new Microsoft.WebPortal.Utilities.RetryableServerCall(self.webPortal.Helpers.ajaxCall("api/CustomerAccounts",
-                        Microsoft.WebPortal.HttpMethod.Post,
-                        self.getCustomerInformation(),
-                        Microsoft.WebPortal.ContentType.Json, 120000),
+                    Microsoft.WebPortal.HttpMethod.Post,
+                    self.getCustomerInformation(),
+                    Microsoft.WebPortal.ContentType.Json, 120000),
                     "RegisterCustomer", []).execute()
                     // Success of Create Customer API Call. 
                     .done(function (customerTemporaryGuid) {
@@ -61,7 +59,7 @@ Microsoft.WebPortal.CustomerRegistrationPresenter = function (webPortal, feature
                             })
                         ]);
 
-                        var registrationConfirmationInfo = {                            
+                        var registrationConfirmationInfo = {
                             SubscriptionsToOrder: self.getSubscriptions(),
                             MicrosoftId: customerTemporaryGuid,
                         }
@@ -75,55 +73,55 @@ Microsoft.WebPortal.CustomerRegistrationPresenter = function (webPortal, feature
                         };
 
                         new Microsoft.WebPortal.Utilities.RetryableServerCall(self.webPortal.Helpers.ajaxCall("api/Order/NewCustomerPrepareOrder", Microsoft.WebPortal.HttpMethod.Post, orderToPlace, Microsoft.WebPortal.ContentType.Json, 120000), "RegisterCustomerOrder", []).execute()
-                                // Success of Create CustomerOrder API Call. 
-                                .done(function (result) {
-                                    // orderNotification.dismiss();
-                                    // we need to now redirect to paypal based on the response from the API.             
-                                	//  PayUMoney needs form submission from client
-                                	$('body').html(result);
-                                })
-                                    // Failure in Create CustomerOrder API call. 
-                                .fail(function (result, status, error) {
-                                    // on failure check if customerid is returned (or check using errCode). if returned then do something to set the ClientCustomerId
-                                    orderNotification.type(Microsoft.WebPortal.Services.Notification.NotificationType.Error);
-                                    orderNotification.buttons([
-                                        // no need for retry button. user should be able to hit submit.
-                                        Microsoft.WebPortal.Services.Button.create(Microsoft.WebPortal.Services.Button.StandardButtons.OK, self.webPortal.Resources.Strings.OK, function () {
-                                            orderNotification.dismiss();
-                                        })
-                                    ]);
+                            // Success of Create CustomerOrder API Call. 
+                            .done(function (result) {
+                                // orderNotification.dismiss();
+                                // we need to now redirect to paypal based on the response from the API.             
+                                //  PayUMoney needs form submission from client
+                                $('body').html(result);
+                            })
+                            // Failure in Create CustomerOrder API call. 
+                            .fail(function (result, status, error) {
+                                // on failure check if customerid is returned (or check using errCode). if returned then do something to set the ClientCustomerId
+                                orderNotification.type(Microsoft.WebPortal.Services.Notification.NotificationType.Error);
+                                orderNotification.buttons([
+                                    // no need for retry button. user should be able to hit submit.
+                                    Microsoft.WebPortal.Services.Button.create(Microsoft.WebPortal.Services.Button.StandardButtons.OK, self.webPortal.Resources.Strings.OK, function () {
+                                        orderNotification.dismiss();
+                                    })
+                                ]);
 
-                                    var errorPayload = JSON.parse(result.responseText);
+                                var errorPayload = JSON.parse(result.responseText);
 
-                                    if (errorPayload) {
-                                        switch (errorPayload.ErrorCode) {
-                                            case Microsoft.WebPortal.ErrorCode.InvalidInput:
-                                                orderNotification.message(self.webPortal.Resources.Strings.Plugins.CustomerRegistrationPage.InvalidInputErrorPrefix + errorPayload.Details.ErrorMessage);
-                                                break;
-                                            case Microsoft.WebPortal.ErrorCode.DownstreamServiceError:
-                                                orderNotification.message(self.webPortal.Resources.Strings.Plugins.CustomerRegistrationPage.DownstreamErrorPrefix + errorPayload.Details.ErrorMessage);
-                                                break;
-                                            case Microsoft.WebPortal.ErrorCode.PaymentGatewayPaymentError:
-                                            case Microsoft.WebPortal.ErrorCode.PaymentGatewayIdentityFailureDuringPayment:
-                                            case Microsoft.WebPortal.ErrorCode.PaymentGatewayFailure:
-                                                orderNotification.message(errorPayload.Details.ErrorMessage);
-                                                break;
-                                            default:
-                                                orderNotification.message(self.webPortal.Resources.Strings.Plugins.CustomerRegistrationPage.OrderRegistrationFailureMessage);
-                                                break;
-                                        }
-                                    } else {
-                                        orderNotification.message(self.webPortal.Resources.Strings.Plugins.CustomerRegistrationPage.OrderRegistrationFailureMessage);
+                                if (errorPayload) {
+                                    switch (errorPayload.ErrorCode) {
+                                        case Microsoft.WebPortal.ErrorCode.InvalidInput:
+                                            orderNotification.message(self.webPortal.Resources.Strings.Plugins.CustomerRegistrationPage.InvalidInputErrorPrefix + errorPayload.Details.ErrorMessage);
+                                            break;
+                                        case Microsoft.WebPortal.ErrorCode.DownstreamServiceError:
+                                            orderNotification.message(self.webPortal.Resources.Strings.Plugins.CustomerRegistrationPage.DownstreamErrorPrefix + errorPayload.Details.ErrorMessage);
+                                            break;
+                                        case Microsoft.WebPortal.ErrorCode.PaymentGatewayPaymentError:
+                                        case Microsoft.WebPortal.ErrorCode.PaymentGatewayIdentityFailureDuringPayment:
+                                        case Microsoft.WebPortal.ErrorCode.PaymentGatewayFailure:
+                                            orderNotification.message(errorPayload.Details.ErrorMessage);
+                                            break;
+                                        default:
+                                            orderNotification.message(self.webPortal.Resources.Strings.Plugins.CustomerRegistrationPage.OrderRegistrationFailureMessage);
+                                            break;
                                     }
+                                } else {
+                                    orderNotification.message(self.webPortal.Resources.Strings.Plugins.CustomerRegistrationPage.OrderRegistrationFailureMessage);
+                                }
 
-                                })
-                                .always(function () {
-                                    self.isPosting = false;
-                                });
+                            })
+                            .always(function () {
+                                self.isPosting = false;
+                            });
 
                     })
                     // Failure of Create Customer API Call. 
-                    .fail(function (result, status, error) {                        
+                    .fail(function (result, status, error) {
                         self.customerProfileView.viewModel.CustomerMicrosoftID(""); // we want this clear so that create customer call can be retried by user. 
                         customerNotification = new Microsoft.WebPortal.Services.Notification(Microsoft.WebPortal.Services.Notification.NotificationType.Error, error);
                         self.webPortal.Services.Notifications.add(customerNotification);
@@ -157,7 +155,7 @@ Microsoft.WebPortal.CustomerRegistrationPresenter = function (webPortal, feature
                         } else {
                             customerNotification.message(self.webPortal.Resources.Strings.Plugins.CustomerRegistrationPage.CustomerRegistrationFailureMessage);
                         }
-                    })     
+                    })
                     .always(function () {
                         self.isPosting = false;
                     });
@@ -182,20 +180,20 @@ Microsoft.WebPortal.CustomerRegistrationPresenter = function (webPortal, feature
     }
 
     this.getCustomerInformation = function () {
-        var customerInformation = {            
+        var customerInformation = {
             Country: this.customerProfileView.viewModel.Country(),
             CompanyName: this.customerProfileView.viewModel.CompanyName(),
-            AddressLine1: this.customerProfileView.viewModel.AddressLine1(),            
+            AddressLine1: this.customerProfileView.viewModel.AddressLine1(),
             AddressLine2: this.customerProfileView.viewModel.AddressLine2(),
-            City: this.customerProfileView.viewModel.City(),            
+            City: this.customerProfileView.viewModel.City(),
             State: this.customerProfileView.viewModel.State(),
-            ZipCode: this.customerProfileView.viewModel.ZipCode(),            
+            ZipCode: this.customerProfileView.viewModel.ZipCode(),
             Email: this.customerProfileView.viewModel.Email(),
             Password: this.customerProfileView.viewModel.Password(),
             PasswordConfirmation: this.customerProfileView.viewModel.PasswordConfirmation(),
             FirstName: this.customerProfileView.viewModel.FirstName(),
             LastName: this.customerProfileView.viewModel.LastName(),
-            Phone: this.customerProfileView.viewModel.Phone(),            
+            Phone: this.customerProfileView.viewModel.Phone(),
             DomainPrefix: this.customerProfileView.viewModel.DomainPrefix()
         }
 
@@ -229,7 +227,7 @@ Microsoft.WebPortal.CustomerRegistrationPresenter.prototype.onShow = function ()
     /// </summary>
 
     this.addSubscriptionsView.show();
-    this.customerProfileView.show();    
+    this.customerProfileView.show();
 }
 
 //@ sourceURL=CustomerRegistrationPresenter.js

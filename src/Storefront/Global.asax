@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Microsoft.Store.PartnerCenter.CustomerPortal.MvcApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Microsoft.Store.PartnerCenter.Storefront.MvcApplication" Language="C#" %>

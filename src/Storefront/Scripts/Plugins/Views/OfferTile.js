@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.Views.OfferTile = function (webPortal, elementSelector, partnerOffer, adapter, isShown, animation) {
+﻿Microsoft.WebPortal.Views.OfferTile = function (webPortal, elementSelector, partnerOffer, adapter, isShown, animation) {
     /// <summary>
     /// A view that renders a partner offer in a tile.
     /// </summary>
@@ -21,7 +19,7 @@ Microsoft.WebPortal.Views.OfferTile = function (webPortal, elementSelector, part
         isSelectable: ko.observable(false),
         showBuyLink: ko.observable(false),
         isSelected: ko.observable(false)
-    }
+    };
 
     this.adapter = adapter;
 
@@ -54,7 +52,7 @@ Microsoft.WebPortal.Views.OfferTile = function (webPortal, elementSelector, part
             return "";
         }
     }, this);
-}
+};
 
 // extend the base view
 $WebPortal.Helpers.inherit(Microsoft.WebPortal.Views.OfferTile, Microsoft.WebPortal.Core.View);
@@ -66,7 +64,7 @@ Microsoft.WebPortal.Views.OfferTile.prototype.onRender = function () {
 
     $(this.elementSelector).attr("data-bind", "template: { name: '" + this.template + "'}");
     ko.applyBindings(this, $(this.elementSelector)[0]);
-}
+};
 
 Microsoft.WebPortal.Views.OfferTile.prototype.onDestroy = function () {
     /// <summary>
@@ -78,7 +76,7 @@ Microsoft.WebPortal.Views.OfferTile.prototype.onDestroy = function () {
         ko.cleanNode($(this.elementSelector)[0]);
         $(this.elementSelector).empty();
     }
-}
+};
 
 Microsoft.WebPortal.Views.OfferTile.prototype.onTileClicked = function () {
     /// <summary>
@@ -88,7 +86,7 @@ Microsoft.WebPortal.Views.OfferTile.prototype.onTileClicked = function () {
     if (this.viewModel.isSelectable()) {
         this.viewModel.isSelected(!this.viewModel.isSelected());
     }
-}
+};
 
 Microsoft.WebPortal.Views.OfferTile.prototype.onBuyNowClicked = function () {
     /// <summary>
@@ -101,6 +99,6 @@ Microsoft.WebPortal.Views.OfferTile.prototype.onBuyNowClicked = function () {
     }
 
     return true;
-}
+};
 
 //@ sourceURL=OfferTile.js

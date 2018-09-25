@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.CustomerManagementSetupPresenter = function (webPortal, feature) {
+﻿Microsoft.WebPortal.CustomerManagementSetupPresenter = function (webPortal, feature) {
     /// <summary>
     /// Manages the customer pre approval experience. 
     /// </summary>
@@ -199,14 +197,14 @@ Microsoft.WebPortal.CustomerManagementSetupPresenter.prototype._setActionButtons
     var isFormUpdated = false;
     var isCustomersListUpdated = false;
 
-    var isEveryOneFlagUpdated = this.preChangePreApprovedCustomersDetails.IsEveryCustomerPreApproved != this.viewModel.IsEveryonePreApproved();
+    var isEveryOneFlagUpdated = this.preChangePreApprovedCustomersDetails.IsEveryCustomerPreApproved !== this.viewModel.IsEveryonePreApproved();
 
     var preChangeLength = 0;
     if (this.preChangePreApprovedCustomerIds) {
         preChangeLength = this.preChangePreApprovedCustomerIds.length;
     }
     
-    isCustomersListUpdated = preChangeLength != this.viewModel.preApprovedCustomerIds().length;
+    isCustomersListUpdated = preChangeLength !== this.viewModel.preApprovedCustomerIds().length;
 
     if (!isCustomersListUpdated) {        
         // sort the arrays. 
@@ -214,7 +212,7 @@ Microsoft.WebPortal.CustomerManagementSetupPresenter.prototype._setActionButtons
         var array2 = ko.utils.arrayMap(this.viewModel.preApprovedCustomerIds(), function (i) { return i }).sort();
 
         var x = ko.utils.compareArrays(array1, array2);
-        isCustomersListUpdated = x.length != preChangeLength;
+        isCustomersListUpdated = x.length !== preChangeLength;
     }
 
     // if either of them is updated. 

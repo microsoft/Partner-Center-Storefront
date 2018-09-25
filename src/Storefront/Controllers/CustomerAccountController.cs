@@ -6,22 +6,21 @@
 
 namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
 {
-    using BusinessLogic;
-    using BusinessLogic.Commerce;
-    using BusinessLogic.Exceptions;
-    using Filters;
-    using Filters.WebApi;
-    using Models;
-    using Newtonsoft.Json;
-    using PartnerCenter.Models;
-    using PartnerCenter.Models.Subscriptions;
-    using RequestContext;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
+    using BusinessLogic;
+    using BusinessLogic.Commerce;
+    using BusinessLogic.Exceptions;
+    using Filters;
+    using Models;
+    using Newtonsoft.Json;
+    using PartnerCenter.Models;
+    using PartnerCenter.Models.Subscriptions;
+    using RequestContext;
 
     /// <summary>
     /// Customer Account API Controller.

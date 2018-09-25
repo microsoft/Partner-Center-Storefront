@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.BrandingSetupPresenter = function (webPortal, feature, brandingConfiguration) {
+﻿Microsoft.WebPortal.BrandingSetupPresenter = function (webPortal, feature, brandingConfiguration) {
     /// <summary>
     /// Displays UI for a partner to configure their portal's branding. Partners can configure their organization name, logo, contact details and thusforth.
     /// </summary>
@@ -203,7 +201,7 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype.onSaveBranding = function (
         }).fail(function (result, status, error) {
             // notify the user of the error and give them the ability to retry
 
-            if (result.status == 400) {
+            if (result.status === 400) {
                 brandingSaveNotification.type(Microsoft.WebPortal.Services.Notification.NotificationType.Error);
                 var errorPayload = JSON.parse(result.responseText);
 
@@ -215,15 +213,15 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype.onSaveBranding = function (
                         brandingSaveNotification.message(self.webPortal.Resources.Strings.Plugins.PortalBranding.ImagesTooLarge);
                         break;
                     case Microsoft.WebPortal.ErrorCode.InvalidInput:
-                        if (errorPayload.Details.Field == "HeaderImage") {
+                        if (errorPayload.Details.Field === "HeaderImage") {
                             brandingSaveNotification.message(self.webPortal.Resources.Strings.Plugins.PortalBranding.InvalidHeaderImageUri);
-                        } else if (errorPayload.Details.Field == "OrganizationLogo") {
+                        } else if (errorPayload.Details.Field === "OrganizationLogo") {
                             brandingSaveNotification.message(self.webPortal.Resources.Strings.Plugins.PortalBranding.InvalidOrganizationLogoUri);
-                        } else if (errorPayload.Details.Field == "PrivacyAgreement") {
+                        } else if (errorPayload.Details.Field === "PrivacyAgreement") {
                             brandingSaveNotification.message(self.webPortal.Resources.Strings.Plugins.PortalBranding.InvalidPrivacyAgreementUri);
-                        } else if (errorPayload.Details.Field == "ContactUs.Phone") {
+                        } else if (errorPayload.Details.Field === "ContactUs.Phone") {
                             brandingSaveNotification.message(self.webPortal.Resources.Strings.Plugins.PortalBranding.InvalidContactUsPhone);
-                        } else if (errorPayload.Details.Field == "ContactSales.Phone") {
+                        } else if (errorPayload.Details.Field === "ContactSales.Phone") {
                             brandingSaveNotification.message(self.webPortal.Resources.Strings.Plugins.PortalBranding.InvalidContactSalesPhone);
                         } else {
                             brandingSaveNotification.message(self.webPortal.Resources.Strings.Plugins.InvalidInput + errorPayload.Details.Field);
@@ -341,17 +339,17 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype._setupActions = function ()
 
     this.saveActionStatusUpdater = ko.computed(function () {
         // enable and disable the action buttons depending on whether there was a value change or not
-        var isFormUpdated = this.viewModel.OrganizationName() != this.existingBrandingConfiguration.OrganizationName |
-            this.viewModel.OrganizationLogo() != this.existingBrandingConfiguration.OrganizationLogo |
-            this.viewModel.HeaderImage() != this.existingBrandingConfiguration.HeaderImage |
-            this.viewModel.InstrumentationKey() != this.existingBrandingConfiguration.InstrumentationKey |
-            this.viewModel.PrivacyAgreement() != this.existingBrandingConfiguration.PrivacyAgreement;
+        var isFormUpdated = this.viewModel.OrganizationName() !== this.existingBrandingConfiguration.OrganizationName |
+            this.viewModel.OrganizationLogo() !== this.existingBrandingConfiguration.OrganizationLogo |
+            this.viewModel.HeaderImage() !== this.existingBrandingConfiguration.HeaderImage |
+            this.viewModel.InstrumentationKey() !== this.existingBrandingConfiguration.InstrumentationKey |
+            this.viewModel.PrivacyAgreement() !== this.existingBrandingConfiguration.PrivacyAgreement;
 
-        isFormUpdated = isFormUpdated | this.viewModel.ContactUs.Email() != this.existingBrandingConfiguration.ContactUs.Email |
-                this.viewModel.ContactUs.Phone() != this.existingBrandingConfiguration.ContactUs.Phone;
+        isFormUpdated = isFormUpdated | this.viewModel.ContactUs.Email() !== this.existingBrandingConfiguration.ContactUs.Email |
+                this.viewModel.ContactUs.Phone() !== this.existingBrandingConfiguration.ContactUs.Phone;
 
-        isFormUpdated = isFormUpdated | this.viewModel.ContactSales.Email() != this.existingBrandingConfiguration.ContactSales.Email |
-                this.viewModel.ContactSales.Phone() != this.existingBrandingConfiguration.ContactSales.Phone;
+        isFormUpdated = isFormUpdated | this.viewModel.ContactSales.Email() !== this.existingBrandingConfiguration.ContactSales.Email |
+                this.viewModel.ContactSales.Phone() !== this.existingBrandingConfiguration.ContactSales.Phone;
 
         this.saveBrandingAction.enabled(isFormUpdated);
         this.resetBrandingAction.enabled(isFormUpdated);

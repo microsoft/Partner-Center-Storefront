@@ -5,9 +5,8 @@
 // -----------------------------------------------------------------------
 
 namespace Microsoft.Store.PartnerCenter.Storefront.Models
-{    
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;    
+{
+    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// The customer view model.

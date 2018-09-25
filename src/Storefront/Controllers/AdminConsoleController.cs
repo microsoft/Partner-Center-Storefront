@@ -6,7 +6,6 @@
 
 namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
 {
-    using System.Globalization;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -19,14 +18,13 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
     using BusinessLogic.Commerce.PaymentGateways;
     using BusinessLogic.Exceptions;
     using Filters;
-    using Filters.WebApi;
     using Models;
 
     /// <summary>
     /// Serves data to the Admin dashboard pages.
     /// </summary>
     [RoutePrefix("api/AdminConsole")]
-    [Filters.WebApi.PortalAuthorizeAttribute(UserRole = UserRole.Partner)]
+    [Filters.WebApi.PortalAuthorize(UserRole = UserRole.Partner)]
     public class AdminConsoleController : BaseController
     {
         /// <summary>

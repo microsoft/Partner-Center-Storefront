@@ -5,7 +5,6 @@
 // -----------------------------------------------------------------------
 namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.PaymentGateways
 {
-    using System;
     using System.Globalization;
     using System.Threading.Tasks;
     using Models;

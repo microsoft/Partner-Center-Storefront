@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.CommerceOperationType = {
+﻿Microsoft.WebPortal.CommerceOperationType = {
 
     /// <summary>
     /// A brand new purchase.

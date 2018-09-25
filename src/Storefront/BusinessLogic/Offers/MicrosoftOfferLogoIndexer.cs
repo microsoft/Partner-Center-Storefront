@@ -6,12 +6,11 @@
 
 namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Offers
 {
-    using PartnerCenter.Models.Offers;
-    using RequestContext;
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Threading.Tasks;
+    using PartnerCenter.Models.Offers;
+    using RequestContext;
 
     /// <summary>
     /// Indexes Microsoft offers and associated them with logo images.

@@ -6,10 +6,10 @@
 
 namespace Microsoft.Store.PartnerCenter.Storefront.Configuration.Manager
 {
-    using Bundling;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Bundling;
     using WebPortal;
 
     /// <summary>

@@ -6,7 +6,6 @@
 
 namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Models;
 

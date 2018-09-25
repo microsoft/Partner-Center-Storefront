@@ -6,15 +6,15 @@
 
 namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.PaymentGateways
 {
-    using Exceptions;
-    using Models;
-    using PartnerCenter.Models.Customers;
-    using PayUMoney;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Text;
     using System.Threading.Tasks;
+    using Exceptions;
+    using Models;
+    using PartnerCenter.Models.Customers;
+    using PayUMoney;
 
     /// <summary>
     /// PayUMoney payment gateway implementation.

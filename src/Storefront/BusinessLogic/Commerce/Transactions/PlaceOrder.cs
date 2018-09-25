@@ -6,18 +6,18 @@
 
 namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transactions
 {
-    using Exceptions;
-    using Infrastructure;
-    using PartnerCenter.Customers;
-    using PartnerCenter.Exceptions;
-    using PartnerCenter.Models.Orders;
-    using PartnerCenter.Models.Subscriptions;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Exceptions;
+    using Infrastructure;
+    using PartnerCenter.Customers;
+    using PartnerCenter.Exceptions;
+    using PartnerCenter.Models.Orders;
+    using PartnerCenter.Models.Subscriptions;
 
     /// <summary>
     /// A transaction that places an order with partner center and knows how to roll it back.

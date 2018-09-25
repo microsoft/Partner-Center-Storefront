@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.Views.OffersCatalog = function (webPortal, elementSelector, partnerOffers, adapter, isShown, animation) {
+﻿Microsoft.WebPortal.Views.OffersCatalog = function (webPortal, elementSelector, partnerOffers, adapter, isShown, animation) {
     /// <summary>
     /// A view that renders a collection of partner offers into tiles.
     /// </summary>
@@ -20,7 +18,7 @@ Microsoft.WebPortal.Views.OffersCatalog = function (webPortal, elementSelector, 
         isSelectable: ko.observable(false),
         showBuyLink: ko.observable(false),
         partnerOffers: partnerOffers
-    }
+    };
 
     this.adapter = adapter;
     this.tiles = [];
@@ -37,7 +35,7 @@ Microsoft.WebPortal.Views.OffersCatalog = function (webPortal, elementSelector, 
             this.tiles[i].viewModel.showBuyLink(this.viewModel.showBuyLink());
         }
     }, this);
-}
+};
 
 // extend the base view
 $WebPortal.Helpers.inherit(Microsoft.WebPortal.Views.OffersCatalog, Microsoft.WebPortal.Core.View);
@@ -67,7 +65,7 @@ Microsoft.WebPortal.Views.OffersCatalog.prototype.onRender = function () {
         this.tiles[i].viewModel.isSelectable(this.viewModel.isSelectable());
         this.tiles[i].viewModel.showBuyLink(this.viewModel.showBuyLink());
     }
-}
+};
 
 Microsoft.WebPortal.Views.OffersCatalog.prototype.onShown = function (isShowing) {
     /// <summary>
@@ -90,18 +88,18 @@ Microsoft.WebPortal.Views.OffersCatalog.prototype.onShown = function (isShowing)
                 }
             }
 
-            for (var i in self.tiles) {
-                $(self.tiles[i].elementSelector).height(maxHeight);
+            for (var j in self.tiles) {
+                $(self.tiles[j].elementSelector).height(maxHeight);
             }
 
         }, 400, this);
     } else {
         // hide the tiles
-        for (var i in this.tiles) {
-            this.tiles[i].hide();
+        for (var k in this.tiles) {
+            this.tiles[k].hide();
         }
     }
-}
+};
 
 Microsoft.WebPortal.Views.OffersCatalog.prototype.onDestroy = function () {
     /// <summary>
@@ -118,7 +116,7 @@ Microsoft.WebPortal.Views.OffersCatalog.prototype.onDestroy = function () {
         ko.cleanNode($(this.elementSelector)[0]);
         $(this.elementSelector).empty();
     }
-}
+};
 
 Microsoft.WebPortal.Views.OffersCatalog.prototype.getSelectedPartnerOffers = function () {
     /// <summary>
@@ -134,7 +132,7 @@ Microsoft.WebPortal.Views.OffersCatalog.prototype.getSelectedPartnerOffers = fun
     }
 
     return selectedTiles;
-}
+};
 
 Microsoft.WebPortal.Views.OffersCatalog.prototype.onSelectChanged = function () {
     /// <summary>
@@ -145,7 +143,7 @@ Microsoft.WebPortal.Views.OffersCatalog.prototype.onSelectChanged = function () 
         // notify the adapter and send it the selected tiles
         this.adapter.onSelectChanged(this.getSelectedPartnerOffers());
     }
-}
+};
 
 Microsoft.WebPortal.Views.OffersCatalog.prototype.onBuyNowClicked = function (tile) {
     /// <summary>
@@ -157,6 +155,6 @@ Microsoft.WebPortal.Views.OffersCatalog.prototype.onBuyNowClicked = function (ti
         // notify the adapter
         this.adapter.onBuyNowClicked(tile);
     }
-}
+};
 
 //@ sourceURL=OffersCatalog.js

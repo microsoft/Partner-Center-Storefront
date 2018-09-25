@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.AddSubscriptionsPresenter = function (webPortal, feature, context) {
+﻿Microsoft.WebPortal.AddSubscriptionsPresenter = function (webPortal, feature, context) {
     /// <summary>
     /// Manages the offers experience. 
     /// </summary>
@@ -8,7 +6,7 @@ Microsoft.WebPortal.AddSubscriptionsPresenter = function (webPortal, feature, co
     /// <param name="feature">The feature for which this presenter is created.</param>
     this.base.constructor.call(this, webPortal, feature, "Add Subscriptions", "/Template/AddSubscriptions/");
 
-    this.addSubscriptionsView = new Microsoft.WebPortal.Views.AddSubscriptionsView(webPortal, "#AddSubscriptionsViewContainer", context);    
+    this.addSubscriptionsView = new Microsoft.WebPortal.Views.AddSubscriptionsView(webPortal, "#AddSubscriptionsViewContainer", context);
 
     this.onCancelClicked = function () {
         webPortal.Journey.retract();
@@ -24,7 +22,7 @@ Microsoft.WebPortal.AddSubscriptionsPresenter = function (webPortal, feature, co
         for (var i in this.addSubscriptionsView.subscriptionsList.rows()) {
             orders.push({
                 OfferId: this.addSubscriptionsView.subscriptionsList.rows()[i].offer.Id,
-                SubscriptionId: this.addSubscriptionsView.subscriptionsList.rows()[i].offer.Id,                
+                SubscriptionId: this.addSubscriptionsView.subscriptionsList.rows()[i].offer.Id,
                 Quantity: this.addSubscriptionsView.subscriptionsList.rows()[i].quantity()
             });
         }
@@ -37,7 +35,7 @@ Microsoft.WebPortal.AddSubscriptionsPresenter = function (webPortal, feature, co
         }
 
         if ($("#Form").valid()) {
-            if (self.addSubscriptionsView.subscriptionsList.rows().length <= 0) { 
+            if (self.addSubscriptionsView.subscriptionsList.rows().length <= 0) {
                 self.webPortal.Services.Dialog.show("emptyOffersErrorMessage-template", {}, [
                     Microsoft.WebPortal.Services.Button.create(Microsoft.WebPortal.Services.Button.StandardButtons.OK, "ok-Button", function () {
                         self.webPortal.Services.Dialog.hide();
@@ -59,41 +57,41 @@ Microsoft.WebPortal.AddSubscriptionsPresenter = function (webPortal, feature, co
             }, Microsoft.WebPortal.ContentType.Json, 120000),
                 "AddSubscriptions", []).execute()
                 .done(function (result) {
-                	if (result.indexOf('PreApproved') > -1) {
-                		// if result is a Uri for PreApproved transaction then build context and advance the journey in the portal to ProcessOrder feature. 
-                		var pairs = result.slice(1).split('&');
-                		var resultPairs = {};
-                		pairs.forEach(function (pair) {
-                			pair = pair.split('=');
-                			resultPairs[pair[0]] = decodeURIComponent(pair[1] || '');
-                		});
+                    if (result.indexOf('PreApproved') > -1) {
+                        // if result is a Uri for PreApproved transaction then build context and advance the journey in the portal to ProcessOrder feature. 
+                        var pairs = result.slice(1).split('&');
+                        var resultPairs = {};
+                        pairs.forEach(function (pair) {
+                            pair = pair.split('=');
+                            resultPairs[pair[0]] = decodeURIComponent(pair[1] || '');
+                        });
 
-                		var queryStringParams = JSON.parse(JSON.stringify(resultPairs));
-                		var orderContext = {
-                			paymentId: queryStringParams["paymentId"],
-                			PayerID: queryStringParams["PayerID"],
-                			customerId: queryStringParams["customerId"],
-                			orderId: queryStringParams["oid"],
-                			oid: queryStringParams["oid"],
-                			payment: queryStringParams["payment"],
-                			txStatus: queryStringParams["payment"]
-                		};
+                        var queryStringParams = JSON.parse(JSON.stringify(resultPairs));
+                        var orderContext = {
+                            paymentId: queryStringParams["paymentId"],
+                            PayerID: queryStringParams["PayerID"],
+                            customerId: queryStringParams["customerId"],
+                            orderId: queryStringParams["oid"],
+                            oid: queryStringParams["oid"],
+                            payment: queryStringParams["payment"],
+                            txStatus: queryStringParams["payment"]
+                        };
 
-                		// hand it off to the subscriptions page.        
-                		notification.dismiss();
+                        // hand it off to the subscriptions page.        
+                        notification.dismiss();
 
-                		if (queryStringParams["paymentId"] != null && queryStringParams["paymentId"].toLowerCase() === "preapproved") {
-                			// hand it off to the order processing presenter
-                			self.webPortal.Journey.advance(Microsoft.WebPortal.Feature.ProcessOrder, orderContext);
-                		} else {
-                			// we need to now redirect to paypal based on the response from the API.             
-                			window.location = result;
-                		}
-                	} else {
-                		$('body').html(result);
-                	}
+                        if (queryStringParams["paymentId"] !== null && queryStringParams["paymentId"].toLowerCase() === "preapproved") {
+                            // hand it off to the order processing presenter
+                            self.webPortal.Journey.advance(Microsoft.WebPortal.Feature.ProcessOrder, orderContext);
+                        } else {
+                            // we need to now redirect to paypal based on the response from the API.             
+                            window.location = result;
+                        }
+                    } else {
+                        $('body').html(result);
+                    }
                 })
-                .fail(function (result, status, error) {                    
+                .fail(function (result, status, error) {
                     notification.type(Microsoft.WebPortal.Services.Notification.NotificationType.Error);
                     notification.buttons([
                         Microsoft.WebPortal.Services.Button.create(Microsoft.WebPortal.Services.Button.StandardButtons.OK, self.webPortal.Resources.Strings.OK, function () {
@@ -144,7 +142,7 @@ Microsoft.WebPortal.AddSubscriptionsPresenter.prototype.onRender = function () {
 
     ko.applyBindings(this, $("#Form")[0]);
 
-    this.addSubscriptionsView.render();    
+    this.addSubscriptionsView.render();
 }
 
 Microsoft.WebPortal.AddSubscriptionsPresenter.prototype.onShow = function () {
@@ -152,12 +150,12 @@ Microsoft.WebPortal.AddSubscriptionsPresenter.prototype.onShow = function () {
     /// Called when content is shown.
     /// </summary>
 
-    this.addSubscriptionsView.show();    
+    this.addSubscriptionsView.show();
 
     // show the offers dialog if there is no row set from parent page. 
     if (this.addSubscriptionsView.subscriptionsList.rows().length <= 0) {
         this.addSubscriptionsView.onAddOfferClicked();
-    }    
+    }
 }
 
 Microsoft.WebPortal.AddSubscriptionsPresenter.prototype.onDeactivate = function () {

@@ -7,7 +7,6 @@
 namespace Microsoft.Store.PartnerCenter.Storefront.Models
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
 
     /// <summary>
     /// The order view model.

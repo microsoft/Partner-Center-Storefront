@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.AddSubscriptionsPresenter = function (webPortal, feature, context) {
+﻿Microsoft.WebPortal.AddSubscriptionsPresenter = function (webPortal, feature, context) {
     /// <summary>
     /// Manages the offers experience. 
     /// </summary>
@@ -81,7 +79,7 @@ Microsoft.WebPortal.AddSubscriptionsPresenter = function (webPortal, feature, co
                     // hand it off to the subscriptions page.        
                     notification.dismiss();
 
-                    if (queryStringParams["paymentId"] != null && queryStringParams["paymentId"].toLowerCase() === "preapproved") {
+                    if (queryStringParams["paymentId"] !== null && queryStringParams["paymentId"].toLowerCase() === "preapproved") {
                         // hand it off to the order processing presenter
                         self.webPortal.Journey.advance(Microsoft.WebPortal.Feature.ProcessOrder, orderContext);
                     } else {

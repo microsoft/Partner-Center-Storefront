@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.AddOrUpdateOfferPresenter = function (webPortal, feature, existingOffer) {
+﻿Microsoft.WebPortal.AddOrUpdateOfferPresenter = function (webPortal, feature, existingOffer) {
     /// <summary>
     /// Manages adding a new partner offer or updating an existing partner offer.
     /// </summary>
@@ -118,7 +116,7 @@ Microsoft.WebPortal.AddOrUpdateOfferPresenter.prototype.GetMicrosoftOffers = fun
 
     offersFetchProgress.done(function (microsoftOffers) {
         self.microsoftOffers = microsoftOffers.filter(function (item) {
-            return item.Offer.Id.indexOf('MS-AZR-') == -1;
+            return item.Offer.Id.indexOf('MS-AZR-') === -1;
         });
 
         self.baseOffersViewModels = ko.utils.arrayMap(self.microsoftOffers, function (baseOffer) {

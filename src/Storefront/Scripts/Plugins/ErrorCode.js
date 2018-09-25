@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.ErrorCode = {
+﻿Microsoft.WebPortal.ErrorCode = {
     /// <summary>
     /// The server had a failure it can't understand.
     /// </summary>
@@ -95,6 +93,6 @@ Microsoft.WebPortal.ErrorCode = {
     /// Failure in payment gateway during payment.
     /// </summary>
     PaymentGatewayPaymentError: 18
-}
+};
 
 //@ sourceURL=ErrorCode.js

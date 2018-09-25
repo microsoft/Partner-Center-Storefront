@@ -17,12 +17,11 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
     using BusinessLogic.Commerce.PaymentGateways;
     using BusinessLogic.Exceptions;
     using Filters;
-    using Filters.WebApi;
     using Models;
     using Newtonsoft.Json;
     using PartnerCenter.Models;
     using PartnerCenter.Models.Customers;
-    
+
     /// <summary>
     /// Manages customer orders.
     /// </summary>    
@@ -34,7 +33,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         /// </summary>
         /// <param name="orderDetails">A list of subscriptions to update.</param>
         /// <returns>The payment url from payment gateway.</returns>
-        [Filters.WebApi.PortalAuthorizeAttribute(UserRole = UserRole.Customer)]
+        [Filters.WebApi.PortalAuthorize(UserRole = UserRole.Customer)]
         [HttpPost]
         [Route("Prepare")]
         public async Task<string> PrepareOrderForAuthenticatedCustomer([FromBody]OrderViewModel orderDetails)
@@ -99,7 +98,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         /// <param name="payerId">Payer Id.</param>
         /// <param name="orderId">Order Id.</param>
         /// <returns>Commerce transaction result.</returns>        
-        [Filters.WebApi.PortalAuthorizeAttribute(UserRole = UserRole.Customer)]
+        [Filters.WebApi.PortalAuthorize(UserRole = UserRole.Customer)]
         [HttpGet]
         [Route("Process")]
         public async Task<TransactionResult> ProcessOrderForAuthenticatedCustomer(string paymentId, string payerId, string orderId)
@@ -151,7 +150,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         /// </summary>
         /// <param name="orderDetails">A list of subscriptions to update.</param>
         /// <returns>The payment url from PayPal.</returns>
-        [Filters.WebApi.PortalAuthorizeAttribute(UserRole = UserRole.None)]
+        [Filters.WebApi.PortalAuthorize(UserRole = UserRole.None)]
         [HttpPost]
         [Route("NewCustomerPrepareOrder")]
         public async Task<string> PrepareOrderForUnAuthenticatedCustomer([FromBody]OrderViewModel orderDetails)
@@ -193,7 +192,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         /// <param name="paymentId">Payment Id.</param>
         /// <param name="payerId">Payer Id.</param>
         /// <returns>Subscription Summary.</returns>        
-        [Filters.WebApi.PortalAuthorizeAttribute(UserRole = UserRole.None)]
+        [Filters.WebApi.PortalAuthorize(UserRole = UserRole.None)]
         [HttpGet]
         [Route("NewCustomerProcessOrder")]
         public async Task<SubscriptionsSummary> ProcessOrderForUnAuthenticatedCustomer(string customerId, string paymentId, string payerId)
@@ -293,7 +292,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         /// </summary>        
         /// <returns>The Subscription summary used by the client used for rendering purposes.</returns>
         [HttpGet]
-        [Filters.WebApi.PortalAuthorizeAttribute(UserRole = UserRole.Customer)]
+        [Filters.WebApi.PortalAuthorize(UserRole = UserRole.Customer)]
         [Route("summary")]
         public async Task<SubscriptionsSummary> SubscriptionSummary()
         {

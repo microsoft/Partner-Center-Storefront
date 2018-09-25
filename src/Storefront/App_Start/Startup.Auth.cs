@@ -6,6 +6,13 @@
 
 namespace Microsoft.Store.PartnerCenter.Storefront
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Globalization;
+    using System.Net;
+    using System.Threading.Tasks;
+    using System.Web;
     using BusinessLogic;
     using Configuration;
     using Exceptions;
@@ -15,13 +22,6 @@ namespace Microsoft.Store.PartnerCenter.Storefront
     using Owin.Security;
     using Owin.Security.Cookies;
     using Owin.Security.OpenIdConnect;
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Globalization;
-    using System.Net;
-    using System.Threading.Tasks;
-    using System.Web;
 
     /// <summary>
     /// Application start up class.

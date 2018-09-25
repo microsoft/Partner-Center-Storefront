@@ -6,9 +6,6 @@
 
 namespace Microsoft.Store.PartnerCenter.Storefront.Configuration.Manager
 {
-    using System;
-    using System.Web.Configuration;
-
     /// <summary>
     /// The default web portal configuration factory implementation.
     /// </summary>

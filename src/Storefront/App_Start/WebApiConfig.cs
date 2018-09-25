@@ -5,7 +5,7 @@
 // -----------------------------------------------------------------------
 
 namespace Microsoft.Store.PartnerCenter.Storefront
-{    
+{
     using System.Web.Http;
     using System.Web.Mvc;
     using Models.Validators;

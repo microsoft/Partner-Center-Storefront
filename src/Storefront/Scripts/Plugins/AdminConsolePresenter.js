@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.AdminConsolePresenter = function (webPortal, feature) {
+﻿Microsoft.WebPortal.AdminConsolePresenter = function (webPortal, feature) {
     /// <summary>
     /// Displays the customer portal admin dashboard.
     /// </summary>

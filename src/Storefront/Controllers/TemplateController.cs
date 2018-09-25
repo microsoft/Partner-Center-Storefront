@@ -13,7 +13,6 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
     using Configuration;
     using Configuration.Manager;
     using Filters;
-    using Filters.Mvc;
 
     /// <summary>
     /// Serves HTML templates to the browser.

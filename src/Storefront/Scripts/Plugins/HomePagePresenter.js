@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.HomePagePresenter = function (webPortal, feature) {
+﻿Microsoft.WebPortal.HomePagePresenter = function (webPortal, feature) {
     /// <summary>
     /// Manages the home page experience. 
     /// </summary>
@@ -12,8 +10,8 @@ Microsoft.WebPortal.HomePagePresenter = function (webPortal, feature) {
         ShowProgress: ko.observable(true),
         IsSet: ko.observable(false),
         IsPortalConfigured: ko.observable(false)
-    }
-    
+    };
+
     this.onBuyNowClicked = function (tile) {
         if (isAuthenticated) {
             // activate the add subscription presenter and pass it the selected partner offer
@@ -22,13 +20,13 @@ Microsoft.WebPortal.HomePagePresenter = function (webPortal, feature) {
             // activate the customer registration presenter and pass it the selected partner offer
             webPortal.Journey.advance(Microsoft.WebPortal.Feature.CustomerRegistration, tile.viewModel.partnerOffer());
         }
-    }
+    };
 
     this.onConfigurePortalClicked = function () {
         // send control to the admin console
         this.webPortal.Journey.start(Microsoft.WebPortal.Feature.AdminConsole);
-    }
-}
+    };
+};
 
 // inherit BasePresenter
 $WebPortal.Helpers.inherit(Microsoft.WebPortal.HomePagePresenter, Microsoft.WebPortal.Core.TemplatePresenter);
@@ -39,7 +37,7 @@ Microsoft.WebPortal.HomePagePresenter.prototype.onRender = function () {
     /// </summary>
 
     ko.applyBindings(this, $("#OffersContainer")[0]);
-}
+};
 
 Microsoft.WebPortal.HomePagePresenter.prototype.onShow = function () {
     /// <summary>
@@ -50,7 +48,7 @@ Microsoft.WebPortal.HomePagePresenter.prototype.onShow = function () {
 
     var fetchPartnerOffers = function () {
         var getPartnerOffersServerCall = self.webPortal.ServerCallManager.create(self.feature,
-                            self.webPortal.Helpers.ajaxCall("api/partnerOffers", Microsoft.WebPortal.HttpMethod.Get), "GetPartnerOffers");
+            self.webPortal.Helpers.ajaxCall("api/partnerOffers", Microsoft.WebPortal.HttpMethod.Get), "GetPartnerOffers");
 
         self.viewModel.IsSet(false);
         self.viewModel.ShowProgress(true);
@@ -85,9 +83,9 @@ Microsoft.WebPortal.HomePagePresenter.prototype.onShow = function () {
             // stop showing progress
             self.viewModel.ShowProgress(false);
         });
-    }
+    };
 
     fetchPartnerOffers();
-}
+};
 
 //@ sourceURL=HomePagePresenter.js

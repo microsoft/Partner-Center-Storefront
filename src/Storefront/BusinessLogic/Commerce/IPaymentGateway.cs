@@ -5,7 +5,7 @@
 // -----------------------------------------------------------------------
 
 namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
-{    
+{
     using System.Threading.Tasks;
     using Models;
 

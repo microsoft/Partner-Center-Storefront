@@ -13,8 +13,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
     using Models;
     using Newtonsoft.Json;
     using PartnerCenter.Models.Customers;
-    using PartnerCenter.Models.Query;    
-    using WindowsAzure.Storage.Blob;    
+    using PartnerCenter.Models.Query;
+    using WindowsAzure.Storage.Blob;
 
     /// <summary>
     /// Manages persistence for PreApprovedCustomersRepository configuration options.

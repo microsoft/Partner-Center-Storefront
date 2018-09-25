@@ -9,7 +9,6 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Exceptions
     using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
-    using System.Security.Permissions;
 
     /// <summary>
     /// A custom exception that will be used to communicate business errors within the portal.

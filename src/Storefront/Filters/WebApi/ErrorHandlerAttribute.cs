@@ -15,8 +15,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Filters.WebApi
     using System.Web;
     using System.Web.Http.Filters;
     using BusinessLogic.Exceptions;
-    using PartnerCenter.Exceptions;
     using Newtonsoft.Json;
+    using PartnerCenter.Exceptions;
 
     /// <summary>
     /// A filter that handles portal errors and returns a unified error response.

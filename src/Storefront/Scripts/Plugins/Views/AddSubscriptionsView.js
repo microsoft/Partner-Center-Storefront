@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.Views.AddSubscriptionsView = function (webPortal, elementSelector, defaultOffer, isShown, animation) {
+﻿Microsoft.WebPortal.Views.AddSubscriptionsView = function (webPortal, elementSelector, defaultOffer, isShown, animation) {
     /// <summary>
     /// A view that renders UX showing a list of subscriptions to be added from a drop down list.
     /// </summary>
@@ -11,7 +9,7 @@ Microsoft.WebPortal.Views.AddSubscriptionsView = function (webPortal, elementSel
     /// <param name="animation">Optional animation to use for showing and hiding the view.</param>
 
     this.base.constructor.call(this, webPortal, elementSelector, isShown, null, animation);
-    this.template = "addSubscriptions-template";    
+    this.template = "addSubscriptions-template";
     var self = this;
     Globalize.culture(self.webPortal.Resources.Strings.CurrentLocale);
 
@@ -31,8 +29,8 @@ Microsoft.WebPortal.Views.AddSubscriptionsView = function (webPortal, elementSel
 
     if (defaultOffer) {
         var quantity = ko.observable(1);
-        var totalPrice = (defaultOffer.Price * quantity());
-        var formattedPrice = Globalize.format(defaultOffer.Price, "c");        
+        var totalPrice = defaultOffer.Price * quantity();
+        var formattedPrice = Globalize.format(defaultOffer.Price, "c");
         var offerTotalPrice = ko.observable(Globalize.format(totalPrice, "c"));
 
         this.subscriptionsList.append([{
@@ -42,14 +40,14 @@ Microsoft.WebPortal.Views.AddSubscriptionsView = function (webPortal, elementSel
             offerTotalPrice: offerTotalPrice
         }]);
 
-        quantity.subscribe(function (newValue) {            
+        quantity.subscribe(function (newValue) {
             if (isNaN(parseInt(newValue))) {
                 quantity(0);
-            } else {                
+            } else {
                 quantity(parseInt(newValue));
             }
 
-            totalPrice = (defaultOffer.Price * quantity());
+            totalPrice = defaultOffer.Price * quantity();
             offerTotalPrice(Globalize.format(totalPrice, "c"));
         }, this);
     }
@@ -57,7 +55,7 @@ Microsoft.WebPortal.Views.AddSubscriptionsView = function (webPortal, elementSel
     this.AddOfferItemToView = function (offerItem) {
         // add this portalOffer to subcriptionList. 
         var quantity = ko.observable(1);
-        var totalPrice = (offerItem.viewModel.partnerOffer().Price * quantity());
+        var totalPrice = offerItem.viewModel.partnerOffer().Price * quantity();
         var formattedPrice = Globalize.format(offerItem.viewModel.partnerOffer().Price, "c");
         var offerTotalPrice = ko.observable(Globalize.format(totalPrice, "c"));
 
@@ -75,32 +73,32 @@ Microsoft.WebPortal.Views.AddSubscriptionsView = function (webPortal, elementSel
                 quantity(parseInt(newValue));
             }
 
-            totalPrice = (offerItem.viewModel.partnerOffer().Price * quantity());
+            totalPrice = offerItem.viewModel.partnerOffer().Price * quantity();
             offerTotalPrice(Globalize.format(totalPrice, "c"));
         }, this);
 
         $(elementSelector + " #SubscriptionsList").height($(elementSelector + " #SubscriptionsList table").height());
         webPortal.EventSystem.broadcast(Microsoft.WebPortal.Event.OnWindowResizing);
         webPortal.EventSystem.broadcast(Microsoft.WebPortal.Event.OnWindowResized);
-    }
+    };
 
-    this.firstPaymentTotalDisplay = ko.computed(function () {        
+    this.firstPaymentTotalDisplay = ko.computed(function () {
         var total = 0;
         Globalize.culture(self.webPortal.Resources.Strings.CurrentLocale);
 
-        for (var i in self.subscriptionsList.rows()) {            
+        for (var i in self.subscriptionsList.rows()) {
             total += self.subscriptionsList.rows()[i].quantity() * self.subscriptionsList.rows()[i].offer.Price.toFixed(2);
         }
 
         // globalize the total using currency format.         
-        return Globalize.format(total, "c");          
-    });    
+        return Globalize.format(total, "c");
+    });
 
-    this.onSelectChanged = function (offers) {        
+    this.onSelectChanged = function (offers) {
         this.offersToAdd = offers;
-    }
+    };
 
-}
+};
 
 // extend the base view
 $WebPortal.Helpers.inherit(Microsoft.WebPortal.Views.AddSubscriptionsView, Microsoft.WebPortal.Core.View);
@@ -112,7 +110,7 @@ Microsoft.WebPortal.Views.AddSubscriptionsView.prototype.onRender = function () 
 
     $(this.elementSelector).attr("data-bind", "template: { name: '" + this.template + "'}");
     ko.applyBindings(this, $(this.elementSelector)[0]);
-}
+};
 
 Microsoft.WebPortal.Views.AddSubscriptionsView.prototype.onShowing = function (isShowing) {
     /// <summary>
@@ -126,7 +124,7 @@ Microsoft.WebPortal.Views.AddSubscriptionsView.prototype.onShowing = function (i
     else {
         this.subscriptionsList.hide();
     }
-}
+};
 
 Microsoft.WebPortal.Views.AddSubscriptionsView.prototype.onShown = function (isShown) {
     /// <summary>
@@ -142,7 +140,7 @@ Microsoft.WebPortal.Views.AddSubscriptionsView.prototype.onShown = function (isS
         this.webPortal.EventSystem.broadcast(Microsoft.WebPortal.Event.OnWindowResizing);
         this.webPortal.EventSystem.broadcast(Microsoft.WebPortal.Event.OnWindowResized);
     }
-}
+};
 
 Microsoft.WebPortal.Views.AddSubscriptionsView.prototype.onDestroy = function () {
     /// <summary>
@@ -158,7 +156,7 @@ Microsoft.WebPortal.Views.AddSubscriptionsView.prototype.onDestroy = function ()
         ko.cleanNode($(this.elementSelector)[0]);
         $(this.elementSelector).empty();
     }
-}
+};
 
 Microsoft.WebPortal.Views.AddSubscriptionsView.prototype.onAddOfferClicked = function () {
     /// <summary>
@@ -181,7 +179,7 @@ Microsoft.WebPortal.Views.AddSubscriptionsView.prototype.onAddOfferClicked = fun
 
     var cancelButton = Microsoft.WebPortal.Services.Button.create(Microsoft.WebPortal.Services.Button.StandardButtons.CANCEL, 1, function () {
         // clear the offersToAdd.
-        self.offersToAdd = [];         
+        self.offersToAdd = [];
         self.webPortal.Services.Dialog.hide();
     });
 
@@ -199,14 +197,14 @@ Microsoft.WebPortal.Views.AddSubscriptionsView.prototype.onAddOfferClicked = fun
 
         self.webPortal.EventSystem.subscribe(Microsoft.WebPortal.Event.DialogShown, self.onPortalOfferDialogShown, self);
         self.webPortal.Services.Dialog.show("portalOfferPicker-template", self.webPortal.Session.PortalOffers, [okButton, cancelButton]);
-    });    
-}
+    });
+};
 
 Microsoft.WebPortal.Views.AddSubscriptionsView.prototype.onPortalOfferDialogShown = function (eventId, isShown) {
-    if (isShown) {        
+    if (isShown) {
         this.portalOfferDialogViewModel.PartnerOffersCatalog.show();
     }
-}
+};
 
 //@ sourceURL=AddSubscriptionsView.js
 
