@@ -1,0 +1,80 @@
+﻿<form id="PaymentForm">
+    <table class="FullSize" cellpadding="5" data-bind="fadeVisible: viewModel.IsSet">
+        <tr>
+            <td colspan="2" class="Header">
+                @Resources.PayUPaymentConfigurationHeader
+            </td>
+        </tr>
+        <tr>
+            <td class="Subtext BottomPadded" colspan="2">
+                @Resources.PayUPaymentConfigurationSubTextPrefix
+                <a href="https://www.payumoney.com/" class="Link" target="_blank">
+                    @Resources.PayUWebsiteCaption
+                </a>
+                @Resources.PayUPaymentConfigurationSubTextPostfix
+            </td>
+        </tr>
+        <tr>
+            <td class="TitleCell">
+                @Resources.PayUMerchantKeyCaption<label class="Required"><label>*</label></label>
+            </td>
+            <td class="Subtext">
+                <input id="PayPalClientId" name="PayPalClientId" type="text" class="InputField FullWidthInput" data-bind="textinput: viewModel.ClientId" /><br />
+                @Resources.PayUMerchantKeySubText
+            </td>
+        </tr>
+        <tr>
+            <td class="TitleCell">
+                @Resources.PayUSaltCaption <label class="Required"><label>*</label></label>
+            </td>
+            <td class="Subtext">
+                <input type="password" id="PayPalClientSecret" name="PayPalClientSecret" class="InputField FullWidthInput VerticalCenter" data-bind="textInput: viewModel.ClientSecret" />
+                <br />
+                @Resources.PayUMerchantSaltSubText
+            </td>
+        </tr>
+		<tr>
+			<td class="TitleCell">
+				@Resources.PayUAuthorizationCaption <label class="Required"><label>*</label></label>
+			</td>
+			<td class="Subtext">
+				<input type="text" id="PayUAuth" name="PayUAuth" class="InputField FullWidthInput VerticalCenter" data-bind="textInput: viewModel.WebExperienceProfileId" />
+				<br />
+				@Resources.PayUAuthSubText
+			</td>
+		</tr>
+        <tr>
+            <td class="TitleCell">
+                @Resources.PayUAccountTypeCaption <label class="Required"><label>*</label></label>
+            </td>
+            <td class="Subtext">
+                <select id="PayPaylMode" name="PayPaylMode" class="InputField HalfWidthInput VerticalCenter" data-bind="value:viewModel.AccountType, options: viewModel.SupportedAccountTypes, optionsText: 'Title'" />
+                <br />
+                @Resources.PayUAccountTypeSubText
+            </td>
+        </tr>
+        <tr>
+            <td class="FullHeight"></td>
+        </tr>
+    </table>
+</form>
+
+<script>
+    $("#PaymentForm").validate({
+            rules: {
+                PayPalClientId: {
+                    required: true
+                },
+                PayPalClientSecret: {
+                    required: true
+                },
+                PayUAuth: {
+                	required: true
+                }
+            },
+            messages: {
+            },
+            submitHandler: function (form) {
+            }
+        });
+</script>

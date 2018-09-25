@@ -1,0 +1,46 @@
+﻿<!-- Renders a list of actions the user can invoke -->
+<script id="actions-template" type="text/html">
+    <table class="Actions">
+        <tbody>
+            <tr>
+                <!-- ko foreach: actions -->
+                <td class="Action" data-bind="attr: { id: elementId, title: tooltip }, click: onClick, style: { backgroundColor: backgroundColor, opacity: opacity, cursor: cursor }, event: { mouseover: onHover, mouseout: onUnhover }">
+                    <!-- ko if: icon -->
+                    <img data-bind="attr: { src: icon }" />
+                    <!-- /ko -->
+                    <!-- ko if: displayName -->
+                    <span data-bind="text: displayName"></span>
+                    <!-- /ko -->
+                    <!-- ko if: renderArrow -->
+                    <span>
+                        <img src="Content/Images/WebPortal/down-arrow.png" class="ActionArrow" data-bind="style: { transform: arrowTransformation }" />
+                    </span>
+                    <!-- /ko -->
+                    <!-- ko if: hasChildren -->
+                    <div data-bind="template: { name:'leafActions-template', data: $data }"></div>
+                    <!-- /ko -->
+                </td>
+                <td style="padding-right: 10px; width: 0px;"></td>
+                <!-- /ko -->
+            </tr>
+        </tbody>
+    </table>
+</script>
+
+<!-- Renders a leaf action (menu item) -->
+<script id="leafActions-template" type="text/html">
+    <table cellpadding="0" cellspacing="0" class="LeafActions" data-bind="style: { left: subMenuXPosition, minWidth: subMenuMinWidth }, slideDown2: isSubMenuShown, duration: 300" onmouseover="window.event.cancelBubble = true;" onmouseout="window.event.cancelBubble = true;">
+        <tbody data-bind="foreach: children">
+            <tr>
+                <td data-bind="attr: { id: elementId, title: tooltip }, click: onClick, style: { backgroundColor: backgroundColor, opacity: opacity, cursor: cursor }, event: { mouseover: onHover, mouseout: onUnhover }, mouseoverBubble: false, mouseoutBubble: false">
+                    <!-- ko if: icon -->
+                    <img data-bind="text: icon, attr: { src: icon }" />
+                    <!-- /ko -->
+                    <!-- ko if: displayName -->
+                    <span data-bind="text: displayName, style: { color: textColor }"></span>
+                    <!-- /ko -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</script>

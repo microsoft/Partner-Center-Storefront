@@ -1,0 +1,12 @@
+﻿<div id="ControlPanel" data-bind="template: { name: 'ControlPanel-template', data: $data }"></div>
+
+<script id="ControlPanel-template" type="text/html">
+    <!-- ko if: webPortal.Journey.journey().length > 1 && isShown -->
+    <div style="margin-top:20px; margin-bottom:5px;">
+        <img src="/Content/Images/WebPortal/back-large.png" class="Backbutton" data-bind="attr: { title: backButtonTooltip }, click: navigateBackwards" />
+    </div>
+    <!-- /ko -->
+    <div id="ContextualControlArea">
+        <div data-bind="template: { name: controlTemplate() , data: controlViewModel }"></div>
+    </div>
+</script>

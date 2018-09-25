@@ -1,0 +1,47 @@
+﻿.StandardSplashScreen {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 1024px;
+    min-height: 600px;
+    background-image: radial-gradient(#63B4C3, #2984B2);
+    background-repeat: round;
+    display: none;
+}
+
+    .StandardSplashScreen #Content {
+        position: absolute;
+        left: 5%;
+        top: 50%;
+    }
+
+    .StandardSplashScreen #ProductTitle {
+        color: white;
+        font-size: 60px;
+        font-weight: 400;
+    }
+
+    .StandardSplashScreen #PoweredBy {
+        color: white;
+        font-size: 16px;
+        font-weight: 100;
+    }
+
+    .StandardSplashScreen #Message {
+        color: white;
+        font-size: 16px;
+        font-weight: 100;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+
+    .StandardSplashScreen #LoadingIndicator {
+        color: white;
+    }
+
+    .StandardSplashScreen #Retry {
+        color: white;
+        font-weight: 100;
+    }

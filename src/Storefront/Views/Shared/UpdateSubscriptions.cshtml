@@ -1,0 +1,96 @@
+﻿<div id="UpdateSubscriptionsContainer">    
+    <form id="Form">
+        <!-- ko if: viewModel.ShowProgress() -->
+        <div class="Progress FullSize center">
+            <img class="verticalCenteredProgress" src="~/Content/Images/Plugins/ripple.gif" />
+        </div>
+        <!-- /ko -->
+        <!-- ko if: viewModel.IsSet() -->
+        <div class="section row">            
+            <label data-bind="text: viewModel.PageTitle"></label><br />            
+        </div>
+        <div>
+            <table cellspacing="10" border="0" class="subscriptions-table">
+                <tr>
+                    <td colspan="2">
+                        <label class="offer-title" data-bind="text: viewModel.FriendlyName"></label><br />
+                        @Resources.SubscriptionIDLabel <label data-bind="text: viewModel.SubscriptionId"></label>                        
+                    </td>                    
+                    <td class="right-padded">
+                        <label class="monthly-fee">@Resources.UserLicencesCaption </label>
+                    </td>
+                    <td class="right-aligned">
+                        <!-- ko if: viewModel.isUpdateSubscription-->
+                        <label class="monthly-fee">@Resources.ProratedPaymentTotal</label>
+                        <!-- /ko -->
+                        <label class="monthly-fee">@Resources.SubscriptionSummaryRateCaption</label>
+                    </td>
+                    <td class="right-aligned">
+                        <label class="monthly-fee">@Resources.AnnualTotalCaption</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="fit-to-content">
+                        <img data-bind="attr: { src: viewModel.portalOffer.Thumbnail }" />
+                    </td>
+                    <td class="left-padded">                        
+                        <!-- ko if: viewModel.portalOffer.Subtitle -->
+                        <br />
+                        <label class="SubTitle" data-bind="text: viewModel.portalOffer.Subtitle"></label>
+                        <!-- /ko -->
+                        <ul class="offer-notes">
+                            <!-- ko foreach: viewModel.portalOffer.Summary -->
+                            <li data-bind="text: $data"></li>
+                            <!-- /ko -->
+                            <!-- ko foreach: viewModel.portalOffer.Features -->
+                            <li data-bind="text: $data"></li>
+                            <!-- /ko -->
+                        </ul>
+                    </td>
+                    <td class="right-padded">
+                        <input type="number" class="order-quantity" data-bind="enable: viewModel.isUpdateSubscription, textInput: viewModel.Quantity" data-rule-required="true" data-rule-digits="true" data-rule-min="1" data-rule-max="1000" />
+                    </td>
+                    <td class="right-aligned">
+                        <label class="offer-price" data-bind="text: viewModel.pricePerSeat"></label>
+                    </td>
+                    <td class="right-aligned">
+                        <label class="offer-price" data-bind="text: viewModel.TotalCharge"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="fit-to-content">
+                        <label class="emphasized-text">@Resources.TotalAmountCaption</label>
+                    </td>
+                    <td class="right-aligned">
+                        <label class="offer-price" data-bind="text: viewModel.TotalCharge"></label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- /ko -->
+        <div class="section-divider"></div>
+        <br />        
+        <br /><div id="validation_summary" class="error"></div><br />
+        <a id="SubmitButton" class="submitButton" data-bind="click: onFormPostClicked">@Resources.PlaceOrderCaption</a>
+        <a id="SubmitButton" class="submitButton" data-bind="click: onCancelClicked">@Resources.Cancel</a>                
+    </form>    
+    <script>
+        $("#Form").validate({
+            invalidHandler: function () {
+                $("#validation_summary").text("@Resources.InvalidInputInFormCaption");
+            },
+            errorContainer: "#validation_summary",
+            errorPlacement: function(error, element) {                
+                error.insertAfter(element);                
+            },
+            rules: {
+            },
+            messages: {
+            },
+            submitHandler: function (form) {
+
+            }
+        });
+    </script>    
+
+</div>

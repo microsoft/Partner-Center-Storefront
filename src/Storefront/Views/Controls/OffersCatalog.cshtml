@@ -1,0 +1,9 @@
+﻿<script id="offersCatalog-template" type="text/html">
+    <!-- ko foreach: viewModel.partnerOffers -->
+    <div class="OfferCatalog" data-bind="css: { NewRow: $index() % $parent.columns() == 0 }">
+        <!-- ko stopBinding: true -->
+        <div class="FullSize Hidden"></div>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</script>

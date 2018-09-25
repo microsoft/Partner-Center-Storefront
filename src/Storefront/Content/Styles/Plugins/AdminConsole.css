@@ -1,0 +1,53 @@
+﻿#AdminConsoleContainer {
+    width: 100%;
+    margin-top: 60px;
+}
+
+    #AdminConsoleContainer .WelcomeMessageContainer {
+        margin: auto;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+        #AdminConsoleContainer .WelcomeMessageContainer > label {
+            font-size: 32px;
+        }
+
+    #AdminConsoleContainer .UserName {
+        font-weight: 600;
+    }
+
+    #AdminConsoleContainer .Progress {
+        margin: auto;
+        text-align: center;
+    }
+
+    #AdminConsoleContainer .PromptMessage {
+        margin: auto;
+        font-size: 20px;
+        text-align: center;
+        padding-top: 20px;
+        white-space: nowrap;
+    }
+
+    #AdminConsoleContainer .SetupSectionTitle {
+        margin: auto;
+        padding: 20px 0px 20px 0px;
+        width: 1px;
+        text-align: left;
+        font-size: 18px;
+        white-space: nowrap;
+    }
+
+        #AdminConsoleContainer .SetupSectionTitle label {
+            color: rgb(41, 142, 186);
+            vertical-align: top;
+            float: left;
+            font-weight: 100;
+        }
+
+    #AdminConsoleContainer .SetupSectionStatus {
+        margin-top: 8px;
+        vertical-align: bottom;
+        float: right;
+    }

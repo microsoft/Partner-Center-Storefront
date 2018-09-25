@@ -1,0 +1,73 @@
+﻿#UpdateSubscriptionsContainer {
+    margin: 20px;
+}
+
+    #UpdateSubscriptionsContainer .product-title {
+        font-size: 40px;
+        font-weight: 100;
+        margin-bottom: 10px;
+        display: inline-block;
+    }
+
+    #UpdateSubscriptionsContainer .feature-title {
+        font-size: 24px;
+        font-weight: 400;
+        display: inline-block;
+    }
+
+    #UpdateSubscriptionsContainer #SubmitButton {
+        margin-top: 20px;
+        display: inline-block;
+    }
+
+    #UpdateSubscriptionsContainer Form > table {
+        margin-bottom: 10px;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    #UpdateSubscriptionsContainer input[name="FriendlyName"] {
+        width: 400px;
+        height: 25px;
+    }
+
+    #UpdateSubscriptionsContainer input[name="Quantity"] {
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 50px;
+    }
+
+    #UpdateSubscriptionsContainer .offer-price {
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    #UpdateSubscriptionsContainer .left-column {
+        width: 400px;
+    }
+
+    #UpdateSubscriptionsContainer .right-column {
+        vertical-align: top;
+        padding-top: 25px;
+    }
+
+    #UpdateSubscriptionsContainer .offer-title {
+        font-size: 20px;
+    }
+
+    #UpdateSubscriptionsContainer .month-per-user {
+        font-size: 16px;
+    }
+
+    #UpdateSubscriptionsContainer .offer-features {
+        padding-left: 20px;
+        font-size: 12px;
+    }
+
+.dashedTop {
+    border-top: 1px dashed black;
+}
+
+form > table {
+    border-collapse: collapse;
+}

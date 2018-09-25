@@ -1,0 +1,129 @@
+﻿<!-- The template used to render a list of items. -->
+<script id="list-template" type="text/html">
+    <!-- ko if: isEmpty() && isComplete() -->
+    <div class="FullSize" data-bind="template: { name: emptyListTemplate, data: emptyListViewModel }"></div>
+    <!-- /ko -->
+    <!-- ko ifnot: isEmpty() && isComplete() -->
+    <!-- ko if: showHeader() -->
+    <table id="ListHeaders" class="ListSection" cellpadding="0" cellspacing="0" data-bind="css: { ScrollBarPadding: scrollBarVisible() }">
+        <thead>
+            <tr>
+                <!-- ko if: isStatusBarEnabled -->
+                <td class="StatusBarHeader"></td>
+                <!-- /ko -->
+                <!-- ko if: isSelectable -->
+                <td class="SelectionHeader">
+                    <!-- ko ifnot: isSingleSelect -->
+                    <input type="checkbox" data-bind="checked: isAllSelected" />
+                    <!-- /ko -->
+                </td>
+                <!-- /ko -->
+                <!-- ko foreach: { data: columns() } -->
+                <td class="ZeroMaxWidth" data-bind="attr: { style: style, title: $data.tooltip ? $data.tooltip : title }, css: { PointerCursor: sortable() === true }, click: sortable() === true ? $parent.onSortChanged : null">
+                    <span data-bind="template: { name: headerTemplate }, css: { OverflowSortHeaderWithEllipsis: $parents[0].sortField() === field(), OverflowHeaderWithEllipsis: $parents[0].sortField() !== field() }" class="ListColumnHeader"></span>
+
+                    <!-- ko if: $parents[0].sortField() === field() -->
+                    <img data-bind="attr: { src: $parent.sortIcon() }" class="SortDirection" />
+                    <!-- /ko -->
+                </td>
+                <!-- /ko -->
+            </tr>
+        </thead>
+    </table>
+    <!-- /ko -->
+
+    <!-- ko with: renderer -->
+    <div class="ListBodyContainer" data-bind="event: { scroll: onListScrolled }">
+        <table class="ListSection" cellpadding="0" cellspacing="0">
+            <tbody data-bind="template: { name: bodyTemplate }" class="ListBody"></tbody>
+        </table>
+    </div>
+
+    <table id="ListFooter" class="ListSection" cellpadding="0" cellspacing="0">
+        <!-- ko if: $data.footerTemplate -->
+        <tfoot data-bind="template: { name: footerTemplate }"></tfoot>
+        <!-- /ko -->
+    </table>
+    <!-- /ko -->
+    <!-- /ko -->
+</script>
+
+<!-- The default template for an empty list. Simply shows an empty list message. -->
+<script id="defaultEmptyList-template" type="text/html">
+    <div class="FullSize EmptyListMessageContainer">
+        <label class="MetroNormal EmptyListMessage" data-bind="text: $data"></label>
+    </div>
+</script>
+
+<!-- The default template for a list column header. Displays the header name. -->
+<script id="defaultColumnHeader-template" type="text/html">
+    <label data-bind="text: title, css: { PointerCursor: sortable() === true }"></label>
+</script>
+
+<!-- Renders an infinite scrolling list. -->
+<script id="infiniteScrollList-template" type="text/html">
+    <!-- ko foreach: { data: rows(), afterRender: onListRenderingFinished } -->
+    <tr class="ListRow" data-bind="template: { name: 'listRow-template' }"></tr>
+    <!-- /ko -->
+</script>
+
+<!-- Renders a paged list. -->
+<script id="tablePageListBody-template" type="text/html">
+    <!-- ko foreach: { data: rowsToRender() } -->
+    <tr class="ListRow" data-bind="template: { name: 'listRow-template' }"></tr>
+    <!-- /ko -->
+</script>
+
+<!-- The list row template. -->
+<script id="listRow-template" type="text/html">
+    <!-- ko if: $parents[1].isStatusBarEnabled -->
+    <td class="StatusBarCell" data-bind="style: { borderLeftColor: $data.stateColor ?  stateColor : 'transparent'}"></td>
+    <!-- /ko -->
+
+    <!-- ko if: $parents[1].isSelectable -->
+    <td class="Cell SelectionCell" data-bind="css: { Selected: $parents[1].isSelectable && isSelected, DrawTopBorder: $parents[1].drawTopBorder($index()) }">
+        <input type="checkbox" data-bind="checked: isSelected" />
+    </td>
+    <!-- /ko -->
+
+    <!-- ko foreach: { data: $parents[1].columns() } -->
+    <td class="Cell OverflowWithEllipsis" data-bind="attr: { style: style }, css: { ClickableCell: clickable() && $parent.isSelected != true, ClickableWhileSelected: clickable() && $parents[2].isSelectable && $parent.isSelected, Selected: $parents[2].isSelectable && $parent.isSelected, DrawTopBorder: $parents[2].drawTopBorder($parentContext.$index()) }, click: clickable() === true ? $parents[2].onCellClicked.bind($data, $parents[2], $parent) : null">
+        <!-- ko if: cellTemplate() -->
+        <div data-bind="template: { name: cellTemplate, data: { row: $parent, column: $data } }"></div>
+        <!-- /ko -->
+        <!-- ko ifnot: cellTemplate() -->
+        <label class="MetroSmall" data-bind="text: $parent[field()], attr: { title: $parent[field()] }, css: { PointerCursor: clickable() === true }"></label>
+        <!-- /ko -->
+    </td>
+    <!-- /ko -->
+</script>
+
+<!-- Renders the footer for the paged list. The footer contains links to table pages. -->
+<script id="tablePageListFooter-template" type="text/html">
+    <tr>
+        <td class="ListFooter">
+            <!-- ko ifnot: pageIndex() == 0 -->
+            <label class="HoverableLink" data-bind="click: goToPage.bind($data, 0)">@Resources.First</label>
+            <!-- /ko -->
+            
+            <!-- ko if: pageIndex() > 2 -->
+            <label class="HoverableLink" data-bind="text: pageIndex() - 1, click: goToPage.bind($data, pageIndex() - 2)"></label>
+            <!-- /ko -->
+            
+            <!-- ko if: pageIndex() > 1 -->
+            <label class="HoverableLink" data-bind="text: pageIndex(), click: goToPage.bind($data, pageIndex() - 1)"></label>
+            <!-- /ko -->
+
+            <label class="DisabledPageLink" data-bind="text: pageIndex() + 1"></label>
+
+            <!-- ko if: renderNext -->
+            <label data-bind="click: goToPage.bind($data, pageIndex() + 1), css: { DisabledPageLink: disableNext(), HoverableLink: !disableNext() }">@Resources.Next</label>
+            
+            <!-- ko if: isComplete -->
+            <label class="HoverableLink" data-bind="click: goToPage.bind($data, lastPageIndex())">@Resources.Last</label>
+            <!-- /ko -->
+            
+            <!-- /ko -->
+        </td>
+    </tr>
+</script>

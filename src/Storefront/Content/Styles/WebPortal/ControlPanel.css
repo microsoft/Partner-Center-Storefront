@@ -1,0 +1,32 @@
+﻿/* Control panel styles */
+
+#ControlPanel {
+    display: block;
+    position: absolute;
+    float: left;
+    height: calc(100% - 41px);
+    width: 0;
+    min-height: 400px;
+    color: #B5B5B5;
+    background-color: #333333;
+    z-index: 2;
+    min-height: 559px;
+    overflow: auto;
+}
+
+#ContextualControlArea {
+    padding: 3px;
+    display: none;
+}
+
+.Backbutton {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+    .Backbutton:hover {
+        opacity: 1;
+    }

@@ -1,0 +1,55 @@
+﻿<div id="OfferListContainer">
+    <!-- ko stopBinding: true -->
+    <div id="offerList"></div>
+    <!-- /ko -->
+</div>
+
+<script id="microsoftOfferListItem-template" type="text/html">
+    <table cellpadding="10">
+        <tr>
+            <td>
+                <img class="product-logo" data-bind="attr: { src: row.MicrosoftOffer.ThumbnailUri }" />
+            </td>
+            <td class="MicrosoftOfferDetails">
+                <label class="Name" data-bind="text: row.MicrosoftOffer.Offer.Name"></label> @Resources.Dash <label class="Id" data-bind="text: row.MicrosoftOffer.Offer.Id"></label><br />
+                <label class="Category" data-bind="text: row.MicrosoftOffer.Offer.Category.Name"></label>@Resources.Comma <label data-bind="text: row.MicrosoftOffer.Offer.Billing"></label> @Resources.BillingTypeListRowCaption<br />
+                <label data-bind="text: row.IsAvailableForPurchaseCaption"></label>@Resources.Comma <label data-bind="text: row.IsOfferAutoRenewableCaption"></label><br />
+                <label data-bind="text: row.AllowedQuantityCaption"></label><br />
+                <label class="Description" data-bind="text: row.MicrosoftOffer.Offer.Description"></label>
+            </td>
+        </tr>
+    </table>
+</script>
+
+<script id="partnerOfferListItem-template" type="text/html">
+    <div class="PartnerOfferDetails">
+        <label class="Title" data-bind="text: row.PartnerOffer.Title"></label><br />
+        @Resources.PriceHeader <label class="SubTitle" data-bind="text: row.FormattedPrice"></label><br />
+
+        <table cellspacing="0">
+            <tr>
+                <!-- ko if: row.PartnerOffer.Summary && row.PartnerOffer.Summary.length > 0 -->
+                <td>
+                    
+                    @Resources.SummaryListRowCaption
+                    <ul>
+                        <!-- ko foreach: row.PartnerOffer.Summary -->
+                        <li data-bind="text: $data"></li>
+                        <!-- /ko -->
+                    </ul>
+                </td>
+                <!-- /ko -->
+                <!-- ko if: row.PartnerOffer.Features && row.PartnerOffer.Features.length > 0 -->
+                <td class="left-padded">
+                    @Resources.FeaturesCaption
+                    <ul>
+                        <!-- ko foreach: row.PartnerOffer.Features -->
+                        <li data-bind="text: $data"></li>
+                        <!-- /ko -->
+                    </ul>
+                </td>
+                <!-- /ko -->
+            </tr>
+        </table>
+    </div>
+</script>

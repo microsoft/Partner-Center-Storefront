@@ -1,0 +1,31 @@
+﻿<script id="offerTile-template" type="text/html">
+    <table cellspacing="7" class="TileContainer" data-bind="click: onTileClicked, css: { TileSelected: viewModel.isSelected(), Hoverable: viewModel.isSelectable() }">
+        <tr>
+            <td class="TileTitle">
+                <label class="Title" data-bind="text: viewModel.partnerOffer().Title, css: { Hoverable: viewModel.isSelectable() }"></label>
+            </td>
+        </tr>
+        <tr>
+            <td class="center">
+                <img class="product-logo" data-bind="attr: { src: viewModel.partnerOffer().Thumbnail }" />
+            </td>
+        </tr>
+        <tr>
+            <td class="PriceContainer">                
+                <label data-bind="text: viewModel.formattedPrice, css: { Hoverable: viewModel.isSelectable() }"></label>
+                <label class="PerYear">@Resources.UserPerYear</label>
+                <label title="Buy this offer" class="Link BuyNow" data-bind="visible: viewModel.showBuyLink, click: onBuyNowClicked">@Resources.BuyNow</label>
+            </td>
+        </tr>
+        <!-- ko if: viewModel.Features -->
+        <tr>
+            <td class="FeaturesContainer">
+                <label class="Features" data-bind="text: viewModel.Features, css: { Hoverable: viewModel.isSelectable() }"></label>
+            </td>
+        </tr>
+        <!-- /ko -->
+        <tr>
+            <td class="FullHeight"></td>
+        </tr>
+    </table>
+</script>

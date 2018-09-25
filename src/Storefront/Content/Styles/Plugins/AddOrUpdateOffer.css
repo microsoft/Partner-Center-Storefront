@@ -1,0 +1,133 @@
+﻿#AddOrUpdateOfferContainer {
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    margin: 15px;
+}
+
+    #AddOrUpdateOfferContainer .Progress {
+        margin: auto;
+        text-align: center;
+    }
+
+    #AddOrUpdateOfferContainer .Underlined {
+        border-bottom: 1px solid rgba(190, 190, 190, 0.5);
+        width: 100%;
+    }
+
+    #AddOrUpdateOfferContainer .ThumbnailUriContainer {
+        padding-right: 20px;
+    }
+
+    #AddOrUpdateOfferContainer .MicrosoftOfferDetails {
+        font-size: 14px;
+    }
+
+        #AddOrUpdateOfferContainer .MicrosoftOfferDetails .Name {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        #AddOrUpdateOfferContainer .MicrosoftOfferDetails .Id {
+            font-size: 16px;
+        }
+
+        #AddOrUpdateOfferContainer .MicrosoftOfferDetails .Category {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        #AddOrUpdateOfferContainer .MicrosoftOfferDetails .Description {
+            font-size: 12px;
+            font-style: oblique;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+    #AddOrUpdateOfferContainer .CustomizationHeader {
+        min-width: 300px;
+        font-size: 18px;
+    }
+
+    #AddOrUpdateOfferContainer .InputField {
+        width: 700px;
+        min-width: 600px;
+        height: 30px;
+        border-radius: 2px;
+        border: 1px solid rgba(200, 200, 200, 0.9);
+        color: #464443;
+        font-size: 16px;
+        font-weight: 100;
+        padding: 3px 3px 3px 10px;
+        margin-right: 6px;
+    }
+
+    #AddOrUpdateOfferContainer .InlineBlock {
+        display: inline-block;
+    }
+
+    #AddOrUpdateOfferContainer .Price {
+        width: 100px;
+        height: 30px;
+        border-radius: 2px;
+        border: 1px solid rgba(200, 200, 200, 0.9);
+        color: #464443;
+        font-size: 16px;
+        font-weight: 100;
+        padding: 3px 3px 3px 10px;
+        margin-right: 6px;
+    }
+
+    #AddOrUpdateOfferContainer .DetailedFeatures {
+        min-width: 300px;
+        font-size: 18px;
+        vertical-align: top;
+    }
+
+    #AddOrUpdateOfferContainer .AddLink {
+        float: right;
+        font-size: 14px;
+    }
+
+    #AddOrUpdateOfferContainer .DetailedFeaturesContainer {
+        display: inline-block;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    #AddOrUpdateOfferContainer .DetailRow {
+        margin-bottom: 5px;
+    }
+
+    #AddOrUpdateOfferContainer .Detail {
+        width: 700px;
+        min-width: 600px;
+        height: 30px;
+        border-radius: 2px;
+        border: 1px solid rgba(200, 200, 200, 0.9);
+        color: #464443;
+        vertical-align: middle;
+        font-size: 16px;
+        font-weight: 100;
+        padding: 3px 3px 3px 10px;
+    }
+
+    #AddOrUpdateOfferContainer td {
+        padding-bottom: 10px;
+    }
+
+.MicrosoftOfferList {
+    display: none;
+    height: calc(90% - 40px);
+    width: 100%;
+    background-color: white;
+    margin-top: 20px;
+}
+
+.OfferErrorMessage {
+    margin-top: 20px;
+}
+
+#OfferSelectionWizard {
+    padding: 20px;
+    height: calc(100% - 40px);
+}

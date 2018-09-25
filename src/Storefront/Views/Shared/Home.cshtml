@@ -1,0 +1,58 @@
+﻿<script>
+    isPortalConfigured = "@ViewBag.IsPortalConfigured" == "True";
+</script>
+
+<table id="OffersContainer" cellpadding="0" cellspacing="0" class="FullSize center">
+    <tbody>
+        @if (ViewBag.HeaderImage != null)
+        {
+            <tr>
+                <td class="offers-header">
+                    <img class="banner" src="@ViewBag.HeaderImage">
+                </td>
+            </tr>
+        }
+
+        <!-- ko if: viewModel.ShowProgress() -->
+        <tr>
+            <td class="Progress">
+                <img src="~/Content/Images/Plugins/ripple.gif" />
+            </td>
+        </tr>
+        <!-- /ko -->
+        <!-- ko if: viewModel.IsSet() -->
+        <!-- ko if: viewModel.IsPortalConfigured() -->
+        <tr>
+            <!-- ko stopBinding: true -->
+            <td id="PartnerOffersCatalogView"></td>
+            <!-- /ko -->
+        </tr>
+        <!-- /ko -->
+        <!-- ko ifnot: viewModel.IsPortalConfigured() -->
+        <tr>
+            <td class="PortalNotConfigured">
+                <label class="MetroNormal">@Resources.PortalNotConfiguredYet<br /></label>
+
+                @if (ViewBag.IsPortalAdmin)
+                {
+                    <label class="Link MetroNormal" data-bind="click: onConfigurePortalClicked">@Resources.ConfigurePortalMessage</label>
+                }
+            </td>
+        </tr>
+        <!-- /ko -->
+        <!-- /ko -->
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="footer">
+                <label class="rightAlignedElement">@Resources.CopyRight - @ViewBag.OrganizationName</label>
+
+                @if (!string.IsNullOrWhiteSpace(@ViewBag.PrivacyAgreement))
+                {
+                    <a class="rightAlignedElement" href="@ViewBag.PrivacyAgreement" title="@Resources.PrivacyAgreementToolTip" target="_blank">@Resources.PrivacyAgreement</a>
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>

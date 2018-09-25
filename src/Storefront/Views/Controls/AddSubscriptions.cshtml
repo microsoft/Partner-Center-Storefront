@@ -1,0 +1,97 @@
+﻿<script id="addSubscriptions-template" type="text/html">
+    <!-- ko stopBinding: true -->
+    <div id="SubscriptionsList"></div>
+    <!-- /ko -->      
+    <table width="100%" cellspacing="5">
+        <tbody>
+            <tr>
+                <td width="85%">
+                    <label class="emphasized-text">@Resources.TotalAmountCaption</label>
+                </td>
+                <td class="right-aligned" valign="top" width="15%">
+                    <div class="first-payment-total-container">                        
+                        <label data-bind="text: firstPaymentTotalDisplay"></label>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>        
+    <div class="add-plan-header">
+        <label data-bind="click: onAddOfferClicked" class="Link medium-text">@Resources.BuyMoreSubscriptionsMessage</label>
+    </div>    
+</script>
+
+<script id="subscriptionEntry-template" type="text/html">
+    <table cellspacing="5">
+        <tr>            
+            <td colspan="2" width="70%">
+                <label class="offer-title" data-bind="text: row.offer.Title"></label>      
+            </td>
+            <td class="right-padded fit-to-content" width="10%">
+                <label class="monthly-fee">@Resources.UserLicencesCaption</label>
+            </td>
+            <td align="center" width="10%">
+                <label class="monthly-fee">@Resources.SubscriptionSummaryRateCaption </label>
+            </td>
+            <td class="right-aligned" width="10%">
+                <label class="monthly-fee">@Resources.AnnualTotalCaption</label>                                
+            </td>
+        </tr>
+        <tr style="vertical-align: top">
+            <td class="fit-to-content" width="5%" style="padding-top: 30px;">
+                <img class="product-logo" data-bind="attr: { src: row.offer.Thumbnail }" />
+            </td>
+            <td class="left-padded" width="65%">                
+                <!-- ko if: row.offer.Subtitle -->                
+                <label class="SubTitle" data-bind="text: row.offer.Subtitle"></label>
+                <!-- /ko -->
+                <ul class="offer-notes">
+                    <!-- ko foreach: row.offer.Summary -->
+                    <li data-bind="text: $data"></li>
+                    <!-- /ko -->
+                    <!-- ko foreach: row.offer.Features -->
+                    <li data-bind="text: $data"></li>
+                    <!-- /ko -->
+                </ul>                
+            </td>
+            <td class="right-padded fit-to-content" valign="top" width="10%"> 
+                <br />
+                <br />
+                <input type="number" class="order-quantity" data-bind="textInput: row.quantity, uniqueName: true" data-rule-required="true" data-rule-digits="true" data-rule-min="1" data-rule-max="1000"/>
+            </td>
+            <td align="center" valign="top" width="10%">
+                <label class="offer-price" data-bind="text: row.formattedPrice"></label>
+            </td>
+            <td class="right-aligned" valign="top" width="10%">                                
+                <label class="offer-price" data-bind="text: row.offerTotalPrice"></label> 
+                <br />
+                <br />
+                <label class="Link remove-link" data-bind="click: function () { $parents[3].remove(row); $('#SubscriptionsList').height($('#SubscriptionsList table').height());}">@Resources.RemoveFromCart</label>
+            </td>
+        </tr>
+    </table>    
+</script>
+
+<script id="emptyOffersErrorMessage-template" type="text/html">
+    <div class="empty-offers-error-message">
+        <label>@Resources.EmptyOffersErrorMessage</label>
+    </div>
+</script>
+
+<script id="portalOfferPicker-template" type="text/html">
+    <!-- Template used to show in the portal offers dialog -->
+    <table cellpadding="0" cellspacing="0" class="FullSize center">
+        <tbody>
+            <tr>
+                <td class="center PortalOfferCaption MetroNormal">
+                    <label>@Resources.SelectPortalOfferCaption</label>
+                </td>
+            </tr>
+            <tr>
+                <!-- ko stopBinding: true -->
+                <td id="PartnerOffersCatalog"></td>
+                <!-- /ko -->
+            </tr>            
+        </tbody>
+    </table>    
+</script>

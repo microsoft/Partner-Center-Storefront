@@ -1,0 +1,12 @@
+﻿#CustomerPreApprovalForm {
+    padding: 15px;
+}
+
+#CustomerPreApprovalForm > table {
+    display: none;
+}
+
+#CustomerPreApprovalForm > table > tbody > tr > td {
+    vertical-align: top;
+    padding-bottom: 20px;
+}
