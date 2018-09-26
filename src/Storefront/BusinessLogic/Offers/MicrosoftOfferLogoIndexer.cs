@@ -49,20 +49,20 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Offers
         public MicrosoftOfferLogoIndexer(ApplicationDomain applicationDomain) : base(applicationDomain)
         {
             // register offer logo matchers
-            this.offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "azure", "active directory" }, "/Content/Images/Plugins/ProductLogos/azure-logo.png"));
-            this.offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "dynamics", "crm" }, "/Content/Images/Plugins/ProductLogos/dynamics-logo.png"));
-            this.offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "exchange" }, "/Content/Images/Plugins/ProductLogos/exchange-logo.png"));
-            this.offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "intune" }, "/Content/Images/Plugins/ProductLogos/intune-logo.png"));
-            this.offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "onedrive" }, "/Content/Images/Plugins/ProductLogos/onedrive-logo.png"));
-            this.offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "project" }, "/Content/Images/Plugins/ProductLogos/project-logo.png"));
-            this.offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "sharepoint" }, "/Content/Images/Plugins/ProductLogos/sharepoint-logo.png"));
-            this.offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "skype" }, "/Content/Images/Plugins/ProductLogos/skype-logo.png"));
-            this.offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "visio" }, "/Content/Images/Plugins/ProductLogos/visio-logo.png"));
-            this.offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "office", "365" }, "/Content/Images/Plugins/ProductLogos/office-logo.png"));
-            this.offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "yammer" }, "/Content/Images/Plugins/ProductLogos/yammer-logo.png"));
+            offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "azure", "active directory" }, "/Content/Images/Plugins/ProductLogos/azure-logo.png"));
+            offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "dynamics", "crm" }, "/Content/Images/Plugins/ProductLogos/dynamics-logo.png"));
+            offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "exchange" }, "/Content/Images/Plugins/ProductLogos/exchange-logo.png"));
+            offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "intune" }, "/Content/Images/Plugins/ProductLogos/intune-logo.png"));
+            offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "onedrive" }, "/Content/Images/Plugins/ProductLogos/onedrive-logo.png"));
+            offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "project" }, "/Content/Images/Plugins/ProductLogos/project-logo.png"));
+            offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "sharepoint" }, "/Content/Images/Plugins/ProductLogos/sharepoint-logo.png"));
+            offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "skype" }, "/Content/Images/Plugins/ProductLogos/skype-logo.png"));
+            offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "visio" }, "/Content/Images/Plugins/ProductLogos/visio-logo.png"));
+            offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "office", "365" }, "/Content/Images/Plugins/ProductLogos/office-logo.png"));
+            offerLogoMatchers.Add(new OfferLogoMatcher(new string[] { "yammer" }, "/Content/Images/Plugins/ProductLogos/yammer-logo.png"));
 
             // we will default the logo if all the above matchers fail to match the given offer
-            this.offerLogoMatchers.Add(new DefaultLogoMatcher());
+            offerLogoMatchers.Add(new DefaultLogoMatcher());
         }
 
         /// <summary>
@@ -85,20 +85,20 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Offers
         /// <returns>The offer's logo URI.</returns>
         public async Task<string> GetOfferLogoUriAsync(Offer offer)
         {
-            if (!this.isIndexed)
+            if (!isIndexed)
             {
-                await this.IndexOffersAsync();
+                await IndexOffersAsync().ConfigureAwait(false);
             }
             else
             {
-                if (DateTime.Now - this.lastIndexedTime > TimeSpan.FromDays(1))
+                if (DateTime.Now - lastIndexedTime > TimeSpan.FromDays(1))
                 {
                     // it has been more than a day since we last indexed, reindex the next time this is called
-                    this.isIndexed = false;
+                    isIndexed = false;
                 }
             }
 
-            return offer?.Product?.Id != null && this.offerLogosIndex.ContainsKey(offer.Product.Id) ? this.offerLogosIndex[offer.Product.Id] : MicrosoftOfferLogoIndexer.DefaultLogo;
+            return offer?.Product?.Id != null && offerLogosIndex.ContainsKey(offer.Product.Id) ? offerLogosIndex[offer.Product.Id] : DefaultLogo;
         }
 
         /// <summary>
@@ -108,34 +108,34 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Offers
         private async Task IndexOffersAsync()
         {
             // Need to manage this based on the partner's country locale to retrieve localized offers for the store front.             
-            IPartner localeSpecificPartnerCenterClient = this.ApplicationDomain.PartnerCenterClient.With(RequestContextFactory.Instance.Create(this.ApplicationDomain.PortalLocalization.OfferLocale));
+            IPartner localeSpecificPartnerCenterClient = ApplicationDomain.PartnerCenterClient.With(RequestContextFactory.Instance.Create(ApplicationDomain.PortalLocalization.OfferLocale));
 
             // retrieve the offers for this country
-            PartnerCenter.Models.ResourceCollection<Offer> localizedOffers = await localeSpecificPartnerCenterClient.Offers.ByCountry(this.ApplicationDomain.PortalLocalization.CountryIso2Code).GetAsync();
+            PartnerCenter.Models.ResourceCollection<Offer> localizedOffers = await localeSpecificPartnerCenterClient.Offers.ByCountry(ApplicationDomain.PortalLocalization.CountryIso2Code).GetAsync().ConfigureAwait(false);
 
             foreach (Offer offer in localizedOffers.Items)
             {
-                if (offer?.Product?.Id != null && this.offerLogosIndex.ContainsKey(offer.Product.Id))
+                if (offer?.Product?.Id != null && offerLogosIndex.ContainsKey(offer.Product.Id))
                 {
                     // this offer product has already been indexed, skip it
                     continue;
                 }
 
-                foreach (IOfferLogoMatcher offerLogoMatcher in this.offerLogoMatchers)
+                foreach (IOfferLogoMatcher offerLogoMatcher in offerLogoMatchers)
                 {
                     string logo = offerLogoMatcher.Match(offer);
 
                     if (!string.IsNullOrWhiteSpace(logo))
                     {
                         // logo matched, add it to the index
-                        this.offerLogosIndex.Add(offer.Product.Id, logo);
+                        offerLogosIndex.Add(offer.Product.Id, logo);
                         break;
                     }
                 }
             }
 
-            this.isIndexed = true;
-            this.lastIndexedTime = DateTime.Now;
+            isIndexed = true;
+            lastIndexedTime = DateTime.Now;
         }
 
         /// <summary>

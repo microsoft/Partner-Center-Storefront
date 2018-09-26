@@ -59,18 +59,18 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
             try
             {
                 // activate the subscription (in case it was suspended)
-                this.Result = await this.SubscriptionOperations.PatchAsync(new Subscription()
+                Result = await SubscriptionOperations.PatchAsync(new Subscription()
                 {
                     Status = SubscriptionStatus.Active
-                });
+                }).ConfigureAwait(false);
             }
             catch (PartnerException subscriptionUpdateProblem)
             {
                 string exceptionMessage = string.Format(
-                    CultureInfo.InvariantCulture, 
-                    Resources.RenewSubscriptionFailedMessage, 
+                    CultureInfo.InvariantCulture,
+                    Resources.RenewSubscriptionFailedMessage,
                     subscriptionUpdateProblem,
-                    this.existingSubscription.Id);
+                    existingSubscription.Id);
 
                 if (subscriptionUpdateProblem.ErrorCategory == PartnerErrorCategory.NotFound)
                 {
@@ -89,12 +89,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         /// <returns>A task.</returns>
         public async Task RollbackAsync()
         {
-            if (this.Result != null)
+            if (Result != null)
             {
                 try
                 {
                     // restore the original subscription state
-                    await this.SubscriptionOperations.PatchAsync(this.existingSubscription);
+                    await SubscriptionOperations.PatchAsync(existingSubscription).ConfigureAwait(false);
                 }
                 catch (Exception rollbackProblem)
                 {
@@ -106,15 +106,15 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
                     Trace.TraceError(
                         "RenewSubscription.RollbackAsync failed: {0}, Customer ID: {1}, Subscription ID: {2}, Subscription: {3}",
                         rollbackProblem,
-                        this.SubscriptionOperations.Context.Item1,
-                        this.SubscriptionOperations.Context.Item2,
-                        this.existingSubscription);
+                        SubscriptionOperations.Context.Item1,
+                        SubscriptionOperations.Context.Item2,
+                        existingSubscription);
 
                     // TODO: Notify the system integrity recovery component
                 }
             }
 
-            this.Result = null;
+            Result = null;
         }
     }
 }

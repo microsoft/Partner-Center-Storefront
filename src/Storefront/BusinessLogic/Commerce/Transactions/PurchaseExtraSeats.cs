@@ -35,8 +35,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
             subscriptionOperations.AssertNotNull(nameof(subscriptionOperations));
             seatsToPurchase.AssertPositive(nameof(seatsToPurchase));
 
-            this.SubscriptionOperations = subscriptionOperations;
-            this.SeatsToPurchase = seatsToPurchase;
+            SubscriptionOperations = subscriptionOperations;
+            SeatsToPurchase = seatsToPurchase;
         }
 
         /// <summary>
@@ -62,12 +62,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         {
             try
             {
-                var partnerCenterSubscription = await this.SubscriptionOperations.GetAsync();
+                Subscription partnerCenterSubscription = await SubscriptionOperations.GetAsync().ConfigureAwait(false);
 
-                this.originalSeatCount = partnerCenterSubscription.Quantity;
-                partnerCenterSubscription.Quantity += this.SeatsToPurchase;
+                originalSeatCount = partnerCenterSubscription.Quantity;
+                partnerCenterSubscription.Quantity += SeatsToPurchase;
 
-                this.Result = await this.SubscriptionOperations.PatchAsync(partnerCenterSubscription);
+                Result = await SubscriptionOperations.PatchAsync(partnerCenterSubscription).ConfigureAwait(false);
             }
             catch (PartnerException subscriptionUpdateProblem)
             {
@@ -88,13 +88,13 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         /// <returns>A task.</returns>
         public async Task RollbackAsync()
         {
-            if (this.Result != null)
+            if (Result != null)
             {
                 try
                 {
                     // restore the original seat count for the subscription
-                    this.Result.Quantity = this.originalSeatCount;
-                    await this.SubscriptionOperations.PatchAsync(this.Result);
+                    Result.Quantity = originalSeatCount;
+                    await SubscriptionOperations.PatchAsync(Result).ConfigureAwait(false);
                 }
                 catch (Exception subscriptionUpdateProblem)
                 {

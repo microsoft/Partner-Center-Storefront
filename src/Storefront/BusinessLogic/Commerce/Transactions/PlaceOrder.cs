@@ -34,8 +34,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
             customerOperations.AssertNotNull(nameof(customerOperations));
             orderToPlace.AssertNotNull(nameof(orderToPlace));
 
-            this.Customer = customerOperations;
-            this.Order = orderToPlace;
+            Customer = customerOperations;
+            Order = orderToPlace;
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
             try
             {
                 // place the order
-                this.Result = await this.Customer.Orders.CreateAsync(this.Order);
+                Result = await Customer.Orders.CreateAsync(Order).ConfigureAwait(false);
             }
             catch (PartnerException orderPlacingProblem)
             {
@@ -84,20 +84,20 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         /// <returns>A task.</returns>
         public async Task RollbackAsync()
         {
-            if (this.Result != null)
+            if (Result != null)
             {
                 // suspend all subscriptions that resulted from placing the order
-                IEnumerable<Task> suspensionTasks = this.Result.LineItems.Select<OrderLineItem, Task>(orderLineItem => new TaskFactory().StartNew(async () =>
+                IEnumerable<Task> suspensionTasks = Result.LineItems.Select<OrderLineItem, Task>(orderLineItem => new TaskFactory().StartNew(async () =>
                 {
                     try
                     {
-                        Subscriptions.ISubscription subscriptionOperations = this.Customer.Subscriptions.ById(orderLineItem.SubscriptionId);
+                        Subscriptions.ISubscription subscriptionOperations = Customer.Subscriptions.ById(orderLineItem.SubscriptionId);
                         Subscription subscriptionToSuspend = await subscriptionOperations.GetAsync().ConfigureAwait(false);
 
                         subscriptionToSuspend.Status = SubscriptionStatus.Suspended;
                         subscriptionToSuspend.FriendlyName = subscriptionToSuspend.FriendlyName.Replace(Resources.UnpaidSubscriptionSuffix, string.Empty) + Resources.UnpaidSubscriptionSuffix;
 
-                        Subscription patchedSubscription = await subscriptionOperations.PatchAsync(subscriptionToSuspend);
+                        Subscription patchedSubscription = await subscriptionOperations.PatchAsync(subscriptionToSuspend).ConfigureAwait(false);
 
                         Trace.TraceInformation("Suspended subscription: {0}", orderLineItem.SubscriptionId);
                     }
@@ -116,7 +116,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
 
                 try
                 {
-                    await Task.WhenAll(suspensionTasks);
+                    await Task.WhenAll(suspensionTasks).ConfigureAwait(false);
                 }
                 catch (Exception exception)
                 {
@@ -128,7 +128,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
                     Trace.TraceError("PlaceOrder.RollbackAsync: awaiting all suspension tasks failed: {0}", exception);
                 }
 
-                this.Result = null;
+                Result = null;
             }
         }
     }

@@ -28,8 +28,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
             repository.AssertNotNull(nameof(repository));
             newPurchaseRecord.AssertNotNull(nameof(newPurchaseRecord));
 
-            this.CustomerPurchasesRepository = repository;
-            this.CustomerPurchaseToPersist = newPurchaseRecord;
+            CustomerPurchasesRepository = repository;
+            CustomerPurchaseToPersist = newPurchaseRecord;
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         /// <returns>A task.</returns>
         public async Task ExecuteAsync()
         {
-            this.Result = await this.CustomerPurchasesRepository.AddAsync(this.CustomerPurchaseToPersist);
+            Result = await CustomerPurchasesRepository.AddAsync(CustomerPurchaseToPersist).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -62,12 +62,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         /// <returns>A task.</returns>
         public async Task RollbackAsync()
         {
-            if (this.Result != null)
+            if (Result != null)
             {
                 try
                 {
                     // delete the inserted row
-                    await this.CustomerPurchasesRepository.DeleteAsync(this.Result);
+                    await CustomerPurchasesRepository.DeleteAsync(Result).ConfigureAwait(false);
                 }
                 catch (Exception deletionProblem)
                 {
@@ -79,13 +79,13 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
                     Trace.TraceError(
                         "RecordPurchase.RollbackAsync failed: {0}, Customer ID: {1}, ID: {2}",
                         deletionProblem,
-                        this.Result.CustomerId,
-                        this.Result.Id);
+                        Result.CustomerId,
+                        Result.Id);
 
                     // TODO: Notify the system integrity recovery component
                 }
 
-                this.Result = null;
+                Result = null;
             }
         }
     }

@@ -27,8 +27,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
             repository.AssertNotNull(nameof(repository));
             newSubscription.AssertNotNull(nameof(newSubscription));
 
-            this.CustomerSubscriptionsRepository = repository;
-            this.CustomerSubscriptionToPersist = newSubscription;
+            CustomerSubscriptionsRepository = repository;
+            CustomerSubscriptionToPersist = newSubscription;
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         /// <returns>A task.</returns>
         public async Task ExecuteAsync()
         {
-            this.Result = await this.CustomerSubscriptionsRepository.AddAsync(this.CustomerSubscriptionToPersist);
+            Result = await CustomerSubscriptionsRepository.AddAsync(CustomerSubscriptionToPersist).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -61,12 +61,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         /// <returns>A task.</returns>
         public async Task RollbackAsync()
         {
-            if (this.Result != null)
+            if (Result != null)
             {
                 try
                 {
                     // delete the inserted row
-                    await this.CustomerSubscriptionsRepository.DeleteAsync(this.Result);
+                    await CustomerSubscriptionsRepository.DeleteAsync(Result).ConfigureAwait(false);
                 }
                 catch (Exception deletionProblem)
                 {
@@ -78,13 +78,13 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
                     Trace.TraceError(
                         "RecordNewCustomerSubscription.RollbackAsync failed: {0}, Customer ID: {1}, Subscription ID: {2}",
                         deletionProblem,
-                        this.Result.CustomerId,
-                        this.Result.SubscriptionId);
+                        Result.CustomerId,
+                        Result.SubscriptionId);
 
                     // TODO: Notify the system integrity recovery component
                 }
 
-                this.Result = null;
+                Result = null;
             }
         }
     }

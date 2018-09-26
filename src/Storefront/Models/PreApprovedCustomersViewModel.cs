@@ -14,6 +14,14 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Models
     public class PreApprovedCustomersViewModel
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="PreApprovedCustomersViewModel" /> class.
+        /// </summary>
+        public PreApprovedCustomersViewModel()
+        {
+            CustomerIds = new List<string>();
+        }
+
+        /// <summary>
         /// Gets or sets a list of customers managed in the portal for pre approval. 
         /// </summary>
         public IEnumerable<PortalCustomer> Items { get; set; }
@@ -24,8 +32,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Models
         public bool IsEveryCustomerPreApproved { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of Customer Ids which need to be preapproved. 
+        /// Gets or sets a list of customer identifiers which need to be preapproved. 
         /// </summary>
-        public List<string> CustomerIds { get; set; }
+        public List<string> CustomerIds { get; }
     }
 }

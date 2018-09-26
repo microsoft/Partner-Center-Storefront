@@ -55,10 +55,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
             key.AssertNotEmpty(nameof(key));
             objectToCache.AssertNotNull(nameof(objectToCache));
 
-            if (this.isCashingEnabled)
+            if (isCashingEnabled)
             {
-                IDatabase cache = await this.GetCacheReferenceAsync();
-                await cache.StringSetAsync(key, JsonConvert.SerializeObject(objectToCache), expiresAfter);
+                IDatabase cache = await GetCacheReferenceAsync().ConfigureAwait(false);
+                await cache.StringSetAsync(key, JsonConvert.SerializeObject(objectToCache), expiresAfter).ConfigureAwait(false);
             }
         }
 
@@ -72,10 +72,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         {
             key.AssertNotEmpty(nameof(key));
 
-            if (this.isCashingEnabled)
+            if (isCashingEnabled)
             {
-                IDatabase cache = await this.GetCacheReferenceAsync();
-                RedisValue objectValue = await cache.StringGetAsync(key);
+                IDatabase cache = await GetCacheReferenceAsync().ConfigureAwait(false);
+                RedisValue objectValue = await cache.StringGetAsync(key).ConfigureAwait(false);
 
                 if (objectValue.IsNullOrEmpty)
                 {
@@ -99,10 +99,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         {
             key.AssertNotEmpty(nameof(key));
 
-            if (this.isCashingEnabled)
+            if (isCashingEnabled)
             {
-                IDatabase cache = await this.GetCacheReferenceAsync();
-                await cache.KeyDeleteAsync(key);
+                IDatabase cache = await GetCacheReferenceAsync().ConfigureAwait(false);
+                await cache.KeyDeleteAsync(key).ConfigureAwait(false);
             }
         }
 
@@ -112,17 +112,17 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         /// <returns>The cache reference.</returns>
         private async Task<IDatabase> GetCacheReferenceAsync()
         {
-            if (!this.isCashingEnabled)
+            if (!isCashingEnabled)
             {
                 throw new InvalidOperationException("Caching is disabled");
             }
 
-            if (this.cacheConnection == null)
+            if (cacheConnection == null)
             {
-                this.cacheConnection = await ConnectionMultiplexer.ConnectAsync(this.cacheConnectionString);
+                cacheConnection = await ConnectionMultiplexer.ConnectAsync(cacheConnectionString).ConfigureAwait(false);
             }
 
-            return this.cacheConnection.GetDatabase();
+            return cacheConnection.GetDatabase();
         }
     }
 }

@@ -36,10 +36,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         {
             newOrder.AssertNotNull(nameof(newOrder));
 
-            var customerOrdersTable = await this.ApplicationDomain.AzureStorageService.GetCustomerOrdersTableAsync();
+            CloudTable customerOrdersTable = await ApplicationDomain.AzureStorageService.GetCustomerOrdersTableAsync().ConfigureAwait(false);
             CustomerOrderTableEntity orderEntity = new CustomerOrderTableEntity(newOrder);
 
-            var insertionResult = await customerOrdersTable.ExecuteAsync(TableOperation.Insert(orderEntity));
+            TableResult insertionResult = await customerOrdersTable.ExecuteAsync(TableOperation.Insert(orderEntity)).ConfigureAwait(false);
             insertionResult.HttpStatusCode.AssertHttpResponseSuccess(ErrorCode.PersistenceFailure, "Failed to add customer order", insertionResult.Result);
 
             return newOrder;
@@ -56,10 +56,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             orderId.AssertNotEmpty(nameof(orderId));
             customerId.AssertNotEmpty(nameof(customerId));
 
-            var customerOrdersTable = await this.ApplicationDomain.AzureStorageService.GetCustomerOrdersTableAsync();
+            CloudTable customerOrdersTable = await ApplicationDomain.AzureStorageService.GetCustomerOrdersTableAsync().ConfigureAwait(false);
 
-            var deletionResult = await customerOrdersTable.ExecuteAsync(
-                TableOperation.Delete(new CustomerOrderTableEntity() { PartitionKey = customerId, RowKey = orderId, ETag = "*" }));
+            TableResult deletionResult = await customerOrdersTable.ExecuteAsync(
+                TableOperation.Delete(new CustomerOrderTableEntity() { PartitionKey = customerId, RowKey = orderId, ETag = "*" })).ConfigureAwait(false);
 
             deletionResult.HttpStatusCode.AssertHttpResponseSuccess(ErrorCode.PersistenceFailure, "Failed to delete customer order", deletionResult.Result);
         }
@@ -75,22 +75,22 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             orderId.AssertNotEmpty(nameof(orderId));
             customerId.AssertNotEmpty(nameof(customerId));
 
-            var customerOrdersTable = await this.ApplicationDomain.AzureStorageService.GetCustomerOrdersTableAsync();
+            CloudTable customerOrdersTable = await ApplicationDomain.AzureStorageService.GetCustomerOrdersTableAsync().ConfigureAwait(false);
 
             string tableQueryFilter = TableQuery.CombineFilters(
                 TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, customerId),
                 TableOperators.And,
                 TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.Equal, orderId));
 
-            var getCustomerOrdersQuery = new TableQuery<CustomerOrderTableEntity>().Where(tableQueryFilter);
+            TableQuery<CustomerOrderTableEntity> getCustomerOrdersQuery = new TableQuery<CustomerOrderTableEntity>().Where(tableQueryFilter);
 
             TableQuerySegment<CustomerOrderTableEntity> resultSegment = null;
             OrderViewModel customerOrder = null;
             do
             {
-                resultSegment = await customerOrdersTable.ExecuteQuerySegmentedAsync<CustomerOrderTableEntity>(getCustomerOrdersQuery, resultSegment?.ContinuationToken);
+                resultSegment = await customerOrdersTable.ExecuteQuerySegmentedAsync(getCustomerOrdersQuery, resultSegment?.ContinuationToken).ConfigureAwait(false);
 
-                foreach (var orderResult in resultSegment.AsEnumerable())
+                foreach (CustomerOrderTableEntity orderResult in resultSegment.AsEnumerable())
                 {
                     if (orderResult.RowKey == orderId)
                     {
@@ -113,7 +113,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             /// </summary>
             public CustomerOrderTableEntity()
             {
-                this.RowKey = Guid.NewGuid().ToString();
+                RowKey = Guid.NewGuid().ToString();
             }
 
             /// <summary>
@@ -122,9 +122,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             /// <param name="order">The order details.</param>            
             public CustomerOrderTableEntity(OrderViewModel order)
             {
-                this.PartitionKey = order.CustomerId;
-                this.RowKey = order.OrderId;
-                this.OrderBlob = JsonConvert.SerializeObject(order, Formatting.None);
+                PartitionKey = order.CustomerId;
+                RowKey = order.OrderId;
+                OrderBlob = JsonConvert.SerializeObject(order, Formatting.None);
             }
 
             /// <summary>

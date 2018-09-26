@@ -21,10 +21,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         /// </summary>
         /// <param name="paymentGateway">The payment gateway to use for authorization.</param>        
         public AuthorizePayment(IPaymentGateway paymentGateway)
-        {            
-            paymentGateway.AssertNotNull(nameof(paymentGateway));            
-            
-            this.PaymentGateway = paymentGateway;
+        {
+            paymentGateway.AssertNotNull(nameof(paymentGateway));
+
+            PaymentGateway = paymentGateway;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         public async Task ExecuteAsync()
         {
             // authorize with the payment gateway
-            this.Result = await this.PaymentGateway.ExecutePaymentAsync();            
+            Result = await PaymentGateway.ExecutePaymentAsync().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -53,12 +53,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         /// <returns>A task.</returns>
         public async Task RollbackAsync()
         {
-            if (!string.IsNullOrWhiteSpace(this.Result))
+            if (!string.IsNullOrWhiteSpace(Result))
             {
                 try
                 {
                     // void the previously authorized payment
-                    await this.PaymentGateway.VoidAsync(this.Result);
+                    await PaymentGateway.VoidAsync(Result).ConfigureAwait(false);
                 }
                 catch (Exception voidingProblem)
                 {
@@ -67,12 +67,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
                         throw;
                     }
 
-                    Trace.TraceError("AuthorizePayment.RollbackAsync failed: {0}. Authorization code: {1}", voidingProblem, this.Result);
+                    Trace.TraceError("AuthorizePayment.RollbackAsync failed: {0}. Authorization code: {1}", voidingProblem, Result);
 
                     // TODO: Notify the system integrity recovery component
                 }
 
-                this.Result = string.Empty;
+                Result = string.Empty;
             }
         }
     }

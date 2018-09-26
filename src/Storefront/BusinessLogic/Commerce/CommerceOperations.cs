@@ -31,8 +31,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             customerId.AssertNotEmpty(nameof(customerId));
             paymentGateway.AssertNotNull(nameof(paymentGateway));
 
-            this.CustomerId = customerId;
-            this.PaymentGateway = paymentGateway;
+            CustomerId = customerId;
+            PaymentGateway = paymentGateway;
         }
 
         /// <summary>
@@ -52,12 +52,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         /// <param name="yearlyRatePerSeat">The subscription's yearly price per seat.</param>
         /// <returns>The prorated amount to charge for the new extra seat.</returns>
         public static decimal CalculateProratedSeatCharge(DateTime expiryDate, decimal yearlyRatePerSeat)
-        { 
+        {
             DateTime rightNow = DateTime.UtcNow;
             expiryDate = expiryDate.ToUniversalTime();
 
             decimal dailyChargePerSeat = yearlyRatePerSeat / 365m;
-            
+
             // round up the remaining days in case there was a fraction and ensure it does not exceed 365 days
             decimal remainingDaysTillExpiry = Math.Ceiling(Convert.ToDecimal((expiryDate - rightNow).TotalDays));
             remainingDaysTillExpiry = Math.Min(remainingDaysTillExpiry, 365);
@@ -73,51 +73,51 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         public async Task<TransactionResult> PurchaseAsync(OrderViewModel order)
         {
             // use the normalizer to validate the order. 
-            OrderNormalizer orderNormalizer = new OrderNormalizer(this.ApplicationDomain, order);
-            order = await orderNormalizer.NormalizePurchaseSubscriptionOrderAsync();
+            OrderNormalizer orderNormalizer = new OrderNormalizer(ApplicationDomain, order);
+            order = await orderNormalizer.NormalizePurchaseSubscriptionOrderAsync().ConfigureAwait(false);
 
             // build the purchase line items. 
             List<PurchaseLineItem> purchaseLineItems = new List<PurchaseLineItem>();
-            foreach (var orderItem in order.Subscriptions)
+            foreach (OrderSubscriptionItemViewModel orderItem in order.Subscriptions)
             {
                 string offerId = orderItem.OfferId;
                 int quantity = orderItem.Quantity;
 
                 purchaseLineItems.Add(new PurchaseLineItem(offerId, quantity));
             }
-            
+
             // associate line items in order to partner offers. 
-            var lineItemsWithOffers = await this.AssociateWithPartnerOffersAsync(purchaseLineItems);
-            ICollection<IBusinessTransaction> subTransactions = new List<IBusinessTransaction>();            
+            IEnumerable<PurchaseLineItemWithOffer> lineItemsWithOffers = await AssociateWithPartnerOffersAsync(purchaseLineItems).ConfigureAwait(false);
+            ICollection<IBusinessTransaction> subTransactions = new List<IBusinessTransaction>();
 
             // prepare payment authorization
-            var paymentAuthorization = new AuthorizePayment(this.PaymentGateway);
+            AuthorizePayment paymentAuthorization = new AuthorizePayment(PaymentGateway);
             subTransactions.Add(paymentAuthorization);
 
             // build the Partner Center order and pass it to the place order transaction
-            Order partnerCenterPurchaseOrder = this.BuildPartnerCenterOrder(lineItemsWithOffers);
+            Order partnerCenterPurchaseOrder = BuildPartnerCenterOrder(lineItemsWithOffers);
 
-            var placeOrder = new PlaceOrder(
-                this.ApplicationDomain.PartnerCenterClient.Customers.ById(this.CustomerId),
+            PlaceOrder placeOrder = new PlaceOrder(
+                ApplicationDomain.PartnerCenterClient.Customers.ById(CustomerId),
                 partnerCenterPurchaseOrder);
             subTransactions.Add(placeOrder);
 
             // configure a transaction to save the new resulting subscriptions and purchases into persistence
-            var persistSubscriptionsAndPurchases = new PersistNewlyPurchasedSubscriptions(
-                this.CustomerId,
-                this.ApplicationDomain.CustomerSubscriptionsRepository,
-                this.ApplicationDomain.CustomerPurchasesRepository,
+            PersistNewlyPurchasedSubscriptions persistSubscriptionsAndPurchases = new PersistNewlyPurchasedSubscriptions(
+                CustomerId,
+                ApplicationDomain.CustomerSubscriptionsRepository,
+                ApplicationDomain.CustomerPurchasesRepository,
                 () => new Tuple<Order, IEnumerable<PurchaseLineItemWithOffer>>(placeOrder.Result, lineItemsWithOffers));
 
             subTransactions.Add(persistSubscriptionsAndPurchases);
 
             // configure a capture payment transaction and let it read the auth code from the payment authorization output
-            var capturePayment = new CapturePayment(this.PaymentGateway, () => paymentAuthorization.Result);
+            CapturePayment capturePayment = new CapturePayment(PaymentGateway, () => paymentAuthorization.Result);
             subTransactions.Add(capturePayment);
-            
+
             // build an aggregated transaction from the previous steps and execute it as a whole
-            await CommerceOperations.RunAggregatedTransaction(subTransactions);
-            
+            await RunAggregatedTransaction(subTransactions).ConfigureAwait(false);
+
             return new TransactionResult(persistSubscriptionsAndPurchases.Result, DateTime.UtcNow);
         }
 
@@ -129,8 +129,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         public async Task<TransactionResult> PurchaseAdditionalSeatsAsync(OrderViewModel order)
         {
             // use the normalizer to validate the order.
-            OrderNormalizer orderNormalizer = new OrderNormalizer(this.ApplicationDomain, order);
-            order = await orderNormalizer.NormalizePurchaseAdditionalSeatsOrderAsync();
+            OrderNormalizer orderNormalizer = new OrderNormalizer(ApplicationDomain, order);
+            order = await orderNormalizer.NormalizePurchaseAdditionalSeatsOrderAsync().ConfigureAwait(false);
 
             List<OrderSubscriptionItemViewModel> orderSubscriptions = order.Subscriptions.ToList();
             string subscriptionId = orderSubscriptions.First().SubscriptionId;
@@ -142,35 +142,35 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             ICollection<IBusinessTransaction> subTransactions = new List<IBusinessTransaction>();
 
             // configure a transaction to charge the payment gateway with the prorated rate
-            var paymentAuthorization = new AuthorizePayment(this.PaymentGateway);
+            AuthorizePayment paymentAuthorization = new AuthorizePayment(PaymentGateway);
             subTransactions.Add(paymentAuthorization);
-            
+
             // configure a purchase additional seats transaction with the requested seats to purchase
             subTransactions.Add(new PurchaseExtraSeats(
-                this.ApplicationDomain.PartnerCenterClient.Customers.ById(this.CustomerId).Subscriptions.ById(subscriptionId),
+                ApplicationDomain.PartnerCenterClient.Customers.ById(CustomerId).Subscriptions.ById(subscriptionId),
                 seatsToPurchase));
 
             DateTime rightNow = DateTime.UtcNow;
-            
+
             // record the purchase in our purchase store
             subTransactions.Add(new RecordPurchase(
-                this.ApplicationDomain.CustomerPurchasesRepository,
-                new CustomerPurchaseEntity(CommerceOperationType.AdditionalSeatsPurchase, Guid.NewGuid().ToString(), this.CustomerId, subscriptionId, seatsToPurchase, proratedSeatCharge, rightNow)));
+                ApplicationDomain.CustomerPurchasesRepository,
+                new CustomerPurchaseEntity(CommerceOperationType.AdditionalSeatsPurchase, Guid.NewGuid().ToString(), CustomerId, subscriptionId, seatsToPurchase, proratedSeatCharge, rightNow)));
 
             // add a capture payment to the transaction pipeline
-            subTransactions.Add(new CapturePayment(this.PaymentGateway, () => paymentAuthorization.Result));
-            
+            subTransactions.Add(new CapturePayment(PaymentGateway, () => paymentAuthorization.Result));
+
             // build an aggregated transaction from the previous steps and execute it as a whole
-            await CommerceOperations.RunAggregatedTransaction(subTransactions);
-            
-            var additionalSeatsPurchaseResult = new TransactionResultLineItem(
-                subscriptionId, 
+            await RunAggregatedTransaction(subTransactions).ConfigureAwait(false);
+
+            TransactionResultLineItem additionalSeatsPurchaseResult = new TransactionResultLineItem(
+                subscriptionId,
                 partnerOfferId,
                 seatsToPurchase,
                 proratedSeatCharge,
                 seatsToPurchase * proratedSeatCharge);
 
-            return new TransactionResult(                
+            return new TransactionResult(
                 new TransactionResultLineItem[] { additionalSeatsPurchaseResult },
                 rightNow);
         }
@@ -183,26 +183,26 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         public async Task<TransactionResult> RenewSubscriptionAsync(OrderViewModel order)
         {
             // use the normalizer to validate the order.
-            OrderNormalizer orderNormalizer = new OrderNormalizer(this.ApplicationDomain, order);
-            order = await orderNormalizer.NormalizeRenewSubscriptionOrderAsync();
+            OrderNormalizer orderNormalizer = new OrderNormalizer(ApplicationDomain, order);
+            order = await orderNormalizer.NormalizeRenewSubscriptionOrderAsync().ConfigureAwait(false);
 
             List<OrderSubscriptionItemViewModel> orderSubscriptions = order.Subscriptions.ToList();
             string subscriptionId = orderSubscriptions.First().SubscriptionId;
             string partnerOfferId = orderSubscriptions.First().PartnerOfferId;
             decimal partnerOfferPrice = orderSubscriptions.First().SeatPrice;
             DateTime subscriptionExpiryDate = orderSubscriptions.First().SubscriptionExpiryDate;
-            int quantity = orderSubscriptions.First().Quantity;            
-            decimal totalCharge = Math.Round(quantity * partnerOfferPrice, Resources.Culture.NumberFormat.CurrencyDecimalDigits);            
+            int quantity = orderSubscriptions.First().Quantity;
+            decimal totalCharge = Math.Round(quantity * partnerOfferPrice, Resources.Culture.NumberFormat.CurrencyDecimalDigits);
 
             // retrieve the subscription from Partner Center
-            var subscriptionOperations = this.ApplicationDomain.PartnerCenterClient.Customers.ById(this.CustomerId).Subscriptions.ById(subscriptionId);
-            var partnerCenterSubscription = await subscriptionOperations.GetAsync();
+            Subscriptions.ISubscription subscriptionOperations = ApplicationDomain.PartnerCenterClient.Customers.ById(CustomerId).Subscriptions.ById(subscriptionId);
+            PartnerCenter.Models.Subscriptions.Subscription partnerCenterSubscription = await subscriptionOperations.GetAsync().ConfigureAwait(false);
 
             // we will add up the transactions here
             ICollection<IBusinessTransaction> subTransactions = new List<IBusinessTransaction>();
 
             // configure a transaction to charge the payment gateway with the prorated rate
-            var paymentAuthorization = new AuthorizePayment(this.PaymentGateway);
+            AuthorizePayment paymentAuthorization = new AuthorizePayment(PaymentGateway);
             subTransactions.Add(paymentAuthorization);
 
             // add a renew subscription transaction to the pipeline
@@ -214,28 +214,28 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
 
             // record the renewal in our purchase store
             subTransactions.Add(new RecordPurchase(
-                this.ApplicationDomain.CustomerPurchasesRepository, 
-                new CustomerPurchaseEntity(CommerceOperationType.Renewal, Guid.NewGuid().ToString(), this.CustomerId, subscriptionId, partnerCenterSubscription.Quantity, partnerOfferPrice, rightNow)));
-            
+                ApplicationDomain.CustomerPurchasesRepository,
+                new CustomerPurchaseEntity(CommerceOperationType.Renewal, Guid.NewGuid().ToString(), CustomerId, subscriptionId, partnerCenterSubscription.Quantity, partnerOfferPrice, rightNow)));
+
             // extend the expiry date by one year
             subTransactions.Add(new UpdatePersistedSubscription(
-                this.ApplicationDomain.CustomerSubscriptionsRepository,
-                new CustomerSubscriptionEntity(this.CustomerId, subscriptionId, partnerOfferId, subscriptionExpiryDate.AddYears(1))));           
+                ApplicationDomain.CustomerSubscriptionsRepository,
+                new CustomerSubscriptionEntity(CustomerId, subscriptionId, partnerOfferId, subscriptionExpiryDate.AddYears(1))));
 
             // add a capture payment to the transaction pipeline
-            subTransactions.Add(new CapturePayment(this.PaymentGateway, () => paymentAuthorization.Result));
+            subTransactions.Add(new CapturePayment(PaymentGateway, () => paymentAuthorization.Result));
 
             // run the pipeline
-            await CommerceOperations.RunAggregatedTransaction(subTransactions);
+            await RunAggregatedTransaction(subTransactions).ConfigureAwait(false);
 
-            var renewSubscriptionResult = new TransactionResultLineItem(
+            TransactionResultLineItem renewSubscriptionResult = new TransactionResultLineItem(
                 subscriptionId,
                 partnerOfferId,
                 partnerCenterSubscription.Quantity,
                 partnerOfferPrice,
                 totalCharge);
 
-            return new TransactionResult(                
+            return new TransactionResult(
                 new TransactionResultLineItem[] { renewSubscriptionResult },
                 rightNow);
         }
@@ -248,12 +248,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         private static async Task RunAggregatedTransaction(IEnumerable<IBusinessTransaction> subTransactions)
         {
             // build an aggregated transaction from the given transactions
-            var aggregateTransaction = new SequentialAggregateTransaction(subTransactions);
+            SequentialAggregateTransaction aggregateTransaction = new SequentialAggregateTransaction(subTransactions);
 
             try
             {
                 // execute it
-                await aggregateTransaction.ExecuteAsync();
+                await aggregateTransaction.ExecuteAsync().ConfigureAwait(false);
             }
             catch (Exception transactionFailure)
             {
@@ -263,7 +263,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
                 }
 
                 // roll back the whole transaction
-                await aggregateTransaction.RollbackAsync();
+                await aggregateTransaction.RollbackAsync().ConfigureAwait(false);
 
                 // report the error
                 throw;
@@ -278,11 +278,11 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         private async Task<IEnumerable<PurchaseLineItemWithOffer>> AssociateWithPartnerOffersAsync(IEnumerable<PurchaseLineItem> purchaseLineItems)
         {
             // retrieve all the partner offers to match against them
-            IEnumerable<PartnerOffer> allPartnerOffers = await this.ApplicationDomain.OffersRepository.RetrieveAsync();
+            IEnumerable<PartnerOffer> allPartnerOffers = await ApplicationDomain.OffersRepository.RetrieveAsync().ConfigureAwait(false);
 
             ICollection<PurchaseLineItemWithOffer> lineItemToOfferAssociations = new List<PurchaseLineItemWithOffer>();
 
-            foreach (var lineItem in purchaseLineItems)
+            foreach (PurchaseLineItem lineItem in purchaseLineItems)
             {
                 if (lineItem == null)
                 {
@@ -309,7 +309,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             ICollection<OrderLineItem> partnerCenterOrderLineItems = new List<OrderLineItem>();
 
             // build the Partner Center order line items
-            foreach (var lineItem in purchaseLineItems)
+            foreach (PurchaseLineItemWithOffer lineItem in purchaseLineItems)
             {
                 // add the line items to the partner center order and calculate the price to charge
                 partnerCenterOrderLineItems.Add(new OrderLineItem()
@@ -323,7 +323,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             // bundle the order line items into a partner center order
             return new Order()
             {
-                ReferenceCustomerId = this.CustomerId,
+                ReferenceCustomerId = CustomerId,
                 LineItems = partnerCenterOrderLineItems
             };
         }

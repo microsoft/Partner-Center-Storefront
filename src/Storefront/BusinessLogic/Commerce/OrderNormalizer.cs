@@ -27,7 +27,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         {
             order.AssertNotNull(nameof(order));
 
-            this.Order = order;
+            Order = order;
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         /// <returns>Normalized order.</returns>
         public async Task<OrderViewModel> NormalizeRenewSubscriptionOrderAsync()
         {
-            OrderViewModel order = this.Order;
+            OrderViewModel order = Order;
             order.CustomerId.AssertNotEmpty(nameof(order.CustomerId));
             if (order.OperationType != CommerceOperationType.Renewal)
             {
@@ -67,10 +67,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             subscriptionId.AssertNotEmpty(nameof(subscriptionId)); // is Required for the commerce operation.             
 
             // grab the customer subscription from our store
-            var subscriptionToAugment = await this.GetSubscriptionAsync(subscriptionId, order.CustomerId);
+            CustomerSubscriptionEntity subscriptionToAugment = await GetSubscriptionAsync(subscriptionId, order.CustomerId).ConfigureAwait(false);
 
             // retrieve the partner offer this subscription relates to, we need to know the current price
-            var partnerOffer = await ApplicationDomain.Instance.OffersRepository.RetrieveAsync(subscriptionToAugment.PartnerOfferId);
+            PartnerOffer partnerOffer = await ApplicationDomain.Instance.OffersRepository.RetrieveAsync(subscriptionToAugment.PartnerOfferId).ConfigureAwait(false);
 
             if (partnerOffer.IsInactive)
             {
@@ -79,23 +79,25 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             }
 
             // retrieve the subscription from Partner Center
-            var subscriptionOperations = ApplicationDomain.Instance.PartnerCenterClient.Customers.ById(order.CustomerId).Subscriptions.ById(subscriptionId);
-            var partnerCenterSubscription = await subscriptionOperations.GetAsync();
+            Subscriptions.ISubscription subscriptionOperations = ApplicationDomain.Instance.PartnerCenterClient.Customers.ById(order.CustomerId).Subscriptions.ById(subscriptionId);
+            PartnerCenter.Models.Subscriptions.Subscription partnerCenterSubscription = await subscriptionOperations.GetAsync().ConfigureAwait(false);
 
-            List<OrderSubscriptionItemViewModel> resultOrderSubscriptions = new List<OrderSubscriptionItemViewModel>();
-            resultOrderSubscriptions.Add(new OrderSubscriptionItemViewModel()
+            List<OrderSubscriptionItemViewModel> resultOrderSubscriptions = new List<OrderSubscriptionItemViewModel>
             {
-                OfferId = subscriptionId,
-                SubscriptionId = subscriptionId,
-                PartnerOfferId = subscriptionToAugment.PartnerOfferId,
-                SubscriptionExpiryDate = subscriptionToAugment.ExpiryDate,
-                Quantity = partnerCenterSubscription.Quantity,
-                SeatPrice = partnerOffer.Price,
-                SubscriptionName = partnerOffer.Title
-            });
+                new OrderSubscriptionItemViewModel()
+                {
+                    OfferId = subscriptionId,
+                    SubscriptionId = subscriptionId,
+                    PartnerOfferId = subscriptionToAugment.PartnerOfferId,
+                    SubscriptionExpiryDate = subscriptionToAugment.ExpiryDate,
+                    Quantity = partnerCenterSubscription.Quantity,
+                    SeatPrice = partnerOffer.Price,
+                    SubscriptionName = partnerOffer.Title
+                }
+            };
 
             orderResult.Subscriptions = resultOrderSubscriptions;
-            return await Task.FromResult(orderResult);
+            return await Task.FromResult(orderResult).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -104,7 +106,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         /// <returns>Normalized order.</returns>
         public async Task<OrderViewModel> NormalizePurchaseSubscriptionOrderAsync()
         {
-            OrderViewModel order = this.Order;
+            OrderViewModel order = Order;
             order.CustomerId.AssertNotEmpty(nameof(order.CustomerId));
             if (order.OperationType != CommerceOperationType.NewPurchase)
             {
@@ -127,10 +129,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             }
 
             // retrieve all the partner offers to match against them
-            IEnumerable<PartnerOffer> allPartnerOffers = await ApplicationDomain.Instance.OffersRepository.RetrieveAsync();
+            IEnumerable<PartnerOffer> allPartnerOffers = await ApplicationDomain.Instance.OffersRepository.RetrieveAsync().ConfigureAwait(false);
 
             List<OrderSubscriptionItemViewModel> resultOrderSubscriptions = new List<OrderSubscriptionItemViewModel>();
-            foreach (var lineItem in orderSubscriptions)
+            foreach (OrderSubscriptionItemViewModel lineItem in orderSubscriptions)
             {
                 PartnerOffer offerToPurchase = allPartnerOffers.Where(offer => offer.Id == lineItem.SubscriptionId).FirstOrDefault();
 
@@ -149,7 +151,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
                 resultOrderSubscriptions.Add(new OrderSubscriptionItemViewModel()
                 {
                     OfferId = offerToPurchase.Id,
-                    SubscriptionId = offerToPurchase.Id,                                                           
+                    SubscriptionId = offerToPurchase.Id,
                     Quantity = lineItem.Quantity,
                     SeatPrice = offerToPurchase.Price,
                     SubscriptionName = offerToPurchase.Title
@@ -157,7 +159,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             }
 
             orderResult.Subscriptions = resultOrderSubscriptions;
-            return await Task.FromResult(orderResult);
+            return await Task.FromResult(orderResult).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -194,10 +196,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             seatsToPurchase.AssertPositive("seatsToPurchase");
 
             // grab the customer subscription from our store
-            var subscriptionToAugment = await this.GetSubscriptionAsync(subscriptionId, order.CustomerId);
+            CustomerSubscriptionEntity subscriptionToAugment = await GetSubscriptionAsync(subscriptionId, order.CustomerId).ConfigureAwait(false);
 
             // retrieve the partner offer this subscription relates to, we need to know the current price
-            var partnerOffer = await ApplicationDomain.Instance.OffersRepository.RetrieveAsync(subscriptionToAugment.PartnerOfferId);
+            PartnerOffer partnerOffer = await ApplicationDomain.Instance.OffersRepository.RetrieveAsync(subscriptionToAugment.PartnerOfferId).ConfigureAwait(false);
 
             if (partnerOffer.IsInactive)
             {
@@ -206,8 +208,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             }
 
             // retrieve the subscription from Partner Center
-            var subscriptionOperations = ApplicationDomain.Instance.PartnerCenterClient.Customers.ById(order.CustomerId).Subscriptions.ById(subscriptionId);
-            var partnerCenterSubscription = await subscriptionOperations.GetAsync();
+            Subscriptions.ISubscription subscriptionOperations = ApplicationDomain.Instance.PartnerCenterClient.Customers.ById(order.CustomerId).Subscriptions.ById(subscriptionId);
+            PartnerCenter.Models.Subscriptions.Subscription partnerCenterSubscription = await subscriptionOperations.GetAsync().ConfigureAwait(false);
 
             // if subscription expiry date.Date is less than today's UTC date then subcription has expired. 
             if (subscriptionToAugment.ExpiryDate.Date < DateTime.UtcNow.Date)
@@ -219,20 +221,22 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             decimal proratedSeatCharge = Math.Round(CommerceOperations.CalculateProratedSeatCharge(subscriptionToAugment.ExpiryDate, partnerOffer.Price), Resources.Culture.NumberFormat.CurrencyDecimalDigits);
             decimal totalCharge = Math.Round(proratedSeatCharge * seatsToPurchase, Resources.Culture.NumberFormat.CurrencyDecimalDigits);
 
-            List<OrderSubscriptionItemViewModel> resultOrderSubscriptions = new List<OrderSubscriptionItemViewModel>();
-            resultOrderSubscriptions.Add(new OrderSubscriptionItemViewModel()
+            List<OrderSubscriptionItemViewModel> resultOrderSubscriptions = new List<OrderSubscriptionItemViewModel>
             {
-                OfferId = subscriptionId,
-                SubscriptionId = subscriptionId,
-                PartnerOfferId = subscriptionToAugment.PartnerOfferId,
-                SubscriptionExpiryDate = subscriptionToAugment.ExpiryDate,
-                Quantity = seatsToPurchase,
-                SeatPrice = proratedSeatCharge,
-                SubscriptionName = partnerOffer.Title
-            });
+                new OrderSubscriptionItemViewModel()
+                {
+                    OfferId = subscriptionId,
+                    SubscriptionId = subscriptionId,
+                    PartnerOfferId = subscriptionToAugment.PartnerOfferId,
+                    SubscriptionExpiryDate = subscriptionToAugment.ExpiryDate,
+                    Quantity = seatsToPurchase,
+                    SeatPrice = proratedSeatCharge,
+                    SubscriptionName = partnerOffer.Title
+                }
+            };
 
             orderResult.Subscriptions = resultOrderSubscriptions;
-            return await Task.FromResult(orderResult);
+            return await Task.FromResult(orderResult).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -244,8 +248,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         private async Task<CustomerSubscriptionEntity> GetSubscriptionAsync(string subscriptionId, string customerId)
         {
             // grab the customer subscription from our store
-            var customerSubscriptions = await ApplicationDomain.Instance.CustomerSubscriptionsRepository.RetrieveAsync(customerId);
-            var subscriptionToAugment = customerSubscriptions.Where(subscription => subscription.SubscriptionId == subscriptionId).FirstOrDefault();
+            IEnumerable<CustomerSubscriptionEntity> customerSubscriptions = await ApplicationDomain.Instance.CustomerSubscriptionsRepository.RetrieveAsync(customerId).ConfigureAwait(false);
+            CustomerSubscriptionEntity subscriptionToAugment = customerSubscriptions.Where(subscription => subscription.SubscriptionId == subscriptionId).FirstOrDefault();
 
             if (subscriptionToAugment == null)
             {

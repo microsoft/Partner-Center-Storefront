@@ -43,12 +43,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         /// <param name="applicationDomain">The ApplicationDomain</param>        
         /// <param name="description">The description which will be added to the Payment Card authorization call.</param>
         public PayPalGateway(ApplicationDomain applicationDomain, string description) : base(applicationDomain)
-        {            
+        {
             description.AssertNotEmpty(nameof(description));
             this.paymentDescription = description;
 
             this.payerId = string.Empty;
-            this.paymentId = string.Empty;            
+            this.paymentId = string.Empty;
         }
 
         /// <summary>
@@ -72,30 +72,32 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
 
             try
             {
-                Dictionary<string, string> configMap = new Dictionary<string, string>();
-                configMap.Add("clientId", paymentConfig.ClientId);
-                configMap.Add("clientSecret", paymentConfig.ClientSecret);
-                configMap.Add("mode", paymentConfig.AccountType);
-                configMap.Add("connectionTimeout", "120000");
+                Dictionary<string, string> configMap = new Dictionary<string, string>
+                {
+                    { "clientId", paymentConfig.ClientId },
+                    { "clientSecret", paymentConfig.ClientSecret },
+                    { "mode", paymentConfig.AccountType },
+                    { "connectionTimeout", "120000" }
+                };
 
                 string accessToken = new OAuthTokenCredential(configMap).GetAccessToken();
-                var apiContext = new APIContext(accessToken);
+                APIContext apiContext = new APIContext(accessToken);
             }
             catch (PayPalException paypalException)
-            {                
+            {
                 if (paypalException is IdentityException)
                 {
                     // thrown when API Context couldn't be setup. 
                     IdentityException identityFailure = paypalException as IdentityException;
                     IdentityError failureDetails = identityFailure.Details;
                     if (failureDetails != null && failureDetails.error.Equals("invalid_client", StringComparison.InvariantCultureIgnoreCase))
-                    {                        
+                    {
                         throw new PartnerDomainException(ErrorCode.PaymentGatewayIdentityFailureDuringConfiguration).AddDetail("ErrorMessage", Resources.PaymentGatewayIdentityFailureDuringConfiguration);
-                    }                    
+                    }
                 }
 
                 // if this is not an identity exception rather some other issue. 
-                throw new PartnerDomainException(ErrorCode.PaymentGatewayFailure).AddDetail("ErrorMessage", paypalException.Message);                            
+                throw new PartnerDomainException(ErrorCode.PaymentGatewayFailure).AddDetail("ErrorMessage", paypalException.Message);
             }
         }
 
@@ -120,19 +122,19 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
 
                 string accessToken = new OAuthTokenCredential(configMap).GetAccessToken();
 
-                var apiContext = new APIContext(accessToken)
+                APIContext apiContext = new APIContext(accessToken)
                 {
                     Config = configMap
                 };
 
                 // Pickup logo & brand name from branding configuration.                  
                 // create the web experience profile.                 
-                var profile = new WebProfile
+                WebProfile profile = new WebProfile
                 {
                     name = Guid.NewGuid().ToString(),
                     presentation = new Presentation
                     {
-                        brand_name = brandConfig.OrganizationName,                        
+                        brand_name = brandConfig.OrganizationName,
                         logo_image = brandConfig.HeaderImage?.ToString(),
                         locale_code = countryIso2Code
                     },
@@ -140,15 +142,15 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
                     {
                         address_override = 1,
                         allow_note = false,
-                        no_shipping = 1 
+                        no_shipping = 1
                     },
                     flow_config = new FlowConfig()
                     {
                         landing_page_type = "billing"
                     }
                 };
-                
-                var createdProfile = profile.Create(apiContext);
+
+                CreateProfileResponse createdProfile = profile.Create(apiContext);
 
                 // Now that new experience profile is created hence delete the older one.  
                 if (!string.IsNullOrWhiteSpace(paymentConfig.WebExperienceProfileId))
@@ -196,27 +198,27 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             returnUrl.AssertNotEmpty(nameof(returnUrl));
             order.AssertNotNull(nameof(order));
 
-            APIContext apiContext = await this.GetAPIContextAsync().ConfigureAwait(false);
+            APIContext apiContext = await GetAPIContextAsync().ConfigureAwait(false);
             decimal paymentTotal = 0;
 
             // PayPal wouldnt manage decimal points for few countries (example Hungary & Japan). 
             string moneyFixedPointFormat = (Resources.Culture.NumberFormat.CurrencyDecimalDigits == 0) ? "F0" : "F";
 
             // Create itemlist and add item objects to it.
-            var itemList = new ItemList() { items = new List<Item>() };
-            foreach (var subscriptionItem in order.Subscriptions)
+            ItemList itemList = new ItemList() { items = new List<Item>() };
+            foreach (OrderSubscriptionItemViewModel subscriptionItem in order.Subscriptions)
             {
                 itemList.items.Add(new Item()
                 {
                     name = subscriptionItem.SubscriptionName,
-                    description = this.paymentDescription,
+                    description = paymentDescription,
                     sku = subscriptionItem.SubscriptionId,
-                    currency = this.ApplicationDomain.PortalLocalization.CurrencyCode,
+                    currency = ApplicationDomain.PortalLocalization.CurrencyCode,
                     price = subscriptionItem.SeatPrice.ToString(moneyFixedPointFormat, CultureInfo.InvariantCulture),
                     quantity = subscriptionItem.Quantity.ToString(CultureInfo.InvariantCulture)
-                });                
-                paymentTotal += Math.Round(subscriptionItem.Quantity * subscriptionItem.SeatPrice, Resources.Culture.NumberFormat.CurrencyDecimalDigits);                
-            }            
+                });
+                paymentTotal += Math.Round(subscriptionItem.Quantity * subscriptionItem.SeatPrice, Resources.Culture.NumberFormat.CurrencyDecimalDigits);
+            }
 
             string webExperienceId = string.Empty;
             apiContext.Config.TryGetValue("WebExperienceProfileId", out webExperienceId);
@@ -230,13 +232,13 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
                 {
                     new Transaction()
                     {
-                        description = this.paymentDescription,
+                        description = paymentDescription,
                         custom = string.Format(CultureInfo.InvariantCulture, "{0}#{1}", order.CustomerId, order.OperationType.ToString()),
                         item_list = itemList,
                         amount = new Amount()
                         {
-                            currency = this.ApplicationDomain.PortalLocalization.CurrencyCode,
-                            total = paymentTotal.ToString(moneyFixedPointFormat, CultureInfo.InvariantCulture)  
+                            currency = ApplicationDomain.PortalLocalization.CurrencyCode,
+                            total = paymentTotal.ToString(moneyFixedPointFormat, CultureInfo.InvariantCulture)
                         }
                     }
                 },
@@ -252,10 +254,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             {
                 // CreatePayment function gives us the payment approval url
                 // on which payer is redirected for paypal acccount payment
-                var createdPayment = payment.Create(apiContext);
+                Payment createdPayment = payment.Create(apiContext);
 
                 // get links returned from paypal in response to Create function call
-                var links = createdPayment.links.GetEnumerator();
+                List<Links>.Enumerator links = createdPayment.links.GetEnumerator();
                 while (links.MoveNext())
                 {
                     Links lnk = links.Current;
@@ -270,7 +272,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             }
             catch (PayPalException ex)
             {
-                this.ParsePayPalException(ex);
+                ParsePayPalException(ex);
             }
 
             return string.Empty;
@@ -286,9 +288,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
 
             try
             {
-                Payment payment = new Payment() { id = this.paymentId };
-                var paymentExecution = new PaymentExecution() { payer_id = this.payerId };
-                var paymentResult = payment.Execute(apiContext, paymentExecution);
+                Payment payment = new Payment() { id = paymentId };
+                PaymentExecution paymentExecution = new PaymentExecution() { payer_id = this.payerId };
+                Payment paymentResult = payment.Execute(apiContext, paymentExecution);
 
                 if (paymentResult.state.Equals("approved", StringComparison.InvariantCultureIgnoreCase))
                 {
@@ -316,8 +318,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             Authorization cardAuthorization = null;
 
             authorizationCode.AssertNotEmpty(nameof(authorizationCode));
-            
-            APIContext apiContext = await this.GetAPIContextAsync().ConfigureAwait(false);
+
+            APIContext apiContext = await GetAPIContextAsync().ConfigureAwait(false);
 
             // given the authorizationId. Lookup the authorization to find the amount. 
             try
@@ -327,7 +329,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
                 authorizationAmount = cardAuthorization.amount.total;
 
                 // Setting 'is_final_capture' to true, all remaining funds held by the authorization will be released from the funding instrument.
-                var capture = new Capture()
+                Capture capture = new Capture()
                 {
                     amount = new Amount()
                     {
@@ -337,11 +339,11 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
                     is_final_capture = true
                 };
 
-                var responseCapture = cardAuthorization.Capture(apiContext, capture);
+                Capture responseCapture = cardAuthorization.Capture(apiContext, capture);
             }
             catch (PayPalException ex)
             {
-                this.ParsePayPalException(ex);
+                ParsePayPalException(ex);
             }
         }
 
@@ -356,7 +358,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
 
             // given the authorizationId string... Lookup the authorization to void it. 
             try
-            {                
+            {
                 APIContext apiContext = await this.GetAPIContextAsync().ConfigureAwait(false);
                 Authorization cardAuthorization = Authorization.Get(apiContext, authorizationCode);
                 cardAuthorization.Void(apiContext);
@@ -393,14 +395,14 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         /// <returns>The Order for which payment was made.</returns>
         private async Task<OrderViewModel> GetOrderDetails()
         {
-            OrderViewModel orderFromPayment = null;   
+            OrderViewModel orderFromPayment = null;
             APIContext apiContext = await GetAPIContextAsync().ConfigureAwait(false);
 
             try
             {
                 // the get will retrieve the payment information. iterate the items in the transaction collection to extract details.            
                 Payment paymentDetails = Payment.Get(apiContext, this.paymentId);
-                orderFromPayment = new OrderViewModel();                
+                orderFromPayment = new OrderViewModel();
                 List<OrderSubscriptionItemViewModel> orderSubscriptions = new List<OrderSubscriptionItemViewModel>();
 
                 if (paymentDetails.transactions.Count > 0)
@@ -415,13 +417,13 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
                         orderFromPayment.OperationType = (CommerceOperationType)Enum.Parse(typeof(CommerceOperationType), customDataArray[1], true);
                     }
 
-                    foreach (var paymentTransactionItem in paymentDetails.transactions[0].item_list.items)
+                    foreach (Item paymentTransactionItem in paymentDetails.transactions[0].item_list.items)
                     {
                         orderSubscriptions.Add(new OrderSubscriptionItemViewModel()
-                        {   
+                        {
                             SubscriptionId = paymentTransactionItem.sku,
                             OfferId = paymentTransactionItem.sku,
-                            Quantity = Convert.ToInt32(paymentTransactionItem.quantity, CultureInfo.InvariantCulture) 
+                            Quantity = Convert.ToInt32(paymentTransactionItem.quantity, CultureInfo.InvariantCulture)
                         });
                     }
                 }
@@ -430,10 +432,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             }
             catch (PayPalException ex)
             {
-                this.ParsePayPalException(ex);
+                ParsePayPalException(ex);
             }
 
-            return await Task.FromResult(orderFromPayment);
+            return await Task.FromResult(orderFromPayment).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -460,7 +462,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
 
             string accessToken = new OAuthTokenCredential(configMap).GetAccessToken();
 
-            var apiContext = new APIContext(accessToken)
+            APIContext apiContext = new APIContext(accessToken)
             {
                 Config = configMap
             };
@@ -480,7 +482,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
 
                 // Get the details of this exception with ex.Details and format the error message in the form of "We are unable to process your payment –  {Errormessage} :: [err1, err2, .., errN]".                
                 StringBuilder errorString = new StringBuilder();
-                errorString.Append(Resources.PaymentGatewayErrorPrefix);                
+                errorString.Append(Resources.PaymentGatewayErrorPrefix);
 
                 // build error string for errors returned from financial institutions.
                 if (pe.Details != null)
@@ -491,9 +493,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
                     {
                         errorString.Append(pe.Details.message);
                         throw new PartnerDomainException(ErrorCode.PaymentGatewayFailure).AddDetail("ErrorMessage", errorString.ToString());
-                    }                        
+                    }
                     else if (errorName.Contains("UNKNOWN_ERROR"))
-                    {                        
+                    {
                         throw new PartnerDomainException(ErrorCode.PaymentGatewayPaymentError);
                     }
                     else if (errorName.Contains("VALIDATION") && pe.Details.details != null)
@@ -515,7 +517,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
                         errorString.Replace(',', ']', errorString.Length - 2, 2); // remove the last comma and replace it with ]. 
                     }
                     else
-                    {                        
+                    {
                         errorString.Append(Resources.PayPalUnableToProcessPayment);
                     }
                 }
@@ -532,11 +534,11 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
 
             // few PayPalException types contain meaningfull exception information only in InnerException. 
             if (ex is PayPalException && ex.InnerException != null)
-            {                
+            {
                 throw new PartnerDomainException(ErrorCode.PaymentGatewayFailure).AddDetail("ErrorMessage", ex.InnerException.Message);
             }
             else
-            {                
+            {
                 throw new PartnerDomainException(ErrorCode.PaymentGatewayFailure).AddDetail("ErrorMessage", ex.Message);
             }
         }
