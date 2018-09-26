@@ -26,8 +26,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
             paymentGateway.AssertNotNull(nameof(paymentGateway));
             authorizationCode.AssertNotEmpty(nameof(paymentGateway));
 
-            this.PaymentGateway = paymentGateway;
-            this.AuthorizationCode = authorizationCode;
+            PaymentGateway = paymentGateway;
+            AuthorizationCode = authorizationCode;
         }
 
         /// <summary>
@@ -40,15 +40,15 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
             paymentGateway.AssertNotNull(nameof(paymentGateway));
             acquireAuthorizationCallFunction.AssertNotNull(nameof(acquireAuthorizationCallFunction));
 
-            this.PaymentGateway = paymentGateway;
-            this.AcquireInput = acquireAuthorizationCallFunction;
+            PaymentGateway = paymentGateway;
+            AcquireInput = acquireAuthorizationCallFunction;
         }
 
         /// <summary>
         /// Gets the function that is called to retrieve the authorization code.
         /// </summary>
         public Func<string> AcquireInput { get; private set; }
-        
+
         /// <summary>
         /// Gets the authorization code used for capturing payments.
         /// </summary>
@@ -65,12 +65,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         /// <returns>A task.</returns>
         public async Task ExecuteAsync()
         {
-            if (string.IsNullOrEmpty(this.AuthorizationCode))
+            if (string.IsNullOrEmpty(AuthorizationCode))
             {
-                this.AuthorizationCode = this.AcquireInput.Invoke();
+                AuthorizationCode = AcquireInput.Invoke();
             }
 
-            await this.PaymentGateway.CaptureAsync(this.AuthorizationCode);
+            await PaymentGateway.CaptureAsync(AuthorizationCode).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -80,10 +80,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         public async Task RollbackAsync()
         {
             // no known way to rollback a captured payment, just log the fact
-            Trace.TraceInformation("CapturePayment.RollbackAsync executed. Authorization code: {0}", this.AuthorizationCode);
+            Trace.TraceInformation("CapturePayment.RollbackAsync executed. Authorization code: {0}", AuthorizationCode);
 
             // TODO: Notify the system integrity recovery component
-            await Task.FromResult(0);
+            await Task.FromResult(0).ConfigureAwait(false);
         }
     }
 }

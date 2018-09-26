@@ -45,10 +45,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
             purchasesRepository.AssertNotNull(nameof(purchasesRepository));
             acquireInputsFunction.AssertNotNull(nameof(acquireInputsFunction));
 
-            this.CustomerId = customerId;
-            this.CustomerSubscriptionsRepository = subscriptionsRepository;
-            this.CustomerPurchasesRepository = purchasesRepository;
-            this.AcquireInput = acquireInputsFunction;
+            CustomerId = customerId;
+            CustomerSubscriptionsRepository = subscriptionsRepository;
+            CustomerPurchasesRepository = purchasesRepository;
+            AcquireInput = acquireInputsFunction;
         }
 
         /// <summary>
@@ -75,14 +75,14 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         /// Gets the result from running this transaction.
         /// </summary>
         public IEnumerable<TransactionResultLineItem> Result { get; private set; }
-        
+
         /// <summary>
         /// Records all the resulting subscriptions as well as their initial purchase history into persistence.
         /// </summary>
         /// <returns>A task.</returns>
         public async Task ExecuteAsync()
         {
-            var inputs = this.AcquireInput.Invoke();
+            Tuple<Order, IEnumerable<PurchaseLineItemWithOffer>> inputs = AcquireInput.Invoke();
             Order partnerCenterPurchaseOrder = inputs.Item1;
             IEnumerable<PurchaseLineItemWithOffer> purchaseLineItems = inputs.Item2;
 
@@ -91,22 +91,22 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
 
             DateTime rightNow = DateTime.UtcNow;
 
-            foreach (var orderLineItem in partnerCenterPurchaseOrder.LineItems)
+            foreach (OrderLineItem orderLineItem in partnerCenterPurchaseOrder.LineItems)
             {
-                var matchingPartnerOffer = purchaseLineItems.ElementAt(orderLineItem.LineItemNumber).PartnerOffer;
+                PartnerOffer matchingPartnerOffer = purchaseLineItems.ElementAt(orderLineItem.LineItemNumber).PartnerOffer;
 
                 // add a record new customer subscription transaction for the current line item
                 persistenceTransactions.Add(new RecordNewCustomerSubscription(
-                    this.CustomerSubscriptionsRepository,
-                    new CustomerSubscriptionEntity(this.CustomerId, orderLineItem.SubscriptionId, matchingPartnerOffer.Id, rightNow.AddYears(1))));
+                    CustomerSubscriptionsRepository,
+                    new CustomerSubscriptionEntity(CustomerId, orderLineItem.SubscriptionId, matchingPartnerOffer.Id, rightNow.AddYears(1))));
 
                 // add a record purchase history for the current line item
                 persistenceTransactions.Add(new RecordPurchase(
-                    this.CustomerPurchasesRepository,
-                    new CustomerPurchaseEntity(CommerceOperationType.NewPurchase, Guid.NewGuid().ToString(), this.CustomerId, orderLineItem.SubscriptionId, orderLineItem.Quantity, matchingPartnerOffer.Price, rightNow)));
+                    CustomerPurchasesRepository,
+                    new CustomerPurchaseEntity(CommerceOperationType.NewPurchase, Guid.NewGuid().ToString(), CustomerId, orderLineItem.SubscriptionId, orderLineItem.Quantity, matchingPartnerOffer.Price, rightNow)));
 
                 // build the transaction result line item
-                transactionResultLineItems.Add(new TransactionResultLineItem(                    
+                transactionResultLineItems.Add(new TransactionResultLineItem(
                     orderLineItem.SubscriptionId,
                     matchingPartnerOffer.Id,
                     orderLineItem.Quantity,
@@ -115,13 +115,13 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
             }
 
             // bundle up all the transactions together
-            this.bulkSubscriptionPersistenceTransaction = new SequentialAggregateTransaction(persistenceTransactions);
+            bulkSubscriptionPersistenceTransaction = new SequentialAggregateTransaction(persistenceTransactions);
 
             // execute it!
-            await this.bulkSubscriptionPersistenceTransaction.ExecuteAsync();
+            await bulkSubscriptionPersistenceTransaction.ExecuteAsync().ConfigureAwait(false);
 
             // store the reuslting transaction line items
-            this.Result = transactionResultLineItems;
+            Result = transactionResultLineItems;
         }
 
         /// <summary>
@@ -130,10 +130,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         /// <returns>A task.</returns>
         public async Task RollbackAsync()
         {
-            if (this.bulkSubscriptionPersistenceTransaction != null)
+            if (bulkSubscriptionPersistenceTransaction != null)
             {
-                await this.bulkSubscriptionPersistenceTransaction.RollbackAsync();
-                this.bulkSubscriptionPersistenceTransaction = null;
+                await bulkSubscriptionPersistenceTransaction.RollbackAsync().ConfigureAwait(false);
+                bulkSubscriptionPersistenceTransaction = null;
             }
         }
     }

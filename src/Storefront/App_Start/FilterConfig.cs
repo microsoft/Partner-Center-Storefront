@@ -13,7 +13,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront
     /// <summary>
     /// Configures application filters.
     /// </summary>
-    public class FilterConfig
+    public static class FilterConfig
     {
         /// <summary>
         /// Registers global MVC filters.

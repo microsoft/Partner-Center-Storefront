@@ -45,10 +45,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         {
             customerRegistrationInfo.AssertNotNull(nameof(customerRegistrationInfo));
 
-            var customerRegistrationTable = await this.ApplicationDomain.AzureStorageService.GetCustomerRegistrationTableAsync();
+            CloudTable customerRegistrationTable = await this.ApplicationDomain.AzureStorageService.GetCustomerRegistrationTableAsync().ConfigureAwait(false);
             CustomerRegistrationTableEntity customerRegistrationTableEntity = new CustomerRegistrationTableEntity(customerRegistrationInfo);
 
-            var insertionResult = await customerRegistrationTable.ExecuteAsync(TableOperation.Insert(customerRegistrationTableEntity));
+            TableResult insertionResult = await customerRegistrationTable.ExecuteAsync(TableOperation.Insert(customerRegistrationTableEntity)).ConfigureAwait(false);
             insertionResult.HttpStatusCode.AssertHttpResponseSuccess(ErrorCode.PersistenceFailure, "Failed to add customer registration details", insertionResult.Result);
 
             return customerRegistrationInfo;
@@ -63,9 +63,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         {
             customerId.AssertNotEmpty(nameof(customerId));
 
-            var customerRegistrationTable = await this.ApplicationDomain.AzureStorageService.GetCustomerRegistrationTableAsync();
+            CloudTable customerRegistrationTable = await ApplicationDomain.AzureStorageService.GetCustomerRegistrationTableAsync().ConfigureAwait(false);
 
-            var deletionResult = customerRegistrationTable.Execute(
+            TableResult deletionResult = customerRegistrationTable.Execute(
                 TableOperation.Delete(new CustomerRegistrationTableEntity() { PartitionKey = customerId, RowKey = customerId, ETag = "*" }));
 
             deletionResult.HttpStatusCode.AssertHttpResponseSuccess(ErrorCode.PersistenceFailure, "Failed to delete persisted customer registration info", deletionResult.Result);
@@ -80,22 +80,22 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         {
             customerGuid.AssertNotEmpty(nameof(customerGuid));
 
-            var customerRegistrationTable = await this.ApplicationDomain.AzureStorageService.GetCustomerRegistrationTableAsync();
+            CloudTable customerRegistrationTable = await ApplicationDomain.AzureStorageService.GetCustomerRegistrationTableAsync().ConfigureAwait(false);
 
             string tableQueryFilter = TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.Equal, customerGuid);
 
-            var getCustomerOrdersQuery = new TableQuery<CustomerRegistrationTableEntity>().Where(tableQueryFilter);
+            TableQuery<CustomerRegistrationTableEntity> getCustomerOrdersQuery = new TableQuery<CustomerRegistrationTableEntity>().Where(tableQueryFilter);
 
             TableQuerySegment<CustomerRegistrationTableEntity> resultSegment = null;
             CustomerViewModel customerRegistrationInfo = null;
 
-            resultSegment = await customerRegistrationTable.ExecuteQuerySegmentedAsync<CustomerRegistrationTableEntity>(getCustomerOrdersQuery, resultSegment?.ContinuationToken);
+            resultSegment = await customerRegistrationTable.ExecuteQuerySegmentedAsync(getCustomerOrdersQuery, resultSegment?.ContinuationToken).ConfigureAwait(false);
 
             do
             {
-                resultSegment = await customerRegistrationTable.ExecuteQuerySegmentedAsync<CustomerRegistrationTableEntity>(getCustomerOrdersQuery, resultSegment?.ContinuationToken);
+                resultSegment = await customerRegistrationTable.ExecuteQuerySegmentedAsync(getCustomerOrdersQuery, resultSegment?.ContinuationToken).ConfigureAwait(false);
 
-                foreach (var customerResult in resultSegment.AsEnumerable())
+                foreach (CustomerRegistrationTableEntity customerResult in resultSegment.AsEnumerable())
                 {
                     if (customerResult.RowKey == customerGuid)
                     {
@@ -126,9 +126,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             /// <param name="customerRegistrationInfo">The customer registration entity</param>
             public CustomerRegistrationTableEntity(CustomerViewModel customerRegistrationInfo)
             {
-                this.RowKey = customerRegistrationInfo.MicrosoftId;
-                this.PartitionKey = customerRegistrationInfo.MicrosoftId;
-                this.CustomerRegistrationBlob = JsonConvert.SerializeObject(customerRegistrationInfo, Formatting.None);
+                RowKey = customerRegistrationInfo.MicrosoftId;
+                PartitionKey = customerRegistrationInfo.MicrosoftId;
+                CustomerRegistrationBlob = JsonConvert.SerializeObject(customerRegistrationInfo, Formatting.None);
             }
 
             /// <summary>

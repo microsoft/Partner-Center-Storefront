@@ -45,9 +45,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
                 PurchaseType = newCustomerPurchase.PurchaseType.ToString()
             };
 
-            var customerPurchasesTable = await this.ApplicationDomain.AzureStorageService.GetCustomerPurchasesTableAsync();
+            CloudTable customerPurchasesTable = await ApplicationDomain.AzureStorageService.GetCustomerPurchasesTableAsync().ConfigureAwait(false);
 
-            var insertionResult = await customerPurchasesTable.ExecuteAsync(TableOperation.Insert(customerPurchaseTableEntity));
+            TableResult insertionResult = await customerPurchasesTable.ExecuteAsync(TableOperation.Insert(customerPurchaseTableEntity)).ConfigureAwait(false);
             insertionResult.HttpStatusCode.AssertHttpResponseSuccess(ErrorCode.PersistenceFailure, "Failed to add customer purchase", insertionResult.Result);
 
             newCustomerPurchase = new CustomerPurchaseEntity(
@@ -71,10 +71,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         {
             customerPurchaseToRemove.AssertNotNull(nameof(customerPurchaseToRemove));
 
-            var customerPurchasesTable = await this.ApplicationDomain.AzureStorageService.GetCustomerPurchasesTableAsync();
+            CloudTable customerPurchasesTable = await ApplicationDomain.AzureStorageService.GetCustomerPurchasesTableAsync().ConfigureAwait(false);
 
-            var deletionResult = await customerPurchasesTable.ExecuteAsync(
-                TableOperation.Delete(new CustomerPurchaseTableEntity(customerPurchaseToRemove.CustomerId, customerPurchaseToRemove.SubscriptionId) { RowKey = customerPurchaseToRemove.Id, ETag = "*" }));
+            TableResult deletionResult = await customerPurchasesTable.ExecuteAsync(
+                TableOperation.Delete(new CustomerPurchaseTableEntity(customerPurchaseToRemove.CustomerId, customerPurchaseToRemove.SubscriptionId) { RowKey = customerPurchaseToRemove.Id, ETag = "*" })).ConfigureAwait(false);
 
             deletionResult.HttpStatusCode.AssertHttpResponseSuccess(ErrorCode.PersistenceFailure, "Failed to delete customer purchase", deletionResult.Result);
         }
@@ -88,8 +88,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         {
             customerId.AssertNotEmpty(nameof(customerId));
 
-            var customerPurchasesTable = await this.ApplicationDomain.AzureStorageService.GetCustomerPurchasesTableAsync();
-            var getCustomerPurchasesQuery = new TableQuery<CustomerPurchaseTableEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, customerId));
+            CloudTable customerPurchasesTable = await ApplicationDomain.AzureStorageService.GetCustomerPurchasesTableAsync().ConfigureAwait(false);
+            TableQuery<CustomerPurchaseTableEntity> getCustomerPurchasesQuery = new TableQuery<CustomerPurchaseTableEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, customerId));
 
             TableQuerySegment<CustomerPurchaseTableEntity> resultSegment = null;
 
@@ -97,9 +97,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
 
             do
             {
-                resultSegment = await customerPurchasesTable.ExecuteQuerySegmentedAsync(getCustomerPurchasesQuery, resultSegment?.ContinuationToken);
+                resultSegment = await customerPurchasesTable.ExecuteQuerySegmentedAsync(getCustomerPurchasesQuery, resultSegment?.ContinuationToken).ConfigureAwait(false);
 
-                foreach (var customerPurchaseResult in resultSegment.AsEnumerable())
+                foreach (CustomerPurchaseTableEntity customerPurchaseResult in resultSegment.AsEnumerable())
                 {
                     customerPurchases.Add(new CustomerPurchaseEntity(
                         (CommerceOperationType)Enum.Parse(typeof(CommerceOperationType), customerPurchaseResult.PurchaseType, true),
@@ -126,7 +126,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             /// </summary>
             public CustomerPurchaseTableEntity()
             {
-                this.RowKey = Guid.NewGuid().ToString();
+                RowKey = Guid.NewGuid().ToString();
             }
 
             /// <summary>
@@ -136,9 +136,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             /// <param name="subscriptionId">The subscription ID.</param>
             public CustomerPurchaseTableEntity(string customerId, string subscriptionId)
             {
-                this.PartitionKey = customerId;
-                this.RowKey = Guid.NewGuid().ToString();
-                this.SubscriptionId = subscriptionId;
+                PartitionKey = customerId;
+                RowKey = Guid.NewGuid().ToString();
+                SubscriptionId = subscriptionId;
             }
 
             /// <summary>

@@ -109,9 +109,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
             if (Instance == null)
             {
                 Instance = new ApplicationDomain();
-                Instance.PartnerCenterClient = await AcquirePartnerCenterAccessAsync();
+                Instance.PartnerCenterClient = await AcquirePartnerCenterAccessAsync().ConfigureAwait(false);
                 Instance.PortalLocalization = new PortalLocalization(Instance);
-                await Instance.PortalLocalization.InitializeAsync();
+                await Instance.PortalLocalization.InitializeAsync().ConfigureAwait(false);
             }
         }
 
@@ -131,12 +131,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
                 Instance.PaymentConfigurationRepository = new PaymentConfigurationRepository(Instance);
                 Instance.PreApprovedCustomersRepository = new PreApprovedCustomersRepository(Instance);
                 Instance.CustomerSubscriptionsRepository = new CustomerSubscriptionsRepository(Instance);
-                Instance.CustomerPurchasesRepository = new CustomerPurchasesRepository(ApplicationDomain.Instance);
-                Instance.CustomerOrdersRepository = new OrdersRepository(ApplicationDomain.Instance);
+                Instance.CustomerPurchasesRepository = new CustomerPurchasesRepository(Instance);
+                Instance.CustomerOrdersRepository = new OrdersRepository(Instance);
                 Instance.TelemetryService = new TelemetryService(Instance);
-                Instance.CustomerRegistrationRepository = new CustomerRegistrationRepository(ApplicationDomain.Instance);
+                Instance.CustomerRegistrationRepository = new CustomerRegistrationRepository(Instance);
 
-                await Instance.TelemetryService.InitializeAsync();
+                await Instance.TelemetryService.InitializeAsync().ConfigureAwait(false);
             }
         }
 
@@ -154,7 +154,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
                 ConfigurationManager.AppSettings["partnercenter.applicationSecret"],
                 ConfigurationManager.AppSettings["partnercenter.AadTenantId"],
                 ConfigurationManager.AppSettings["aadEndpoint"],
-                ConfigurationManager.AppSettings["aadGraphEndpoint"]);
+                ConfigurationManager.AppSettings["aadGraphEndpoint"]).ConfigureAwait(false);
 
             return PartnerService.Instance.CreatePartnerOperations(credentials);
         }

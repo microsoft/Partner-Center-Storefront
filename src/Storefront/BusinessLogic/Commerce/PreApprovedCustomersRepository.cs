@@ -46,24 +46,24 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         public async Task<PreApprovedCustomersViewModel> RetrieveCustomerDetailsAsync()
         {
             // retrieve the list of customers from Partner Center.             
-            var sdkClient = ApplicationDomain.Instance.PartnerCenterClient;            
-            List<Customer> allCustomers = new List<Customer>(); 
+            IAggregatePartner sdkClient = ApplicationDomain.Instance.PartnerCenterClient;
+            List<Customer> allCustomers = new List<Customer>();
 
             // create a customer enumerator which will aid us in traversing the customer pages
-            var customersEnumerator = sdkClient.Enumerators.Customers.Create(sdkClient.Customers.Query(QueryFactory.Instance.BuildIndexedQuery(100)));            
+            Enumerators.IResourceCollectionEnumerator<PartnerCenter.Models.SeekBasedResourceCollection<Customer>> customersEnumerator = sdkClient.Enumerators.Customers.Create(sdkClient.Customers.Query(QueryFactory.Instance.BuildIndexedQuery(100)));
             while (customersEnumerator.HasValue)
-            {       
+            {
                 foreach (Customer c in customersEnumerator.Current.Items)
                 {
                     allCustomers.Add(c);
-                }                    
+                }
 
                 customersEnumerator.Next();
             }
 
             // if all customers are preapproved then every customer's IsPreApproved is true. 
-            bool allCustomersPreApproved = false; 
-            PreApprovedCustomersList currentPreApprovedCustomers = await this.RetrieveAsync();
+            bool allCustomersPreApproved = false;
+            PreApprovedCustomersList currentPreApprovedCustomers = await RetrieveAsync().ConfigureAwait(false);
             if (currentPreApprovedCustomers.CustomerIds != null)
             {
                 // Find if the all customers approved entry is present. 
@@ -72,17 +72,17 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
 
             // populate portal customer list. 
             List<PortalCustomer> preApprovedCustomerDetails = (from customer in allCustomers
-                                        select new PortalCustomer()
-                                        {
-                                            TenantId = customer.Id,
-                                            CompanyName = customer.CompanyProfile.CompanyName,
-                                            Domain = customer.CompanyProfile.Domain,                                              
-                                            IsPreApproved = false         
-                                        }).ToList();
+                                                               select new PortalCustomer()
+                                                               {
+                                                                   TenantId = customer.Id,
+                                                                   CompanyName = customer.CompanyProfile.CompanyName,
+                                                                   Domain = customer.CompanyProfile.Domain,
+                                                                   IsPreApproved = false
+                                                               }).ToList();
 
             // identify the customers who are preapproved and update them. 
             if (!allCustomersPreApproved && (currentPreApprovedCustomers.CustomerIds != null))
-            {                
+            {
                 foreach (string customerId in currentPreApprovedCustomers.CustomerIds)
                 {
                     try
@@ -96,12 +96,21 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
                 }
             }
 
-            return new PreApprovedCustomersViewModel()
+            PreApprovedCustomersViewModel viewModel = new PreApprovedCustomersViewModel
             {
                 IsEveryCustomerPreApproved = allCustomersPreApproved,
-                CustomerIds = allCustomersPreApproved ? null : currentPreApprovedCustomers.CustomerIds?.ToList(),
                 Items = preApprovedCustomerDetails.OrderBy(customer => customer.CompanyName)
             };
+
+            if (!allCustomersPreApproved)
+            {
+                if (currentPreApprovedCustomers.CustomerIds != null)
+                {
+                    viewModel.CustomerIds.AddRange(currentPreApprovedCustomers.CustomerIds.ToList());
+                }
+            }
+
+            return viewModel;
         }
 
         /// <summary>
@@ -113,7 +122,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         {
             preApprovedCustomers.AssertNotNull(nameof(preApprovedCustomers));
 
-            PreApprovedCustomersList customerList = new PreApprovedCustomersList();      
+            PreApprovedCustomersList customerList = new PreApprovedCustomersList();
             if (preApprovedCustomers.IsEveryCustomerPreApproved)
             {
                 string[] ids = new string[] { Guid.Empty.ToString() };
@@ -121,16 +130,16 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
             }
             else
             {
-                customerList.CustomerIds = preApprovedCustomers.CustomerIds;             
+                customerList.CustomerIds = preApprovedCustomers.CustomerIds;
             }
 
-            var preApprovedCustomersBlob = await this.GetPreApprovedCustomersBlob();
-            await preApprovedCustomersBlob.UploadTextAsync(JsonConvert.SerializeObject(customerList));
+            CloudBlockBlob preApprovedCustomersBlob = await GetPreApprovedCustomersBlob().ConfigureAwait(false);
+            await preApprovedCustomersBlob.UploadTextAsync(JsonConvert.SerializeObject(customerList)).ConfigureAwait(false);
 
             // invalidate the cache, we do not update it to avoid race condition between web instances
-            await this.ApplicationDomain.CachingService.ClearAsync(PreApprovedCustomersRepository.PreApprovedCustomersCacheKey);
+            await ApplicationDomain.CachingService.ClearAsync(PreApprovedCustomersCacheKey).ConfigureAwait(false);
 
-            return await this.RetrieveCustomerDetailsAsync();
+            return await RetrieveCustomerDetailsAsync().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -144,7 +153,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
 
             bool isCustomerPreApproved = false;
 
-            PreApprovedCustomersList existingCustomers = await this.RetrieveAsync();
+            PreApprovedCustomersList existingCustomers = await RetrieveAsync().ConfigureAwait(false);
             if (existingCustomers.CustomerIds != null)
             {
                 // Find if the all customers approved entry is present. 
@@ -170,9 +179,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         /// <returns>The portal PreApproved Customers BLOB.</returns>
         private async Task<CloudBlockBlob> GetPreApprovedCustomersBlob()
         {
-            var portalAssetsBlobContainer = await this.ApplicationDomain.AzureStorageService.GetPrivateCustomerPortalAssetsBlobContainerAsync();
+            CloudBlobContainer portalAssetsBlobContainer = await ApplicationDomain.AzureStorageService.GetPrivateCustomerPortalAssetsBlobContainerAsync().ConfigureAwait(false);
 
-            return portalAssetsBlobContainer.GetBlockBlobReference(PreApprovedCustomersRepository.PreApprovedCustomersBlobName);
+            return portalAssetsBlobContainer.GetBlockBlobReference(PreApprovedCustomersBlobName);
         }
 
         /// <summary>
@@ -181,22 +190,22 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         /// <returns>The PreApproved Customers.</returns>
         private async Task<PreApprovedCustomersList> RetrieveAsync()
         {
-            var preApprovedCustomersList = await this.ApplicationDomain.CachingService
-                .FetchAsync<PreApprovedCustomersList>(PreApprovedCustomersRepository.PreApprovedCustomersCacheKey);
+            PreApprovedCustomersList preApprovedCustomersList = await ApplicationDomain.CachingService
+                .FetchAsync<PreApprovedCustomersList>(PreApprovedCustomersCacheKey).ConfigureAwait(false);
 
             if (preApprovedCustomersList == null)
             {
-                var preApprovedCustomersBlob = await this.GetPreApprovedCustomersBlob();
+                CloudBlockBlob preApprovedCustomersBlob = await GetPreApprovedCustomersBlob().ConfigureAwait(false);
                 preApprovedCustomersList = new PreApprovedCustomersList();
 
-                if (await preApprovedCustomersBlob.ExistsAsync())
+                if (await preApprovedCustomersBlob.ExistsAsync().ConfigureAwait(false))
                 {
-                    preApprovedCustomersList = JsonConvert.DeserializeObject<PreApprovedCustomersList>(await preApprovedCustomersBlob.DownloadTextAsync());
+                    preApprovedCustomersList = JsonConvert.DeserializeObject<PreApprovedCustomersList>(await preApprovedCustomersBlob.DownloadTextAsync().ConfigureAwait(false));
 
                     // cache the preapproved customers configuration
-                    await this.ApplicationDomain.CachingService.StoreAsync<PreApprovedCustomersList>(
-                        PreApprovedCustomersRepository.PreApprovedCustomersCacheKey,
-                        preApprovedCustomersList);
+                    await ApplicationDomain.CachingService.StoreAsync(
+                        PreApprovedCustomersCacheKey,
+                        preApprovedCustomersList).ConfigureAwait(false);
                 }
             }
 

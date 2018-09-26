@@ -44,10 +44,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         public PayUGateway(ApplicationDomain applicationDomain, string description) : base(applicationDomain)
         {
             description.AssertNotEmpty(nameof(description));
-            this.paymentDescription = description;
+            paymentDescription = description;
 
-            this.payerId = string.Empty;
-            this.paymentId = string.Empty;
+            payerId = string.Empty;
+            paymentId = string.Empty;
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         {
             returnUrl.AssertNotEmpty(nameof(returnUrl));
             order.AssertNotNull(nameof(order));
-            RemotePost myremotepost = await PrepareRemotePost(order, returnUrl);
+            RemotePost myremotepost = await PrepareRemotePost(order, returnUrl).ConfigureAwait(false);
             return myremotepost.Post();
         }
 
@@ -95,7 +95,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         {
             try
             {
-                TransactionStatusResponse paymentResponse = await ApiCalls.GetPaymentStatus(this.paymentId);
+                TransactionStatusResponse paymentResponse = await ApiCalls.GetPaymentStatus(paymentId).ConfigureAwait(false);
                 if (paymentResponse != null && paymentResponse.Result.Count > 0 && paymentResponse.Result[0].Status.Equals(Constant.MoneyWithPayU, StringComparison.InvariantCultureIgnoreCase))
                 {
                     return paymentResponse.Result[0].Amount.ToString(CultureInfo.InvariantCulture);
@@ -106,7 +106,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
                 this.ParsePayUException(ex);
             }
 
-            return await Task.FromResult(string.Empty);
+            return await Task.FromResult(string.Empty).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         public async Task CaptureAsync(string authorizationCode)
         {
             ////PayU api not provided
-            await Task.FromResult(string.Empty);
+            await Task.FromResult(string.Empty).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             // given the authorizationId string... Lookup the authorization to void it. 
             try
             {
-                RefundResponse refundResponse = await ApiCalls.RefundPayment(this.payerId, authorizationCode);
+                RefundResponse refundResponse = await ApiCalls.RefundPayment(payerId, authorizationCode).ConfigureAwait(false);
                 if (refundResponse.Status != 0 || !refundResponse.Message.Equals("Refund Initiated", StringComparison.InvariantCulture))
                 {
                     throw new Exception("Error in refund");
@@ -161,7 +161,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             this.payerId = payerId;
             this.paymentId = paymentId;
 
-            return await this.GetOrderDetails();
+            return await GetOrderDetails().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -193,7 +193,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         private string GenerateTransactionId()
         {
             Random rnd = new Random();
-            string strHash = this.GenerateHash512(rnd.ToString() + DateTime.Now);
+            string strHash = GenerateHash512(rnd.ToString() + DateTime.Now);
             string txnid1 = strHash.ToString(CultureInfo.InvariantCulture).Substring(0, 20);
             return txnid1;
         }
@@ -207,18 +207,18 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             OrderViewModel orderFromPayment = null;
             try
             {
-                PaymentResponse paymentResponse = await ApiCalls.GetPaymentDetails(this.paymentId);
+                PaymentResponse paymentResponse = await ApiCalls.GetPaymentDetails(paymentId).ConfigureAwait(false);
                 if (paymentResponse != null && paymentResponse.Result.Count > 0)
                 {
-                    orderFromPayment = await this.GetOrderDetails(paymentResponse.Result[0].PostBackParam.Udf1, paymentResponse.Result[0].PostBackParam.ProductInformation, paymentResponse.Result[0].PostBackParam.Udf2);
+                    orderFromPayment = await GetOrderDetails(paymentResponse.Result[0].PostBackParam.Udf1, paymentResponse.Result[0].PostBackParam.ProductInformation, paymentResponse.Result[0].PostBackParam.Udf2).ConfigureAwait(false);
                 }
             }
             catch (Exception ex)
             {
-                this.ParsePayUException(ex);
+                ParsePayUException(ex);
             }
 
-            return await Task.FromResult(orderFromPayment);
+            return await Task.FromResult(orderFromPayment).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -250,10 +250,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             string email = string.Empty;
 
             CustomerRegistrationRepository customerRegistrationRepository = new CustomerRegistrationRepository(ApplicationDomain.Instance);
-            CustomerViewModel customerRegistrationInfo = await customerRegistrationRepository.RetrieveAsync(order.CustomerId);
+            CustomerViewModel customerRegistrationInfo = await customerRegistrationRepository.RetrieveAsync(order.CustomerId).ConfigureAwait(false);
             if (customerRegistrationInfo == null)
             {
-                Customer customer = await ApplicationDomain.Instance.PartnerCenterClient.Customers.ById(order.CustomerId).GetAsync();
+                Customer customer = await ApplicationDomain.Instance.PartnerCenterClient.Customers.ById(order.CustomerId).GetAsync().ConfigureAwait(false);
                 fname = customer.BillingProfile.DefaultAddress.FirstName;
                 phone = customer.BillingProfile.DefaultAddress.PhoneNumber;
                 email = customer.BillingProfile.Email;
@@ -278,7 +278,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             productSubs.Remove(0, 1);
             prodQuants.Remove(0, 1);
             System.Collections.Specialized.NameValueCollection inputs = new System.Collections.Specialized.NameValueCollection();
-            PaymentConfiguration payconfig = await this.GetAPaymentConfigAsync();
+            PaymentConfiguration payconfig = await GetAPaymentConfigAsync().ConfigureAwait(false);
             inputs.Add("key", payconfig.ClientId);
             inputs.Add("txnid", GenerateTransactionId());
             inputs.Add("amount", paymentTotal.ToString(CultureInfo.InvariantCulture));
@@ -343,10 +343,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             }
             catch (Exception ex)
             {
-                this.ParsePayUException(ex);
+                ParsePayUException(ex);
             }
 
-            return await Task.FromResult(orderFromPayment);
+            return await Task.FromResult(orderFromPayment).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -356,7 +356,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         private async Task<PaymentConfiguration> GetAPaymentConfigAsync()
         {
             // Before getAPIContext ... set up PayUMoney configuration. This is an expensive call which can benefit from caching. 
-            PaymentConfiguration paymentConfig = await ApplicationDomain.Instance.PaymentConfigurationRepository.RetrieveAsync();
+            PaymentConfiguration paymentConfig = await ApplicationDomain.Instance.PaymentConfigurationRepository.RetrieveAsync().ConfigureAwait(false);
 
             return paymentConfig;
         }

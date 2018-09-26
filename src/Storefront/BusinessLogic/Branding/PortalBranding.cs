@@ -44,8 +44,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         /// <returns>True if the branding was configured and stored, false otherwise.</returns>
         public async Task<bool> IsConfiguredAsync()
         {
-            var portalBrandingBlob = await this.GetPortalBrandingBlobAsync();
-            return await portalBrandingBlob.ExistsAsync();
+            CloudBlockBlob portalBrandingBlob = await GetPortalBrandingBlobAsync().ConfigureAwait(false);
+            return await portalBrandingBlob.ExistsAsync().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -54,18 +54,19 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         /// <returns>The portal branding information.</returns>
         public async Task<BrandingConfiguration> RetrieveAsync()
         {
-            var portalBranding = await this.ApplicationDomain.CachingService
-                .FetchAsync<BrandingConfiguration>(PortalBranding.PortalBrandingCacheKey);
+            BrandingConfiguration portalBranding = await ApplicationDomain.CachingService
+                .FetchAsync<BrandingConfiguration>(PortalBrandingCacheKey).ConfigureAwait(false);
 
             if (portalBranding == null)
             {
-                var portalBrandingBlob = await this.GetPortalBrandingBlobAsync();
+                CloudBlockBlob portalBrandingBlob = await GetPortalBrandingBlobAsync().ConfigureAwait(false);
+
                 portalBranding = new BrandingConfiguration();
 
-                if (await portalBrandingBlob.ExistsAsync())
+                if (await portalBrandingBlob.ExistsAsync().ConfigureAwait(false))
                 {
-                    portalBranding = JsonConvert.DeserializeObject<BrandingConfiguration>(await portalBrandingBlob.DownloadTextAsync());
-                    await this.NormalizeAsync(portalBranding);
+                    portalBranding = JsonConvert.DeserializeObject<BrandingConfiguration>(await portalBrandingBlob.DownloadTextAsync().ConfigureAwait(false));
+                    await NormalizeAsync(portalBranding).ConfigureAwait(false);
                 }
                 else
                 {
@@ -74,9 +75,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
                 }
 
                 // cache the portal branding
-                await this.ApplicationDomain.CachingService.StoreAsync<BrandingConfiguration>(
-                    PortalBranding.PortalBrandingCacheKey,
-                    portalBranding);
+                await ApplicationDomain.CachingService.StoreAsync(
+                    PortalBrandingCacheKey,
+                    portalBranding).ConfigureAwait(false);
             }
 
             return portalBranding;
@@ -91,16 +92,16 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         {
             updatedBrandingConfiguration.AssertNotNull(nameof(updatedBrandingConfiguration));
 
-            await this.NormalizeAsync(updatedBrandingConfiguration);
+            await NormalizeAsync(updatedBrandingConfiguration).ConfigureAwait(false);
 
-            var portalBrandingBlob = await this.GetPortalBrandingBlobAsync();
-            await portalBrandingBlob.UploadTextAsync(JsonConvert.SerializeObject(updatedBrandingConfiguration));
+            CloudBlockBlob portalBrandingBlob = await GetPortalBrandingBlobAsync().ConfigureAwait(false);
+            await portalBrandingBlob.UploadTextAsync(JsonConvert.SerializeObject(updatedBrandingConfiguration)).ConfigureAwait(false);
 
             // invalidate the cache, we do not update it to avoid race condition between web instances
-            await this.ApplicationDomain.CachingService.ClearAsync(PortalBrandingCacheKey);
+            await ApplicationDomain.CachingService.ClearAsync(PortalBrandingCacheKey).ConfigureAwait(false);
 
             // re-initialize the telemetry service because the configuration might have changed.
-            await this.ApplicationDomain.TelemetryService.InitializeAsync();
+            await ApplicationDomain.TelemetryService.InitializeAsync().ConfigureAwait(false);
 
             return updatedBrandingConfiguration;
         }
@@ -188,9 +189,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
             if (brandingConfiguration.OrganizationLogoContent != null)
             {
                 // there is an logo image specified, upload it to BLOB storage and setup the URI property to point to it
-                brandingConfiguration.OrganizationLogo = await this.UploadStreamToBlobStorageAsync(
+                brandingConfiguration.OrganizationLogo = await UploadStreamToBlobStorageAsync(
                     "OrganizationLogo",
-                    brandingConfiguration.OrganizationLogoContent);
+                    brandingConfiguration.OrganizationLogoContent).ConfigureAwait(false);
 
                 brandingConfiguration.OrganizationLogoContent = null;
             }
@@ -198,9 +199,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
             if (brandingConfiguration.HeaderImageContent != null)
             {
                 // there is a header image specified, upload it to BLOB storage and setup the URI property to point to it
-                brandingConfiguration.HeaderImage = await this.UploadStreamToBlobStorageAsync(
+                brandingConfiguration.HeaderImage = await UploadStreamToBlobStorageAsync(
                     "HeaderImage",
-                    brandingConfiguration.HeaderImageContent);
+                    brandingConfiguration.HeaderImageContent).ConfigureAwait(false);
 
                 brandingConfiguration.HeaderImageContent = null;
             }
@@ -216,11 +217,11 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         {
             streamToUpload.AssertNotNull(nameof(streamToUpload));
 
-            var blob = await this.ApplicationDomain.AzureStorageService.GenerateNewBlobReferenceAsync(
-                await this.ApplicationDomain.AzureStorageService.GetPublicCustomerPortalAssetsBlobContainerAsync(),
-                blobNamePrefix);
+            CloudBlockBlob blob = await ApplicationDomain.AzureStorageService.GenerateNewBlobReferenceAsync(
+                await ApplicationDomain.AzureStorageService.GetPublicCustomerPortalAssetsBlobContainerAsync().ConfigureAwait(false),
+                blobNamePrefix).ConfigureAwait(false);
 
-            await blob.UploadFromStreamAsync(streamToUpload);
+            await blob.UploadFromStreamAsync(streamToUpload).ConfigureAwait(false);
 
             return blob.Uri;
         }
@@ -231,9 +232,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         /// <returns>The portal branding BLOB.</returns>
         private async Task<CloudBlockBlob> GetPortalBrandingBlobAsync()
         {
-            var portalAssetsBlobContainer = await this.ApplicationDomain.AzureStorageService.GetPrivateCustomerPortalAssetsBlobContainerAsync();
+            CloudBlobContainer portalAssetsBlobContainer =
+                await ApplicationDomain.AzureStorageService.GetPrivateCustomerPortalAssetsBlobContainerAsync().ConfigureAwait(false);
 
-            return portalAssetsBlobContainer.GetBlockBlobReference(PortalBranding.PortalBrandingBlobName);
+            return portalAssetsBlobContainer.GetBlockBlobReference(PortalBrandingBlobName);
         }
     }
 }

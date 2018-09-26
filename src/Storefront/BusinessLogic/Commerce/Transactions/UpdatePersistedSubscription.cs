@@ -45,7 +45,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
             updatedSubscriptionInformation.AssertNotNull(nameof(updatedSubscriptionInformation));
 
             this.repository = repository;
-            this.desiredSubscriptionUpdates = updatedSubscriptionInformation;
+            desiredSubscriptionUpdates = updatedSubscriptionInformation;
         }
 
         /// <summary>
@@ -60,16 +60,16 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         public async Task ExecuteAsync()
         {
             // retrieve the subscription
-            var customerSubscriptions = await this.repository.RetrieveAsync(this.desiredSubscriptionUpdates.CustomerId);
-            this.originalSubscriptionState = customerSubscriptions.Where(subscription => subscription.SubscriptionId == this.desiredSubscriptionUpdates.SubscriptionId).FirstOrDefault();
+            System.Collections.Generic.IEnumerable<CustomerSubscriptionEntity> customerSubscriptions = await repository.RetrieveAsync(desiredSubscriptionUpdates.CustomerId).ConfigureAwait(false);
+            originalSubscriptionState = customerSubscriptions.Where(subscription => subscription.SubscriptionId == desiredSubscriptionUpdates.SubscriptionId).FirstOrDefault();
 
-            if (this.originalSubscriptionState == null)
+            if (originalSubscriptionState == null)
             {
                 throw new PartnerDomainException(ErrorCode.SubscriptionNotFound);
             }
 
             // update the subscription
-            this.Result = await this.repository.UpdateAsync(this.desiredSubscriptionUpdates);
+            Result = await repository.UpdateAsync(desiredSubscriptionUpdates).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -78,12 +78,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
         /// <returns>A task.</returns>
         public async Task RollbackAsync()
         {
-            if (this.Result != null)
+            if (Result != null)
             {
                 try
                 {
                     // restore the subscription to what it was before
-                    await this.repository.UpdateAsync(this.originalSubscriptionState);
+                    await repository.UpdateAsync(originalSubscriptionState).ConfigureAwait(false);
                 }
                 catch (Exception restoreProblem)
                 {
@@ -95,16 +95,16 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Transa
                     Trace.TraceError(
                         "UpdatePersistedSubscription.RollbackAsync failed: {0}, Customer ID: {1}, ExpiryDate: {2}, PartnerOfferId: {3}, SubscriptionId: {4}",
                         restoreProblem,
-                        this.originalSubscriptionState.CustomerId,
-                        this.originalSubscriptionState.ExpiryDate,
-                        this.originalSubscriptionState.PartnerOfferId,
-                        this.originalSubscriptionState.SubscriptionId);
+                        originalSubscriptionState.CustomerId,
+                        originalSubscriptionState.ExpiryDate,
+                        originalSubscriptionState.PartnerOfferId,
+                        originalSubscriptionState.SubscriptionId);
 
                     // TODO: Notify the system integrity recovery component
                 }
             }
 
-            this.Result = null;
+            Result = null;
         }
     }
 }

@@ -35,16 +35,16 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         public async Task<CustomerSubscriptionEntity> AddAsync(CustomerSubscriptionEntity newCustomerSubscription)
         {
             newCustomerSubscription.AssertNotNull(nameof(newCustomerSubscription));
-            
+
             CustomerSubscriptionTableEntity customerSubscriptionTableEntity = new CustomerSubscriptionTableEntity(newCustomerSubscription.CustomerId, newCustomerSubscription.SubscriptionId)
             {
                 PartnerOfferId = newCustomerSubscription.PartnerOfferId,
                 ExpiryDate = newCustomerSubscription.ExpiryDate
             };
 
-            var customerSubscriptionsTable = await this.ApplicationDomain.AzureStorageService.GetCustomerSubscriptionsTableAsync();
+            CloudTable customerSubscriptionsTable = await ApplicationDomain.AzureStorageService.GetCustomerSubscriptionsTableAsync().ConfigureAwait(false);
 
-            var insertionResult = await customerSubscriptionsTable.ExecuteAsync(TableOperation.Insert(customerSubscriptionTableEntity));
+            TableResult insertionResult = await customerSubscriptionsTable.ExecuteAsync(TableOperation.Insert(customerSubscriptionTableEntity)).ConfigureAwait(false);
             insertionResult.HttpStatusCode.AssertHttpResponseSuccess(ErrorCode.PersistenceFailure, "Failed to add customer subscription", insertionResult.Result);
 
             return newCustomerSubscription;
@@ -59,9 +59,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         {
             customerSubscriptionToRemove.AssertNotNull(nameof(customerSubscriptionToRemove));
 
-            var customerSubscriptionsTable = await this.ApplicationDomain.AzureStorageService.GetCustomerSubscriptionsTableAsync();
+            CloudTable customerSubscriptionsTable = await ApplicationDomain.AzureStorageService.GetCustomerSubscriptionsTableAsync().ConfigureAwait(false);
 
-            var deletionResult = await customerSubscriptionsTable.ExecuteAsync(TableOperation.Delete(new CustomerSubscriptionTableEntity(customerSubscriptionToRemove.CustomerId, customerSubscriptionToRemove.SubscriptionId) { ETag = "*" }));
+            TableResult deletionResult = await customerSubscriptionsTable.ExecuteAsync(TableOperation.Delete(new CustomerSubscriptionTableEntity(customerSubscriptionToRemove.CustomerId, customerSubscriptionToRemove.SubscriptionId) { ETag = "*" })).ConfigureAwait(false);
             deletionResult.HttpStatusCode.AssertHttpResponseSuccess(ErrorCode.PersistenceFailure, "Failed to remove customer subscription", deletionResult.Result);
         }
 
@@ -74,15 +74,15 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         {
             customerSubscriptionUpdates.AssertNotNull(nameof(customerSubscriptionUpdates));
 
-            var updateSubscriptionOperation = TableOperation.Replace(new CustomerSubscriptionTableEntity(customerSubscriptionUpdates.CustomerId, customerSubscriptionUpdates.SubscriptionId)
+            TableOperation updateSubscriptionOperation = TableOperation.Replace(new CustomerSubscriptionTableEntity(customerSubscriptionUpdates.CustomerId, customerSubscriptionUpdates.SubscriptionId)
             {
                 ExpiryDate = customerSubscriptionUpdates.ExpiryDate,
                 PartnerOfferId = customerSubscriptionUpdates.PartnerOfferId,
                 ETag = "*"
             });
 
-            var customerSubscriptionsTable = await this.ApplicationDomain.AzureStorageService.GetCustomerSubscriptionsTableAsync();
-            var updateResult = await customerSubscriptionsTable.ExecuteAsync(updateSubscriptionOperation);
+            CloudTable customerSubscriptionsTable = await ApplicationDomain.AzureStorageService.GetCustomerSubscriptionsTableAsync().ConfigureAwait(false);
+            TableResult updateResult = await customerSubscriptionsTable.ExecuteAsync(updateSubscriptionOperation).ConfigureAwait(false);
 
             updateResult.HttpStatusCode.AssertHttpResponseSuccess(ErrorCode.PersistenceFailure, "Failed to update customer subscription", updateResult.Result);
 
@@ -98,8 +98,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
         {
             customerId.AssertNotEmpty(nameof(customerId));
 
-            var customerSubscriptionsTable = await this.ApplicationDomain.AzureStorageService.GetCustomerSubscriptionsTableAsync();
-            var getCustomerSubscriptionsQuery = new TableQuery<CustomerSubscriptionTableEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, customerId));
+            CloudTable customerSubscriptionsTable = await ApplicationDomain.AzureStorageService.GetCustomerSubscriptionsTableAsync().ConfigureAwait(false);
+            TableQuery<CustomerSubscriptionTableEntity> getCustomerSubscriptionsQuery = new TableQuery<CustomerSubscriptionTableEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, customerId));
 
             TableQuerySegment<CustomerSubscriptionTableEntity> resultSegment = null;
 
@@ -107,9 +107,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
 
             do
             {
-                resultSegment = await customerSubscriptionsTable.ExecuteQuerySegmentedAsync<CustomerSubscriptionTableEntity>(getCustomerSubscriptionsQuery, resultSegment?.ContinuationToken);
+                resultSegment = await customerSubscriptionsTable.ExecuteQuerySegmentedAsync(getCustomerSubscriptionsQuery, resultSegment?.ContinuationToken).ConfigureAwait(false);
 
-                foreach (var customerSubscriptionResult in resultSegment.AsEnumerable())
+                foreach (CustomerSubscriptionTableEntity customerSubscriptionResult in resultSegment.AsEnumerable())
                 {
                     customerSubscriptions.Add(new CustomerSubscriptionEntity(
                         customerSubscriptionResult.PartitionKey,
@@ -142,8 +142,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce
             /// <param name="subscriptionId">The subscription ID.</param>
             public CustomerSubscriptionTableEntity(string customerId, string subscriptionId)
             {
-                this.PartitionKey = customerId;
-                this.RowKey = subscriptionId;
+                PartitionKey = customerId;
+                RowKey = subscriptionId;
             }
 
             /// <summary>

@@ -31,11 +31,6 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         private const string PublicPortalAssetsBlobContainerName = "publiccustomerportalassets";
 
         /// <summary>
-        /// The name of the portal customers blob container.
-        /// </summary>
-        private const string PrivatePortalCustomerBlobContainerName = "customerportalregistration";
-
-        /// <summary>
         /// The name of the Partner Center customers Azure table.
         /// </summary>
         private const string CustomersTableName = "PartnerCenterCustomers";
