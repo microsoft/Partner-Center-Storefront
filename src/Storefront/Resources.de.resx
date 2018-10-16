@@ -118,7 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Back" xml:space="preserve">
-    <value>Zurück</value>
+    <value>Zurück
+ </value>
   </data>
   <data name="BuyNow" xml:space="preserve">
     <value>Jetzt kaufen</value>
@@ -130,7 +131,10 @@
     <value>Alle löschen</value>
   </data>
   <data name="ContactUs" xml:space="preserve">
-    <value>Kontaktieren Sie uns</value>
+    <value>So erreichen Sie uns</value>
+  </data>
+  <data name="CopyRight" xml:space="preserve">
+    <value>Copyright © 2018</value>
   </data>
   <data name="Ellipsis" xml:space="preserve">
     <value>...</value>
@@ -225,6 +229,9 @@
   <data name="Confirmation" xml:space="preserve">
     <value>Bestätigung</value>
   </data>
+  <data name="ConfirmationMessage" xml:space="preserve">
+    <value>Danke. Der Kunde erstellt wurde und Ihre Bestellung wurde erfolgreich bearbeitet.</value>
+  </data>
   <data name="ContactInformation" xml:space="preserve">
     <value>Kundeninformationen</value>
   </data>
@@ -233,6 +240,9 @@
   </data>
   <data name="MicrosoftId" xml:space="preserve">
     <value>Microsoft-ID</value>
+  </data>
+  <data name="SetupInformation" xml:space="preserve">
+    <value>Kundendaten</value>
   </data>
   <data name="Subscription" xml:space="preserve">
     <value>Abonnement</value>
@@ -245,6 +255,9 @@
   </data>
   <data name="AddSubscriptions" xml:space="preserve">
     <value>Abonnements hinzufügen</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Weiter zur Zahlung</value>
   </data>
   <data name="AcceptTerms" xml:space="preserve">
     <value>Ich akzeptiere die allgemeinen Geschäftsbedingungen</value>
@@ -262,10 +275,10 @@
     <value>Bauen Ihr dashboard</value>
   </data>
   <data name="OffersConfigurationCaption" xml:space="preserve">
-    <value>Wählen Sie die Produkte aus, die Sie zum Kauf anbieten möchten</value>
+    <value>Wählen Sie die zum Kauf anbietet</value>
   </data>
   <data name="PaymentConfigurationCaption" xml:space="preserve">
-    <value>Fügen Sie eine Zahlungsmethode hinzu</value>
+    <value>Fügen Sie eine Zahlungsmethode</value>
   </data>
   <data name="WelcomeCaptionPrefix" xml:space="preserve">
     <value>Herzlich Willkommen</value>
@@ -297,6 +310,9 @@
   <data name="SelectMicrosoftOfferCaption" xml:space="preserve">
     <value>Wählen Sie ein Microsoft-Angebot:</value>
   </data>
+  <data name="SelectSearchByOffersPlaceholder" xml:space="preserve">
+    <value>Suche nach Angebot</value>
+  </data>
   <data name="YourAnnualPriceCaption" xml:space="preserve">
     <value>Preis pro Jahr:</value>
   </data>
@@ -317,6 +333,9 @@
   </data>
   <data name="AddSummaryPointTooltip" xml:space="preserve">
     <value>Nach diesem Angebot Zusammenfassung hinzufügen</value>
+  </data>
+  <data name="BrandingSectionTooltip" xml:space="preserve">
+    <value>Klicken Sie, um Ihr Unternehmensbranding konfigurieren.</value>
   </data>
   <data name="OfferFeaturePlaceHolder" xml:space="preserve">
     <value>Beschreiben Sie eine Funktion, die dieses Angebot gibt</value>
@@ -375,8 +394,11 @@
   <data name="Description" xml:space="preserve">
     <value>Beschreibung</value>
   </data>
+  <data name="EmptyMicrosoftOfferListMessage" xml:space="preserve">
+    <value>Keine Angebote gefunden</value>
+  </data>
   <data name="EmptyOfferListMessage" xml:space="preserve">
-    <value>Sie müssen keine Angebote konfiguriert. Klicken Sie auf hinzufügen, damit beginnen, Ihre Angebote oben bieten.</value>
+    <value>Sie müssen keine Angebote konfiguriert. Klicken Sie auf Hinzufügen, damit beginnen, Ihre Angebote oben bieten.</value>
   </data>
   <data name="MicrosoftOfferListColumnCaption" xml:space="preserve">
     <value>Microsoft-Angebot</value>
@@ -440,6 +462,9 @@
   </data>
   <data name="DefaultOrganizationName" xml:space="preserve">
     <value>Den Namen Ihrer Organisation</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>"Rückgängig"</value>
   </data>
   <data name="BrandingRetrievalErrorMessage" xml:space="preserve">
     <value>Branding-Partner konnte nicht abgerufen werden.</value>
@@ -514,31 +539,34 @@
     <value>Abrufen von Zahlungsinformationen</value>
   </data>
   <data name="LiveAccountTypeCaption" xml:space="preserve">
-    <value>live-Konto</value>
+    <value>Live-Konto</value>
   </data>
   <data name="PaymentConfigurationHeader" xml:space="preserve">
-    <value>Geben Sie hier Ihre PayPal Kontoeinstellungen an</value>
+    <value>Bieten Sie Ihr PayPal Pro Account-Einstellungen</value>
   </data>
   <data name="PaymentConfigurationSubTextPostfix" xml:space="preserve">
-    <value>und erstellen Sie erst ein Kundenkonto und besuchen Sie anschließend das PayPal-Entwicklungsportal, um die unten aufgeführten Angaben zu erhalten.</value>
+    <value>ein neue pro-Konto erstellen, wenn Sie nicht besitzen.</value>
+  </data>
+  <data name="PaymentConfigurationSubTextPrefix" xml:space="preserve">
+    <value>Um Zahlungen von Ihren Kunden erhalten, sollten Sie ein PayPal-Konto pro verwenden, besuchen Sie bitte:</value>
   </data>
   <data name="PayPalAccountTypeCaption" xml:space="preserve">
-    <value>PayPal Konto-Art:</value>
+    <value>PayPal-Account-Typ:</value>
   </data>
   <data name="PayPalAccountTypeSubText" xml:space="preserve">
-    <value>Sie können zum Testen Ihrer Transaktionen ein Sandbox-Konto verwenden. Anschlie¬ßend können Sie auf ein Live-Konto umstellen.</value>
+    <value>Sie können ein Test-Konto um Ihre Transaktionen zu testen auswählen. Sobald funktioniert, wechseln Sie zu einem live-Konto-Typ zu Transaktionen</value>
   </data>
   <data name="PayPalClientIdCaption" xml:space="preserve">
-    <value>PayPal Client ID:</value>
+    <value>PayPal-Kundennummer:</value>
   </data>
   <data name="PayPalClientIdSubText" xml:space="preserve">
-    <value>Geben Sie hier Ihre PayPal Client ID an. Sie besteht aus 80 Zeichen.</value>
+    <value>Geben Sie Ihre PayPal-Kundennummer</value>
   </data>
   <data name="PayPalClientSecretCaption" xml:space="preserve">
-    <value>PayPal Secret:</value>
+    <value>PayPal Clientschlüssel:</value>
   </data>
   <data name="PayPalClientSecretSubText" xml:space="preserve">
-    <value>Geben Sie hier das Paypal Secret an, das Sie sich anzeigen lassen können.</value>
+    <value>Geben Sie Ihre PayPal-Clientschlüssel</value>
   </data>
   <data name="SandboxAccountTypeCaption" xml:space="preserve">
     <value>Sandbox-Konto</value>
@@ -573,6 +601,9 @@
   <data name="CustomerProfileContactInfoSectionCaption" xml:space="preserve">
     <value>Kontakt-Informationen</value>
   </data>
+  <data name="CustomerProfileDomainInfoCaption" xml:space="preserve">
+    <value>Ihre Domain-Präfix wird angezeigt, nachdem die @ Ihre Domain e-Mail-Adresse. Es muss eindeutig sein und darf Satzzeichen enthalten. Beispiel: Jobs.</value>
+  </data>
   <data name="CustomerProfileDomainPrefixCaption" xml:space="preserve">
     <value>Domain-Präfix</value>
   </data>
@@ -587,6 +618,9 @@
   </data>
   <data name="CustomerProfileLastNameCaption" xml:space="preserve">
     <value>Nachname</value>
+  </data>
+  <data name="CustomerProfileOffice365EmailCaption" xml:space="preserve">
+    <value>Dies werden die Benutzer-Id, die Sie mit Ihrem Office 365-Konto verwenden möchten.</value>
   </data>
   <data name="CustomerProfileOffice365UserNameCaption" xml:space="preserve">
     <value>Benutzername</value>
@@ -624,6 +658,9 @@
   <data name="CommerceOperationTypeAddSeats" xml:space="preserve">
     <value>Zusätzliche Sitzplätze</value>
   </data>
+  <data name="CommerceOperationTypeAddSubscription" xml:space="preserve">
+    <value>Gekauft</value>
+  </data>
   <data name="CommerceOperationTypeRenewSubscription" xml:space="preserve">
     <value>Erneuerung</value>
   </data>
@@ -632,6 +669,9 @@
   </data>
   <data name="CustomerRegistrationMessage" xml:space="preserve">
     <value>Registrierung Kunden...</value>
+  </data>
+  <data name="CustomerRegistrationSuccessMessage" xml:space="preserve">
+    <value>Bestellung vorbereitet und umleiten auf Zahlungs-Gateway...</value>
   </data>
   <data name="OrderRegistrationFailureMessage" xml:space="preserve">
     <value>Bestellung-Registrierungsfehler</value>
@@ -753,6 +793,9 @@
   <data name="PrivacyAgreementFieldSubText" xml:space="preserve">
     <value>Sie können einen Link angeben, der Datenschutzbestimmungen für Ihre Kunden hier zeigt die in der Fußzeile der Startseite angezeigt werden</value>
   </data>
+  <data name="PrivacyAgreementToolTip" xml:space="preserve">
+    <value>Ansicht dieser Webseite-Datenschutzbestimmungen</value>
+  </data>
   <data name="CouldNotRetrieveCustomerAccount" xml:space="preserve">
     <value>Ihr Konto konnte nicht abgerufen werden. Bitte versuchen Sie es später erneut.</value>
   </data>
@@ -801,6 +844,12 @@
   <data name="InvalidContactUsPhone" xml:space="preserve">
     <value>Bitte geben Sie eine gültige kontaktieren Sie den Support-Telefon</value>
   </data>
+  <data name="ProcessingOrderMessage" xml:space="preserve">
+    <value>Zahlungsinformationen gesammelt, Kunden- und Verarbeitungsreihenfolge zu schaffen...</value>
+  </data>
+  <data name="ExistingCustomerProcessingOrderMessage" xml:space="preserve">
+    <value>Zahlungsinformationen gesammelt, jetzt Auftragsabwicklung...</value>
+  </data>
   <data name="AddSeatsOperationCaption" xml:space="preserve">
     <value>Abonnement Sitze hinzufügen.</value>
   </data>
@@ -813,11 +862,17 @@
   <data name="OrderFailureMessage" xml:space="preserve">
     <value>Fehler beim Verarbeitungsreihenfolge. Versuchen Sie später erneut.</value>
   </data>
+  <data name="OrderProcessingFailureNotification" xml:space="preserve">
+    <value>Fehler beim Verarbeitungsreihenfolge. Bitte klicken Sie auf Fertig, und versuchen Sie es erneut.</value>
+  </data>
   <data name="PaymentReceiptFailureNotification" xml:space="preserve">
-    <value>Fehler beim Empfangen von Zahlungsinformationen. Bitte klicken Sie auf fertig, um noch einmal zu versuchen.</value>
+    <value>Fehler beim Empfangen von Zahlungsinformationen. Bitte klicken Sie auf Fertig, um noch einmal zu versuchen.</value>
   </data>
   <data name="ProcessingOrderNotification" xml:space="preserve">
     <value>Zahlungsinformationen erhalten. Verarbeitungsreihenfolge...</value>
+  </data>
+  <data name="ProcessOrderPageCaption" xml:space="preserve">
+    <value>Bestätigung</value>
   </data>
   <data name="NewCustomerOrderSuccessMessage" xml:space="preserve">
     <value>Ihre Registrierung Bestellung wurde erfolgreich bearbeitet.</value>
@@ -838,7 +893,7 @@
     <value>Anzahl</value>
   </data>
   <data name="AssertNumberPositiveInvalidError" xml:space="preserve">
-    <value>{0} muss größer als Null sein.</value>
+    <value>{0} muss größer als NULL sein.</value>
   </data>
   <data name="AssertStringNotEmptyInvalidPrefix" xml:space="preserve">
     <value>Zeichenfolge</value>
@@ -880,7 +935,7 @@
     <value>Zahlung-Modus wird nicht unterstützt</value>
   </data>
   <data name="OfferPriceShouldBeMoreThanZero" xml:space="preserve">
-    <value>Angebotspreis sollte größer als Null sein.</value>
+    <value>Angebotspreis sollte größer als NULL sein.</value>
   </data>
   <data name="MicrosoftOfferIdMustBeSet" xml:space="preserve">
     <value>MicrosoftOfferId muss eingestellt werden</value>
@@ -925,16 +980,22 @@
     <value>Haus</value>
   </data>
   <data name="AdminConsoleDisplayName" xml:space="preserve">
-    <value>Webshop-Designer</value>
+    <value>Web Shop-Designer</value>
   </data>
   <data name="BrandingDisplayName" xml:space="preserve">
     <value>Branding-Setup</value>
   </data>
   <data name="OffersDisplayName" xml:space="preserve">
-    <value>Angebotserstellung</value>
+    <value>Angebote-Setup</value>
   </data>
   <data name="PaymentDisplayName" xml:space="preserve">
-    <value>Einrichtung der Zahlungsmethode</value>
+    <value>Zahlung-Setup</value>
+  </data>
+  <data name="MySubscriptionsDisplayName" xml:space="preserve">
+    <value>Bestellhistorie</value>
+  </data>
+  <data name="MyAccountDisplayName" xml:space="preserve">
+    <value>Abonnements verwalten</value>
   </data>
   <data name="GoToHomePageCaption" xml:space="preserve">
     <value>Gehe zur Startseite</value>
@@ -1107,6 +1168,12 @@
   <data name="LicenseStatusCaption" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="LicenseBasedSubscriptionsCaption" xml:space="preserve">
+    <value>Kunde verwaltet Abonnements</value>
+  </data>
+  <data name="PartnerManagedSubscriptionsCaption" xml:space="preserve">
+    <value>Partner verwaltet Abonnements</value>
+  </data>
   <data name="OrdersCaption" xml:space="preserve">
     <value>Bestellungen</value>
   </data>
@@ -1114,31 +1181,19 @@
     <value>Instrumentationsschlüssel:</value>
   </data>
   <data name="InstrumentationKeyFieldSubText" xml:space="preserve">
-    <value>Sie können eine Application Insights Instrumentationsschlüssel angeben, um die Telemetrie-Daten aus dem Portal zu erfassen.</value>
+    <value>Sie können eine Application Insights instrumentationsschlüssel angeben, um die Telemetrie-Daten aus dem Portal zu erfassen.</value>
   </data>
   <data name="UsageBasedSubscriptionsCaption" xml:space="preserve">
     <value>Nutzung-Abonnements</value>
   </data>
-  <data name="BrandingSectionTooltip" xml:space="preserve">
-    <value>Klicken Sie, um Ihr Unternehmensbranding konfigurieren.</value>
-  </data>
-  <data name="Undo" xml:space="preserve">
-    <value>Rückgängig</value>
-  </data>
-  <data name="CustomerProfileDomainInfoCaption" xml:space="preserve">
-    <value>Ihre Domain-Präfix wird angezeigt, nachdem die @ Ihre Domain e-Mail-Adresse. Es muss eindeutig sein und darf Satzzeichen enthalten. Beispiel: Jobs.</value>
-  </data>
-  <data name="CustomerProfileOffice365EmailCaption" xml:space="preserve">
-    <value>Dies werden die Benutzer-Id, die Sie mit Ihrem Office 365-Konto verwenden möchten.</value>
-  </data>
-  <data name="PrivacyAgreementToolTip" xml:space="preserve">
-    <value>Ansicht dieser Webseite-Datenschutzbestimmungen</value>
-  </data>
   <data name="CustomerManagementDisplayName" xml:space="preserve">
-    <value>Freigeschaltene Kunden</value>
+    <value>Freigeschaltete Kunden</value>
   </data>
   <data name="CustomerManagementHeader" xml:space="preserve">
     <value>Verwalten Sie Kunden für vorab genehmigte Transaktionen.</value>
+  </data>
+  <data name="CustomerManagementSubText" xml:space="preserve">
+    <value>"Alles auswählen", markieren Sie alle aktuelle und zukünftige Kunden als freigeschalteter Transact in der Ladenzeile.</value>
   </data>
   <data name="CustomerManagementAllCustomersToggleCaption" xml:space="preserve">
     <value>Wählen Sie alle</value>
@@ -1170,98 +1225,44 @@
   <data name="ProcessingPreApprovedTxNotification" xml:space="preserve">
     <value>Diese Transaktion ist bereits genehmigten. Verarbeitungsreihenfolge...</value>
   </data>
-  <data name="CommerceOperationTypeAddSubscription" xml:space="preserve">
-    <value>Gekauft</value>
-  </data>
-  <data name="PaymentConfigurationSubTextPrefix" xml:space="preserve">
-    <value>Um Zahlungen von Ihren Kunden annehmen zu können, müssen Sie ein PayPal-Konto benutzen. Wenn Sie über keines verfügen, besuchen Sie bitte </value>
-  </data>
-  <data name="SetupInformation" xml:space="preserve">
-    <value>Kundenangaben</value>
-  </data>
-  <data name="ConfirmationMessage" xml:space="preserve">
-    <value>Danke. Der Kunde erstellt wurde und Ihre Bestellung wurde erfolgreich bearbeitet.</value>
-  </data>
-  <data name="Submit" xml:space="preserve">
-    <value>Weiter zur Zahlung</value>
-  </data>
-  <data name="CustomerRegistrationSuccessMessage" xml:space="preserve">
-    <value>Bestellung vorbereitet und umleiten auf Zahlungs-Gateway...</value>
-  </data>
-  <data name="ProcessingOrderMessage" xml:space="preserve">
-    <value>Zahlungsinformationen gesammelt, Kunden- und Verarbeitungsreihenfolge zu schaffen...</value>
-  </data>
-  <data name="ProcessOrderPageCaption" xml:space="preserve">
-    <value>Bestätigung</value>
-  </data>
-  <data name="ExistingCustomerProcessingOrderMessage" xml:space="preserve">
-    <value>Zahlungsinformationen gesammelt, jetzt Auftragsabwicklung...</value>
-  </data>
-  <data name="CopyRight" xml:space="preserve">
-    <value>Urheberrecht</value>
-  </data>
-  <data name="EmptyMicrosoftOfferListMessage" xml:space="preserve">
-    <value>Keine Angebote gefunden</value>
-  </data>
-  <data name="SelectSearchByOffersPlaceholder" xml:space="preserve">
-    <value>Suche nach Angebot</value>
-  </data>
-  <data name="CustomerManagementSubText" xml:space="preserve">
-    <value>"Alles auswählen", markieren Sie alle aktuelle und zukünftige Kunden als freigeschalteter Transact in der Ladenzeile.</value>
-  </data>
   <data name="SelectSearchbyNameDomainPlaceholder" xml:space="preserve">
     <value>Suche nach Firmenname oder Domäne</value>
-  </data>
-  <data name="LicenseBasedSubscriptionsCaption" xml:space="preserve">
-    <value>Kunde verwaltet Abonnements</value>
-  </data>
-  <data name="PartnerManagedSubscriptionsCaption" xml:space="preserve">
-    <value>Partner verwaltet Abonnements</value>
-  </data>
-  <data name="MySubscriptionsDisplayName" xml:space="preserve">
-    <value>Bestellhistorie</value>
-  </data>
-  <data name="MyAccountDisplayName" xml:space="preserve">
-    <value>Abonnements verwalten</value>
-  </data>
-  <data name="OrderProcessingFailureNotification" xml:space="preserve">
-    <value>Fehler beim Verarbeitungsreihenfolge. Bitte klicken Sie auf fertig, und versuchen Sie es erneut.</value>
   </data>
   <data name="CountryNameIN" xml:space="preserve">
     <value>Indien</value>
   </data>
   <data name="PayUAccountTypeCaption" xml:space="preserve">
-    <value>Konto Typ</value>
+    <value>PayU Kontotyp:</value>
   </data>
   <data name="PayUAccountTypeSubText" xml:space="preserve">
-    <value>Sie können zum Testen Ihrer Transaktionen ein Sandbox-Konto verwenden. Anschlie¬ßend können Sie auf ein Live-Konto umstellen.</value>
+    <value>Sie können ein Test-Konto um Ihre Transaktionen zu testen auswählen. Sobald funktioniert, wechseln Sie zu einem live-Konto-Typ zu Transaktionen</value>
   </data>
   <data name="PayUMerchantKeyCaption" xml:space="preserve">
-    <value>Händlerschlüssel</value>
+    <value>PayU Kaufmann Schlüssel:</value>
   </data>
   <data name="PayUMerchantSaltSubText" xml:space="preserve">
-    <value>Geben Sie Ihre merchant ID ein</value>
+    <value>Geben Sie Ihre PayU Kaufmann Salz</value>
   </data>
   <data name="PayUSaltCaption" xml:space="preserve">
-    <value>Merchant Salt</value>
+    <value>PayU Händler Salz:</value>
   </data>
   <data name="PayUMerchantKeySubText" xml:space="preserve">
-    <value>Geben Sie Ihre merchant ID ein</value>
+    <value>Geben Sie Ihren Schlüssel PayU Kaufmann</value>
   </data>
   <data name="PayUAuthorizationCaption" xml:space="preserve">
-    <value>Genehmigung</value>
+    <value>PayU Autorisierung</value>
   </data>
   <data name="PayUAuthSubText" xml:space="preserve">
-    <value>Geben Sie Ihr</value>
+    <value>Geben Sie Ihre PayU Autorisierung</value>
   </data>
   <data name="PayUPaymentConfigurationHeader" xml:space="preserve">
-    <value>Kontoeinstellungen bearbeiten</value>
+    <value>Bieten Sie Ihre PayUMoney Merchant Account-Einstellungen</value>
   </data>
   <data name="PayUPaymentConfigurationSubTextPostfix" xml:space="preserve">
-    <value>Ich möchte ein neues Konto erstellen</value>
+    <value>einen neuen Händler-Konto erstellen, wenn Sie nicht besitzen.</value>
   </data>
   <data name="PayUPaymentConfigurationSubTextPrefix" xml:space="preserve">
-    <value>Um Zahlungen von Ihren Kunden erhalten, sollten Sie ein PayUMoney Händler-Konto verwenden, besuchen Sie bitte:!</value>
+    <value>Um Zahlungen von Ihren Kunden erhalten, sollten Sie einen PayUMoney Merchant-Account verwenden, besuchen Sie bitte:</value>
   </data>
   <data name="PayUWebsiteCaption" xml:space="preserve">
     <value>payumoney.com</value>

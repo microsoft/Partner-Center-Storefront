@@ -592,7 +592,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copyright 2017.
+        ///   Looks up a localized string similar to Copyright 2018.
         /// </summary>
         public static string CopyRight {
             get {

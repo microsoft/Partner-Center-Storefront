@@ -132,6 +132,9 @@
   <data name="ContactUs" xml:space="preserve">
     <value>Neem contact op met ons</value>
   </data>
+  <data name="CopyRight" xml:space="preserve">
+    <value>Copyright 2018</value>
+  </data>
   <data name="Ellipsis" xml:space="preserve">
     <value>...</value>
   </data>
@@ -225,6 +228,9 @@
   <data name="Confirmation" xml:space="preserve">
     <value>Bevestiging</value>
   </data>
+  <data name="ConfirmationMessage" xml:space="preserve">
+    <value>Dank u. Eerst de klant gemaakt en uw bestelling is verwerkt.</value>
+  </data>
   <data name="ContactInformation" xml:space="preserve">
     <value>Klantgegevens</value>
   </data>
@@ -233,6 +239,9 @@
   </data>
   <data name="MicrosoftId" xml:space="preserve">
     <value>Microsoft ID</value>
+  </data>
+  <data name="SetupInformation" xml:space="preserve">
+    <value>Klantgegevens</value>
   </data>
   <data name="Subscription" xml:space="preserve">
     <value>Abonnement</value>
@@ -245,6 +254,9 @@
   </data>
   <data name="AddSubscriptions" xml:space="preserve">
     <value>Toevoegen van abonnementen</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Ga naar betaling</value>
   </data>
   <data name="AcceptTerms" xml:space="preserve">
     <value>Ik accepteer de voorwaarden en bepalingen</value>
@@ -297,6 +309,9 @@
   <data name="SelectMicrosoftOfferCaption" xml:space="preserve">
     <value>Selecteer een Microsoft bieden:</value>
   </data>
+  <data name="SelectSearchByOffersPlaceholder" xml:space="preserve">
+    <value>Zoek met de aanbieding</value>
+  </data>
   <data name="YourAnnualPriceCaption" xml:space="preserve">
     <value>Jaarlijkse prijs:</value>
   </data>
@@ -317,6 +332,9 @@
   </data>
   <data name="AddSummaryPointTooltip" xml:space="preserve">
     <value>Samenvatting van de offerte na dit toevoegen</value>
+  </data>
+  <data name="BrandingSectionTooltip" xml:space="preserve">
+    <value>Klik hierop als u uw bedrijf branding.</value>
   </data>
   <data name="OfferFeaturePlaceHolder" xml:space="preserve">
     <value>Beschrijven van een functie die deze aanbieding geeft</value>
@@ -374,6 +392,9 @@
   </data>
   <data name="Description" xml:space="preserve">
     <value>Beschrijving</value>
+  </data>
+  <data name="EmptyMicrosoftOfferListMessage" xml:space="preserve">
+    <value>Geen aanbiedingen gevonden</value>
   </data>
   <data name="EmptyOfferListMessage" xml:space="preserve">
     <value>U hoeft niet alle aanbiedingen geconfigureerd. Klik op bovenstaande toevoegen bieden om te beginnen met het toevoegen van uw aanbiedingen.</value>
@@ -517,7 +538,7 @@
     <value>Ophalen van betalingsgegevens</value>
   </data>
   <data name="LiveAccountTypeCaption" xml:space="preserve">
-    <value>Live account</value>
+    <value>Live-account</value>
   </data>
   <data name="PaymentConfigurationHeader" xml:space="preserve">
     <value>Bieden uw PayPal Pro Accountinstellingen</value>
@@ -547,7 +568,7 @@
     <value>Voer uw PayPal klant geheim</value>
   </data>
   <data name="SandboxAccountTypeCaption" xml:space="preserve">
-    <value>Sandbox-rekening</value>
+    <value>Sandbox-account</value>
   </data>
   <data name="UndoUnsavedChanges" xml:space="preserve">
     <value>Betaling van de niet-opgeslagen wijzigingen ongedaan maken</value>
@@ -579,6 +600,9 @@
   <data name="CustomerProfileContactInfoSectionCaption" xml:space="preserve">
     <value>Contact informatie</value>
   </data>
+  <data name="CustomerProfileDomainInfoCaption" xml:space="preserve">
+    <value>Uw Domeinvoorvoegsel verschijnt na de @ in uw domein e-mailadres. Moet uniek zijn en mag leestekens bevatten. Voorbeeld: uwbedrijf.</value>
+  </data>
   <data name="CustomerProfileDomainPrefixCaption" xml:space="preserve">
     <value>Domeinvoorvoegsel</value>
   </data>
@@ -593,6 +617,9 @@
   </data>
   <data name="CustomerProfileLastNameCaption" xml:space="preserve">
     <value>Achternaam</value>
+  </data>
+  <data name="CustomerProfileOffice365EmailCaption" xml:space="preserve">
+    <value>Dit is de gebruikers-id die u met uw Office 365-account gebruiken zal.</value>
   </data>
   <data name="CustomerProfileOffice365UserNameCaption" xml:space="preserve">
     <value>Gebruikersnaam</value>
@@ -630,6 +657,9 @@
   <data name="CommerceOperationTypeAddSeats" xml:space="preserve">
     <value>Extra zitplaatsen</value>
   </data>
+  <data name="CommerceOperationTypeAddSubscription" xml:space="preserve">
+    <value>Gekocht</value>
+  </data>
   <data name="CommerceOperationTypeRenewSubscription" xml:space="preserve">
     <value>Vernieuwing</value>
   </data>
@@ -638,6 +668,9 @@
   </data>
   <data name="CustomerRegistrationMessage" xml:space="preserve">
     <value>Klant registratie...</value>
+  </data>
+  <data name="CustomerRegistrationSuccessMessage" xml:space="preserve">
+    <value>Voorbereiding van de volgorde en omleiden naar betalingsgateway...</value>
   </data>
   <data name="OrderRegistrationFailureMessage" xml:space="preserve">
     <value>Order registratie fout</value>
@@ -759,6 +792,9 @@
   <data name="PrivacyAgreementFieldSubText" xml:space="preserve">
     <value>U kunt een koppeling waarin privacybepalingen aan uw klanten hier die in de voettekst van de home pagina verschijnen zal</value>
   </data>
+  <data name="PrivacyAgreementToolTip" xml:space="preserve">
+    <value>De bepalingen van de privacy van deze website weergeven</value>
+  </data>
   <data name="CouldNotRetrieveCustomerAccount" xml:space="preserve">
     <value>Uw rekening kon niet worden opgehaald. Probeer het later nog eens.</value>
   </data>
@@ -807,6 +843,12 @@
   <data name="InvalidContactUsPhone" xml:space="preserve">
     <value>Voer een geldige contact ondersteuning-telefoon</value>
   </data>
+  <data name="ProcessingOrderMessage" xml:space="preserve">
+    <value>Betalingsgegevens verzameld, klant en verwerkingsvolgorde maken...</value>
+  </data>
+  <data name="ExistingCustomerProcessingOrderMessage" xml:space="preserve">
+    <value>Betalingsinformatie verzameld, nu de verwerkingsvolgorde...</value>
+  </data>
   <data name="AddSeatsOperationCaption" xml:space="preserve">
     <value>Zetels aan abonnement toe te voegen.</value>
   </data>
@@ -819,11 +861,17 @@
   <data name="OrderFailureMessage" xml:space="preserve">
     <value>Fout tijdens de verwerkingsvolgorde. Gelieve later opnieuw proberen.</value>
   </data>
+  <data name="OrderProcessingFailureNotification" xml:space="preserve">
+    <value>Storing in de verwerkingsvolgorde. Klik gedaan en probeer het opnieuw.</value>
+  </data>
   <data name="PaymentReceiptFailureNotification" xml:space="preserve">
     <value>Storing in ontvangst van de betalingsinformatie. Klik gedaan opnieuw te proberen.</value>
   </data>
   <data name="ProcessingOrderNotification" xml:space="preserve">
     <value>Correct ontvangen betalingsinformatie. Verwerkingsvolgorde...</value>
+  </data>
+  <data name="ProcessOrderPageCaption" xml:space="preserve">
+    <value>Bevestiging</value>
   </data>
   <data name="NewCustomerOrderSuccessMessage" xml:space="preserve">
     <value>Uw registratie bestelling correct verwerkt.</value>
@@ -941,6 +989,12 @@
   </data>
   <data name="PaymentDisplayName" xml:space="preserve">
     <value>Betaling Setup</value>
+  </data>
+  <data name="MySubscriptionsDisplayName" xml:space="preserve">
+    <value>Bestelgeschiedenis</value>
+  </data>
+  <data name="MyAccountDisplayName" xml:space="preserve">
+    <value>Abonnementen beheren</value>
   </data>
   <data name="GoToHomePageCaption" xml:space="preserve">
     <value>Ga naar startpagina</value>
@@ -1113,6 +1167,12 @@
   <data name="LicenseStatusCaption" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="LicenseBasedSubscriptionsCaption" xml:space="preserve">
+    <value>Klant beheerd abonnementen</value>
+  </data>
+  <data name="PartnerManagedSubscriptionsCaption" xml:space="preserve">
+    <value>Partner beheerd abonnementen</value>
+  </data>
   <data name="OrdersCaption" xml:space="preserve">
     <value>Bestellingen</value>
   </data>
@@ -1125,26 +1185,17 @@
   <data name="UsageBasedSubscriptionsCaption" xml:space="preserve">
     <value>Gebruik op basis abonnementen</value>
   </data>
-  <data name="BrandingSectionTooltip" xml:space="preserve">
-    <value>Klik hierop als u uw bedrijf branding.</value>
-  </data>
-  <data name="CustomerProfileDomainInfoCaption" xml:space="preserve">
-    <value>Uw Domeinvoorvoegsel verschijnt na de @ in uw domein e-mailadres. Moet uniek zijn en mag leestekens bevatten. Voorbeeld: uwbedrijf.</value>
-  </data>
-  <data name="CustomerProfileOffice365EmailCaption" xml:space="preserve">
-    <value>Dit is de gebruikers-id die u met uw Office 365-account gebruiken zal.</value>
-  </data>
-  <data name="PrivacyAgreementToolTip" xml:space="preserve">
-    <value>De bepalingen van de privacy van deze website weergeven</value>
-  </data>
   <data name="CustomerManagementDisplayName" xml:space="preserve">
     <value>Vooraf geselecteerde bieders klanten</value>
   </data>
   <data name="CustomerManagementHeader" xml:space="preserve">
     <value>Het beheren van klanten voor vooraf geselecteerde transacties.</value>
   </data>
+  <data name="CustomerManagementSubText" xml:space="preserve">
+    <value>'Alles selecteren' markeert alle huidige en toekomstige klanten als vooraf goedgekeurde transact aan de voorkant van de winkel.</value>
+  </data>
   <data name="CustomerManagementAllCustomersToggleCaption" xml:space="preserve">
-    <value>Selecteer alle</value>
+    <value>Alles selecteren</value>
   </data>
   <data name="CustomerManagementPreApprovedColumnCaption" xml:space="preserve">
     <value>Vooraf</value>
@@ -1173,95 +1224,44 @@
   <data name="ProcessingPreApprovedTxNotification" xml:space="preserve">
     <value>Deze transactie is vooraf geselecteerde bieders. Verwerkingsvolgorde...</value>
   </data>
-  <data name="CommerceOperationTypeAddSubscription" xml:space="preserve">
-    <value>Gekocht</value>
-  </data>
-  <data name="SetupInformation" xml:space="preserve">
-    <value>Klantgegevens</value>
-  </data>
-  <data name="ConfirmationMessage" xml:space="preserve">
-    <value>Dank u. Eerst de klant gemaakt en uw bestelling is verwerkt.</value>
-  </data>
-  <data name="Submit" xml:space="preserve">
-    <value>Ga naar betaling</value>
-  </data>
-  <data name="CustomerRegistrationSuccessMessage" xml:space="preserve">
-    <value>Voorbereiding van de volgorde en omleiden naar betalingsgateway...</value>
-  </data>
-  <data name="ProcessingOrderMessage" xml:space="preserve">
-    <value>Betalingsgegevens verzameld, klant en verwerkingsvolgorde maken...</value>
-  </data>
-  <data name="ProcessOrderPageCaption" xml:space="preserve">
-    <value>Bevestiging</value>
-  </data>
-  <data name="ExistingCustomerProcessingOrderMessage" xml:space="preserve">
-    <value>Betalingsinformatie verzameld, nu de verwerkingsvolgorde...</value>
-  </data>
-  <data name="CopyRight" xml:space="preserve">
-    <value>Copyright 2017</value>
-  </data>
-  <data name="EmptyMicrosoftOfferListMessage" xml:space="preserve">
-    <value>Geen aanbiedingen gevonden</value>
-  </data>
-  <data name="SelectSearchByOffersPlaceholder" xml:space="preserve">
-    <value>Zoek met de aanbieding</value>
-  </data>
-  <data name="CustomerManagementSubText" xml:space="preserve">
-    <value>'Alles selecteren' markeert alle huidige en toekomstige klanten als vooraf goedgekeurde transact aan de voorkant van de winkel.</value>
-  </data>
   <data name="SelectSearchbyNameDomainPlaceholder" xml:space="preserve">
     <value>Zoeken op bedrijfsnaam of domein</value>
-  </data>
-  <data name="LicenseBasedSubscriptionsCaption" xml:space="preserve">
-    <value>Klant beheerd abonnementen</value>
-  </data>
-  <data name="PartnerManagedSubscriptionsCaption" xml:space="preserve">
-    <value>Partner beheerd abonnementen</value>
-  </data>
-  <data name="MySubscriptionsDisplayName" xml:space="preserve">
-    <value>Bestelgeschiedenis</value>
-  </data>
-  <data name="MyAccountDisplayName" xml:space="preserve">
-    <value>Abonnementen beheren</value>
-  </data>
-  <data name="OrderProcessingFailureNotification" xml:space="preserve">
-    <value>Storing in de verwerkingsvolgorde. Klik gedaan en probeer het opnieuw.</value>
   </data>
   <data name="CountryNameIN" xml:space="preserve">
     <value>India</value>
   </data>
   <data name="PayUAccountTypeCaption" xml:space="preserve">
-    <value>Account type</value>
+    <value>PayU rekeningsoort:</value>
   </data>
   <data name="PayUAccountTypeSubText" xml:space="preserve">
     <value>U kunt het accounttype van een test om te testen uw transacties. Zodra u werkt, kunt u overschakelen naar een live-accounttype te starten transacties te verrichten</value>
   </data>
   <data name="PayUMerchantKeyCaption" xml:space="preserve">
-    <value>Merchant sleutel</value>
+    <value>PayU Merchant Key:</value>
   </data>
   <data name="PayUMerchantSaltSubText" xml:space="preserve">
-    <value>Vul uw iDEAL Merchant ID in</value>
+    <value>Voer uw PayU handelaar zout</value>
   </data>
   <data name="PayUSaltCaption" xml:space="preserve">
-    <value>Merchant Salt</value>
+    <value>PayU koopman zout:</value>
   </data>
   <data name="PayUMerchantKeySubText" xml:space="preserve">
-    <value>Vul uw iDEAL Merchant key in.</value>
+    <value>Voer uw sleutel PayU koopman</value>
   </data>
   <data name="PayUAuthorizationCaption" xml:space="preserve">
-    <value>AUTHORISATIE</value>
+    <value>PayU vergunning</value>
   </data>
   <data name="PayUAuthSubText" xml:space="preserve">
-    <value>Vermeld uw</value>
+    <value>Voer uw toestemming PayU</value>
   </data>
   <data name="PayUPaymentConfigurationHeader" xml:space="preserve">
-    <value>Account instellingen</value>
+    <value>Bieden uw PayUMoney Merchant Accountinstellingen</value>
   </data>
   <data name="PayUPaymentConfigurationSubTextPostfix" xml:space="preserve">
-    <value>Klik hier om een Activa rekening aan te maken</value>
+    <value>maken een nieuwe zakelijke rekening hebt u geen één.</value>
   </data>
   <data name="PayUPaymentConfigurationSubTextPrefix" xml:space="preserve">
-    <value>Voor het ontvangen van betalingen van uw klanten, moet u gebruik maken van een PayUMoney merchant account, u terecht op:</value>
+    <value>Voor het ontvangen van betalingen van uw klanten, moet u een PayUMoney koopman-account gebruikt, bezoek:</value>
   </data>
   <data name="PayUWebsiteCaption" xml:space="preserve">
     <value>payumoney.com</value>

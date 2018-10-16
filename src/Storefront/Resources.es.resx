@@ -132,6 +132,9 @@
   <data name="ContactUs" xml:space="preserve">
     <value>En contacto con nosotros</value>
   </data>
+  <data name="CopyRight" xml:space="preserve">
+    <value>Copyright 2018</value>
+  </data>
   <data name="Ellipsis" xml:space="preserve">
     <value>...</value>
   </data>
@@ -175,7 +178,7 @@
     <value> nuevas notificaciones</value>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>Vale</value>
+    <value>De acuerdo</value>
   </data>
   <data name="PasswordLabel" xml:space="preserve">
     <value>Contraseña</value>
@@ -225,6 +228,9 @@
   <data name="Confirmation" xml:space="preserve">
     <value>Confirmación</value>
   </data>
+  <data name="ConfirmationMessage" xml:space="preserve">
+    <value>Gracias. El cliente fue creado y su solicitud fue procesada con éxito.</value>
+  </data>
   <data name="ContactInformation" xml:space="preserve">
     <value>Información del cliente</value>
   </data>
@@ -233,6 +239,9 @@
   </data>
   <data name="MicrosoftId" xml:space="preserve">
     <value>ID de Microsoft</value>
+  </data>
+  <data name="SetupInformation" xml:space="preserve">
+    <value>Detalles de cliente</value>
   </data>
   <data name="Subscription" xml:space="preserve">
     <value>Suscripción</value>
@@ -245,6 +254,9 @@
   </data>
   <data name="AddSubscriptions" xml:space="preserve">
     <value>Añadir suscripciones</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Proceder al pago</value>
   </data>
   <data name="AcceptTerms" xml:space="preserve">
     <value>Acepto los términos y condiciones</value>
@@ -297,6 +309,9 @@
   <data name="SelectMicrosoftOfferCaption" xml:space="preserve">
     <value>Seleccione una oferta de Microsoft:</value>
   </data>
+  <data name="SelectSearchByOffersPlaceholder" xml:space="preserve">
+    <value>Búsqueda por la oferta de</value>
+  </data>
   <data name="YourAnnualPriceCaption" xml:space="preserve">
     <value>Precio anual:</value>
   </data>
@@ -317,6 +332,9 @@
   </data>
   <data name="AddSummaryPointTooltip" xml:space="preserve">
     <value>Añadir Extracto de oferta después de esto</value>
+  </data>
+  <data name="BrandingSectionTooltip" xml:space="preserve">
+    <value>Haga clic para configurar la marca de su empresa.</value>
   </data>
   <data name="OfferFeaturePlaceHolder" xml:space="preserve">
     <value>Describir una característica que da a esta oferta</value>
@@ -374,6 +392,9 @@
   </data>
   <data name="Description" xml:space="preserve">
     <value>Descripción</value>
+  </data>
+  <data name="EmptyMicrosoftOfferListMessage" xml:space="preserve">
+    <value>No hay ofertas encontradas</value>
   </data>
   <data name="EmptyOfferListMessage" xml:space="preserve">
     <value>No tienes ofertas configuradas. Haga clic en Añadir oferta anterior para comenzar a añadir sus ofertas.</value>
@@ -517,7 +538,7 @@
     <value>Recuperar información de pago</value>
   </data>
   <data name="LiveAccountTypeCaption" xml:space="preserve">
-    <value>Cuenta</value>
+    <value>Cuenta real</value>
   </data>
   <data name="PaymentConfigurationHeader" xml:space="preserve">
     <value>Proporcionar su PayPal Pro configuración de la cuenta</value>
@@ -547,7 +568,7 @@
     <value>Entrar en su secreto de cliente de PayPal</value>
   </data>
   <data name="SandboxAccountTypeCaption" xml:space="preserve">
-    <value>Cuenta de sandbox</value>
+    <value>Cuenta Sandbox</value>
   </data>
   <data name="UndoUnsavedChanges" xml:space="preserve">
     <value>Deshacer los cambios no guardados pago</value>
@@ -579,6 +600,9 @@
   <data name="CustomerProfileContactInfoSectionCaption" xml:space="preserve">
     <value>Información de contacto</value>
   </data>
+  <data name="CustomerProfileDomainInfoCaption" xml:space="preserve">
+    <value>El prefijo de su dominio aparecerá después de la @ en su dirección de correo electrónico de dominio. Tiene que ser único y no puede contener cualquier signos de puntuación. Ejemplo: yourcompany.</value>
+  </data>
   <data name="CustomerProfileDomainPrefixCaption" xml:space="preserve">
     <value>Prefijo de número de dominio</value>
   </data>
@@ -593,6 +617,9 @@
   </data>
   <data name="CustomerProfileLastNameCaption" xml:space="preserve">
     <value>Apellido</value>
+  </data>
+  <data name="CustomerProfileOffice365EmailCaption" xml:space="preserve">
+    <value>Se trata de la identificación de usuario que utilizará con su cuenta de Office 365.</value>
   </data>
   <data name="CustomerProfileOffice365UserNameCaption" xml:space="preserve">
     <value>Nombre de usuario</value>
@@ -630,6 +657,9 @@
   <data name="CommerceOperationTypeAddSeats" xml:space="preserve">
     <value>Añadido asientos</value>
   </data>
+  <data name="CommerceOperationTypeAddSubscription" xml:space="preserve">
+    <value>Comprar</value>
+  </data>
   <data name="CommerceOperationTypeRenewSubscription" xml:space="preserve">
     <value>Renovación</value>
   </data>
@@ -638,6 +668,9 @@
   </data>
   <data name="CustomerRegistrationMessage" xml:space="preserve">
     <value>Registro de cliente...</value>
+  </data>
+  <data name="CustomerRegistrationSuccessMessage" xml:space="preserve">
+    <value>Preparación de pedido y redirigiendo a la pasarela de pago...</value>
   </data>
   <data name="OrderRegistrationFailureMessage" xml:space="preserve">
     <value>Orden registro Error</value>
@@ -759,6 +792,9 @@
   <data name="PrivacyAgreementFieldSubText" xml:space="preserve">
     <value>Puede especificar un enlace que muestra los términos de privacidad a sus clientes aquí que se mostrarán en el pie de página de inicio</value>
   </data>
+  <data name="PrivacyAgreementToolTip" xml:space="preserve">
+    <value>Vista esta términos de privacidad del sitio web</value>
+  </data>
   <data name="CouldNotRetrieveCustomerAccount" xml:space="preserve">
     <value>No se pudo recuperar su cuenta. Por favor Inténtalo más tarde.</value>
   </data>
@@ -807,6 +843,12 @@
   <data name="InvalidContactUsPhone" xml:space="preserve">
     <value>Por favor ingrese un teléfono válido apoyo contacto</value>
   </data>
+  <data name="ProcessingOrderMessage" xml:space="preserve">
+    <value>Información recogida, creación de cliente y orden de procesamiento...</value>
+  </data>
+  <data name="ExistingCustomerProcessingOrderMessage" xml:space="preserve">
+    <value>Pago procesamiento de la información recopilada, ahora orden...</value>
+  </data>
   <data name="AddSeatsOperationCaption" xml:space="preserve">
     <value>Añadiendo asientos a suscripción.</value>
   </data>
@@ -819,11 +861,17 @@
   <data name="OrderFailureMessage" xml:space="preserve">
     <value>Error al orden de procesamiento. Por favor vuelva a intentarlo más tarde.</value>
   </data>
+  <data name="OrderProcessingFailureNotification" xml:space="preserve">
+    <value>Falta en el orden de procesamiento. Por favor, haga clic en hecho y vuelva a intentarlo.</value>
+  </data>
   <data name="PaymentReceiptFailureNotification" xml:space="preserve">
     <value>Falla en la recepción de información de pago. Por favor, haga clic en terminado para intentarlo de nuevo.</value>
   </data>
   <data name="ProcessingOrderNotification" xml:space="preserve">
     <value>Recibido correctamente la información de pago. Orden de procesamiento...</value>
+  </data>
+  <data name="ProcessOrderPageCaption" xml:space="preserve">
+    <value>Confirmación</value>
   </data>
   <data name="NewCustomerOrderSuccessMessage" xml:space="preserve">
     <value>Su pedido de inscripción fue procesada con éxito.</value>
@@ -941,6 +989,12 @@
   </data>
   <data name="PaymentDisplayName" xml:space="preserve">
     <value>Configuración de pagos</value>
+  </data>
+  <data name="MySubscriptionsDisplayName" xml:space="preserve">
+    <value>Historia de la orden</value>
+  </data>
+  <data name="MyAccountDisplayName" xml:space="preserve">
+    <value>Administrar suscripciones</value>
   </data>
   <data name="GoToHomePageCaption" xml:space="preserve">
     <value>Ir a la página de inicio</value>
@@ -1113,6 +1167,12 @@
   <data name="LicenseStatusCaption" xml:space="preserve">
     <value>Estado</value>
   </data>
+  <data name="LicenseBasedSubscriptionsCaption" xml:space="preserve">
+    <value>Suscripciones de clientes gestionados</value>
+  </data>
+  <data name="PartnerManagedSubscriptionsCaption" xml:space="preserve">
+    <value>Suscripciones de socios administrados</value>
+  </data>
   <data name="OrdersCaption" xml:space="preserve">
     <value>Órdenes de</value>
   </data>
@@ -1125,23 +1185,14 @@
   <data name="UsageBasedSubscriptionsCaption" xml:space="preserve">
     <value>Suscripciones de uso basado en</value>
   </data>
-  <data name="BrandingSectionTooltip" xml:space="preserve">
-    <value>Haga clic para configurar la marca de su empresa.</value>
-  </data>
-  <data name="CustomerProfileDomainInfoCaption" xml:space="preserve">
-    <value>El prefijo de su dominio aparecerá después de la @ en su dirección de correo electrónico de dominio. Tiene que ser único y no puede contener cualquier signos de puntuación. Ejemplo: yourcompany.</value>
-  </data>
-  <data name="CustomerProfileOffice365EmailCaption" xml:space="preserve">
-    <value>Se trata de la identificación de usuario que utilizará con su cuenta de Office 365.</value>
-  </data>
-  <data name="PrivacyAgreementToolTip" xml:space="preserve">
-    <value>Vista esta términos de privacidad del sitio web</value>
-  </data>
   <data name="CustomerManagementDisplayName" xml:space="preserve">
     <value>Clientes pre aprobados</value>
   </data>
   <data name="CustomerManagementHeader" xml:space="preserve">
     <value>Gestión de clientes para las transacciones previamente aprobados.</value>
+  </data>
+  <data name="CustomerManagementSubText" xml:space="preserve">
+    <value>"Seleccionar todo" va a marcar todos los actuales y futuros clientes como aprobados para tramitar en el frente de la tienda.</value>
   </data>
   <data name="CustomerManagementAllCustomersToggleCaption" xml:space="preserve">
     <value>Seleccionar todo</value>
@@ -1173,95 +1224,44 @@
   <data name="ProcessingPreApprovedTxNotification" xml:space="preserve">
     <value>Esta transacción es aprobada previamente. Orden de procesamiento...</value>
   </data>
-  <data name="CommerceOperationTypeAddSubscription" xml:space="preserve">
-    <value>Comprar</value>
-  </data>
-  <data name="SetupInformation" xml:space="preserve">
-    <value>Detalles del Cliente</value>
-  </data>
-  <data name="ConfirmationMessage" xml:space="preserve">
-    <value>Gracias. El cliente fue creado y su solicitud fue procesada con éxito.</value>
-  </data>
-  <data name="Submit" xml:space="preserve">
-    <value>Proceder al pago</value>
-  </data>
-  <data name="CustomerRegistrationSuccessMessage" xml:space="preserve">
-    <value>Preparación de pedido y redirigiendo a la pasarela de pago...</value>
-  </data>
-  <data name="ProcessingOrderMessage" xml:space="preserve">
-    <value>Información recogida, creación de cliente y orden de procesamiento...</value>
-  </data>
-  <data name="ProcessOrderPageCaption" xml:space="preserve">
-    <value>Confirmación</value>
-  </data>
-  <data name="ExistingCustomerProcessingOrderMessage" xml:space="preserve">
-    <value>Pago procesamiento de la información recopilada, ahora orden...</value>
-  </data>
-  <data name="CopyRight" xml:space="preserve">
-    <value>Copyright © 2017</value>
-  </data>
-  <data name="EmptyMicrosoftOfferListMessage" xml:space="preserve">
-    <value>No hay ofertas encontradas</value>
-  </data>
-  <data name="SelectSearchByOffersPlaceholder" xml:space="preserve">
-    <value>Búsqueda por la oferta de</value>
-  </data>
-  <data name="CustomerManagementSubText" xml:space="preserve">
-    <value>"Seleccionar todo" va a marcar todos los actuales y futuros clientes como aprobados para tramitar en el frente de la tienda.</value>
-  </data>
   <data name="SelectSearchbyNameDomainPlaceholder" xml:space="preserve">
     <value>Buscar por dominio o nombre de la empresa</value>
-  </data>
-  <data name="LicenseBasedSubscriptionsCaption" xml:space="preserve">
-    <value>Suscripciones de clientes gestionados</value>
-  </data>
-  <data name="PartnerManagedSubscriptionsCaption" xml:space="preserve">
-    <value>Suscripciones de socios administrados</value>
-  </data>
-  <data name="MySubscriptionsDisplayName" xml:space="preserve">
-    <value>Historia de la orden</value>
-  </data>
-  <data name="MyAccountDisplayName" xml:space="preserve">
-    <value>Administrar suscripciones</value>
-  </data>
-  <data name="OrderProcessingFailureNotification" xml:space="preserve">
-    <value>Falta en el orden de procesamiento. Por favor, haga clic en hecho y vuelva a intentarlo.</value>
   </data>
   <data name="CountryNameIN" xml:space="preserve">
     <value>India</value>
   </data>
   <data name="PayUAccountTypeCaption" xml:space="preserve">
-    <value>Tpo de Cuenta</value>
+    <value>PayU el tipo de cuenta:</value>
   </data>
   <data name="PayUAccountTypeSubText" xml:space="preserve">
     <value>Puede seleccionar un tipo de cuenta de prueba para probar sus transacciones. Una vez en marcha, se puede cambiar a un tipo de cuenta para empezar a tramitar</value>
   </data>
   <data name="PayUMerchantKeyCaption" xml:space="preserve">
-    <value>Merchant Key</value>
+    <value>Comerciante de PayU clave:</value>
   </data>
   <data name="PayUMerchantSaltSubText" xml:space="preserve">
-    <value>Ingrese su identificación de comerciante</value>
+    <value>Introduzca su sal PayU del comerciante</value>
   </data>
   <data name="PayUSaltCaption" xml:space="preserve">
-    <value>Merchant Salt</value>
+    <value>PayU sal mercantil:</value>
   </data>
   <data name="PayUMerchantKeySubText" xml:space="preserve">
-    <value>Ingrese su identificación de comerciante</value>
+    <value>Introduzca su código de comerciante PayU</value>
   </data>
   <data name="PayUAuthorizationCaption" xml:space="preserve">
-    <value>Autorización</value>
+    <value>Autorización de PayU</value>
   </data>
   <data name="PayUAuthSubText" xml:space="preserve">
-    <value>¡Entra en su autorización de PayU!</value>
+    <value>Introduzca su autorización por PayU</value>
   </data>
   <data name="PayUPaymentConfigurationHeader" xml:space="preserve">
-    <value>Configuración de la cuenta</value>
+    <value>Proporcionar al vendedor de PayUMoney configuración de la cuenta</value>
   </data>
   <data name="PayUPaymentConfigurationSubTextPostfix" xml:space="preserve">
-    <value>para crear una nueva cuenta mercantil si no tiene una.!</value>
+    <value>para crear una nueva cuenta si no tienes uno.</value>
   </data>
   <data name="PayUPaymentConfigurationSubTextPrefix" xml:space="preserve">
-    <value>Para recibir pagos de sus clientes, debe usar una cuenta de comerciante de PayUMoney, visite :!</value>
+    <value>Para recibir los pagos de sus clientes, debe utilizar una cuenta de comerciante de PayUMoney, por favor visite:</value>
   </data>
   <data name="PayUWebsiteCaption" xml:space="preserve">
     <value>payumoney.com</value>
@@ -1276,9 +1276,9 @@
     <value>Identificador de usuario no válido.</value>
   </data>
   <data name="AcceptPhrase" xml:space="preserve">
-    <value>Acepto las</value>
+    <value>Acepto la</value>
   </data>
   <data name="TermsOfService" xml:space="preserve">
-    <value>Condiciones del servicio</value>
+    <value>términos de servicio</value>
   </data>
 </root>
