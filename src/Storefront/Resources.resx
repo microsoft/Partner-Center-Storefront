@@ -133,7 +133,7 @@
     <value>Contact us</value>
   </data>
   <data name="CopyRight" xml:space="preserve">
-    <value>Copyright 2017</value>
+    <value>Copyright 2018</value>
   </data>
   <data name="Ellipsis" xml:space="preserve">
     <value>...</value>
@@ -1265,5 +1265,20 @@
   </data>
   <data name="PayUWebsiteCaption" xml:space="preserve">
     <value>payumoney.com</value>
+  </data>
+  <data name="AgreementUserIdFieldHeader" xml:space="preserve">
+    <value>Agreement User ID:</value>
+  </data>
+  <data name="AgreementUserIdSubText" xml:space="preserve">
+    <value>Identifier of the user from the partner to be associated with the acceptance of the Microsoft Cloud Agreement.</value>
+  </data>
+  <data name="InvalidAgreementUserId" xml:space="preserve">
+    <value>Invalid user identifier.</value>
+  </data>
+  <data name="AcceptPhrase" xml:space="preserve">
+    <value>I accept the</value>
+  </data>
+  <data name="TermsOfService" xml:space="preserve">
+    <value>terms of service</value>
   </data>
 </root>

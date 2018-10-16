@@ -14,7 +14,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Filters.Mvc
     /// Attribute used to track exceptions using Application Insights if it is configured.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
-    public class AiHandleErrorAttribute : HandleErrorAttribute
+    public sealed class AiHandleErrorAttribute : HandleErrorAttribute
     {
         /// <summary>
         /// Called when an exception occurs.
@@ -23,12 +23,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Filters.Mvc
         /// <remarks>If customerError is set to Off then the exception will be reported through telemetry.</remarks>
         public override void OnException(ExceptionContext filterContext)
         {
-            if (filterContext?.HttpContext != null && filterContext.Exception != null)
+            if (filterContext?.HttpContext != null && filterContext.Exception != null && filterContext.HttpContext.IsCustomErrorEnabled)
             {
-                if (filterContext.HttpContext.IsCustomErrorEnabled)
-                {
-                    ApplicationDomain.Instance.TelemetryService.Provider.TrackException(filterContext.Exception);
-                }
+                ApplicationDomain.Instance.TelemetryService.Provider.TrackException(filterContext.Exception);
             }
 
             base.OnException(filterContext);

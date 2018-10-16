@@ -132,6 +132,9 @@
   <data name="ContactUs" xml:space="preserve">
     <value>お問い合わせ</value>
   </data>
+  <data name="CopyRight" xml:space="preserve">
+    <value>著作権 2018</value>
+  </data>
   <data name="Ellipsis" xml:space="preserve">
     <value>.</value>
   </data>
@@ -142,13 +145,13 @@
     <value>ポータルのコンテンツを取得できませんでした。</value>
   </data>
   <data name="First" xml:space="preserve">
-    <value>最初</value>
+    <value>まずは</value>
   </data>
   <data name="InvalidPortalConfiguration" xml:space="preserve">
     <value>ポータルの構成が無効であると思われる</value>
   </data>
   <data name="Last" xml:space="preserve">
-    <value>最後</value>
+    <value>前の</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>読み込み</value>
@@ -163,7 +166,7 @@
     <value>戻ってください。</value>
   </data>
   <data name="Next" xml:space="preserve">
-    <value>次</value>
+    <value>次に</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>違います</value>
@@ -205,7 +208,7 @@
     <value>表示タイル</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>[はい]</value>
+    <value>うん</value>
   </data>
   <data name="EmptyOffersErrorMessage" xml:space="preserve">
     <value>少なくとも 1 つの提供を購入するを選択してください。</value>
@@ -225,14 +228,20 @@
   <data name="Confirmation" xml:space="preserve">
     <value>確認</value>
   </data>
+  <data name="ConfirmationMessage" xml:space="preserve">
+    <value>ありがとう。お客様が作成され、ご注文が正常に処理されました。</value>
+  </data>
   <data name="ContactInformation" xml:space="preserve">
     <value>顧客情報</value>
   </data>
   <data name="Done" xml:space="preserve">
-    <value>行われます</value>
+    <value>完成です</value>
   </data>
   <data name="MicrosoftId" xml:space="preserve">
     <value>マイクロソフトの ID</value>
+  </data>
+  <data name="SetupInformation" xml:space="preserve">
+    <value>顧客の詳細</value>
   </data>
   <data name="Subscription" xml:space="preserve">
     <value>サブスクリプション</value>
@@ -245,6 +254,9 @@
   </data>
   <data name="AddSubscriptions" xml:space="preserve">
     <value>サブスクリプションを追加します。</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>お支払いに進みます</value>
   </data>
   <data name="AcceptTerms" xml:space="preserve">
     <value>利用規約に同意します。</value>
@@ -297,6 +309,9 @@
   <data name="SelectMicrosoftOfferCaption" xml:space="preserve">
     <value>マイクロソフトのオファーを選択します。</value>
   </data>
+  <data name="SelectSearchByOffersPlaceholder" xml:space="preserve">
+    <value>提供による検索します。</value>
+  </data>
   <data name="YourAnnualPriceCaption" xml:space="preserve">
     <value>年間の価格:</value>
   </data>
@@ -317,6 +332,9 @@
   </data>
   <data name="AddSummaryPointTooltip" xml:space="preserve">
     <value>この後キャンペーン概要を追加します。</value>
+  </data>
+  <data name="BrandingSectionTooltip" xml:space="preserve">
+    <value>あなたの会社のブランドを構成するをクリックします。</value>
   </data>
   <data name="OfferFeaturePlaceHolder" xml:space="preserve">
     <value>このオファーを与える機能について説明します。</value>
@@ -374,6 +392,9 @@
   </data>
   <data name="Description" xml:space="preserve">
     <value>説明</value>
+  </data>
+  <data name="EmptyMicrosoftOfferListMessage" xml:space="preserve">
+    <value>ない提供していますが見つかりました</value>
   </data>
   <data name="EmptyOfferListMessage" xml:space="preserve">
     <value>構成されている任意のオファーがありません。あなたのオファーを追加する上記提供を追加をクリックします。</value>
@@ -547,7 +568,7 @@
     <value>あなたの PayPal のクライアント シークレットを入力します。</value>
   </data>
   <data name="SandboxAccountTypeCaption" xml:space="preserve">
-    <value>サンド ボックスの アカウント</value>
+    <value>サンド ボックス アカウント</value>
   </data>
   <data name="UndoUnsavedChanges" xml:space="preserve">
     <value>保存されていないお支払いの変更を元に戻す</value>
@@ -579,6 +600,9 @@
   <data name="CustomerProfileContactInfoSectionCaption" xml:space="preserve">
     <value>連絡先情報</value>
   </data>
+  <data name="CustomerProfileDomainInfoCaption" xml:space="preserve">
+    <value>ドメイン プレフィックスが表示されます後、@ あなたのドメインのメール アドレスで。一意である必要があり、任意の句読点を含めることはできません。例: 貴社。</value>
+  </data>
   <data name="CustomerProfileDomainPrefixCaption" xml:space="preserve">
     <value>ドメイン プレフィックス</value>
   </data>
@@ -593,6 +617,9 @@
   </data>
   <data name="CustomerProfileLastNameCaption" xml:space="preserve">
     <value>最後の名前</value>
+  </data>
+  <data name="CustomerProfileOffice365EmailCaption" xml:space="preserve">
+    <value>これは、Office 365 アカウントに使用するユーザー id になります。</value>
   </data>
   <data name="CustomerProfileOffice365UserNameCaption" xml:space="preserve">
     <value>ユーザー名</value>
@@ -630,6 +657,9 @@
   <data name="CommerceOperationTypeAddSeats" xml:space="preserve">
     <value>追加席</value>
   </data>
+  <data name="CommerceOperationTypeAddSubscription" xml:space="preserve">
+    <value>ご購入</value>
+  </data>
   <data name="CommerceOperationTypeRenewSubscription" xml:space="preserve">
     <value>更新</value>
   </data>
@@ -638,6 +668,9 @@
   </data>
   <data name="CustomerRegistrationMessage" xml:space="preserve">
     <value>顧客を登録しています.</value>
+  </data>
+  <data name="CustomerRegistrationSuccessMessage" xml:space="preserve">
+    <value>注文の準備とお支払いゲートウェイにリダイレクトする.</value>
   </data>
   <data name="OrderRegistrationFailureMessage" xml:space="preserve">
     <value>注文登録エラー</value>
@@ -759,6 +792,9 @@
   <data name="PrivacyAgreementFieldSubText" xml:space="preserve">
     <value>ここでホーム ページのフッターに表示されますあなたの顧客にプライバシー条件を示すリンクを指定できます。</value>
   </data>
+  <data name="PrivacyAgreementToolTip" xml:space="preserve">
+    <value>このウェブサイトのプライバシー規約を表示します。</value>
+  </data>
   <data name="CouldNotRetrieveCustomerAccount" xml:space="preserve">
     <value>あなたのアカウントを取得できませんでした。後でもう一度試してください。</value>
   </data>
@@ -807,6 +843,12 @@
   <data name="InvalidContactUsPhone" xml:space="preserve">
     <value>有効な連絡先サポートの電話番号を入力してください。</value>
   </data>
+  <data name="ProcessingOrderMessage" xml:space="preserve">
+    <value>お支払いの情報の収集、顧客との処理順序を作成.</value>
+  </data>
+  <data name="ExistingCustomerProcessingOrderMessage" xml:space="preserve">
+    <value>お支払い情報を収集、処理順序今.</value>
+  </data>
   <data name="AddSeatsOperationCaption" xml:space="preserve">
     <value>席をサブスクリプションに追加します。</value>
   </data>
@@ -819,11 +861,17 @@
   <data name="OrderFailureMessage" xml:space="preserve">
     <value>処理順序エラーが発生しました。後で再試行してください。</value>
   </data>
+  <data name="OrderProcessingFailureNotification" xml:space="preserve">
+    <value>処理順序に失敗しました。[完了] をクリックして、もう一度やり直してください。</value>
+  </data>
   <data name="PaymentReceiptFailureNotification" xml:space="preserve">
     <value>支払い情報の受信に失敗しました。再試行する完了] をクリックしてください。</value>
   </data>
   <data name="ProcessingOrderNotification" xml:space="preserve">
     <value>お支払い情報を正常に受信します。処理順序.</value>
+  </data>
+  <data name="ProcessOrderPageCaption" xml:space="preserve">
+    <value>確認</value>
   </data>
   <data name="NewCustomerOrderSuccessMessage" xml:space="preserve">
     <value>登録注文が正常に処理されました。</value>
@@ -941,6 +989,12 @@
   </data>
   <data name="PaymentDisplayName" xml:space="preserve">
     <value>お支払い設定</value>
+  </data>
+  <data name="MySubscriptionsDisplayName" xml:space="preserve">
+    <value>注文履歴</value>
+  </data>
+  <data name="MyAccountDisplayName" xml:space="preserve">
+    <value>サブスクリプションを管理します。</value>
   </data>
   <data name="GoToHomePageCaption" xml:space="preserve">
     <value>ホーム ページに移動します。</value>
@@ -1113,6 +1167,12 @@
   <data name="LicenseStatusCaption" xml:space="preserve">
     <value>ステータス</value>
   </data>
+  <data name="LicenseBasedSubscriptionsCaption" xml:space="preserve">
+    <value>お客様が管理するサブスクリプション</value>
+  </data>
+  <data name="PartnerManagedSubscriptionsCaption" xml:space="preserve">
+    <value>パートナーは、サブスクリプションを管理</value>
+  </data>
   <data name="OrdersCaption" xml:space="preserve">
     <value>注文</value>
   </data>
@@ -1125,23 +1185,14 @@
   <data name="UsageBasedSubscriptionsCaption" xml:space="preserve">
     <value>使用状況ベースのサブスクリプション</value>
   </data>
-  <data name="BrandingSectionTooltip" xml:space="preserve">
-    <value>あなたの会社のブランドを構成するをクリックします。</value>
-  </data>
-  <data name="CustomerProfileDomainInfoCaption" xml:space="preserve">
-    <value>ドメイン プレフィックスが表示されます後、@ あなたのドメインのメール アドレスで。一意である必要があり、任意の句読点を含めることはできません。例: 貴社。</value>
-  </data>
-  <data name="CustomerProfileOffice365EmailCaption" xml:space="preserve">
-    <value>これは、Office 365 アカウントに使用するユーザー id になります。</value>
-  </data>
-  <data name="PrivacyAgreementToolTip" xml:space="preserve">
-    <value>このウェブサイトのプライバシー規約を表示します。</value>
-  </data>
   <data name="CustomerManagementDisplayName" xml:space="preserve">
     <value>事前承認済みのお客様</value>
   </data>
   <data name="CustomerManagementHeader" xml:space="preserve">
     <value>事前に承認されたトランザクションのための顧客を管理します。</value>
+  </data>
+  <data name="CustomerManagementSubText" xml:space="preserve">
+    <value>「すべて選択」店の前の事前承認としてすべて現在および将来お客様を迎えます。</value>
   </data>
   <data name="CustomerManagementAllCustomersToggleCaption" xml:space="preserve">
     <value>すべてを選択します。</value>
@@ -1173,97 +1224,61 @@
   <data name="ProcessingPreApprovedTxNotification" xml:space="preserve">
     <value>このトランザクションは、事前承認済みです。処理順序.</value>
   </data>
-  <data name="CommerceOperationTypeAddSubscription" xml:space="preserve">
-    <value>ご購入</value>
-  </data>
-  <data name="SetupInformation" xml:space="preserve">
-    <value>お客様情報</value>
-  </data>
-  <data name="ConfirmationMessage" xml:space="preserve">
-    <value>ありがとう。お客様が作成され、ご注文が正常に処理されました。</value>
-  </data>
-  <data name="Submit" xml:space="preserve">
-    <value>お支払いに進みます</value>
-  </data>
-  <data name="CustomerRegistrationSuccessMessage" xml:space="preserve">
-    <value>注文の準備とお支払いゲートウェイにリダイレクトする.</value>
-  </data>
-  <data name="ProcessingOrderMessage" xml:space="preserve">
-    <value>お支払いの情報の収集、顧客との処理順序を作成.</value>
-  </data>
-  <data name="ProcessOrderPageCaption" xml:space="preserve">
-    <value>確認</value>
-  </data>
-  <data name="ExistingCustomerProcessingOrderMessage" xml:space="preserve">
-    <value>お支払い情報を収集、処理順序今.</value>
-  </data>
-  <data name="CopyRight" xml:space="preserve">
-    <value>Copyright</value>
-  </data>
-  <data name="EmptyMicrosoftOfferListMessage" xml:space="preserve">
-    <value>ない提供していますが見つかりました</value>
-  </data>
-  <data name="SelectSearchByOffersPlaceholder" xml:space="preserve">
-    <value>提供による検索します。</value>
-  </data>
-  <data name="CustomerManagementSubText" xml:space="preserve">
-    <value>「すべて選択」店の前の事前承認としてすべて現在および将来お客様を迎えます。</value>
-  </data>
   <data name="SelectSearchbyNameDomainPlaceholder" xml:space="preserve">
     <value>会社名またはドメインで検索します。</value>
-  </data>
-  <data name="LicenseBasedSubscriptionsCaption" xml:space="preserve">
-    <value>お客様が管理するサブスクリプション</value>
-  </data>
-  <data name="PartnerManagedSubscriptionsCaption" xml:space="preserve">
-    <value>パートナーは、サブスクリプションを管理</value>
-  </data>
-  <data name="MySubscriptionsDisplayName" xml:space="preserve">
-    <value>注文履歴</value>
-  </data>
-  <data name="MyAccountDisplayName" xml:space="preserve">
-    <value>サブスクリプションを管理します。</value>
-  </data>
-  <data name="OrderProcessingFailureNotification" xml:space="preserve">
-    <value>処理順序に失敗しました。[完了] をクリックして、もう一度やり直してください。</value>
   </data>
   <data name="CountryNameIN" xml:space="preserve">
     <value>インド</value>
   </data>
   <data name="PayUAccountTypeCaption" xml:space="preserve">
-    <value>アカウントのタイプ</value>
+    <value>PayU アカウントの種類:</value>
   </data>
   <data name="PayUAccountTypeSubText" xml:space="preserve">
     <value>あなたのトランザクションをテストするためのテスト アカウントの種類を選択できます。作業は、取引を開始するライブ アカウントの種類を切り替えることができます。</value>
   </data>
   <data name="PayUMerchantKeyCaption" xml:space="preserve">
-    <value>マーチャントキー</value>
+    <value>PayU マーチャント キー:</value>
   </data>
   <data name="PayUMerchantSaltSubText" xml:space="preserve">
-    <value>iDEAL加盟店IDを入力してください</value>
+    <value>PayU 商人塩を入力します。</value>
   </data>
   <data name="PayUSaltCaption" xml:space="preserve">
-    <value>PayU 商人塩:!</value>
+    <value>PayU 商人塩:</value>
   </data>
   <data name="PayUMerchantKeySubText" xml:space="preserve">
-    <value>iDEALマーチャントキーを入力してください。</value>
+    <value>PayU マーチャント キーを入力します。</value>
   </data>
   <data name="PayUAuthorizationCaption" xml:space="preserve">
-    <value>承認</value>
+    <value>PayU 承認</value>
   </data>
   <data name="PayUAuthSubText" xml:space="preserve">
-    <value>名前を入力</value>
+    <value>PayU 承認を入力します。</value>
   </data>
   <data name="PayUPaymentConfigurationHeader" xml:space="preserve">
-    <value>PayUMoney 商人のアカウントの設定を提供する!</value>
+    <value>PayUMoney 商人のアカウントの設定を提供します。</value>
   </data>
   <data name="PayUPaymentConfigurationSubTextPostfix" xml:space="preserve">
-    <value>新規口座開設のための3ステップ：</value>
+    <value>あなたは 1 つを持っていない場合は、新しい商人のアカウントを作成します。</value>
   </data>
   <data name="PayUPaymentConfigurationSubTextPrefix" xml:space="preserve">
-    <value>顧客からの支払を受け取るためには、PayUMoney の商人の記述を使用するべきである、訪問しなさい:</value>
+    <value>あなたの顧客から支払いを受け取る、PayUMoney の商人のアカウントを使用してをご覧くださいする必要があります。</value>
   </data>
   <data name="PayUWebsiteCaption" xml:space="preserve">
     <value>payumoney.com</value>
+  </data>
+  <data name="AgreementUserIdFieldHeader" xml:space="preserve">
+    <value>契約ユーザー ID:</value>
+  </data>
+  <data name="AgreementUserIdSubText" xml:space="preserve">
+    <value>マイクロソフト クラウド契約の受諾と関連するパートナーのユーザーの識別子。</value>
+  </data>
+  <data name="InvalidAgreementUserId" xml:space="preserve">
+    <value>無効なユーザー id。</value>
+  </data>
+  <data name="AcceptPhrase" xml:space="preserve">
+    <value>同意、</value>
+  </data>
+  <data name="TermsOfService" xml:space="preserve">
+    <value>サービス利用規約</value>
   </data>
 </root>

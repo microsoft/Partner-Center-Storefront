@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.Services.HeaderBar = function (webPortal) {
+﻿Microsoft.WebPortal.Services.HeaderBar = function (webPortal) {
     /// <summary>
     /// The portal header bar service.
     /// </summary>
@@ -11,10 +9,10 @@ Microsoft.WebPortal.Services.HeaderBar = function (webPortal) {
     this.headerBarContainerSelector = "#HeaderBarContainer";
     this.animation = this.webPortal.Configuration.HeaderBar.getDefaultAnimation();
     this.sections = ko.observableArray([]);
-    
+
     // make the header bar toggle between show and hide!
     Microsoft.WebPortal.Utilities.Toggler.injectToggling(this, this.show, this.hide, false);
-}
+};
 
 // extend the base portal service
 $WebPortal.Helpers.inherit(Microsoft.WebPortal.Services.HeaderBar, Microsoft.WebPortal.Core.PortalService);
@@ -34,7 +32,7 @@ Microsoft.WebPortal.Services.HeaderBar.prototype._runService = function () {
     }
 
     this.show();
-}
+};
 
 Microsoft.WebPortal.Services.HeaderBar.prototype._stopService = function () {
     /// <summary>
@@ -53,7 +51,7 @@ Microsoft.WebPortal.Services.HeaderBar.prototype._stopService = function () {
         ko.cleanNode($(self.headerBarContainerSelector)[0]);
         $(self.headerBarContainerSelector).empty();
     });
-}
+};
 
 Microsoft.WebPortal.Services.HeaderBar.prototype.addSection = function (newSection, position) {
     /// <summary>
@@ -70,10 +68,10 @@ Microsoft.WebPortal.Services.HeaderBar.prototype.addSection = function (newSecti
         this.sections.splice(position, 0, newSection);
     }
 
-    if(this.isRunning) {
+    if (this.isRunning) {
         newSection.initialize();
     }
-}
+};
 
 Microsoft.WebPortal.Services.HeaderBar.prototype.removeSection = function (id) {
     /// <summary>
@@ -84,7 +82,7 @@ Microsoft.WebPortal.Services.HeaderBar.prototype.removeSection = function (id) {
     this.webPortal.Helpers.throwIfNotSet(id, "id", "Microsoft.WebPortal.Services.HeaderBar.removeSection");
 
     for (var i in this.sections()) {
-        if (this.sections()[i].id() == id) {
+        if (this.sections()[i].id() === id) {
             if (this.isRunning) {
                 this.sections()[i].destroy();
             }
@@ -93,7 +91,7 @@ Microsoft.WebPortal.Services.HeaderBar.prototype.removeSection = function (id) {
             return;
         }
     }
-}
+};
 
 Microsoft.WebPortal.Services.HeaderBar.prototype.show = function (showProgress) {
     /// <summary>
@@ -113,7 +111,7 @@ Microsoft.WebPortal.Services.HeaderBar.prototype.show = function (showProgress) 
     this.animation.show(this.webPortal.Settings.Ids.HeaderBar).always(function () {
         showProgress.resolve();
     });
-}
+};
 
 Microsoft.WebPortal.Services.HeaderBar.prototype.hide = function (hideProgress) {
     /// <summary>
@@ -133,6 +131,6 @@ Microsoft.WebPortal.Services.HeaderBar.prototype.hide = function (hideProgress) 
     this.animation.hide(this.webPortal.Settings.Ids.HeaderBar).always(function () {
         hideProgress.resolve();
     });
-}
+};
 
 //@ sourceURL=HeaderBar.js

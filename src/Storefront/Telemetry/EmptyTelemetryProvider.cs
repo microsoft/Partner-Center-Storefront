@@ -23,6 +23,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Telemetry
         /// <param name="metrics">Measurements associated with this event.</param>
         public void TrackEvent(string eventName, IDictionary<string, string> properties = null, IDictionary<string, double> metrics = null)
         {
+            // Method intentionally left empty.
         }
 
         /// <summary>
@@ -33,6 +34,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Telemetry
         /// <param name="metrics">Additional values associated with this exception.</param>
         public void TrackException(Exception exception, IDictionary<string, string> properties = null, IDictionary<string, double> metrics = null)
         {
+            // Method intentionally left empty.
         }
 
         /// <summary>
@@ -41,6 +43,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Telemetry
         /// <param name="message">The message to display</param>
         public void TrackTrace(string message)
         {
+            // Method intentionally left empty.
         }
     }
 }

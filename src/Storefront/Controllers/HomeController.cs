@@ -37,15 +37,15 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
                 IDictionary<string, dynamic> clientConfiguration = new Dictionary<string, dynamic>(ApplicationConfiguration.ClientConfiguration);
 
                 // configure the tiles to show and hide based on the logged in user role
-                var principal = this.HttpContext.User as CustomerPortalPrincipal;
+                CustomerPortalPrincipal principal = HttpContext.User as CustomerPortalPrincipal;
 
-                clientVisiblePlugins.Plugins.Where(x => x.Name == "CustomerAccount").First().Hidden = !principal.IsPartnerCenterCustomer;
-                clientVisiblePlugins.Plugins.Where(x => x.Name == "CustomerSubscriptions").First().Hidden = !principal.IsPartnerCenterCustomer;
-                clientVisiblePlugins.Plugins.Where(x => x.Name == "AdminConsole").First().Hidden = !principal.IsPortalAdmin;
-                clientVisiblePlugins.Plugins.Where(x => x.Name == "PartnerOffersSetup").First().Hidden = !principal.IsPortalAdmin;
-                clientVisiblePlugins.Plugins.Where(x => x.Name == "BrandingSetup").First().Hidden = !principal.IsPortalAdmin;
-                clientVisiblePlugins.Plugins.Where(x => x.Name == "PaymentSetup").First().Hidden = !principal.IsPortalAdmin;
-                clientVisiblePlugins.Plugins.Where(x => x.Name == "CustomerManagementSetup").First().Hidden = !principal.IsPortalAdmin;
+                clientVisiblePlugins.Plugins.First(x => x.Name == "CustomerAccount").Hidden = !principal.IsPartnerCenterCustomer;
+                clientVisiblePlugins.Plugins.First(x => x.Name == "CustomerSubscriptions").Hidden = !principal.IsPartnerCenterCustomer;
+                clientVisiblePlugins.Plugins.First(x => x.Name == "AdminConsole").Hidden = !principal.IsPortalAdmin;
+                clientVisiblePlugins.Plugins.First(x => x.Name == "PartnerOffersSetup").Hidden = !principal.IsPortalAdmin;
+                clientVisiblePlugins.Plugins.First(x => x.Name == "BrandingSetup").Hidden = !principal.IsPortalAdmin;
+                clientVisiblePlugins.Plugins.First(x => x.Name == "PaymentSetup").Hidden = !principal.IsPortalAdmin;
+                clientVisiblePlugins.Plugins.First(x => x.Name == "CustomerManagementSetup").Hidden = !principal.IsPortalAdmin;
 
                 if (principal.IsPortalAdmin)
                 {
@@ -74,7 +74,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
                     clientConfiguration,
                     new JsonSerializerSettings() { StringEscapeHandling = StringEscapeHandling.Default });
 
-                if (Resources.Culture.TwoLetterISOLanguageName.Equals("en", StringComparison.InvariantCultureIgnoreCase))
+                if (!Resources.Culture.TwoLetterISOLanguageName.Equals("en", StringComparison.InvariantCultureIgnoreCase))
                 {
                     ViewBag.ValidatorMessagesSrc = string.Format(CultureInfo.InvariantCulture, "https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/localization/messages_{0}.js", Resources.Culture.TwoLetterISOLanguageName);
                 }
@@ -85,13 +85,13 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
                     ViewBag.txnId = form["payuMoneyId"];
                 }
 
-                return this.View();
+                return View();
             }
             catch (Exception exception)
             {
                 ViewBag.ErrorMessage = Resources.PortalStartupFailure;
                 ViewBag.ErrorDetails = exception.Message;
-                return this.View("Error");
+                return View("Error");
             }
         }
 
@@ -102,12 +102,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         /// <returns>The error view.</returns>
         public async Task<ActionResult> Error(string errorMessage)
         {
-            var portalBranding = await ApplicationDomain.Instance.PortalBranding.RetrieveAsync().ConfigureAwait(false);
+            Models.BrandingConfiguration portalBranding = await ApplicationDomain.Instance.PortalBranding.RetrieveAsync().ConfigureAwait(false);
 
             ViewBag.ErrorMessage = errorMessage;
             ViewBag.OrganizationName = portalBranding.OrganizationName;
 
-            return this.View();
+            return View();
         }
     }
 }

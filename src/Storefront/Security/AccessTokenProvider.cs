@@ -22,21 +22,14 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Security
             redirectUri.AssertNotNull(nameof(redirectUri));
             clientCredential.AssertNotNull(nameof(clientCredential));
 
-            try
-            {
-                authContext = new AuthenticationContext(authority);
-                authResult = await authContext.AcquireTokenByAuthorizationCodeAsync(
-                   authorizationCode,
-                   redirectUri,
-                   clientCredential,
-                   resource).ConfigureAwait(false);
+            authContext = new AuthenticationContext(authority);
+            authResult = await authContext.AcquireTokenByAuthorizationCodeAsync(
+               authorizationCode,
+               redirectUri,
+               clientCredential,
+               resource).ConfigureAwait(false);
 
-                return authResult;
-            }
-            finally
-            {
-                authContext = null;
-            }
+            return authResult;
         }
     }
 }

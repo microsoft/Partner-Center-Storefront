@@ -12,7 +12,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Infrastructure
     /// A transaction that needs an input to execute.
     /// </summary>
     /// <typeparam name="TInput">The type of input.</typeparam>
-    public interface IBusinessTransactionWithInput<TInput> : IBusinessTransaction
+    public interface IBusinessTransactionWithInput<out TInput> : IBusinessTransaction
     {
         /// <summary>
         /// Gets a callback function which will be invoked to retrieve the input.

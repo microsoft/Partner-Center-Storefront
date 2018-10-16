@@ -17,6 +17,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
     using BusinessLogic.Commerce.PaymentGateways;
     using BusinessLogic.Exceptions;
     using Filters;
+    using Microsoft.Store.PartnerCenter.Models.Agreements;
     using Models;
     using Newtonsoft.Json;
     using PartnerCenter.Models;
@@ -38,18 +39,18 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [Route("Prepare")]
         public async Task<string> PrepareOrderForAuthenticatedCustomer([FromBody]OrderViewModel orderDetails)
         {
-            var startTime = DateTime.Now;
+            DateTime startTime = DateTime.Now;
 
             if (!ModelState.IsValid)
             {
-                var errorList = (from item in ModelState.Values
-                                 from error in item.Errors
-                                 select error.ErrorMessage).ToList();
+                List<string> errorList = (from item in ModelState.Values
+                                          from error in item.Errors
+                                          select error.ErrorMessage).ToList();
                 string errorMessage = JsonConvert.SerializeObject(errorList);
                 throw new PartnerDomainException(ErrorCode.InvalidInput).AddDetail("ErrorMessage", errorMessage);
             }
 
-            orderDetails.CustomerId = this.Principal.PartnerCenterCustomerId;
+            orderDetails.CustomerId = Principal.PartnerCenterCustomerId;
             orderDetails.OrderId = Guid.NewGuid().ToString();
             string operationDescription = string.Empty;
 
@@ -75,16 +76,16 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
             string redirectUrl = string.Format(CultureInfo.InvariantCulture, "{0}/#ProcessOrder?ret=true", Request.RequestUri.GetLeftPart(UriPartial.Authority));
 
             // Create the right payment gateway to use for customer oriented payment transactions. 
-            IPaymentGateway paymentGateway = await this.CreatePaymentGateway(operationDescription, orderDetails.CustomerId).ConfigureAwait(false);
+            IPaymentGateway paymentGateway = await CreatePaymentGateway(operationDescription, orderDetails.CustomerId).ConfigureAwait(false);
 
             // execute and get payment gateway action URI.           
-            string generatedUri = await paymentGateway.GeneratePaymentUriAsync(redirectUrl, orderDetails).ConfigureAwait(false);            
+            string generatedUri = await paymentGateway.GeneratePaymentUriAsync(redirectUrl, orderDetails).ConfigureAwait(false);
 
             // Capture the request for the customer summary for analysis.
-            var eventProperties = new Dictionary<string, string> { { "CustomerId", orderDetails.CustomerId }, { "OperationType", orderDetails.OperationType.ToString() } };
+            Dictionary<string, string> eventProperties = new Dictionary<string, string> { { "CustomerId", orderDetails.CustomerId }, { "OperationType", orderDetails.OperationType.ToString() } };
 
             // Track the event measurements for analysis.
-            var eventMetrics = new Dictionary<string, double> { { "ElapsedMilliseconds", DateTime.Now.Subtract(startTime).TotalMilliseconds } };
+            Dictionary<string, double> eventMetrics = new Dictionary<string, double> { { "ElapsedMilliseconds", DateTime.Now.Subtract(startTime).TotalMilliseconds } };
 
             ApplicationDomain.Instance.TelemetryService.Provider.TrackEvent("api/order/prepare", eventProperties, eventMetrics);
 
@@ -103,17 +104,17 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [Route("Process")]
         public async Task<TransactionResult> ProcessOrderForAuthenticatedCustomer(string paymentId, string payerId, string orderId)
         {
-            var startTime = DateTime.Now;
+            DateTime startTime = DateTime.Now;
 
             // extract order information and create payment payload.
-            string clientCustomerId = this.Principal.PartnerCenterCustomerId;
+            string clientCustomerId = Principal.PartnerCenterCustomerId;
 
             paymentId.AssertNotEmpty(nameof(paymentId));
             payerId.AssertNotEmpty(nameof(payerId));
             orderId.AssertNotEmpty(nameof(orderId));
 
             // Create the right payment gateway to use for customer oriented payment transactions. 
-            IPaymentGateway paymentGateway = await this.CreatePaymentGateway("ProcessingOrder", clientCustomerId).ConfigureAwait(false);            
+            IPaymentGateway paymentGateway = await CreatePaymentGateway("ProcessingOrder", clientCustomerId).ConfigureAwait(false);
 
             // use payment gateway to extract order information.             
             OrderViewModel orderToProcess = await paymentGateway.GetOrderDetailsFromPaymentAsync(payerId, paymentId, orderId, clientCustomerId).ConfigureAwait(false);
@@ -135,10 +136,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
             }
 
             // Capture the request for the customer summary for analysis.
-            var eventProperties = new Dictionary<string, string> { { "CustomerId", orderToProcess.CustomerId }, { "OperationType", orderToProcess.OperationType.ToString() }, { "PayerId", payerId }, { "PaymentId", paymentId } };
+            Dictionary<string, string> eventProperties = new Dictionary<string, string> { { "CustomerId", orderToProcess.CustomerId }, { "OperationType", orderToProcess.OperationType.ToString() }, { "PayerId", payerId }, { "PaymentId", paymentId } };
 
             // Track the event measurements for analysis.
-            var eventMetrics = new Dictionary<string, double> { { "ElapsedMilliseconds", DateTime.Now.Subtract(startTime).TotalMilliseconds } };
+            Dictionary<string, double> eventMetrics = new Dictionary<string, double> { { "ElapsedMilliseconds", DateTime.Now.Subtract(startTime).TotalMilliseconds } };
 
             ApplicationDomain.Instance.TelemetryService.Provider.TrackEvent("api/order/process", eventProperties, eventMetrics);
 
@@ -155,13 +156,13 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [Route("NewCustomerPrepareOrder")]
         public async Task<string> PrepareOrderForUnAuthenticatedCustomer([FromBody]OrderViewModel orderDetails)
         {
-            var startTime = DateTime.Now;
+            DateTime startTime = DateTime.Now;
 
             if (!ModelState.IsValid)
             {
-                var errorList = (from item in ModelState.Values
-                                 from error in item.Errors
-                                 select error.ErrorMessage).ToList();
+                List<string> errorList = (from item in ModelState.Values
+                                          from error in item.Errors
+                                          select error.ErrorMessage).ToList();
                 string errorMessage = JsonConvert.SerializeObject(errorList);
                 throw new PartnerDomainException(ErrorCode.InvalidInput).AddDetail("ErrorMessage", errorMessage);
             }
@@ -178,7 +179,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
             string generatedUri = await paymentGateway.GeneratePaymentUriAsync(redirectUrl, orderDetails).ConfigureAwait(false);
 
             // Track the event measurements for analysis.
-            var eventMetrics = new Dictionary<string, double> { { "ElapsedMilliseconds", DateTime.Now.Subtract(startTime).TotalMilliseconds } };
+            Dictionary<string, double> eventMetrics = new Dictionary<string, double> { { "ElapsedMilliseconds", DateTime.Now.Subtract(startTime).TotalMilliseconds } };
 
             ApplicationDomain.Instance.TelemetryService.Provider.TrackEvent("api/order/NewCustomerPrepareOrder", null, eventMetrics);
 
@@ -197,19 +198,17 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [Route("NewCustomerProcessOrder")]
         public async Task<SubscriptionsSummary> ProcessOrderForUnAuthenticatedCustomer(string customerId, string paymentId, string payerId)
         {
-            var startTime = DateTime.Now;
+            DateTime startTime = DateTime.Now;
 
             customerId.AssertNotEmpty(nameof(customerId));
-
             paymentId.AssertNotEmpty(nameof(paymentId));
             payerId.AssertNotEmpty(nameof(payerId));
 
-            // Retrieve customer registration details persisted
-            CustomerRegistrationRepository customerRegistrationRepository = new CustomerRegistrationRepository(ApplicationDomain.Instance);
+            BrandingConfiguration branding = await ApplicationDomain.Instance.PortalBranding.RetrieveAsync().ConfigureAwait(false);
 
             CustomerViewModel customerRegistrationInfoPersisted = await ApplicationDomain.Instance.CustomerRegistrationRepository.RetrieveAsync(customerId).ConfigureAwait(false);
 
-            var newCustomer = new Customer()
+            Customer newCustomer = new Customer()
             {
                 CompanyProfile = new CustomerCompanyProfile()
                 {
@@ -236,10 +235,33 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
                     }
                 }
             };
-           
+
             // Register customer
             newCustomer = await ApplicationDomain.Instance.PartnerCenterClient.Customers.CreateAsync(newCustomer).ConfigureAwait(false);
-            var newCustomerId = newCustomer.CompanyProfile.TenantId;
+
+            ResourceCollection<AgreementMetaData> agreements = await ApplicationDomain.Instance.PartnerCenterClient.AgreementDetails.GetAsync().ConfigureAwait(false);
+
+            // Obtain reference to the Microsoft Cloud Agreement.
+            AgreementMetaData microsoftCloudAgreement = agreements.Items.FirstOrDefault(agr => agr.AgreementType == AgreementType.MicrosoftCloudAgreement);
+
+            // Attest that the customer has accepted the Microsoft Cloud Agreement (MCA).
+            await ApplicationDomain.Instance.PartnerCenterClient.Customers[newCustomer.Id].Agreements.CreateAsync(
+                new Agreement
+                {
+                    DateAgreed = DateTime.UtcNow,
+                    PrimaryContact = new PartnerCenter.Models.Agreements.Contact
+                    {
+                        Email = customerRegistrationInfoPersisted.Email,
+                        FirstName = customerRegistrationInfoPersisted.FirstName,
+                        LastName = customerRegistrationInfoPersisted.LastName,
+                        PhoneNumber = customerRegistrationInfoPersisted.Phone
+                    },
+                    TemplateId = microsoftCloudAgreement.TemplateId,
+                    Type = AgreementType.MicrosoftCloudAgreement,
+                    UserId = branding.AgreementUserId
+                });
+
+            string newCustomerId = newCustomer.CompanyProfile.TenantId;
 
             CustomerViewModel customerViewModel = new CustomerViewModel()
             {
@@ -269,16 +291,16 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
 
             CommerceOperations commerceOperation = new CommerceOperations(ApplicationDomain.Instance, newCustomerId, paymentGateway);
             await commerceOperation.PurchaseAsync(orderToProcess).ConfigureAwait(false);
-            SubscriptionsSummary summaryResult = await this.GetSubscriptionSummaryAsync(newCustomerId).ConfigureAwait(false);
+            SubscriptionsSummary summaryResult = await GetSubscriptionSummaryAsync(newCustomerId).ConfigureAwait(false);
 
             // Remove the persisted customer registration info.
-            var deleteResult = ApplicationDomain.Instance.CustomerRegistrationRepository.DeleteAsync(customerId);
+            await ApplicationDomain.Instance.CustomerRegistrationRepository.DeleteAsync(customerId).ConfigureAwait(false);
 
             // Capture the request for the customer summary for analysis.
-            var eventProperties = new Dictionary<string, string> { { "CustomerId", orderToProcess.CustomerId } };
+            Dictionary<string, string> eventProperties = new Dictionary<string, string> { { "CustomerId", orderToProcess.CustomerId } };
 
             // Track the event measurements for analysis.
-            var eventMetrics = new Dictionary<string, double> { { "ElapsedMilliseconds", DateTime.Now.Subtract(startTime).TotalMilliseconds } };
+            Dictionary<string, double> eventMetrics = new Dictionary<string, double> { { "ElapsedMilliseconds", DateTime.Now.Subtract(startTime).TotalMilliseconds } };
 
             ApplicationDomain.Instance.TelemetryService.Provider.TrackEvent("api/order/NewCustomerProcessOrder", eventProperties, eventMetrics);
 
@@ -296,7 +318,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [Route("summary")]
         public async Task<SubscriptionsSummary> SubscriptionSummary()
         {
-            return await this.GetSubscriptionSummaryAsync(this.Principal.PartnerCenterCustomerId).ConfigureAwait(false);
+            return await GetSubscriptionSummaryAsync(Principal.PartnerCenterCustomerId).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -306,12 +328,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         /// <returns>Subscription Summary.</returns>
         private async Task<SubscriptionsSummary> GetSubscriptionSummaryAsync(string customerId)
         {
-            var startTime = DateTime.Now;
-            var customerSubscriptions = await ApplicationDomain.Instance.CustomerSubscriptionsRepository.RetrieveAsync(customerId).ConfigureAwait(false);
-            var customerSubscriptionsHistory = await ApplicationDomain.Instance.CustomerPurchasesRepository.RetrieveAsync(customerId).ConfigureAwait(false);
-            var allPartnerOffers = await ApplicationDomain.Instance.OffersRepository.RetrieveAsync().ConfigureAwait(false);
-            var currentMicrosoftOffers = await ApplicationDomain.Instance.OffersRepository.RetrieveMicrosoftOffersAsync().ConfigureAwait(false);
-            
+            DateTime startTime = DateTime.Now;
+            IEnumerable<CustomerSubscriptionEntity> customerSubscriptions = await ApplicationDomain.Instance.CustomerSubscriptionsRepository.RetrieveAsync(customerId).ConfigureAwait(false);
+            IEnumerable<CustomerPurchaseEntity> customerSubscriptionsHistory = await ApplicationDomain.Instance.CustomerPurchasesRepository.RetrieveAsync(customerId).ConfigureAwait(false);
+            IEnumerable<PartnerOffer> allPartnerOffers = await ApplicationDomain.Instance.OffersRepository.RetrieveAsync().ConfigureAwait(false);
+            IEnumerable<MicrosoftOffer> currentMicrosoftOffers = await ApplicationDomain.Instance.OffersRepository.RetrieveMicrosoftOffersAsync().ConfigureAwait(false);
+
             // start building the summary.                 
             decimal summaryTotal = 0;
 
@@ -320,19 +342,19 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
             List<SubscriptionViewModel> customerSubscriptionsView = new List<SubscriptionViewModel>();
 
             // iterate through and build the list of customer's subscriptions. 
-            foreach (var subscription in customerSubscriptions)
+            foreach (CustomerSubscriptionEntity subscription in customerSubscriptions)
             {
                 decimal subscriptionTotal = 0;
                 int licenseTotal = 0;
                 List<SubscriptionHistory> historyItems = new List<SubscriptionHistory>();
 
                 // collect the list of history items for this subcription.  
-                var subscriptionHistoryList = customerSubscriptionsHistory
+                IOrderedEnumerable<CustomerPurchaseEntity> subscriptionHistoryList = customerSubscriptionsHistory
                     .Where(historyItem => historyItem.SubscriptionId == subscription.SubscriptionId)
                     .OrderBy(historyItem => historyItem.TransactionDate);
 
                 // iterate through and build the SubsriptionHistory for this subscription. 
-                foreach (var historyItem in subscriptionHistoryList)
+                foreach (CustomerPurchaseEntity historyItem in subscriptionHistoryList)
                 {
                     decimal orderTotal = Math.Round(historyItem.SeatPrice * historyItem.SeatsBought, responseCulture.NumberFormat.CurrencyDecimalDigits);
                     historyItems.Add(new SubscriptionHistory()
@@ -351,7 +373,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
                     subscriptionTotal += orderTotal;
                 }
 
-                var partnerOfferItem = allPartnerOffers.FirstOrDefault(offer => offer.Id == subscription.PartnerOfferId);
+                PartnerOffer partnerOfferItem = allPartnerOffers.FirstOrDefault(offer => offer.Id == subscription.PartnerOfferId);
                 string subscriptionTitle = partnerOfferItem.Title;
                 string portalOfferId = partnerOfferItem.Id;
                 decimal portalOfferPrice = partnerOfferItem.Price;
@@ -364,7 +386,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
                 // TODO :: Handle Microsoft offer being pulled back due to EOL. 
 
                 // Temporarily mark this partnerOffer item as inactive and dont allow store front customer to manage this subscription. 
-                var alignedMicrosoftOffer = currentMicrosoftOffers.FirstOrDefault(offer => offer.Offer.Id == partnerOfferItem.MicrosoftOfferId);
+                MicrosoftOffer alignedMicrosoftOffer = currentMicrosoftOffers.FirstOrDefault(offer => offer.Offer.Id == partnerOfferItem.MicrosoftOfferId);
                 if (alignedMicrosoftOffer == null)
                 {
                     partnerOfferItem.IsInactive = true;
@@ -403,10 +425,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
             }
 
             // Capture the request for the customer summary for analysis.
-            var eventProperties = new Dictionary<string, string> { { "CustomerId", customerId } };
+            Dictionary<string, string> eventProperties = new Dictionary<string, string> { { "CustomerId", customerId } };
 
             // Track the event measurements for analysis.
-            var eventMetrics = new Dictionary<string, double> { { "ElapsedMilliseconds", DateTime.Now.Subtract(startTime).TotalMilliseconds }, { "NumberOfSubscriptions", customerSubscriptionsView.Count } };
+            Dictionary<string, double> eventMetrics = new Dictionary<string, double> { { "ElapsedMilliseconds", DateTime.Now.Subtract(startTime).TotalMilliseconds }, { "NumberOfSubscriptions", customerSubscriptionsView.Count } };
 
             ApplicationDomain.Instance.TelemetryService.Provider.TrackEvent("GetSubscriptionSummaryAsync", eventProperties, eventMetrics);
 
@@ -423,7 +445,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         /// </summary>
         /// <param name="operationType">The Commerce operation type.</param>
         /// <returns>Localized Operation Type string.</returns>
-        private string GetOperationType(CommerceOperationType operationType)
+        private static string GetOperationType(CommerceOperationType operationType)
         {
             switch (operationType)
             {
@@ -444,7 +466,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         /// <param name="operationDescription">The payment operation description.</param>
         /// <param name="customerId">The customer who is transacting.</param>
         /// <returns>The payment gateway instance.</returns>
-        private async Task<IPaymentGateway> CreatePaymentGateway(string operationDescription, string customerId)
+        private static async Task<IPaymentGateway> CreatePaymentGateway(string operationDescription, string customerId)
         {
             operationDescription.AssertNotEmpty(nameof(operationDescription));
             customerId.AssertNotEmpty(nameof(customerId));

@@ -58,7 +58,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         /// <summary>
         /// The Azure cloud storage account.
         /// </summary>
-        private CloudStorageAccount storageAccount;
+        private readonly CloudStorageAccount storageAccount;
 
         /// <summary>
         /// The BLOB container which contains the portal's configuration assets.

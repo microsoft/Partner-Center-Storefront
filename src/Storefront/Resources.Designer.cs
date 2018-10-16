@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Store.PartnerCenter.Storefront
-{
-
-
+namespace Microsoft.Store.PartnerCenter.Storefront {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -57,6 +57,15 @@ namespace Microsoft.Store.PartnerCenter.Storefront
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I accept the.
+        /// </summary>
+        public static string AcceptPhrase {
+            get {
+                return ResourceManager.GetString("AcceptPhrase", resourceCulture);
             }
         }
         
@@ -192,6 +201,24 @@ namespace Microsoft.Store.PartnerCenter.Storefront
         public static string ADTenantIsAlreadyRegisteredToCustomer {
             get {
                 return ResourceManager.GetString("ADTenantIsAlreadyRegisteredToCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agreement User ID:.
+        /// </summary>
+        public static string AgreementUserIdFieldHeader {
+            get {
+                return ResourceManager.GetString("AgreementUserIdFieldHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identifier of the user from the partner to be associated with the acceptance of the Microsoft Cloud Agreement..
+        /// </summary>
+        public static string AgreementUserIdSubText {
+            get {
+                return ResourceManager.GetString("AgreementUserIdSubText", resourceCulture);
             }
         }
         
@@ -565,7 +592,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copyright 2017.
+        ///   Looks up a localized string similar to Copyright 2018.
         /// </summary>
         public static string CopyRight {
             get {
@@ -1713,6 +1740,15 @@ namespace Microsoft.Store.PartnerCenter.Storefront
         public static string InvalidAddress {
             get {
                 return ResourceManager.GetString("InvalidAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid user identifier..
+        /// </summary>
+        public static string InvalidAgreementUserId {
+            get {
+                return ResourceManager.GetString("InvalidAgreementUserId", resourceCulture);
             }
         }
         
@@ -3279,6 +3315,15 @@ namespace Microsoft.Store.PartnerCenter.Storefront
         public static string TemplateLoadRetryMessage {
             get {
                 return ResourceManager.GetString("TemplateLoadRetryMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to terms of service.
+        /// </summary>
+        public static string TermsOfService {
+            get {
+                return ResourceManager.GetString("TermsOfService", resourceCulture);
             }
         }
         

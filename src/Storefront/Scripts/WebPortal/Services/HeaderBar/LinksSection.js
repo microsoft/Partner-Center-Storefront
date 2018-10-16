@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.Services.LinksSection = function (webPortal) {
+﻿Microsoft.WebPortal.Services.LinksSection = function (webPortal) {
     /// <summary>
     /// Renders the links the header bar.
     /// </summary>
@@ -18,8 +16,7 @@ Microsoft.WebPortal.Services.LinksSection = function (webPortal) {
     var self = this;
 
     this.onContactUsClicked = function () {
-        if (window.contactUs && window.contactSales)
-        {
+        if (window.contactUs && window.contactSales) {
             // contact us and sales have been configured, show them in a dialog, otherwise do nothing until they are configured
             var okButton = Microsoft.WebPortal.Services.Button.create(Microsoft.WebPortal.Services.Button.StandardButtons.OK, 1, function () {
                 self.webPortal.Services.Dialog.hide();
@@ -37,10 +34,10 @@ Microsoft.WebPortal.Services.LinksSection = function (webPortal) {
                     email: contactSales.email,
                     phone: contactSales.phone,
                     phoneLink: "tel:" + contactSales.phone,
-                },
+                }
             }, [okButton]);
         }
-    }
+    };
 
     webPortal.EventSystem.subscribe(Microsoft.WebPortal.Event.UserLoggedIn, function (eventId, isLoggedIn, broadcaster) {
         this.isLoggedIn(isLoggedIn);
@@ -57,7 +54,7 @@ Microsoft.WebPortal.Services.LinksSection = function (webPortal) {
             webPortal.Services.HeaderBar.removeSection("UserInfoSection");
         }
     }, this);
-}
+};
 
 $WebPortal.Helpers.inherit(Microsoft.WebPortal.Services.LinksSection, Microsoft.WebPortal.Services.HeaderBarSection);
 

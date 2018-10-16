@@ -20,12 +20,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         /// <param name="userClaimsPrincipal">A user claims principal created by AAD.</param>
         public CustomerPortalPrincipal(ClaimsPrincipal userClaimsPrincipal) : base(userClaimsPrincipal)
         {
-            this.TenantId = userClaimsPrincipal.FindFirst("http://schemas.microsoft.com/identity/claims/tenantid")?.Value;
-            this.Name = userClaimsPrincipal.FindFirst(ClaimTypes.Name)?.Value;
-            this.Email = userClaimsPrincipal.FindFirst(ClaimTypes.Email)?.Value;
+            TenantId = userClaimsPrincipal.FindFirst("http://schemas.microsoft.com/identity/claims/tenantid")?.Value;
+            Name = userClaimsPrincipal.FindFirst(ClaimTypes.Name)?.Value;
+            Email = userClaimsPrincipal.FindFirst(ClaimTypes.Email)?.Value;
 
             // the customer ID will be empty in the case where a new prospective customer signs in with their existing Org ID or when a partner user signs in
-            this.PartnerCenterCustomerId = userClaimsPrincipal.FindFirst("PartnerCenterCustomerID")?.Value;
+            PartnerCenterCustomerId = userClaimsPrincipal.FindFirst("PartnerCenterCustomerID")?.Value;
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
             get
             {
                 // TODO: later on, we may want to implement RBAC but as of now, all users signed in from the portal's tenant are considered admins
-                return this.TenantId == ApplicationConfiguration.ActiveDirectoryTenantId;
+                return TenantId == ApplicationConfiguration.ActiveDirectoryTenantId;
             }
         }
 
@@ -62,7 +62,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         {
             get
             {
-                return !string.IsNullOrEmpty(this.PartnerCenterCustomerId);
+                return !string.IsNullOrEmpty(PartnerCenterCustomerId);
             }
         } 
 

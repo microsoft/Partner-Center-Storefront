@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.Services.ActionsSection = function (webPortal) {
+﻿Microsoft.WebPortal.Services.ActionsSection = function (webPortal) {
     /// <summary>
     /// Renders the actions the user can invoke on the current feature.
     /// </summary>
@@ -11,7 +9,7 @@ Microsoft.WebPortal.Services.ActionsSection = function (webPortal) {
     // create and register the actions service
     this.actionBarSevice = new Microsoft.WebPortal.Services.ActionsService(this.webPortal, "Actions", "#" + webPortal.Settings.Ids.ActionsSection);
     this.webPortal.registerPortalService(this.actionBarSevice);
-}
+};
 
 $WebPortal.Helpers.inherit(Microsoft.WebPortal.Services.ActionsSection, Microsoft.WebPortal.Services.HeaderBarSection);
 
@@ -23,7 +21,7 @@ Microsoft.WebPortal.Services.ActionsSection.prototype.initialize = function () {
     if (!this.webPortal.Services.Actions) {
         this.webPortal.registerPortalService(this.actionBarSevice);
     }
-}
+};
 
 Microsoft.WebPortal.Services.ActionsSection.prototype.destroy = function () {
     /// <summary>
@@ -31,6 +29,6 @@ Microsoft.WebPortal.Services.ActionsSection.prototype.destroy = function () {
     /// </summary>
 
     this.webPortal.deregisterPortalService(this.actionBarSevice);
-}
+};
 
 //@ sourceURL=ActionsSection.js

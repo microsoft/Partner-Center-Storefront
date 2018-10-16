@@ -22,7 +22,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Configuration.Bundling
         /// <summary>
         /// The bundles collection.
         /// </summary>
-        private BundleCollection bundles;
+        private readonly BundleCollection bundles;
 
         /// <summary>
         /// Prevents a default instance of the <see cref="Bundler"/> class from being created.
@@ -58,8 +58,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Configuration.Bundling
         /// <param name="cssFiles">The CSS files to include in the startup bundle.</param>
         public void BundleStartupAssets(string[] javaScriptFiles, string[] cssFiles)
         {
-            this.bundles.Add(new ScriptBundle("~/StartupClasses/").Include(javaScriptFiles));
-            this.bundles.Add(new StyleBundle("~/StartupStyles/").Include(cssFiles));
+            bundles.Add(new ScriptBundle("~/StartupClasses/").Include(javaScriptFiles));
+            bundles.Add(new StyleBundle("~/StartupStyles/").Include(cssFiles));
         }
 
         /// <summary>
@@ -69,8 +69,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Configuration.Bundling
         /// <param name="cssFiles">The CSS files to include in the non startup bundle.</param>
         public void BundleNonStartupAssets(string[] javaScriptFiles, string[] cssFiles)
         {
-            this.bundles.Add(new ScriptBundle("~/WebPortalClasses/").Include(javaScriptFiles));
-            this.bundles.Add(new StyleBundle("~/WebPortalStyles/").Include(cssFiles));
+            bundles.Add(new ScriptBundle("~/WebPortalClasses/").Include(javaScriptFiles));
+            bundles.Add(new StyleBundle("~/WebPortalStyles/").Include(cssFiles));
         }
     }
 }

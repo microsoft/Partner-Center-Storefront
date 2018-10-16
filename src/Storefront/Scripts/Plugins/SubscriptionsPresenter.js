@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.SubscriptionsPresenter = function (webPortal, feature) {
+﻿Microsoft.WebPortal.SubscriptionsPresenter = function (webPortal, feature) {
     /// <summary>
     /// Manages the offers experience. 
     /// </summary>
@@ -14,15 +12,15 @@ Microsoft.WebPortal.SubscriptionsPresenter = function (webPortal, feature) {
 
         if (currentSubscriptionRowElement) {
             $(currentSubscriptionRowElement).nextUntil('tr.SubscriptionRow').slideToggle(1);
-            event.currentTarget.className = (event.currentTarget.className === "collapse_down") ? "collapse_up" : "collapse_down";
+            event.currentTarget.className = event.currentTarget.className === "collapse_down" ? "collapse_up" : "collapse_down";
         }
-    }
+    };
 
     this.viewModel = {
         ShowProgress: ko.observable(true),
         IsSet: ko.observable(false)
-    }
-}
+    };
+};
 
 // inherit BasePresenter
 $WebPortal.Helpers.inherit(Microsoft.WebPortal.SubscriptionsPresenter, Microsoft.WebPortal.Core.TemplatePresenter);
@@ -66,9 +64,9 @@ Microsoft.WebPortal.SubscriptionsPresenter.prototype.onRender = function () {
             // stop showing progress
             self.viewModel.ShowProgress(false);
         });
-    }
+    };
 
     getSubscriptionsSummary();
-}
+};
 
 //@ sourceURL=SubscriptionsPresenter.js

@@ -12,21 +12,22 @@
 
     this.viewModel = {
         IsSet: ko.observable(false),
-        OrganizationName: ko.observable(""),
-        OrganizationLogo: ko.observable(""),
-        ContactUs: {
+        AgreementUserId: ko.observable(""),
+        ContactSales: {
             Email: ko.observable(""),
             Phone: ko.observable("")
         },
-        ContactSales: {
+        ContactUs: {
             Email: ko.observable(""),
             Phone: ko.observable("")
         },
         HeaderImage: ko.observable(""),
         InstrumentationKey: ko.observable(""),
+        OrganizationLogo: ko.observable(""),
+        OrganizationName: ko.observable(""),
         PrivacyAgreement: ko.observable("")
-    }
-}
+    };
+};
 
 // inherit TemplatePresenter
 $WebPortal.Helpers.inherit(Microsoft.WebPortal.BrandingSetupPresenter, Microsoft.WebPortal.Core.TemplatePresenter);
@@ -63,7 +64,7 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype.onRender = function () {
             }).always(function () {
                 self.webPortal.ContentPanel.hideProgress();
             });
-        }
+        };
 
         acquireBrandingConfiguration();
     } else {
@@ -71,7 +72,7 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype.onRender = function () {
         self._setupActions();
         self.viewModel.IsSet(true);
     }
-}
+};
 
 Microsoft.WebPortal.BrandingSetupPresenter.prototype.onUploadOrganizationLogoClicked = function () {
     /// <summary>
@@ -80,7 +81,7 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype.onUploadOrganizationLogoCli
 
     // open up the file open dialog
     $("#UploadOrganizationLogo").click();
-}
+};
 
 Microsoft.WebPortal.BrandingSetupPresenter.prototype.onOrganizationLogoUpdated = function (self, event) {
     /// <summary>
@@ -93,7 +94,7 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype.onOrganizationLogoUpdated =
     if (event.target.files.length >= 0) {
         self.viewModel.OrganizationLogo(event.target.files[0].name);
     }
-}
+};
 
 Microsoft.WebPortal.BrandingSetupPresenter.prototype.onUploadHeaderClicked = function () {
     /// <summary>
@@ -102,7 +103,7 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype.onUploadHeaderClicked = fun
 
     // open up the open file dialog
     $("#UploadHeaderImage").click();
-}
+};
 
 Microsoft.WebPortal.BrandingSetupPresenter.prototype.onHeaderImageUpdated = function (self, event) {
     /// <summary>
@@ -110,11 +111,11 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype.onHeaderImageUpdated = func
     /// </summary>
     /// <param name="self">A reference to our presenter.</param>
     /// <param name="event">The change event.</param>
-    
+
     if (event.target.files.length >= 0) {
         self.viewModel.HeaderImage(event.target.files[0].name);
     }
-}
+};
 
 Microsoft.WebPortal.BrandingSetupPresenter.prototype.onSaveBranding = function () {
     /// <summary>
@@ -137,6 +138,8 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype.onSaveBranding = function (
         }
     }
 
+    formData.append("AgreementUserId", this.viewModel.AgreementUserId());
+
     formData.append("OrganizationName", this.viewModel.OrganizationName());
     formData.append("OrganizationLogo", this.viewModel.OrganizationLogo());
 
@@ -149,7 +152,7 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype.onSaveBranding = function (
     formData.append("HeaderImage", this.viewModel.HeaderImage());
     formData.append("InstrumentationKey", this.viewModel.InstrumentationKey());
     formData.append("PrivacyAgreement", this.viewModel.PrivacyAgreement());
-    
+
     var saveBrandingServerCall = this.webPortal.ServerCallManager.create(this.feature,
         function () {
             return $.ajax({
@@ -158,7 +161,7 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype.onSaveBranding = function (
                 data: formData,
                 dataType: 'json',
                 contentType: false,
-                processData: false,
+                processData: false
             });
         },
         "Save Branding");
@@ -189,8 +192,7 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype.onSaveBranding = function (
             self.existingBrandingConfiguration = updatedBrandingInformation;
             self._updateViewModel();
 
-            if (!self.restartPortalAction)
-            {
+            if (!self.restartPortalAction) {
                 // enable the user to restart the portal to see their changes
                 self.restartPortalAction = new Microsoft.WebPortal.Services.Action("reload-portal", self.webPortal.Resources.Strings.Plugins.PortalBranding.ReloadPortalButtonCaption, function (menuItem) {
                     window.location.reload(true);
@@ -213,7 +215,9 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype.onSaveBranding = function (
                         brandingSaveNotification.message(self.webPortal.Resources.Strings.Plugins.PortalBranding.ImagesTooLarge);
                         break;
                     case Microsoft.WebPortal.ErrorCode.InvalidInput:
-                        if (errorPayload.Details.Field === "HeaderImage") {
+                        if (errorPayload.Details.Field === "AgreementUserId") {
+                            brandingSaveNotification.message(self.webPortal.Resources.Strings.Plugins.PortalBranding.InvalidAgreementUserId);
+                        } else if (errorPayload.Details.Field === "HeaderImage") {
                             brandingSaveNotification.message(self.webPortal.Resources.Strings.Plugins.PortalBranding.InvalidHeaderImageUri);
                         } else if (errorPayload.Details.Field === "OrganizationLogo") {
                             brandingSaveNotification.message(self.webPortal.Resources.Strings.Plugins.PortalBranding.InvalidOrganizationLogoUri);
@@ -237,26 +241,30 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype.onSaveBranding = function (
                         brandingSaveNotification.dismiss();
                     })
                 ]);
-                
+
                 // re-calculate the action enabled status
                 self.viewModel.OrganizationName.notifySubscribers();
             } else {
                 self.webPortal.Helpers.displayRetryCancelErrorNotification(brandingSaveNotification,
-                self.webPortal.Resources.Strings.Plugins.PortalBranding.BrandingUpdateErrorMessage,
-                self.webPortal.Resources.Strings.Plugins.PortalBranding.BrandingUpdateProgressMessage, saveBranding, function () {
-                    self.viewModel.OrganizationName.notifySubscribers();
-                });
+                    self.webPortal.Resources.Strings.Plugins.PortalBranding.BrandingUpdateErrorMessage,
+                    self.webPortal.Resources.Strings.Plugins.PortalBranding.BrandingUpdateProgressMessage, saveBranding, function () {
+                        self.viewModel.OrganizationName.notifySubscribers();
+                    });
             }
         });
-    }
+    };
 
     saveBranding();
-}
+};
 
 Microsoft.WebPortal.BrandingSetupPresenter.prototype._updateViewModel = function () {
     /// <summary>
     /// Updates the view model with the existing branding configuration.
     /// </summary>
+
+    if (!this.existingBrandingConfiguration.AgreementUserId) {
+        this.existingBrandingConfiguration.AgreementUserId = "";
+    }
 
     if (!this.existingBrandingConfiguration.OrganizationName) {
         this.existingBrandingConfiguration.OrganizationName = "";
@@ -267,7 +275,7 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype._updateViewModel = function
     }
 
     if (!this.existingBrandingConfiguration.ContactUs) {
-        this.existingBrandingConfiguration.ContactUs = {}
+        this.existingBrandingConfiguration.ContactUs = {};
     }
 
     if (!this.existingBrandingConfiguration.ContactUs.Email) {
@@ -279,7 +287,7 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype._updateViewModel = function
     }
 
     if (!this.existingBrandingConfiguration.ContactSales) {
-        this.existingBrandingConfiguration.ContactSales = {}
+        this.existingBrandingConfiguration.ContactSales = {};
     }
 
     if (!this.existingBrandingConfiguration.ContactSales.Email) {
@@ -302,6 +310,7 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype._updateViewModel = function
         this.existingBrandingConfiguration.InstrumentationKey = "";
     }
 
+    this.viewModel.AgreementUserId(this.existingBrandingConfiguration.AgreementUserId);
     this.viewModel.OrganizationName(this.existingBrandingConfiguration.OrganizationName);
     this.viewModel.OrganizationLogo(this.existingBrandingConfiguration.OrganizationLogo);
     this.viewModel.ContactUs.Email(this.existingBrandingConfiguration.ContactUs.Email);
@@ -311,7 +320,7 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype._updateViewModel = function
     this.viewModel.HeaderImage(this.existingBrandingConfiguration.HeaderImage);
     this.viewModel.InstrumentationKey(this.existingBrandingConfiguration.InstrumentationKey);
     this.viewModel.PrivacyAgreement(this.existingBrandingConfiguration.PrivacyAgreement);
-}
+};
 
 
 Microsoft.WebPortal.BrandingSetupPresenter.prototype._setupActions = function () {
@@ -339,21 +348,23 @@ Microsoft.WebPortal.BrandingSetupPresenter.prototype._setupActions = function ()
 
     this.saveActionStatusUpdater = ko.computed(function () {
         // enable and disable the action buttons depending on whether there was a value change or not
-        var isFormUpdated = this.viewModel.OrganizationName() !== this.existingBrandingConfiguration.OrganizationName |
+        var isFormUpdated =
+            this.viewModel.AgreementUserId() !== this.existingBrandingConfiguration.AgreementUserId |
+            this.viewModel.OrganizationName() !== this.existingBrandingConfiguration.OrganizationName |
             this.viewModel.OrganizationLogo() !== this.existingBrandingConfiguration.OrganizationLogo |
             this.viewModel.HeaderImage() !== this.existingBrandingConfiguration.HeaderImage |
             this.viewModel.InstrumentationKey() !== this.existingBrandingConfiguration.InstrumentationKey |
             this.viewModel.PrivacyAgreement() !== this.existingBrandingConfiguration.PrivacyAgreement;
 
         isFormUpdated = isFormUpdated | this.viewModel.ContactUs.Email() !== this.existingBrandingConfiguration.ContactUs.Email |
-                this.viewModel.ContactUs.Phone() !== this.existingBrandingConfiguration.ContactUs.Phone;
+            this.viewModel.ContactUs.Phone() !== this.existingBrandingConfiguration.ContactUs.Phone;
 
         isFormUpdated = isFormUpdated | this.viewModel.ContactSales.Email() !== this.existingBrandingConfiguration.ContactSales.Email |
-                this.viewModel.ContactSales.Phone() !== this.existingBrandingConfiguration.ContactSales.Phone;
+            this.viewModel.ContactSales.Phone() !== this.existingBrandingConfiguration.ContactSales.Phone;
 
         this.saveBrandingAction.enabled(isFormUpdated);
         this.resetBrandingAction.enabled(isFormUpdated);
     }, this);
-}
+};
 
 //@ sourceURL=BrandingSetupPresenter.js

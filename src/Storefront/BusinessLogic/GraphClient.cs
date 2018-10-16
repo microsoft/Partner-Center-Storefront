@@ -138,13 +138,6 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
                 ApplicationDomain.Instance.TelemetryService.Provider.TrackException(ex);
                 return null;
             }
-            finally
-            {
-                directoryGroups = null;
-                directoryRoles = null;
-                eventMeasurements = null;
-                eventProperties = null;
-            }
         }
     }
 }

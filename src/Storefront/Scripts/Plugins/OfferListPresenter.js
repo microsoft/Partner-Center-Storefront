@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.OfferListPresenter = function (webPortal, feature) {
+﻿Microsoft.WebPortal.OfferListPresenter = function (webPortal, feature) {
     /// <summary>
     /// Manages the offer configuration UX.
     /// </summary>
@@ -8,10 +6,10 @@ Microsoft.WebPortal.OfferListPresenter = function (webPortal, feature) {
     /// <param name="feature">The feature for which this presenter is created.</param>
 
     this.base.constructor.call(this, webPortal, feature, "OfferList", "/Template/OfferList/");
-    
+
     this.viewModel = {
-    }
-}
+    };
+};
 
 // inherit TemplatePresenter
 $WebPortal.Helpers.inherit(Microsoft.WebPortal.OfferListPresenter, Microsoft.WebPortal.Core.TemplatePresenter);
@@ -29,7 +27,7 @@ Microsoft.WebPortal.OfferListPresenter.prototype.onRender = function () {
         // the user cleared all the notifications, null our reference and recompute the enabled status of the delete button
         self.offersDeletionPrompt = null;
         self.deleteOffersAction.enabled(self.viewModel.offerList.selectedRows().length > 0);
-    }
+    };
 
     // listen to the clear all notifications event
     self.webPortal.EventSystem.subscribe(Microsoft.WebPortal.Event.NotificationsCleared, self.onNotificationsCleared, self);
@@ -43,21 +41,21 @@ Microsoft.WebPortal.OfferListPresenter.prototype.onRender = function () {
         if (!self.offersDeletionPrompt) {
             self.deleteOffersAction.enabled(false);
             self.offersDeletionPrompt = new Microsoft.WebPortal.Services.Notification(Microsoft.WebPortal.Services.Notification.NotificationType.Warning,
-            self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.DeleteOffersPromptMessage, [
-                 Microsoft.WebPortal.Services.Button.create(Microsoft.WebPortal.Services.Button.StandardButtons.YES, self.webPortal.Resources.Strings.Yes, function () {
-                     self.offersDeletionPrompt.dismiss();
-                     self._deleteSelectedOffers();
-                 }),
-                 Microsoft.WebPortal.Services.Button.create(Microsoft.WebPortal.Services.Button.StandardButtons.NO, self.webPortal.Resources.Strings.No, function () {
-                     self.offersDeletionPrompt.dismiss();
-                     self.offersDeletionPrompt = null;
-                     self.deleteOffersAction.enabled(self.viewModel.offerList.selectedRows().length > 0);
-                 })
-            ]);
-        
+                self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.DeleteOffersPromptMessage, [
+                    Microsoft.WebPortal.Services.Button.create(Microsoft.WebPortal.Services.Button.StandardButtons.YES, self.webPortal.Resources.Strings.Yes, function () {
+                        self.offersDeletionPrompt.dismiss();
+                        self._deleteSelectedOffers();
+                    }),
+                    Microsoft.WebPortal.Services.Button.create(Microsoft.WebPortal.Services.Button.StandardButtons.NO, self.webPortal.Resources.Strings.No, function () {
+                        self.offersDeletionPrompt.dismiss();
+                        self.offersDeletionPrompt = null;
+                        self.deleteOffersAction.enabled(self.viewModel.offerList.selectedRows().length > 0);
+                    })
+                ]);
+
             self.webPortal.Services.Notifications.add(self.offersDeletionPrompt);
         }
-        
+
     }, "/Content/Images/Plugins/action-delete.png", this.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.DeleteOffersCaption, null, false);
 
     this.webPortal.Services.Actions.add(this.addOfferAction);
@@ -77,14 +75,14 @@ Microsoft.WebPortal.OfferListPresenter.prototype.onRender = function () {
     this.viewModel.offerList.setSelectionMode(Microsoft.WebPortal.Views.List.SelectionMode.Multiple);
 
     this.viewModel.offerList.setComplete(true);
-}
+};
 
 Microsoft.WebPortal.OfferListPresenter.prototype.onShow = function () {
     /// <summary>
     /// Called when the UX is shown.
     /// </summary>
     this._retrievePartnerOffers(null);
-}
+};
 
 Microsoft.WebPortal.OfferListPresenter.prototype.onDeactivate = function () {
     /// <summary>
@@ -93,7 +91,7 @@ Microsoft.WebPortal.OfferListPresenter.prototype.onDeactivate = function () {
 
     // stop listening to the event
     this.webPortal.EventSystem.unsubscribe(Microsoft.WebPortal.Event.NotificationsCleared, this.onNotificationsCleared, this);
-}
+};
 
 Microsoft.WebPortal.OfferListPresenter.prototype.onSelectionChanged = function (selectedRows) {
     /// <summary>
@@ -107,7 +105,7 @@ Microsoft.WebPortal.OfferListPresenter.prototype.onSelectionChanged = function (
         this.offersDeletionPrompt.dismiss();
         this.offersDeletionPrompt = null;
     }
-}
+};
 
 Microsoft.WebPortal.OfferListPresenter.prototype.onCellClicked = function (column, row) {
     /// <summary>
@@ -126,11 +124,11 @@ Microsoft.WebPortal.OfferListPresenter.prototype.onCellClicked = function (colum
         Summary: row.PartnerOffer.Summary,
         Logo: row.PartnerOffer.LogoUri,
         Thumbnail: row.PartnerOffer.ThumbnailUri
-    }
+    };
 
     // go to the update offer feature and pass it the clicked offer
     this.webPortal.Journey.advance(Microsoft.WebPortal.Feature.AddOrUpdateOffers, offerToUpdate);
-}
+};
 
 Microsoft.WebPortal.OfferListPresenter.prototype._deleteSelectedOffers = function () {
     /// <summary>
@@ -151,7 +149,7 @@ Microsoft.WebPortal.OfferListPresenter.prototype._deleteSelectedOffers = functio
     }
 
     var deletePartnerOffersServerCall = this.webPortal.ServerCallManager.create(this.feature,
-            this.webPortal.Helpers.ajaxCall("api/AdminConsole/Offers/Delete", Microsoft.WebPortal.HttpMethod.Post, offersToDelete, Microsoft.WebPortal.ContentType.Json), "DeletePartnerOffers");
+        this.webPortal.Helpers.ajaxCall("api/AdminConsole/Offers/Delete", Microsoft.WebPortal.HttpMethod.Post, offersToDelete, Microsoft.WebPortal.ContentType.Json), "DeletePartnerOffers");
 
     var self = this;
     var offersDeletionNotification = new Microsoft.WebPortal.Services.Notification(Microsoft.WebPortal.Services.Notification.NotificationType.Progress,
@@ -172,7 +170,7 @@ Microsoft.WebPortal.OfferListPresenter.prototype._deleteSelectedOffers = functio
                     FormattedPrice: Globalize.format(partnerOffers[i].Price, "c"),
                     MicrosoftOffer: function () {
                         for (var j in self.microsoftOffers) {
-                            if (partnerOffers[i].MicrosoftOfferId == self.microsoftOffers[j].Offer.Id) {
+                            if (partnerOffers[i].MicrosoftOfferId === self.microsoftOffers[j].Offer.Id) {
                                 return self.microsoftOffers[j];
                             }
                         }
@@ -182,7 +180,7 @@ Microsoft.WebPortal.OfferListPresenter.prototype._deleteSelectedOffers = functio
 
                 // TODO :: Handle Microsoft offer being pulled back due to EOL.
                 // Temporary fix - Do not display this partner offer for further configuration. Need a better way to handle this. 
-                if (offerToPush.MicrosoftOffer != null) {                    
+                if (offerToPush.MicrosoftOffer !== null) {
                     offerToPush.IsOfferAutoRenewableCaption = offerToPush.MicrosoftOffer.Offer.IsAutoRenewable ?
                         self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferAutomaticallyRenewable :
                         self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferManuallyRenewable;
@@ -197,7 +195,7 @@ Microsoft.WebPortal.OfferListPresenter.prototype._deleteSelectedOffers = functio
                         self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.Seats;
 
                     self.viewModel.Offers.push(offerToPush);
-                }                                                
+                }
             }
 
             self.viewModel.offerList.set(self.viewModel.Offers);
@@ -220,7 +218,7 @@ Microsoft.WebPortal.OfferListPresenter.prototype._deleteSelectedOffers = functio
     };
 
     deletePartnerOffers();
-}
+};
 
 Microsoft.WebPortal.OfferListPresenter.prototype._retrievePartnerOffers = function () {
     /// <summary>
@@ -237,7 +235,7 @@ Microsoft.WebPortal.OfferListPresenter.prototype._retrievePartnerOffers = functi
         self.webPortal.Session.fetchMicrosoftOffers(microsoftOffersProgress);
 
         var getPartnerOffersServerCall = self.webPortal.ServerCallManager.create(self.feature,
-                self.webPortal.Helpers.ajaxCall("api/AdminConsole/Offers", Microsoft.WebPortal.HttpMethod.Get), "GetPartnerOffers");
+            self.webPortal.Helpers.ajaxCall("api/AdminConsole/Offers", Microsoft.WebPortal.HttpMethod.Get), "GetPartnerOffers");
 
         var partnerOffersProgress = getPartnerOffersServerCall.execute();
 
@@ -259,7 +257,7 @@ Microsoft.WebPortal.OfferListPresenter.prototype._retrievePartnerOffers = functi
                     FormattedPrice: Globalize.format(partnerOffers[i].Price, "c"),
                     MicrosoftOffer: function () {
                         for (var j in microsoftOffers) {
-                            if (partnerOffers[i].MicrosoftOfferId == microsoftOffers[j].Offer.Id) {
+                            if (partnerOffers[i].MicrosoftOfferId === microsoftOffers[j].Offer.Id) {
                                 return microsoftOffers[j];
                             }
                         }
@@ -269,7 +267,7 @@ Microsoft.WebPortal.OfferListPresenter.prototype._retrievePartnerOffers = functi
 
                 // TODO :: Handle Microsoft offer being pulled back due to EOL.
                 // Temporary fix - Do not display this partner offer for further configuration. Need a better way to handle this. 
-                if (offerToPush.MicrosoftOffer != null) {                    
+                if (offerToPush.MicrosoftOffer !== null) {
                     offerToPush.IsOfferAutoRenewableCaption = offerToPush.MicrosoftOffer.Offer.IsAutoRenewable ?
                         self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferAutomaticallyRenewable :
                         self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OfferManuallyRenewable;
@@ -284,7 +282,7 @@ Microsoft.WebPortal.OfferListPresenter.prototype._retrievePartnerOffers = functi
                         self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.Seats;
 
                     self.viewModel.Offers.push(offerToPush);
-                }                                                
+                }
             }
 
             self.viewModel.offerList.set(self.viewModel.Offers);
@@ -295,9 +293,9 @@ Microsoft.WebPortal.OfferListPresenter.prototype._retrievePartnerOffers = functi
                 self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OffersFetchFailure,
                 self.webPortal.Resources.Strings.Plugins.AdminOfferConfiguration.OffersFetchProgress, getPartnerOffers);
         });
-    }
+    };
 
     getPartnerOffers();
-}
+};
 
 //@ sourceURL=OfferListPresenter.js

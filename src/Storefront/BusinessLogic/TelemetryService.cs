@@ -39,7 +39,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         {
             get
             {
-                if (string.IsNullOrEmpty(this.InstrumentationKey))
+                if (string.IsNullOrEmpty(InstrumentationKey))
                 {
                     telemetryProvider = new EmptyTelemetryProvider();
                 }
@@ -58,12 +58,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         /// <returns>A task for asynchronous purposes.</returns>
         public async Task InitializeAsync()
         {
-            this.InstrumentationKey = (await ApplicationDomain.Instance.PortalBranding.RetrieveAsync().ConfigureAwait(false)).InstrumentationKey;
+            InstrumentationKey = (await ApplicationDomain.Instance.PortalBranding.RetrieveAsync().ConfigureAwait(false)).InstrumentationKey;
 
-            if (!string.IsNullOrEmpty(this.InstrumentationKey))
+            if (!string.IsNullOrEmpty(InstrumentationKey))
             {
                 ApplicationInsights.Extensibility.TelemetryConfiguration.Active.InstrumentationKey =
-                    this.InstrumentationKey;
+                    InstrumentationKey;
             }
         }
     }

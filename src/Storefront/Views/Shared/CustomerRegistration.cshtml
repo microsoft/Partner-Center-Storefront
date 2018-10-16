@@ -1,11 +1,11 @@
-﻿<div id="CustomerRegistrationContainer">    
-    
-    <label class="section">@Resources.Subscriptions</label>    
+﻿<div id="CustomerRegistrationContainer">
+
+    <label class="section">@Resources.Subscriptions</label>
     <form id="Form">
-        <!-- ko stopBinding: true -->        
+        <!-- ko stopBinding: true -->
         <div id="AddSubscriptionsViewContainer"></div>
-        <div id="CustomerProfileContainer"></div>        
-        <!-- /ko -->    
+        <div id="CustomerProfileContainer"></div>
+        <!-- /ko -->
         <div id="validation_summary" class="error"></div><br />
         <a id="SubmitButton" class="submitButton" data-bind="click: onFormSubmit">@Resources.Submit</a>
     </form>
@@ -26,6 +26,9 @@
                 }
             },
             rules: {
+                AcceptAgreement: {
+                    required: true
+                },
                 DomainPrefix: {
                     required: true,
                     regx: /^[a-z0-9]+$/i
@@ -34,8 +37,7 @@
                     required: true
                 }
             },
-                  submitHandler: function (form) {
-
+            submitHandler: function (form) {
             }
         });
     </script>

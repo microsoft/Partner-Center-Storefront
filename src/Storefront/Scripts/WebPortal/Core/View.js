@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.Core.View = function (webPortal, elementSelector, isShown, childViews, animation) {
+﻿Microsoft.WebPortal.Core.View = function (webPortal, elementSelector, isShown, childViews, animation) {
     /// <summary>
     /// The base view class. All views should inherit from this class. A view is an abstraction that shows or hides UX to users. It maintains the data and the view
     /// state and takes care of disposing the resources when it is no longer needed. One or more views are typically utilized by a presenter. Views also support hierarchies,
@@ -32,7 +30,7 @@ Microsoft.WebPortal.Core.View = function (webPortal, elementSelector, isShown, c
 
     // the view will be togglable
     Microsoft.WebPortal.Utilities.Toggler.injectToggling(this, this._show, this._hide, isShown);
-}
+};
 
 Microsoft.WebPortal.Core.View.prototype.render = function () {
     /// <summary>
@@ -45,12 +43,12 @@ Microsoft.WebPortal.Core.View.prototype.render = function () {
     }
 
     // render the child views
-    for(var i in this.childViews()) {
+    for (var i in this.childViews()) {
         this.childViews()[i].render();
     }
 
     this.state = Microsoft.WebPortal.Core.View.State.Rendered;
-}
+};
 
 Microsoft.WebPortal.Core.View.prototype._show = function (showProgress) {
     /// <summary>
@@ -92,7 +90,7 @@ Microsoft.WebPortal.Core.View.prototype._show = function (showProgress) {
             }
         });
     });
-}
+};
 
 Microsoft.WebPortal.Core.View.prototype._hide = function (hideProgress) {
     /// <summary>
@@ -134,7 +132,7 @@ Microsoft.WebPortal.Core.View.prototype._hide = function (hideProgress) {
             }
         });
     });
-}
+};
 
 Microsoft.WebPortal.Core.View.prototype.destroy = function () {
     /// <summary>
@@ -154,7 +152,7 @@ Microsoft.WebPortal.Core.View.prototype.destroy = function () {
 
     this.isShown(false);
     this.state = Microsoft.WebPortal.Core.View.State.Destroyed;
-}
+};
 
 Microsoft.WebPortal.Core.View.prototype.isRendered = function () {
     /// <summary>
@@ -163,7 +161,7 @@ Microsoft.WebPortal.Core.View.prototype.isRendered = function () {
     /// <returns type="boolean">True is rendered, false otherwise.</returns>
 
     return this.state === Microsoft.WebPortal.Core.View.State.Rendered;
-}
+};
 
 Microsoft.WebPortal.Core.View.prototype.isDestroyed = function () {
     /// <summary>
@@ -172,7 +170,7 @@ Microsoft.WebPortal.Core.View.prototype.isDestroyed = function () {
     /// <returns type="boolean">True is destroyed, false otherwise.</returns>
 
     return this.state === Microsoft.WebPortal.Core.View.State.Destroyed;
-}
+};
 
 /*
     Enumerates the possible view states.
@@ -186,6 +184,6 @@ Microsoft.WebPortal.Core.View.State = {
 
     // view has been destroyed
     Destroyed: 2
-}
+};
 
 //@ sourceURL=View.js
