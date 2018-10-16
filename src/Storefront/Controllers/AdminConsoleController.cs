@@ -65,6 +65,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         {
             BrandingConfiguration brandingConfiguration = new BrandingConfiguration()
             {
+                AgreementUserId = HttpContext.Current.Request.Form["AgreementUserId"],
                 OrganizationName = HttpContext.Current.Request.Form["OrganizationName"],
                 ContactUs = new ContactUsInformation()
                 {
@@ -75,11 +76,11 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
                 {
                     Email = HttpContext.Current.Request.Form["ContactSalesEmail"],
                     Phone = HttpContext.Current.Request.Form["ContactSalesPhone"],
-                },
+                }
             };
 
             string organizationLogo = HttpContext.Current.Request.Form["OrganizationLogo"];
-            var organizationLogoPostedFile = HttpContext.Current.Request.Files["OrganizationLogoFile"];
+            HttpPostedFile organizationLogoPostedFile = HttpContext.Current.Request.Files["OrganizationLogoFile"];
 
             if (organizationLogoPostedFile != null && Path.GetFileName(organizationLogoPostedFile.FileName) == organizationLogo)
             {
@@ -105,7 +106,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
             }
 
             string headerImage = HttpContext.Current.Request.Form["HeaderImage"];
-            var headerImageUploadPostedFile = HttpContext.Current.Request.Files["HeaderImageFile"];
+            HttpPostedFile headerImageUploadPostedFile = HttpContext.Current.Request.Files["HeaderImageFile"];
 
             if (headerImageUploadPostedFile != null && Path.GetFileName(headerImageUploadPostedFile.FileName) == headerImage)
             {
@@ -147,12 +148,13 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
                 brandingConfiguration.InstrumentationKey = HttpContext.Current.Request.Form["InstrumentationKey"];
             }
 
-            var updatedBrandingConfiguration = await ApplicationDomain.Instance.PortalBranding.UpdateAsync(brandingConfiguration).ConfigureAwait(false);
+            BrandingConfiguration updatedBrandingConfiguration = await ApplicationDomain.Instance.PortalBranding.UpdateAsync(brandingConfiguration).ConfigureAwait(false);
             bool isPaymentConfigurationSetup = await ApplicationDomain.Instance.PaymentConfigurationRepository.IsConfiguredAsync().ConfigureAwait(false);
+
             if (isPaymentConfigurationSetup)
             {
                 // update the web experience profile. 
-                var paymentConfiguration = await ApplicationDomain.Instance.PaymentConfigurationRepository.RetrieveAsync().ConfigureAwait(false);
+                PaymentConfiguration paymentConfiguration = await ApplicationDomain.Instance.PaymentConfigurationRepository.RetrieveAsync().ConfigureAwait(false);
                 paymentConfiguration.WebExperienceProfileId = PaymentGatewayConfig.GetPaymentGatewayInstance(ApplicationDomain.Instance, "retrieve payment").CreateWebExperienceProfile(paymentConfiguration, updatedBrandingConfiguration, ApplicationDomain.Instance.PortalLocalization.CountryIso2Code);
                 await ApplicationDomain.Instance.PaymentConfigurationRepository.UpdateAsync(paymentConfiguration).ConfigureAwait(false);
             }
@@ -168,7 +170,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [HttpGet]
         public async Task<IEnumerable<PartnerOffer>> GetOffers()
         {
-            return (await ApplicationDomain.Instance.OffersRepository.RetrieveAsync().ConfigureAwait(false)).Where(offer => offer.IsInactive == false);
+            return (await ApplicationDomain.Instance.OffersRepository.RetrieveAsync().ConfigureAwait(false)).Where(offer => !offer.IsInactive);
         }
 
         /// <summary>
@@ -204,7 +206,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [HttpPost]
         public async Task<IEnumerable<PartnerOffer>> DeleteOffers(List<PartnerOffer> partnerOffersToDelete)
         {
-            return (await ApplicationDomain.Instance.OffersRepository.MarkAsDeletedAsync(partnerOffersToDelete).ConfigureAwait(false)).Where(offer => offer.IsInactive == false);
+            return (await ApplicationDomain.Instance.OffersRepository.MarkAsDeletedAsync(partnerOffersToDelete).ConfigureAwait(false)).Where(offer => !offer.IsInactive);
         }
 
         /// <summary>

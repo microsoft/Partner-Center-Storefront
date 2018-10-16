@@ -27,17 +27,15 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Filters.WebApi
         /// <summary>
         /// Intercepts unhandled exceptions and crafts the error response appropriately.
         /// </summary>
-        /// <param name="context">A context object.</param>
-        public override void OnException(HttpActionExecutedContext context)
+        /// <param name="actionExecutedContext">The context for the action.</param>
+        public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
             dynamic errorResponsePayload = new ExpandoObject();
             HttpStatusCode errorResponseCode = HttpStatusCode.InternalServerError;
 
-            PartnerDomainException partnerDomainException = context.Exception as PartnerDomainException;
-
-            if (partnerDomainException != null)
+            if (actionExecutedContext.Exception is PartnerDomainException partnerDomainException)
             {
-                Trace.TraceError("ErrorHandler: Intercepted PartnerDomainException: {0}.", context.Exception.ToString());
+                Trace.TraceError("ErrorHandler: Intercepted PartnerDomainException: {0}.", actionExecutedContext.Exception.ToString());
 
                 switch (partnerDomainException.ErrorCode)
                 {
@@ -56,15 +54,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Filters.WebApi
                         errorResponseCode = HttpStatusCode.BadRequest;
                         break;
 
-                    case ErrorCode.PaymentGatewayFailure:                    
+                    case ErrorCode.PaymentGatewayFailure:
                     case ErrorCode.DownstreamServiceError:
                         errorResponseCode = HttpStatusCode.BadGateway;
                         break;
-                    
-                    case ErrorCode.PersistenceFailure:                    
-                    case ErrorCode.SubscriptionUpdateFailure:
-                    case ErrorCode.ServerError:
-                    case ErrorCode.PaymentGatewayIdentityFailureDuringPayment: // treat this as a non retryable server error. 
                     default:
                         errorResponseCode = HttpStatusCode.InternalServerError;
                         break;
@@ -76,21 +69,18 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Filters.WebApi
             else
             {
                 errorResponsePayload.Details = new Dictionary<string, string>();
-                PartnerException partnerCenterException = context.Exception as PartnerException;
 
-                if (partnerCenterException != null &&
+                if (actionExecutedContext.Exception is PartnerException partnerCenterException &&
                     (partnerCenterException.ErrorCategory == PartnerErrorCategory.BadInput || partnerCenterException.ErrorCategory == PartnerErrorCategory.AlreadyExists))
                 {
-                    Trace.TraceError("ErrorHandler: Intercepted PartnerException: {0}.", context.Exception.ToString());
-                    errorResponseCode = HttpStatusCode.BadRequest;                    
-
-                    string errorCode = string.Empty;                    
+                    Trace.TraceError("ErrorHandler: Intercepted PartnerException: {0}.", actionExecutedContext.Exception.ToString());
+                    errorResponseCode = HttpStatusCode.BadRequest;
 
                     // can be null. 
-                    if (partnerCenterException.ServiceErrorPayload != null) 
-                    {                        
+                    if (partnerCenterException.ServiceErrorPayload != null)
+                    {
                         switch (partnerCenterException.ServiceErrorPayload.ErrorCode)
-                        {                            
+                        {
                             case "27002":
                                 errorResponsePayload.ErrorCode = ErrorCode.InvalidAddress;
                                 break;
@@ -114,12 +104,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Filters.WebApi
                 }
                 else
                 {
-                    HttpException httpException = context.Exception as HttpException;
-
-                    if (httpException != null && httpException.WebEventCode == 3004)
+                    if (actionExecutedContext.Exception is HttpException httpException && httpException.WebEventCode == 3004)
                     {
                         // the maximum request size has been exceeded
-                        Trace.TraceError("ErrorHandler: Maximum request size exceeded: {0}.", context.Exception.ToString());
+                        Trace.TraceError("ErrorHandler: Maximum request size exceeded: {0}.", actionExecutedContext.Exception.ToString());
 
                         errorResponseCode = HttpStatusCode.BadRequest;
                         errorResponsePayload.ErrorCode = ErrorCode.MaximumRequestSizeExceeded;
@@ -127,14 +115,14 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Filters.WebApi
                     else
                     {
                         // any other exception will be treated as a server failure or bug
-                        Trace.TraceError("ErrorHandler: Intercepted Exception: {0}. Returning 500 as response.", context.Exception.ToString());
+                        Trace.TraceError("ErrorHandler: Intercepted Exception: {0}. Returning 500 as response.", actionExecutedContext.Exception.ToString());
 
                         errorResponsePayload.ErrorCode = ErrorCode.ServerError;
                     }
                 }
             }
 
-            context.Response = new HttpResponseMessage(errorResponseCode) { Content = new StringContent(JsonConvert.SerializeObject(errorResponsePayload)) };
+            actionExecutedContext.Response = new HttpResponseMessage(errorResponseCode) { Content = new StringContent(JsonConvert.SerializeObject(errorResponsePayload)) };
         }
     }
 }

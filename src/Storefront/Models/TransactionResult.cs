@@ -23,18 +23,18 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Models
         public TransactionResult(IEnumerable<TransactionResultLineItem> lineItems, DateTime timeStamp)
         {
             // we don't validate amount charged since a transaction may result in a negative amount
-            if (lineItems == null || lineItems.Count() <= 0)
+            if (lineItems == null || !lineItems.Any())
             {
                 throw new ArgumentException("lineItems must at least have one line item", nameof(lineItems));
             }
 
-            foreach (var lineItem in lineItems)
+            foreach (TransactionResultLineItem lineItem in lineItems)
             {
                 lineItem.AssertNotNull("lineItems has an empty entry");
             }
-            
-            this.LineItems = lineItems;
-            this.TimeStamp = timeStamp;
+
+            LineItems = lineItems;
+            TimeStamp = timeStamp;
         }
 
         /// <summary>
@@ -46,5 +46,5 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Models
         /// Gets the time at which the transaction took place.
         /// </summary>
         public DateTime TimeStamp { get; private set; }
-    }    
+    }
 }

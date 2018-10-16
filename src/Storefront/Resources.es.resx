@@ -1266,4 +1266,19 @@
   <data name="PayUWebsiteCaption" xml:space="preserve">
     <value>payumoney.com</value>
   </data>
+  <data name="AgreementUserIdFieldHeader" xml:space="preserve">
+    <value>Acuerdo usuario ID:</value>
+  </data>
+  <data name="AgreementUserIdSubText" xml:space="preserve">
+    <value>Identificador del usuario de la pareja para ser asociado a la aceptación del acuerdo de nube de Microsoft.</value>
+  </data>
+  <data name="InvalidAgreementUserId" xml:space="preserve">
+    <value>Identificador de usuario no válido.</value>
+  </data>
+  <data name="AcceptPhrase" xml:space="preserve">
+    <value>Acepto las</value>
+  </data>
+  <data name="TermsOfService" xml:space="preserve">
+    <value>Condiciones del servicio</value>
+  </data>
 </root>

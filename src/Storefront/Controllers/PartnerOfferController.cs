@@ -6,6 +6,7 @@
 
 namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web.Http;
@@ -26,31 +27,31 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [HttpGet]
         public async Task<OfferCatalogViewModel> GetOffersCatalog()
         {
-            var isBrandingConfigured = await  ApplicationDomain.Instance.PortalBranding.IsConfiguredAsync().ConfigureAwait(false);
-            var isOffersConfigured = await ApplicationDomain.Instance.OffersRepository.IsConfiguredAsync().ConfigureAwait(false);
-            var isPaymentConfigured = await ApplicationDomain.Instance.PaymentConfigurationRepository.IsConfiguredAsync().ConfigureAwait(false);
+            bool isBrandingConfigured = await ApplicationDomain.Instance.PortalBranding.IsConfiguredAsync().ConfigureAwait(false);
+            bool isOffersConfigured = await ApplicationDomain.Instance.OffersRepository.IsConfiguredAsync().ConfigureAwait(false);
+            bool isPaymentConfigured = await ApplicationDomain.Instance.PaymentConfigurationRepository.IsConfiguredAsync().ConfigureAwait(false);
 
-            var microsoftOffers = await ApplicationDomain.Instance.OffersRepository.RetrieveMicrosoftOffersAsync().ConfigureAwait(false);
-            var partnerOffers = await ApplicationDomain.Instance.OffersRepository.RetrieveAsync().ConfigureAwait(false);
+            IEnumerable<MicrosoftOffer> microsoftOffers = await ApplicationDomain.Instance.OffersRepository.RetrieveMicrosoftOffersAsync().ConfigureAwait(false);
+            IEnumerable<PartnerOffer> partnerOffers = await ApplicationDomain.Instance.OffersRepository.RetrieveAsync().ConfigureAwait(false);
 
 
-            var offerCatalogViewModel = new OfferCatalogViewModel
+            OfferCatalogViewModel offerCatalogViewModel = new OfferCatalogViewModel
             {
                 IsPortalConfigured = isBrandingConfigured && isOffersConfigured && isPaymentConfigured
             };
 
             if (offerCatalogViewModel.IsPortalConfigured)
             {
-                foreach (var offer in partnerOffers)
+                foreach (PartnerOffer offer in partnerOffers)
                 {
                     // TODO :: Handle Microsoft offer being pulled back due to EOL. 
-                    var microsoftOfferItem = microsoftOffers.Where(msOffer => msOffer.Offer.Id == offer.MicrosoftOfferId).FirstOrDefault();
+                    MicrosoftOffer microsoftOfferItem = microsoftOffers.FirstOrDefault(msOffer => msOffer.Offer.Id == offer.MicrosoftOfferId);
 
                     // temporarily remove the partner offer from catalog display if the corresponding Microsoft offer does not exist. 
                     if (microsoftOfferItem != null)
                     {
                         offer.Thumbnail = microsoftOfferItem.ThumbnailUri;
-                    }                    
+                    }
                     else
                     {
                         // temporary fix - remove the items from the collection by marking it as Inactive.
@@ -58,7 +59,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
                     }
                 }
 
-                offerCatalogViewModel.Offers = partnerOffers.Where(offer => offer.IsInactive == false);
+                offerCatalogViewModel.Offers = partnerOffers.Where(offer => !offer.IsInactive);
             }
 
             return offerCatalogViewModel;

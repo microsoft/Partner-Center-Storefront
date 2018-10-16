@@ -103,6 +103,15 @@
             </tr>
             <tr>
                 <td class="TitleCell">
+                    @Resources.AgreementUserIdFieldHeader
+                </td>
+                <td class="Subtext">
+                    <input id="InstrumentationKey" name="AgreementUserId" type="text" class="InputField FullWidthInput" data-bind="textinput: viewModel.AgreementUserId" /><br />
+                    @Resources.AgreementUserIdSubText
+                </td>
+            </tr>
+            <tr>
+                <td class="TitleCell">
                     @Resources.InstrumentationKeyFieldHeader
                 </td>
                 <td class="Subtext">
@@ -115,7 +124,6 @@
             </tr>
         </table>
     </form>
-
     <script>
         $("#PortalBrandingForm").validate({
             errorPlacement: function (error, element) {
@@ -128,6 +136,9 @@
                 }
             },
             rules: {
+                AgreementUserId: {
+                    required: true
+                },
                 OrganizationName: {
                     required: true
                 },

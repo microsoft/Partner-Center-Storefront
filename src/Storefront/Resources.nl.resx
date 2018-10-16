@@ -1266,4 +1266,19 @@
   <data name="PayUWebsiteCaption" xml:space="preserve">
     <value>payumoney.com</value>
   </data>
+  <data name="AgreementUserIdFieldHeader" xml:space="preserve">
+    <value>De ID van de gebruiker van de overeenkomst:</value>
+  </data>
+  <data name="AgreementUserIdSubText" xml:space="preserve">
+    <value>Id van de gebruiker van de partner te worden geassocieerd met de aanvaarding van de overeenkomst tussen Microsoft Cloud.</value>
+  </data>
+  <data name="InvalidAgreementUserId" xml:space="preserve">
+    <value>Ongeldige gebruikers-id.</value>
+  </data>
+  <data name="AcceptPhrase" xml:space="preserve">
+    <value>Ik ga akkoord met de</value>
+  </data>
+  <data name="TermsOfService" xml:space="preserve">
+    <value>algemene gebruiksvoorwaarden</value>
+  </data>
 </root>

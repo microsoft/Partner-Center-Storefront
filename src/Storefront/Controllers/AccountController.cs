@@ -24,9 +24,6 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         {
             if (!Request.IsAuthenticated)
             {
-                // send an OpenID Connect sign-in request
-                string callbackUrl = Url.Action("Index", "Home", routeValues: null, protocol: Request.Url.Scheme);
-
                 HttpContext.GetOwinContext().Authentication.Challenge(
                     new AuthenticationProperties { RedirectUri = "/" },
                     OpenIdConnectAuthenticationDefaults.AuthenticationType);

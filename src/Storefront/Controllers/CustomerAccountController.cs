@@ -33,11 +33,11 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         /// </summary>
         /// <returns>The Subscriptions details from PC Customer Profile.</returns>
         [Route("Subscriptions")]
-        [Filters.WebApi.PortalAuthorizeAttribute(UserRole = UserRole.Customer)]
+        [Filters.WebApi.PortalAuthorize(UserRole = UserRole.Customer)]
         [HttpGet]
         public async Task<ManagedSubscriptionsViewModel> GetCustomerSubscriptions()
         {
-            return await this.GetManagedSubscriptions().ConfigureAwait(false);
+            return await GetManagedSubscriptions().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         /// <returns>A registered customer object.</returns>
         [Route("")]
         [HttpPost]
-        [Filters.WebApi.PortalAuthorizeAttribute(UserRole = UserRole.None)]
+        [Filters.WebApi.PortalAuthorize(UserRole = UserRole.None)]
         public async Task<string> Register([FromBody] CustomerViewModel customerViewModel)
         {
             if (!ModelState.IsValid)
@@ -63,6 +63,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
             string domainName = string.Format(CultureInfo.InvariantCulture, "{0}.onmicrosoft.com", customerViewModel.DomainPrefix);
 
             // check domain available.
+
             bool isDomainTaken = await ApplicationDomain.Instance.PartnerCenterClient.Domains.ByDomain(domainName).ExistsAsync().ConfigureAwait(false);
             if (isDomainTaken)
             {
@@ -110,7 +111,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         {
             DateTime startTime = DateTime.Now;
 
-            string clientCustomerId = this.Principal.PartnerCenterCustomerId;
+            string clientCustomerId = Principal.PartnerCenterCustomerId;
 
             // responseCulture determines decimals, currency and such
             CultureInfo responseCulture = new CultureInfo(ApplicationDomain.Instance.PortalLocalization.Locale);
@@ -185,7 +186,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
                     {
                         SubscriptionId = customerSubscriptionFromPC.Id,
                         LicensesTotal = customerSubscriptionFromPC.Quantity.ToString("G", responseCulture),
-                        Status = this.GetStatusType(customerSubscriptionFromPC.Status),
+                        Status = GetStatusType(customerSubscriptionFromPC.Status),
                         CreationDate = customerSubscriptionFromPC.CreationDate.ToString("d", responseCulture),
                         FriendlyName = subscription.FriendlyName,
                         IsRenewable = subscription.IsRenewable,
@@ -203,7 +204,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
                         Id = customerSubscriptionFromPC.Id,
                         OfferName = customerSubscriptionFromPC.OfferName,
                         Quantity = customerSubscriptionFromPC.Quantity.ToString("G", responseCulture),
-                        Status = this.GetStatusType(customerSubscriptionFromPC.Status),
+                        Status = GetStatusType(customerSubscriptionFromPC.Status),
                         CreationDate = customerSubscriptionFromPC.CreationDate.ToString("d", responseCulture),
                     };
 
@@ -218,7 +219,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
             };
 
             // Capture the request for customer managed subscriptions and partner managed subscriptions for analysis.
-            Dictionary<string, string> eventProperties = new Dictionary<string, string> { { "CustomerId", this.Principal.PartnerCenterCustomerId } };
+            Dictionary<string, string> eventProperties = new Dictionary<string, string> { { "CustomerId", Principal.PartnerCenterCustomerId } };
 
             // Track the event measurements for analysis.
             Dictionary<string, double> eventMetrics = new Dictionary<string, double> { { "ElapsedMilliseconds", DateTime.Now.Subtract(startTime).TotalMilliseconds }, { "CustomerManagedSubscriptions", customerManagedSubscriptions.Count }, { "PartnerManagedSubscriptions", partnerManagedSubscriptions.Count } };
@@ -233,7 +234,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         /// </summary>
         /// <param name="statusType">The subscription status type.</param>
         /// <returns>Localized Operation Type string.</returns>
-        private string GetStatusType(SubscriptionStatus statusType)
+        private static string GetStatusType(SubscriptionStatus statusType)
         {
             switch (statusType)
             {

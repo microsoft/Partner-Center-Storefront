@@ -1266,4 +1266,19 @@
   <data name="PayUWebsiteCaption" xml:space="preserve">
     <value>payumoney.com</value>
   </data>
+  <data name="AgreementUserIdFieldHeader" xml:space="preserve">
+    <value>契約ユーザー ID:</value>
+  </data>
+  <data name="AgreementUserIdSubText" xml:space="preserve">
+    <value>マイクロソフト クラウド契約の受諾と関連するパートナーのユーザーの識別子。</value>
+  </data>
+  <data name="InvalidAgreementUserId" xml:space="preserve">
+    <value>無効なユーザー id。</value>
+  </data>
+  <data name="AcceptPhrase" xml:space="preserve">
+    <value>同意、</value>
+  </data>
+  <data name="TermsOfService" xml:space="preserve">
+    <value>サービス利用規約</value>
+  </data>
 </root>

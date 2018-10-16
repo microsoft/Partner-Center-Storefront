@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.PaymentSetupPresenter = function (webPortal, feature, paymentConfiguration) {
+﻿Microsoft.WebPortal.PaymentSetupPresenter = function (webPortal, feature, paymentConfiguration) {
     /// <summary>
     /// 
     /// </summary>
@@ -15,7 +13,7 @@ Microsoft.WebPortal.PaymentSetupPresenter = function (webPortal, feature, paymen
         ClientId: ko.observable(""),
         ClientSecret: ko.observable(""),
         AccountType: ko.observable(null),
-    	WebExperienceProfileId: ko.observable(""),
+        WebExperienceProfileId: ko.observable(""),
         SupportedAccountTypes: ko.observableArray([
             {
                 Id: "sandbox",
@@ -26,12 +24,12 @@ Microsoft.WebPortal.PaymentSetupPresenter = function (webPortal, feature, paymen
                 Title: this.webPortal.Resources.Strings.Plugins.PaymentConfiguration.LiveAccountTypeCaption
             }
         ])
-    }
+    };
 
     this.viewModel.AccountType(this.viewModel.SupportedAccountTypes()[0]);
 
     this.existingPaymentConfiguration = paymentConfiguration;
-}
+};
 
 // inherit TemplatePresenter
 $WebPortal.Helpers.inherit(Microsoft.WebPortal.PaymentSetupPresenter, Microsoft.WebPortal.Core.TemplatePresenter);
@@ -68,7 +66,7 @@ Microsoft.WebPortal.PaymentSetupPresenter.prototype.onRender = function () {
             }).always(function () {
                 self.webPortal.ContentPanel.hideProgress();
             });
-        }
+        };
 
         acquirePaymentConfiguration();
     } else {
@@ -76,7 +74,7 @@ Microsoft.WebPortal.PaymentSetupPresenter.prototype.onRender = function () {
         self._setupActions();
         self.viewModel.IsSet(true);
     }
-}
+};
 
 Microsoft.WebPortal.PaymentSetupPresenter.prototype.onSavePaymentConfiguration = function () {
     /// <summary>
@@ -117,10 +115,10 @@ Microsoft.WebPortal.PaymentSetupPresenter.prototype.onSavePaymentConfiguration =
             self.existingPaymentConfiguration = updatedPaymentInformation;
             self._updateViewModel();
         }).fail(function (result, status, error) {
-            var errorPayload = JSON.parse(result.responseText);            
+            var errorPayload = JSON.parse(result.responseText);
 
             if (errorPayload) {
-                if (errorPayload.ErrorCode == Microsoft.WebPortal.ErrorCode.PaymentGatewayIdentityFailureDuringConfiguration) {
+                if (errorPayload.ErrorCode === Microsoft.WebPortal.ErrorCode.PaymentGatewayIdentityFailureDuringConfiguration) {
                     // treat this error as non retryable.                    
                     paymentSaveNotification.type(Microsoft.WebPortal.Services.Notification.NotificationType.Error);
                     paymentSaveNotification.buttons([
@@ -128,9 +126,9 @@ Microsoft.WebPortal.PaymentSetupPresenter.prototype.onSavePaymentConfiguration =
                             paymentSaveNotification.dismiss();
                         })
                     ]);
-                    paymentSaveNotification.message(errorPayload.Details.ErrorMessage);                    
+                    paymentSaveNotification.message(errorPayload.Details.ErrorMessage);
                 }
-                else {                    
+                else {
                     // notify the user of the error and give them the ability to retry
                     self.webPortal.Helpers.displayRetryCancelErrorNotification(paymentSaveNotification,
                         self.webPortal.Resources.Strings.Plugins.PaymentConfiguration.UpdatePaymentErrorMessage,
@@ -141,10 +139,10 @@ Microsoft.WebPortal.PaymentSetupPresenter.prototype.onSavePaymentConfiguration =
             }
 
         });
-    }
+    };
 
     savePayment();
-}
+};
 
 Microsoft.WebPortal.PaymentSetupPresenter.prototype._updateViewModel = function () {
     /// <summary>
@@ -160,7 +158,7 @@ Microsoft.WebPortal.PaymentSetupPresenter.prototype._updateViewModel = function 
     }
 
     if (!this.existingPaymentConfiguration.WebExperienceProfileId) {
-    	this.existingPaymentConfiguration.WebExperienceProfileId = "";
+        this.existingPaymentConfiguration.WebExperienceProfileId = "";
     }
 
     if (!this.existingPaymentConfiguration.AccountType) {
@@ -176,7 +174,7 @@ Microsoft.WebPortal.PaymentSetupPresenter.prototype._updateViewModel = function 
             this.viewModel.AccountType(this.viewModel.SupportedAccountTypes()[i]);
         }
     }
-}
+};
 
 
 Microsoft.WebPortal.PaymentSetupPresenter.prototype._setupActions = function () {
@@ -207,10 +205,10 @@ Microsoft.WebPortal.PaymentSetupPresenter.prototype._setupActions = function () 
         // ensure adding the action finishes animating the action and showing it as disabled before we compute its new disabled status
         this.saveActionStatusUpdater = ko.computed(function () {
             // enable and disable the action buttons depending on whether there was a value change or not
-            var isFormUpdated = this.viewModel.ClientId() != this.existingPaymentConfiguration.ClientId |
-                this.viewModel.ClientSecret() != this.existingPaymentConfiguration.ClientSecret |
-				this.viewModel.WebExperienceProfileId() != this.existingPaymentConfiguration.WebExperienceProfileId |
-                (this.viewModel.AccountType() && this.viewModel.AccountType().Id != this.existingPaymentConfiguration.AccountType);
+            var isFormUpdated = this.viewModel.ClientId() !== this.existingPaymentConfiguration.ClientId |
+                this.viewModel.ClientSecret() !== this.existingPaymentConfiguration.ClientSecret |
+                this.viewModel.WebExperienceProfileId() !== this.existingPaymentConfiguration.WebExperienceProfileId |
+                (this.viewModel.AccountType() && this.viewModel.AccountType().Id !== this.existingPaymentConfiguration.AccountType);
 
             this.savePaymentAction.enabled(isFormUpdated);
             this.resetPaymentAction.enabled(isFormUpdated);
@@ -219,6 +217,6 @@ Microsoft.WebPortal.PaymentSetupPresenter.prototype._setupActions = function () 
         // tell the serializer that we are done
         operationResolver.resolve();
     });
-}
+};
 
 //@ sourceURL=PaymentSetupPresenter.js

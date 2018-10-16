@@ -13,6 +13,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
     using Configuration;
     using Configuration.Manager;
     using Filters;
+    using Models;
 
     /// <summary>
     /// Serves HTML templates to the browser.
@@ -27,7 +28,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult HomePage()
         {
-            return this.PartialView();
+            return PartialView();
         }
 
         /// <summary>
@@ -38,7 +39,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public async Task<ActionResult> Home()
         {
-            var portalBranding = await ApplicationDomain.Instance.PortalBranding.RetrieveAsync().ConfigureAwait(false);
+            BrandingConfiguration portalBranding = await ApplicationDomain.Instance.PortalBranding.RetrieveAsync().ConfigureAwait(false);
 
             if (portalBranding.HeaderImage != null)
             {
@@ -50,12 +51,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
                 ViewBag.PrivacyAgreement = portalBranding.PrivacyAgreement.ToString();
             }
 
-            var principal = this.HttpContext.User as CustomerPortalPrincipal;
+            CustomerPortalPrincipal principal = HttpContext.User as CustomerPortalPrincipal;
 
             ViewBag.OrganizationName = portalBranding.OrganizationName;
-            ViewBag.IsPortalAdmin = principal.IsPortalAdmin;            
+            ViewBag.IsPortalAdmin = principal.IsPortalAdmin;
 
-            return this.PartialView();
+            return PartialView();
         }
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult CustomerRegistration()
         {
-            return this.PartialView();
+            return PartialView();
         }
 
         /// <summary>
@@ -79,18 +80,18 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult RegistrationConfirmation()
         {
-            return this.PartialView();
+            return PartialView();
         }
 
         /// <summary>
         /// Serves the HTML template for the process order presenter.
         /// </summary>
         /// <returns>The HTML template for the process order presenter.</returns>
-        [HttpGet]        
+        [HttpGet]
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult ProcessOrder()
-        {            
-            return this.PartialView();
+        {
+            return PartialView();
         }
 
         /// <summary>
@@ -102,9 +103,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult CustomerAccount()
         {
-            return this.PartialView();
+            return PartialView();
         }
-        
+
         /// <summary>
         /// Serves the HTML template for the subscriptions presenter.
         /// </summary>
@@ -114,7 +115,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult Subscriptions()
         {
-            return this.PartialView();
+            return PartialView();
         }
 
         /// <summary>
@@ -126,7 +127,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult AddSubscriptions()
         {
-            return this.PartialView();
+            return PartialView();
         }
 
         /// <summary>
@@ -139,7 +140,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         public ActionResult UpdateSubscriptions()
         {
             ViewBag.CurrencySymbol = ApplicationDomain.Instance.PortalLocalization.CurrencySymbol;
-            return this.PartialView();
+            return PartialView();
         }
 
         /// <summary>
@@ -151,7 +152,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult UpdateContactInformation()
         {
-            return this.PartialView();
+            return PartialView();
         }
 
         /// <summary>
@@ -163,7 +164,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult UpdateCompanyInformation()
         {
-            return this.PartialView();
+            return PartialView();
         }
 
         /// <summary>
@@ -175,7 +176,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult AdminConsole()
         {
-            return this.PartialView();
+            return PartialView();
         }
 
         /// <summary>
@@ -186,7 +187,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult AddOrUpdateOffer()
         {
-            return this.PartialView();
+            return PartialView();
         }
 
         /// <summary>
@@ -198,7 +199,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         public ActionResult OfferList()
         {
             ViewBag.CurrencySymbol = ApplicationDomain.Instance.PortalLocalization.CurrencySymbol;
-            return this.PartialView();
+            return PartialView();
         }
 
         /// <summary>
@@ -209,7 +210,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult BrandingSetup()
         {
-            return this.PartialView();
+            return PartialView();
         }
 
         /// <summary>
@@ -220,7 +221,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult PaymentSetup()
         {
-            return this.PartialView(PaymentGatewayConfig.GetPaymentConfigView());
+            return PartialView(PaymentGatewayConfig.GetPaymentConfigView());
         }
 
         /// <summary>
@@ -231,7 +232,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult CustomerManagementSetup()
         {
-            return this.PartialView();
+            return PartialView();
         }
 
         /// <summary>
@@ -245,7 +246,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
             WebPortalConfigurationManager builder = ApplicationConfiguration.WebPortalConfigurationManager;
             ViewBag.Templates = (await builder.AggregateNonStartupAssets().ConfigureAwait(false)).Templates;
 
-            var portalBranding = await ApplicationDomain.Instance.PortalBranding.RetrieveAsync().ConfigureAwait(false);
+            BrandingConfiguration portalBranding = await ApplicationDomain.Instance.PortalBranding.RetrieveAsync().ConfigureAwait(false);
 
             ViewBag.OrganizationName = portalBranding.OrganizationName;
 
@@ -259,7 +260,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
 
             ViewBag.CurrencySymbol = ApplicationDomain.Instance.PortalLocalization.CurrencySymbol;
 
-            return this.PartialView();
+            return PartialView();
         }
     }
 }

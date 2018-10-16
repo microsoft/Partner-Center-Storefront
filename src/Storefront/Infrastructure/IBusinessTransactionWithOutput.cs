@@ -10,7 +10,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Infrastructure
     /// A transaction that has an output.
     /// </summary>
     /// <typeparam name="TOutput">The type of data returned when the transaction is executed.</typeparam>
-    public interface IBusinessTransactionWithOutput<TOutput> : IBusinessTransaction
+    public interface IBusinessTransactionWithOutput<out TOutput> : IBusinessTransaction
     {
         /// <summary>
         /// Gets the transaction execution result.
