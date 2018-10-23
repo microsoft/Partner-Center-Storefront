@@ -511,7 +511,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
                                 errorField = errorField.Replace("payer.funding_instruments[0].", string.Empty).ToString(CultureInfo.InvariantCulture);
                             }
 
-                            errorString.AppendFormat("{0} - {1},", errorField, errorDetails.issue);
+                            errorString.AppendFormat(CultureInfo.CurrentCulture, "{0} - {1},", errorField, errorDetails.issue);
                         }
 
                         errorString.Replace(',', ']', errorString.Length - 2, 2); // remove the last comma and replace it with ]. 

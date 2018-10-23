@@ -103,7 +103,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             }
             catch (Exception ex)
             {
-                this.ParsePayUException(ex);
+                ParsePayUException(ex);
             }
 
             return await Task.FromResult(string.Empty).ConfigureAwait(false);
@@ -140,7 +140,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             }
             catch (Exception ex)
             {
-                this.ParsePayUException(ex);
+                ParsePayUException(ex);
             }
         }
 
@@ -169,7 +169,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         /// </summary>
         /// <param name="text">hash string.</param>
         /// <returns>return string</returns>
-        private string GenerateHash512(string text)
+        private static string GenerateHash512(string text)
         {
             byte[] message = Encoding.UTF8.GetBytes(text);
 
@@ -190,7 +190,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         /// Generate transaction id. 
         /// </summary>
         /// <returns>return string</returns>
-        private string GenerateTransactionId()
+        private static string GenerateTransactionId()
         {
             Random rnd = new Random();
             string strHash = GenerateHash512(rnd.ToString() + DateTime.Now);
@@ -226,7 +226,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         /// </summary>
         /// <param name="mode">mode of payment gateway.</param>
         /// <returns>return string.</returns>
-        private string GetPaymentUrl(string mode)
+        private static string GetPaymentUrl(string mode)
         {
             ////two modes are possible sandbox and live
             if (mode.Equals("sandbox", StringComparison.InvariantCultureIgnoreCase))
@@ -243,7 +243,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         /// <param name="order">order details.</param>                
         /// <param name="returnUrl">return url.</param>        
         /// <returns>return remote post.</returns>
-        private async Task<RemotePost> PrepareRemotePost(OrderViewModel order, string returnUrl)
+        private static async Task<RemotePost> PrepareRemotePost(OrderViewModel order, string returnUrl)
         {
             string fname = string.Empty;
             string phone = string.Empty;
@@ -292,11 +292,11 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             inputs.Add("furl", returnUrl + "&payment=failure&PayerId=" + inputs.Get("txnid"));
             inputs.Add("service_provider", Constant.PAYUPAISASERVICEPROVIDER);
             string hashString = inputs.Get("key") + "|" + inputs.Get("txnid") + "|" + inputs.Get("amount") + "|" + inputs.Get("productInfo") + "|" + inputs.Get("firstName") + "|" + inputs.Get("email") + "|" + inputs.Get("udf1") + "|" + inputs.Get("udf2") + "|||||||||" + payconfig.ClientSecret; // payconfig.ClientSecret;
-            string hash = this.GenerateHash512(hashString);
+            string hash = GenerateHash512(hashString);
             inputs.Add("hash", hash);
 
             RemotePost myremotepost = new RemotePost();
-            myremotepost.SetUrl(this.GetPaymentUrl(payconfig.AccountType));
+            myremotepost.SetUrl(GetPaymentUrl(payconfig.AccountType));
             myremotepost.SetInputs(inputs);
             return myremotepost;
         }
@@ -305,7 +305,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         /// Throws PartnerDomainException by parsing PayUMoney exception. 
         /// </summary>
         /// <param name="ex">Exceptions from PayUMoney API call.</param>        
-        private void ParsePayUException(Exception ex)
+        private static void ParsePayUException(Exception ex)
         {
             throw new PartnerDomainException(ErrorCode.PaymentGatewayFailure).AddDetail("ErrorMessage", ex.Message);
         }
@@ -353,7 +353,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         /// Throws PartnerDomainException by parsing PayUMoney exception. 
         /// </summary>
         /// <returns>return payment configuration</returns>
-        private async Task<PaymentConfiguration> GetAPaymentConfigAsync()
+        private static async Task<PaymentConfiguration> GetAPaymentConfigAsync()
         {
             // Before getAPIContext ... set up PayUMoney configuration. This is an expensive call which can benefit from caching. 
             PaymentConfiguration paymentConfig = await ApplicationDomain.Instance.PaymentConfigurationRepository.RetrieveAsync().ConfigureAwait(false);
@@ -392,7 +392,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             /// <param name="u">url string.</param>
             public void SetUrl(string u)
             {
-                this.url = u;
+                url = u;
             }
 
             /// <summary>
@@ -402,7 +402,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             /// <param name="value">value string.</param>
             public void Add(string name, string value)
             {
-                this.inputs.Add(name, value);
+                inputs.Add(name, value);
             }
 
             /// <summary>
@@ -422,14 +422,15 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             {
                 System.Web.HttpContext.Current.Response.Clear();
                 StringBuilder responseForm = new StringBuilder();
-                responseForm.Append(string.Format(CultureInfo.InvariantCulture, "<form name=\"{0}\" method=\"{1}\" action=\"{2}\" >", this.formName, this.method, this.url));
-                for (int i = 0; i < this.inputs.Keys.Count; i++)
+                responseForm.Append(string.Format(CultureInfo.InvariantCulture, "<form name=\"{0}\" method=\"{1}\" action=\"{2}\" >", formName, method, url));
+
+                for (int i = 0; i < inputs.Keys.Count; i++)
                 {
-                    responseForm.Append(string.Format(CultureInfo.InvariantCulture, "<input name=\"{0}\" type=\"hidden\" value=\"{1}\">", this.inputs.Keys[i], this.inputs[this.inputs.Keys[i]]));
+                    responseForm.Append(string.Format(CultureInfo.InvariantCulture, "<input name=\"{0}\" type=\"hidden\" value=\"{1}\">", inputs.Keys[i], inputs[inputs.Keys[i]]));
                 }
 
                 responseForm.Append("</form>");
-                responseForm.Append(string.Format(CultureInfo.InvariantCulture, "<script language='javascript'>document.{0}.submit();</script>", this.formName));
+                responseForm.Append(string.Format(CultureInfo.InvariantCulture, "<script language='javascript'>document.{0}.submit();</script>", formName));
                 return responseForm.ToString();
             }
         }
