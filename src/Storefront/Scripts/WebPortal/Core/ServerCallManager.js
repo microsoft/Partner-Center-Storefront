@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.Core.ServerCallManager = function (webPortal) {
+﻿Microsoft.WebPortal.Core.ServerCallManager = function (webPortal) {
     /// <summary>
     /// Manages the creation and destruction of retryable server calls. This class will automically cancel any pending AJAX calls
     /// if their features (presenters) are no longer active. Developers should use this class instead of manually creating 

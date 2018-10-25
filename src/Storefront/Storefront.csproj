@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.Web.LibraryManager.Build.1.0.163\build\Microsoft.Web.LibraryManager.Build.props" Condition="Exists('..\..\packages\Microsoft.Web.LibraryManager.Build.1.0.163\build\Microsoft.Web.LibraryManager.Build.props')" />
   <Import Project="..\..\packages\Text.Analyzers.2.6.2\build\Text.Analyzers.props" Condition="Exists('..\..\packages\Text.Analyzers.2.6.2\build\Text.Analyzers.props')" />
   <Import Project="..\..\packages\Microsoft.NetFramework.Analyzers.2.6.2\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\..\packages\Microsoft.NetFramework.Analyzers.2.6.2\build\Microsoft.NetFramework.Analyzers.props')" />
   <Import Project="..\..\packages\Microsoft.NetCore.Analyzers.2.6.2\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\..\packages\Microsoft.NetCore.Analyzers.2.6.2\build\Microsoft.NetCore.Analyzers.props')" />
@@ -173,7 +174,7 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <HintPath>..\..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
     </Reference>
     <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
@@ -181,8 +182,8 @@
     <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -468,12 +469,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Configuration\WebPortalConfigurationPayU.json" />
+    <Content Include="libman.json" />
     <None Include="packages.config" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <None Include="Properties\PublishProfiles\partnercenterstorefront - Web Deploy.pubxml" />
     <Content Include="Scripts\Plugins\BrandingSetupPresenter.js" />
     <Content Include="Scripts\Plugins\CustomerAccountPresenter.js" />
     <Content Include="Scripts\Plugins\ErrorCode.js" />
@@ -508,14 +506,13 @@
     <Content Include="Scripts\WebPortal\Core\UrlManager.js" />
     <Content Include="Scripts\WebPortal\Core\View.js" />
     <Content Include="Scripts\WebPortal\Core\WebPortal.js" />
-    <Content Include="Scripts\WebPortal\Dependencies\jquery.validate.js" />
-    <Content Include="Scripts\WebPortal\Dependencies\knockout.validation.min.js" />
-    <Content Include="Scripts\WebPortal\Dependencies\jquery-1.11.2.js" />
-    <Content Include="Scripts\WebPortal\Dependencies\jquery-1.11.2.min.js" />
     <Content Include="Scripts\WebPortal\Dependencies\jquery-ui.js" />
     <Content Include="Scripts\WebPortal\Dependencies\jquery-ui.min.js" />
-    <Content Include="Scripts\WebPortal\Dependencies\knockout-3.4.2.debug.js" />
-    <Content Include="Scripts\WebPortal\Dependencies\knockout-3.4.2.js" />
+    <Content Include="Scripts\WebPortal\Dependencies\jquery.js" />
+    <Content Include="Scripts\WebPortal\Dependencies\jquery.min.js" />
+    <Content Include="Scripts\WebPortal\Dependencies\jquery.validate.js" />
+    <Content Include="Scripts\WebPortal\Dependencies\knockout-debug.js" />
+    <Content Include="Scripts\WebPortal\Dependencies\knockout-min.js" />
     <Content Include="Scripts\WebPortal\Infrastructure\Diagnostics.js" />
     <Content Include="Scripts\WebPortal\Infrastructure\Helpers.js" />
     <Content Include="Scripts\WebPortal\Infrastructure\KnockOutExtensions.js" />
@@ -548,7 +545,6 @@
     <Content Include="Scripts\WebPortal\Views\List\List.js" />
     <Content Include="Scripts\WebPortal\Views\List\ListRenderer.js" />
     <Content Include="Scripts\WebPortal\Views\List\TablePageRenderer.js" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -663,7 +659,10 @@
     <Error Condition="!Exists('..\..\packages\Microsoft.NetCore.Analyzers.2.6.2\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.NetCore.Analyzers.2.6.2\build\Microsoft.NetCore.Analyzers.props'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.NetFramework.Analyzers.2.6.2\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.NetFramework.Analyzers.2.6.2\build\Microsoft.NetFramework.Analyzers.props'))" />
     <Error Condition="!Exists('..\..\packages\Text.Analyzers.2.6.2\build\Text.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Text.Analyzers.2.6.2\build\Text.Analyzers.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Web.LibraryManager.Build.1.0.163\build\Microsoft.Web.LibraryManager.Build.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Web.LibraryManager.Build.1.0.163\build\Microsoft.Web.LibraryManager.Build.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Web.LibraryManager.Build.1.0.163\build\Microsoft.Web.LibraryManager.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Web.LibraryManager.Build.1.0.163\build\Microsoft.Web.LibraryManager.Build.targets'))" />
   </Target>
+  <Import Project="..\..\packages\Microsoft.Web.LibraryManager.Build.1.0.163\build\Microsoft.Web.LibraryManager.Build.targets" Condition="Exists('..\..\packages\Microsoft.Web.LibraryManager.Build.1.0.163\build\Microsoft.Web.LibraryManager.Build.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

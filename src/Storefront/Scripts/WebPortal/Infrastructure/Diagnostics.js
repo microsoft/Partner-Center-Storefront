@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.Infrastructure.Diagnostics = function (webPortal) {
+﻿Microsoft.WebPortal.Infrastructure.Diagnostics = function (webPortal) {
     /// <summary>
     /// Provides logging to the browser and batched logging to the configured endpoint. Currently supported logging
     /// levels are: info, warning and error.
