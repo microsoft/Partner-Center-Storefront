@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.Infrastructure.Helpers = function (webPortal) {
+﻿Microsoft.WebPortal.Infrastructure.Helpers = function (webPortal) {
     /// <summary>
     /// Contains common functionality used across the web portal.
     /// </summary>

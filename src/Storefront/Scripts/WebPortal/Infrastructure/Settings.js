@@ -1,6 +1,4 @@
-﻿/// <reference path="~/Scripts/_references.js" />
-
-Microsoft.WebPortal.Infrastructure.Settings = {
+﻿Microsoft.WebPortal.Infrastructure.Settings = {
     /// <summary>
     /// Defines common portal settings. This class just groups there settings together and is different from configuration since
     /// the elements here are not meant to change.
