@@ -1,4 +1,4 @@
-# Contributing to Partner Smart Office
+# Contributing to Partner Center Storefront
 
 This project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to and actually do, grant us
 the rights to use your contribution. View the [Contributor License Agreement](https://cla.microsoft.com) for more details.

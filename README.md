@@ -1,6 +1,8 @@
-# Partner Center Storefront 
+# Partner Center Storefront
 
-![Build status](https://dev.azure.com/partnercenter/storefront/_apis/build/status/storefront-github-CI)
+![Build status](https://dev.azure.com/partnercenter/storefront/_apis/build/status/partner-center-storefront-CI)
+
+[![GitHub issues](https://img.shields.io/github/issues/Microsoft/Partner-Center-Storefront.svg)](https://github.com/Microsoft/Partner-Center-Storefront/issues/) [![GitHub pull-requests](https://img.shields.io/github/issues-pr/Microsoft/Partner-Center-Storefront.svg)](https://gitHub.com/Microsoft/Partner-Center-Storefront/pull/)
 
 ## Overview
 
@@ -11,18 +13,17 @@ The application gives partners the following features:
 2. Configure the portal branding to reflect their company branding. This includes setting the company name, header icons, etc...
 3. Payment. Partners can configure their PayPal pro account which will receive payments from customers.
 
-The store front application currently supports the following languages (French, Spanish, German and Japanese) along with English which serves as the fallback language. 
-The store front uses the partner's default locale to configure the Locale (Currencies, Date formats, Localized offers in the repository) using the Partner Profile from partner center. 
+The store front application currently supports the following languages (French, Spanish, German and Japanese) along with English which serves as the fallback language. It uses the partner's default locale to configure the locale (currencies, date formats, localized offers in the repository) using the partner Profile from Partner Center.
 
-Customers can 
+Customers can
+
 1. Use the portal to view the offers available, purchase the quantities they need and make a payment from the storefront.
 2. Log back in and view their subscriptions, purchase extra seats or renew about to expire subscriptions.
-3. View all the subscriptions (whether they have purchased via the Store front or have been managed for them from Partner Center) in the My Account page after they login. 
+3. View all the subscriptions (whether they have purchased via the store front or have been managed for them from Partner Center) in the My Account page after they login.
 
 ## Deployment
 
-The portal can be deployed from within Partner Center at: <a href="https://partnercenter.microsoft.com/en-us/pcv/webstore/preparedeployment">https://partnercenter.microsoft.com/en-us/pcv/webstore/preparedeployment</a>.
-There is also a deployment project included in the solution through which, deployment can be started with the specified inputs.
+You can perform this deployment through Partner Center, to start this process click [here](https://partnercenter.microsoft.com/en-us/pcv/webstore/preparedeployment). Also, there is a deployment project included in the solution through which, deployment can be started with the specified inputs.
 
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
 [![Visualize](http://armviz.io/visualizebutton.png)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FPartner-Center-Storefront%2Fmaster%2Fazuredeploy.json)
@@ -33,22 +34,20 @@ If you are interested to fork and custom build/deploy the store front. We recomm
 
 Clone the source code and perform the following steps:
 
-1. Go to Partner Center, Account Settings, App Management and onboard a new Web App. Copy the application ID, application secret
-and the partner tenant ID into the following settings in Web.Config:
+1. Go to Partner Center, Account Settings, App Management and onboard a new Web App. Copy the application ID, application secret and the partner tenant ID into the following settings in Web.Config:
 
     ```xml
-    <!-- Enter your partner center onboarded AAD application ID here -->
+    <!-- Enter your Partner Center AAD application ID here -->
     <add key="partnerCenter.applicationId" value="" />
-        
-    <!-- Enter your partner center onboarded AAD application secret here -->
+
+    <!-- Enter your Partner Center AAD application secret here -->
     <add key="partnerCenter.applicationSecret" value="" />
-        
-    <!-- Enter your partner center AAD tenant ID here -->
+
+    <!-- Enter your Partner Center AAD tenant ID here -->
     <add key="partnerCenter.AadTenantId" value="" />
     ```
 
-2. Create a Web application in your Azure AD tenant. The portal will assume the identity of this application. Change the
-following settings in Web.Config to your AD application information:
+2. Create a Web application in your Azure AD tenant. The portal will assume the identity of this application. Change the following settings in Web.Config to your AD application information:
 
     ```xml
     <!-- The AAD client ID of the application running the web portal -->
