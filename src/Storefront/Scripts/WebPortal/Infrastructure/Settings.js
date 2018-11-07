@@ -4,7 +4,7 @@
     /// the elements here are not meant to change.
     /// </summary>
 
-    Ids : {
+    Ids: {
         SplashScreen: "#SplashScreen",
         HeaderBar: "#HeaderBar",
         PrimaryNavigation: "#PrimaryNavigation",
@@ -40,6 +40,6 @@
         DefaultColumnHeaderTemplate: "defaultColumnHeader-template",
         ListHeaderSelector: " #ListHeaders",
         ListBodySelector: " .ListBodyContainer",
-        ListFooterSelector: " #ListFooter",
+        ListFooterSelector: " #ListFooter"
     }
-}
+};

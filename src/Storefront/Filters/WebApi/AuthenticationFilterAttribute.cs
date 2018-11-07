@@ -17,7 +17,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Filters.WebApi
     /// Augments Web API authentication by replacing the principal with a more usable custom principal object.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true)]
-    public class AuthenticationFilterAttribute : ActionFilterAttribute, IAuthenticationFilter
+    public sealed class AuthenticationFilterAttribute : ActionFilterAttribute, IAuthenticationFilter
     {
         /// <summary>
         /// Authenticates a web API incoming request.
@@ -29,7 +29,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Filters.WebApi
         {
             context.Principal = new CustomerPortalPrincipal(HttpContext.Current.User as System.Security.Claims.ClaimsPrincipal);
 
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Filters.WebApi
         public Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken)
         {
             // Do nothing
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
     }
 }

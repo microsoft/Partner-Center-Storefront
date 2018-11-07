@@ -117,7 +117,7 @@ Microsoft.WebPortal.Services.Dialog.prototype.show = function (showProgress, con
     this.isShown(true);
 
     this.animation.show(this.webPortal.Settings.Ids.Dialog).always(function () {
-        self.maxHeight($("#DialogContentContainer").height() - 65) + "px";
+        self.maxHeight($("#DialogContentContainer").height() - 65 + "px");
 
         // fire a dialog shown event
         self.webPortal.EventSystem.broadcast(Microsoft.WebPortal.Event.DialogShown, true, self);

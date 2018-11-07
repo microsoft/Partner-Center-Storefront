@@ -8,6 +8,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.Globalization;
     using System.Text;
     using System.Threading.Tasks;
@@ -53,10 +54,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         /// <summary>
         /// Validates payment configuration. 
         /// </summary>
-        /// <param name="paymentConfig">The Payment configuration.</param>
+        /// <param name="paymentConfig">The payment configuration.</param>
         public void ValidateConfiguration(PaymentConfiguration paymentConfig)
         {
-            ////Payu does not provide payment profile validation api.
+            // PayU does not provide payment profile validation api.
         }
 
         /// <summary>
@@ -68,8 +69,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         /// <returns>The created web experience profile id.</returns>
         public string CreateWebExperienceProfile(PaymentConfiguration paymentConfig, BrandingConfiguration brandConfig, string countryIso2Code)
         {
-            ////Payu does not provide the concept of webprofile
-            ////stored authorization in WebExperienceProfileId
+            // Payu does not provide the concept of webprofile stored authorization in WebExperienceProfileId
             return paymentConfig.WebExperienceProfileId;
         }
 
@@ -106,7 +106,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
                 ParsePayUException(ex);
             }
 
-            return await Task.FromResult(string.Empty).ConfigureAwait(false);
+            return string.Empty;
         }
 
         /// <summary>
@@ -116,8 +116,8 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         /// <returns>A task.</returns>
         public async Task CaptureAsync(string authorizationCode)
         {
-            ////PayU api not provided
-            await Task.FromResult(string.Empty).ConfigureAwait(false);
+            // PayU api not provided
+            await Task.CompletedTask.ConfigureAwait(false);
         }
 
         /// <summary>
@@ -173,11 +173,11 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         {
             byte[] message = Encoding.UTF8.GetBytes(text);
 
-            UnicodeEncoding ue = new UnicodeEncoding();
             byte[] hashValue;
             System.Security.Cryptography.SHA512Managed hashString = new System.Security.Cryptography.SHA512Managed();
             string hex = string.Empty;
             hashValue = hashString.ComputeHash(message);
+
             foreach (byte x in hashValue)
             {
                 hex += string.Format(CultureInfo.InvariantCulture, "{0:x2}", x);
@@ -208,9 +208,13 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             try
             {
                 PaymentResponse paymentResponse = await ApiCalls.GetPaymentDetails(paymentId).ConfigureAwait(false);
+
                 if (paymentResponse != null && paymentResponse.Result.Count > 0)
                 {
-                    orderFromPayment = await GetOrderDetails(paymentResponse.Result[0].PostBackParam.Udf1, paymentResponse.Result[0].PostBackParam.ProductInformation, paymentResponse.Result[0].PostBackParam.Udf2).ConfigureAwait(false);
+                    orderFromPayment = GetOrderDetails(
+                        paymentResponse.Result[0].PostBackParam.Udf1,
+                        paymentResponse.Result[0].PostBackParam.ProductInformation,
+                        paymentResponse.Result[0].PostBackParam.Udf2);
                 }
             }
             catch (Exception ex)
@@ -218,7 +222,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
                 ParsePayUException(ex);
             }
 
-            return await Task.FromResult(orderFromPayment).ConfigureAwait(false);
+            return orderFromPayment;
         }
 
         /// <summary>
@@ -228,7 +232,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         /// <returns>return string.</returns>
         private static string GetPaymentUrl(string mode)
         {
-            ////two modes are possible sandbox and live
+            // The possible modes are sandbox and live
             if (mode.Equals("sandbox", StringComparison.InvariantCultureIgnoreCase))
             {
                 return Constant.TESTPAYUURL;
@@ -291,7 +295,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             inputs.Add("surl", returnUrl + "&payment=success&PayerId=" + inputs.Get("txnid"));
             inputs.Add("furl", returnUrl + "&payment=failure&PayerId=" + inputs.Get("txnid"));
             inputs.Add("service_provider", Constant.PAYUPAISASERVICEPROVIDER);
-            string hashString = inputs.Get("key") + "|" + inputs.Get("txnid") + "|" + inputs.Get("amount") + "|" + inputs.Get("productInfo") + "|" + inputs.Get("firstName") + "|" + inputs.Get("email") + "|" + inputs.Get("udf1") + "|" + inputs.Get("udf2") + "|||||||||" + payconfig.ClientSecret; // payconfig.ClientSecret;
+            string hashString = inputs.Get("key") + "|" + inputs.Get("txnid") + "|" + inputs.Get("amount") + "|" + inputs.Get("productInfo") + "|" + inputs.Get("firstName") + "|" + inputs.Get("email") + "|" + inputs.Get("udf1") + "|" + inputs.Get("udf2") + "|||||||||" + payconfig.ClientSecret;
             string hash = GenerateHash512(hashString);
             inputs.Add("hash", hash);
 
@@ -317,7 +321,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         /// <param name="prod">product data.</param>
         /// <param name="quant">quantity data.</param>
         /// <returns>The Order for which payment was made.</returns>
-        private async Task<OrderViewModel> GetOrderDetails(string operation, string prod, string quant)
+        private OrderViewModel GetOrderDetails(string operation, string prod, string quant)
         {
             OrderViewModel orderFromPayment = null;
             try
@@ -346,7 +350,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
                 ParsePayUException(ex);
             }
 
-            return await Task.FromResult(orderFromPayment).ConfigureAwait(false);
+            return orderFromPayment;
         }
 
         /// <summary>
@@ -384,7 +388,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             /// <summary>
             /// Maintains input collection. 
             /// </summary>
-            private System.Collections.Specialized.NameValueCollection inputs = new System.Collections.Specialized.NameValueCollection();
+            private NameValueCollection inputs = new System.Collections.Specialized.NameValueCollection();
 
             /// <summary>
             /// Retrieves the API Context for PayUMoney. 
@@ -393,16 +397,6 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             public void SetUrl(string u)
             {
                 url = u;
-            }
-
-            /// <summary>
-            /// Retrieves the API Context for PayUMoney. 
-            /// </summary>
-            /// <param name="name">name string.</param>
-            /// <param name="value">value string.</param>
-            public void Add(string name, string value)
-            {
-                inputs.Add(name, value);
             }
 
             /// <summary>
