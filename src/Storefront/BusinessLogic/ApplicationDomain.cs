@@ -7,6 +7,7 @@
 namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
 {
     using System.Configuration;
+    using System.Security;
     using System.Threading.Tasks;
     using Commerce;
     using Configuration;
@@ -91,6 +92,11 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         public OrdersRepository CustomerOrdersRepository { get; private set; }
 
         /// <summary>
+        /// Gets the Azure KeyVault service.
+        /// </summary>
+        public KeyVaultService KeyVaultService { get; private set; }
+
+        /// <summary>
         /// Gets the portal telemetry service.
         /// </summary>
         public TelemetryService TelemetryService { get; private set; }
@@ -109,8 +115,11 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
             if (Instance == null)
             {
                 Instance = new ApplicationDomain();
+
+                Instance.KeyVaultService = new KeyVaultService(ApplicationConfiguration.KeyVaultEndpoint);
                 Instance.PartnerCenterClient = await AcquirePartnerCenterAccessAsync().ConfigureAwait(false);
                 Instance.PortalLocalization = new PortalLocalization(Instance);
+
                 await Instance.PortalLocalization.InitializeAsync().ConfigureAwait(false);
             }
         }
@@ -123,6 +132,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         {
             if (Instance != null)
             {
+                Instance.KeyVaultService = new KeyVaultService(ApplicationConfiguration.KeyVaultEndpoint);
                 Instance.AzureStorageService = new AzureStorageService(ApplicationConfiguration.AzureStorageConnectionString, ApplicationConfiguration.AzureStorageConnectionEndpointSuffix);
                 Instance.CachingService = new CachingService(Instance, ApplicationConfiguration.CacheConnectionString);
                 Instance.OffersRepository = new PartnerOffersRepository(Instance);
@@ -147,11 +157,13 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic
         private static async Task<IAggregatePartner> AcquirePartnerCenterAccessAsync()
         {
             PartnerService.Instance.ApiRootUrl = ConfigurationManager.AppSettings["partnerCenter.apiEndPoint"];
-            PartnerService.Instance.ApplicationName = "Web Store Front V1.4";
+            PartnerService.Instance.ApplicationName = "Web Store Front V1.5";
 
-            var credentials = await PartnerCredentials.Instance.GenerateByApplicationCredentialsAsync(
+            SecureString appSecret = await Instance.KeyVaultService.GetAsync("partnercenterApplicationSecret").ConfigureAwait(false);
+
+            IPartnerCredentials credentials = await PartnerCredentials.Instance.GenerateByApplicationCredentialsAsync(
                 ConfigurationManager.AppSettings["partnercenter.applicationId"],
-                ConfigurationManager.AppSettings["partnercenter.applicationSecret"],
+                appSecret.ToUnsecureString(),
                 ConfigurationManager.AppSettings["partnercenter.AadTenantId"],
                 ConfigurationManager.AppSettings["aadEndpoint"],
                 ConfigurationManager.AppSettings["aadGraphEndpoint"]).ConfigureAwait(false);

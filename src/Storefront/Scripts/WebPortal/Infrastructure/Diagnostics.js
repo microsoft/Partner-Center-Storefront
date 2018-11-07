@@ -19,7 +19,7 @@
 
         this.informationLocal(message);
         this.informationRemote(message);
-    }
+    };
 
     /*
         Logs a piece of information to the browser's log.
@@ -33,7 +33,7 @@
         /// <param name="message">The message to log.</param>
 
         this.logLocal(message, this.webPortal.Configuration.Diagnostics.Level.Info);
-    }
+    };
 
     this.informationRemote = function (message) {
         /// <summary>
@@ -42,7 +42,7 @@
         /// <param name="message">The message to log.</param>
 
         this.logRemote(message, this.webPortal.Configuration.Diagnostics.Level.Info);
-    }
+    };
 
     this.warning = function (message) {
         /// <summary>
@@ -52,7 +52,7 @@
 
         this.warningLocal(message);
         this.warningRemote(message);
-    }
+    };
 
     this.warningLocal = function (message) {
         /// <summary>
@@ -61,7 +61,7 @@
         /// <param name="message">The warning message to log.</param>
 
         this.logLocal(message, this.webPortal.Configuration.Diagnostics.Level.Warning);
-    }
+    };
 
     this.warningRemote = function (message) {
         /// <summary>
@@ -70,7 +70,7 @@
         /// <param name="message">The warning message to log.</param>
 
         this.logRemote(message, this.webPortal.Configuration.Diagnostics.Level.Warning);
-    }
+    };
 
     this.error = function (message) {
         /// <summary>
@@ -80,7 +80,7 @@
 
         this.errorLocal(message);
         this.errorRemote(message);
-    }
+    };
 
     this.errorLocal = function (message) {
         /// <summary>
@@ -89,7 +89,7 @@
         /// <param name="message">The error message to log.</param>
 
         this.logLocal(message, this.webPortal.Configuration.Diagnostics.Level.Error);
-    }
+    };
 
     this.errorRemote = function (message) {
         /// <summary>
@@ -98,7 +98,7 @@
         /// <param name="message">The error message to log.</param>
 
         this.logRemote(message, this.webPortal.Configuration.Diagnostics.Level.Error);
-    }
+    };
 
     this.logLocal = function (message, level) {
         /// <summary>
@@ -126,7 +126,7 @@
                 // there is nothing we can do now, this browser does not support logging
             }
         }
-    }
+    };
 
     this.logRemote = function (message, level) {
         /// <summary>
@@ -139,5 +139,5 @@
         // We don't want to hit the server for each message and at the same time we do not want to overload the browser's memory!
         // Please make sure the flush interval and the maximum buffer size (in terms of message count) is configurable through
         // this.webPortal.Configuration class.
-    }
-}
+    };
+};

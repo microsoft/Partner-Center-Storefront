@@ -12,6 +12,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Security
     using Configuration;
     using Graph;
     using IdentityModel.Clients.ActiveDirectory;
+    using Microsoft.Store.PartnerCenter.Storefront.BusinessLogic;
 
     /// <summary>
     /// Authentication provider for the Microsoft Graph service client.
@@ -28,6 +29,11 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Security
         /// The type of token being utilized for the authentication request.
         /// </summary>
         private const string TokenType = "Bearer";
+
+        /// <summary>
+        /// The web portal AD client secret configuration key.
+        /// </summary>
+        private const string WebPortalADClientSecretKey = "webPortalClientSecret";
 
         /// <summary>
         /// Provides the ability to request access tokens.
@@ -113,13 +119,16 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Security
         /// <returns>A <see cref="Task"/> that represents the asynchronous operation.</returns>
         public async Task AuthenticateRequestAsync(HttpRequestMessage request)
         {
+            SecureClientSecret clientSecret = new SecureClientSecret(
+                await ApplicationDomain.Instance.KeyVaultService.GetAsync(WebPortalADClientSecretKey).ConfigureAwait(false));
+
             AuthenticationResult token = await tokenProvider.GetAccessTokenAsync(
                 $"{ApplicationConfiguration.ActiveDirectoryEndPoint}{customerId}",
                 authorizationCode,
                 redirectUri,
                 new ClientCredential(
                     ApplicationConfiguration.ActiveDirectoryClientID,
-                    ApplicationConfiguration.ActiveDirectoryClientSecret),
+                    clientSecret),
                 "https://graph.microsoft.com").ConfigureAwait(false);
 
             request.Headers.Add(AuthHeaderName, $"{TokenType} {token.AccessToken}");

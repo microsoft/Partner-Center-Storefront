@@ -45,16 +45,16 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         public PayPalGateway(ApplicationDomain applicationDomain, string description) : base(applicationDomain)
         {
             description.AssertNotEmpty(nameof(description));
-            this.paymentDescription = description;
+            paymentDescription = description;
 
-            this.payerId = string.Empty;
-            this.paymentId = string.Empty;
+            payerId = string.Empty;
+            paymentId = string.Empty;
         }
 
         /// <summary>
         /// Validates payment configuration. 
         /// </summary>
-        /// <param name="paymentConfig">The Payment configuration.</param>
+        /// <param name="paymentConfig">The payment configuration.</param>
         public void ValidateConfiguration(PaymentConfiguration paymentConfig)
         {
             string[] supportedPaymentModes = { "sandbox", "live" };
@@ -81,7 +81,6 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
                 };
 
                 string accessToken = new OAuthTokenCredential(configMap).GetAccessToken();
-                APIContext apiContext = new APIContext(accessToken);
             }
             catch (PayPalException paypalException)
             {
@@ -284,12 +283,12 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         /// <returns>Capture string id.</returns>
         public async Task<string> ExecutePaymentAsync()
         {
-            APIContext apiContext = await this.GetAPIContextAsync().ConfigureAwait(false);
+            APIContext apiContext = await GetAPIContextAsync().ConfigureAwait(false);
 
             try
             {
                 Payment payment = new Payment() { id = paymentId };
-                PaymentExecution paymentExecution = new PaymentExecution() { payer_id = this.payerId };
+                PaymentExecution paymentExecution = new PaymentExecution() { payer_id = payerId };
                 Payment paymentResult = payment.Execute(apiContext, paymentExecution);
 
                 if (paymentResult.state.Equals("approved", StringComparison.InvariantCultureIgnoreCase))
@@ -300,7 +299,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
             }
             catch (PayPalException ex)
             {
-                this.ParsePayPalException(ex);
+                ParsePayPalException(ex);
             }
 
             return string.Empty;
@@ -435,7 +434,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
                 ParsePayPalException(ex);
             }
 
-            return await Task.FromResult(orderFromPayment).ConfigureAwait(false);
+            return orderFromPayment;
         }
 
         /// <summary>
@@ -444,9 +443,9 @@ namespace Microsoft.Store.PartnerCenter.Storefront.BusinessLogic.Commerce.Paymen
         /// <returns>PayPal APIContext</returns>
         private async Task<APIContext> GetAPIContextAsync()
         {
-            //// The GetAccessToken() of the SDK Returns the currently cached access token. 
-            //// If no access token was previously cached, or if the current access token is expired, then a new one is generated and returned. 
-            //// See more - https://github.com/paypal/PayPal-NET-SDK/blob/develop/Source/SDK/Api/OAuthTokenCredential.cs
+            // The GetAccessToken() of the SDK Returns the currently cached access token. 
+            // If no access token was previously cached, or if the current access token is expired, then a new one is generated and returned. 
+            // See more - https://github.com/paypal/PayPal-NET-SDK/blob/develop/Source/SDK/Api/OAuthTokenCredential.cs
 
             // Before getAPIContext ... set up PayPal configuration. This is an expensive call which can benefit from caching. 
             PaymentConfiguration paymentConfig = await ApplicationDomain.Instance.PaymentConfigurationRepository.RetrieveAsync().ConfigureAwait(false);
