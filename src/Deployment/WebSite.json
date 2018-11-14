@@ -4,7 +4,10 @@
   "parameters": {
     "siteName": {
       "type": "string",
-      "minLength": 1
+      "maxLength": 15,
+      "metadata": {
+        "description": "Name of the Web App."
+      }
     },
     "webPortalClientId": {
       "type": "string",
@@ -93,16 +96,14 @@
       "allowedValues": [
         "Standard_LRS",
         "Standard_ZRS",
-        "Standard_GRS",
-        "Standard_RAGRS",
-        "Premium_LRS"
+        "Standard_GRS"
       ]
     }
   },
   "variables": {
-    "CustomerPortalStorageAccountName": "[concat('storage', uniqueString(resourceGroup().id))]",
-    "KeyVaultName": "[concat('vault', uniqueString(resourceGroup().id))]",
-    "IdentityResourceId": "[concat(resourceId('Microsoft.Web/sites', parameters('siteName')),'/providers/Microsoft.ManagedIdentity/Identities/default')]"
+    "customerPortalStorageAccountName": "[concat('storage', uniqueString(resourceGroup().id))]",
+    "identityResourceId": "[concat(resourceId('Microsoft.Web/sites', parameters('siteName')),'/providers/Microsoft.ManagedIdentity/Identities/default')]",
+    "keyVaultName": "[concat('vault', uniqueString(resourceGroup().id))]"
   },
   "resources": [
     {
@@ -122,17 +123,20 @@
       }
     },
     {
-      "apiVersion": "2015-08-01",
+      "apiVersion": "2016-03-01",
       "name": "[parameters('siteName')]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
-      "tags": {
-        "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]": "Resource",
-        "displayName": "Website"
+      "identity": {
+        "type": "SystemAssigned"
       },
       "dependsOn": [
-        "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+        "[parameters('hostingPlanName')]"
       ],
+      "tags": {
+        "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName')))]": "empty",
+        "displayName": "Website"
+      },
       "properties": {
         "name": "[parameters('siteName')]",
         "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]",
@@ -151,7 +155,7 @@
           "name": "web",
           "type": "sourcecontrols",
           "location": "[resourceGroup().location]",
-          "apiVersion": "2015-08-01",
+          "apiVersion": "2016-03-01",
           "dependsOn": [
             "[concat('Microsoft.Web/sites/', parameters('siteName'))]",
             "[concat('Microsoft.Web/Sites/', parameters('siteName'), '/config/appsettings')]"
@@ -168,7 +172,7 @@
         {
           "name": "appsettings",
           "type": "config",
-          "apiVersion": "2015-08-01",
+          "apiVersion": "2016-03-01",
           "dependsOn": [
             "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
           ],
@@ -193,7 +197,7 @@
     },
     {
       "type": "Microsoft.KeyVault/vaults",
-      "name": "[variables('KeyVaultName')]",
+      "name": "[variables('keyVaultName')]",
       "apiVersion": "2015-06-01",
       "location": "[resourceGroup().location]",
       "tags": {},
@@ -223,7 +227,7 @@
     {
       "type": "Microsoft.KeyVault/vaults/secrets",
       "name": "[concat(variables('keyVaultName'), '/', 'partnerCenterApplicationSecret')]",
-      "apiVersion": "2018-02-14",
+      "apiVersion": "2016-10-01",
       "properties": {
         "contentType": "text/plain",
         "value": "[parameters('partnerCenterApplicationSecret')]"
@@ -235,7 +239,7 @@
     {
       "type": "Microsoft.KeyVault/vaults/secrets",
       "name": "[concat(variables('keyVaultName'), '/', 'webPortalClientSecret')]",
-      "apiVersion": "2018-02-14",
+      "apiVersion": "2016-10-01",
       "properties": {
         "contentType": "text/plain",
         "value": "[parameters('webPortalClientSecret')]"

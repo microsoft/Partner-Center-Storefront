@@ -10,6 +10,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Globalization;
+    using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
     using System.Web;
@@ -29,7 +30,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront
     public partial class Startup
     {
         /// <summary>
-        /// The Azure global admin user role.
+        /// The Azure AD global admin directory role.
         /// </summary>
         private const string GlobalAdminUserRole = "Company Administrator";
 
@@ -47,7 +48,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront
                 new OpenIdConnectAuthenticationOptions
                 {
                     ClientId = ApplicationConfiguration.ActiveDirectoryClientID,
-                    Authority = ApplicationConfiguration.ActiveDirectoryEndPoint + "common",
+                    Authority = $"{ApplicationConfiguration.ActiveDirectoryEndPoint}common",
                     TokenValidationParameters = new TokenValidationParameters()
                     {
                         // instead of using the default validation (validating against a single issuer value, as we do in line of business apps),
@@ -56,9 +57,14 @@ namespace Microsoft.Store.PartnerCenter.Storefront
                     },
                     Notifications = new OpenIdConnectAuthenticationNotifications()
                     {
-                        RedirectToIdentityProvider = (context) =>
+                        AuthenticationFailed = (context) =>
                         {
-                            context.ProtocolMessage.Parameters.Add("lc", Resources.Culture.LCID.ToString(CultureInfo.InvariantCulture));
+                            // redirect to the error page
+                            string errorMessage = (context.Exception.InnerException == null) ?
+                                context.Exception.Message : context.Exception.InnerException.Message;
+                            context.OwinContext.Response.Redirect($"/Home/Error?errorMessage={errorMessage}");
+
+                            context.HandleResponse();
                             return Task.FromResult(0);
                         },
                         AuthorizationCodeReceived = async (context) =>
@@ -77,6 +83,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront
                             {
                                 context.AuthenticationTicket.Identity.AddClaim(new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.Role, role.DisplayName));
                             }
+
                             if (userTenantId != ApplicationConfiguration.ActiveDirectoryTenantId)
                             {
                                 string partnerCenterCustomerId = string.Empty;
@@ -97,7 +104,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront
                             }
                             else
                             {
-                                if (context.AuthenticationTicket.Identity.FindFirst(System.Security.Claims.ClaimTypes.Role).Value != Startup.GlobalAdminUserRole)
+                                if (context.AuthenticationTicket.Identity.FindAll(System.Security.Claims.ClaimTypes.Role).SingleOrDefault(c => c.Value.Equals(GlobalAdminUserRole, StringComparison.InvariantCultureIgnoreCase)) == null)
                                 {
                                     // this login came from the partner's tenant, only allow admins to access the site, non admins will only
                                     // see the unauthenticated experience but they can't configure the portal nor can purchase
@@ -107,15 +114,15 @@ namespace Microsoft.Store.PartnerCenter.Storefront
                                 }
                             }
                         },
-                        AuthenticationFailed = (context) =>
+                        RedirectToIdentityProvider = (context) =>
                         {
-                            // redirect to the error page
-                            string errorMessage = (context.Exception.InnerException == null) ?
-                                context.Exception.Message : context.Exception.InnerException.Message;
-                            context.OwinContext.Response.Redirect($"/Home/Error?errorMessage={errorMessage}");
+                            string appBaseUrl = $"{context.Request.Scheme}://{context.Request.Host}{context.Request.PathBase}";
 
-                            context.HandleResponse();
-                            return Task.FromResult(0);
+                            context.ProtocolMessage.RedirectUri = $"{appBaseUrl}/";
+                            context.ProtocolMessage.PostLogoutRedirectUri = appBaseUrl;
+                            context.ProtocolMessage.Parameters.Add("lc", Resources.Culture.LCID.ToString(CultureInfo.InvariantCulture));
+
+                            return Task.CompletedTask;
                         }
                     }
                 });
