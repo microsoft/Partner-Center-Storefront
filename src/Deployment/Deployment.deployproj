@@ -14,6 +14,9 @@
     <ProjectGuid>0b962fe3-e103-4c00-bfad-cd35f22a2c19</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup>
     <PrepareForBuildDependsOn>
     </PrepareForBuildDependsOn>
   </PropertyGroup>
