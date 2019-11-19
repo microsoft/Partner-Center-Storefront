@@ -241,10 +241,10 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
 
             ResourceCollection<AgreementMetaData> agreements = await ApplicationDomain.Instance.PartnerCenterClient.AgreementDetails.GetAsync().ConfigureAwait(false);
 
-            // Obtain reference to the Microsoft Cloud Agreement.
-            AgreementMetaData microsoftCloudAgreement = agreements.Items.FirstOrDefault(agr => agr.AgreementType == AgreementType.MicrosoftCloudAgreement);
+            // Obtain reference to the Microsoft Customer Agreement.
+            AgreementMetaData microsoftCloudAgreement = agreements.Items.FirstOrDefault(agr => agr.AgreementType.Equals("MicrosoftCustomerAgreement", StringComparison.InvariantCultureIgnoreCase));
 
-            // Attest that the customer has accepted the Microsoft Cloud Agreement (MCA).
+            // Attest that the customer has accepted the Microsoft Customer Agreement (MCA).
             await ApplicationDomain.Instance.PartnerCenterClient.Customers[newCustomer.Id].Agreements.CreateAsync(
                 new Agreement
                 {
@@ -257,7 +257,7 @@ namespace Microsoft.Store.PartnerCenter.Storefront.Controllers
                         PhoneNumber = customerRegistrationInfoPersisted.Phone
                     },
                     TemplateId = microsoftCloudAgreement.TemplateId,
-                    Type = AgreementType.MicrosoftCloudAgreement,
+                    Type = "MicrosoftCustomerAgreement",
                     UserId = branding.AgreementUserId
                 }).ConfigureAwait(false);
 
