@@ -1,96 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
+		Microsoft ResX Schema
 
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,184 +89,184 @@
     <value>text/microsoft-resx</value>
   </resheader>
   <resheader name="version">
-    <value>2.0</value>
+    <value>1.3</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Back" xml:space="preserve">
-    <value>Atrás</value>
+    <value>Nyuma</value>
   </data>
   <data name="BuyNow" xml:space="preserve">
-    <value>Comprar ahora</value>
+    <value>Kununua sasa</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancelar</value>
+    <value>Katisha</value>
   </data>
   <data name="ClearAll" xml:space="preserve">
-    <value>Borrar todo</value>
+    <value>Ondoa yote</value>
   </data>
   <data name="ContactUs" xml:space="preserve">
-    <value>contáctenos</value>
+    <value>Wasiliana nasi</value>
   </data>
   <data name="CopyRight" xml:space="preserve">
-    <value>Copyright 2019</value>
+    <value>Mwaka 2019 hakimiliki</value>
   </data>
   <data name="Ellipsis" xml:space="preserve">
     <value>...</value>
   </data>
   <data name="EmptyListMessage" xml:space="preserve">
-    <value>No encuentra las entidades</value>
+    <value>Hakuna vyombo kupatikana</value>
   </data>
   <data name="FailedToLoadPortal" xml:space="preserve">
-    <value>No se pudo obtener contenido de portal</value>
+    <value>Haikuweza kupata maudhui portal</value>
   </data>
   <data name="First" xml:space="preserve">
-    <value>Primero</value>
+    <value>Kwanza</value>
   </data>
   <data name="InvalidPortalConfiguration" xml:space="preserve">
-    <value>Configuración de portal parece ser válido</value>
+    <value>Usanidi portal inaonekana kuwa batili</value>
   </data>
   <data name="Last" xml:space="preserve">
-    <value>Pasado</value>
+    <value>Mwisho</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Carga</value>
+    <value>Upakiaji</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>Iniciar sesión</value>
+    <value>Kuingia</value>
   </data>
   <data name="MoreActionsTooltip" xml:space="preserve">
-    <value>Más acciones...</value>
+    <value>Vitendo zaidi...</value>
   </data>
   <data name="NavigateBackTo" xml:space="preserve">
-    <value>Volver a:</value>
+    <value>Rudi kwenye:</value>
   </data>
   <data name="Next" xml:space="preserve">
-    <value>próximo</value>
+    <value>Ijayo</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>No</value>
+    <value>La</value>
   </data>
   <data name="NotificationSectionTooltip" xml:space="preserve">
-    <value>Notificaciones activadas</value>
+    <value>Taarifa ya kazi</value>
   </data>
   <data name="NotificationsSummary" xml:space="preserve">
-    <value>nuevas notificaciones</value>
+    <value>taarifa mpya</value>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>De acuerdo</value>
+    <value>Sawa kabisa</value>
   </data>
   <data name="PasswordLabel" xml:space="preserve">
-    <value>Contraseña</value>
+    <value>Nywila</value>
   </data>
   <data name="PortalConfigurationNotFound" xml:space="preserve">
-    <value>No se encontró la configuración del portal</value>
+    <value>Portal configuation haikuweza kupatikana</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
-    <value>Recuérdame</value>
+    <value>Nikumbuke</value>
   </data>
   <data name="RetryCapital" xml:space="preserve">
-    <value>Vuelva a intentarlo</value>
+    <value>Jaribu tena</value>
   </data>
   <data name="Signout" xml:space="preserve">
-    <value>Cerrar sesión</value>
+    <value>Aga</value>
   </data>
   <data name="TemplateLoadFailureMessage" xml:space="preserve">
-    <value>No se pudo obtener el contenido de la función</value>
+    <value>Haikuweza kupata kipengele cha maudhui</value>
   </data>
   <data name="TemplateLoadRetryMessage" xml:space="preserve">
-    <value>Obtener contenido de característica</value>
+    <value>Kupata maudhui ya kipengele</value>
   </data>
   <data name="UserNameLabel" xml:space="preserve">
-    <value>Nombre de usuario:</value>
+    <value>Jina la mtumiaji:</value>
   </data>
   <data name="ViewTilesTooltip" xml:space="preserve">
-    <value>Ver azulejos</value>
+    <value>Vigae vya Mwoneko</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Sí</value>
+    <value>Ndio</value>
   </data>
   <data name="EmptyOffersErrorMessage" xml:space="preserve">
-    <value>Debe seleccionar al menos una oferta de compra.</value>
+    <value>Lazima uteue angalau kutoa kununua.</value>
   </data>
   <data name="TotalAmountCaption" xml:space="preserve">
-    <value>Cantidad total</value>
+    <value>Kiasi cha jumla</value>
   </data>
   <data name="RemoveFromCart" xml:space="preserve">
-    <value>Eliminar del carrito</value>
+    <value>Ondoa kutoka kwenye gari</value>
   </data>
   <data name="Address" xml:space="preserve">
-    <value>Dirección</value>
+    <value>Anwani</value>
   </data>
   <data name="AdminUserAccount" xml:space="preserve">
-    <value>Cuenta de usuario admin</value>
+    <value>Akaunti ya mtumiaji ya admin</value>
   </data>
   <data name="Confirmation" xml:space="preserve">
-    <value>Confirmación</value>
+    <value>Uthibitisho</value>
   </data>
   <data name="ConfirmationMessage" xml:space="preserve">
-    <value>Gracias. El cliente fue creado y su solicitud fue procesada con éxito.</value>
+    <value>Asante. Mteja iliundwa na kitendo chako kwa ufanisi kusindika.</value>
   </data>
   <data name="ContactInformation" xml:space="preserve">
-    <value>Información del cliente</value>
+    <value>Taarifa za wateja.</value>
   </data>
   <data name="Done" xml:space="preserve">
-    <value>Hecho</value>
+    <value>Kufanyika</value>
   </data>
   <data name="MicrosoftId" xml:space="preserve">
-    <value>ID de Microsoft</value>
+    <value>ID ya Microsoft</value>
   </data>
   <data name="SetupInformation" xml:space="preserve">
-    <value>Detalles de cliente</value>
+    <value>Maelezo ya mteja</value>
   </data>
   <data name="Subscription" xml:space="preserve">
-    <value>Suscripción</value>
+    <value>Michango</value>
   </data>
   <data name="Subscriptions" xml:space="preserve">
-    <value>Suscripciones</value>
+    <value>Ada</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>Total</value>
+    <value>Jumla</value>
   </data>
   <data name="AddSubscriptions" xml:space="preserve">
-    <value>Añadir suscripciones</value>
+    <value>Ongeza Maungisho</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Proceder al pago</value>
+    <value>Kuendelea kwa malipo</value>
   </data>
   <data name="AcceptTerms" xml:space="preserve">
-    <value>Acepto los términos y condiciones</value>
+    <value>Ninakubali masharti na hali</value>
   </data>
   <data name="DomainPrefixValidationMessage" xml:space="preserve">
-    <value>Por favor, introduzca un prefijo de dominio válido</value>
+    <value>Tafadhali ingiza namba awali kikoa halali</value>
   </data>
   <data name="SubscriptionIDLabel" xml:space="preserve">
-    <value>ID de suscripción:</value>
+    <value>ID ya kujiunga:</value>
   </data>
   <data name="CompanyBrandingConfigurationCaption" xml:space="preserve">
-    <value>Actualizar la información de su empresa</value>
+    <value>Sasaisha taarifa yako ya kampuni</value>
   </data>
   <data name="DashboardBuildingProgressMessage" xml:space="preserve">
-    <value>Construcción de su</value>
+    <value>Kujenga dashibodi yako</value>
   </data>
   <data name="OffersConfigurationCaption" xml:space="preserve">
-    <value>Elegir que ofrece a la venta</value>
+    <value>Chagua ambayo inatoa kuuza</value>
   </data>
   <data name="PaymentConfigurationCaption" xml:space="preserve">
-    <value>Añadir un método de pago</value>
+    <value>Ongeza njia ya malipo</value>
   </data>
   <data name="WelcomeCaptionPrefix" xml:space="preserve">
-    <value>Bienvenida</value>
+    <value>Karibu</value>
   </data>
   <data name="WelcomeCaptionSuffix" xml:space="preserve">
-    <value>¡a su constructor de tienda Web!</value>
+    <value>kwa wajenzi yako ya duka la wavuti!</value>
   </data>
   <data name="BillingTypeListRowCaption" xml:space="preserve">
-    <value>facturación basada en</value>
+    <value>bili ya msingi</value>
   </data>
   <data name="Comma" xml:space="preserve">
     <value>,</value>
@@ -295,1003 +275,886 @@
     <value>-</value>
   </data>
   <data name="SummaryListRowCaption" xml:space="preserve">
-    <value>Resumen:</value>
+    <value>Muhtasari:</value>
   </data>
   <data name="AddCaption" xml:space="preserve">
-    <value>Añadir</value>
+    <value>Ongeza</value>
   </data>
   <data name="Customization" xml:space="preserve">
-    <value>Arreglo para requisitos particulares</value>
+    <value>Ugeuzaji</value>
   </data>
   <data name="FeaturesCaption" xml:space="preserve">
-    <value>Funciones:</value>
+    <value>Vipengele:</value>
   </data>
   <data name="SelectMicrosoftOfferCaption" xml:space="preserve">
-    <value>Seleccione una oferta de Microsoft:</value>
+    <value>Teua toleo la Microsoft:</value>
   </data>
   <data name="SelectSearchByOffersPlaceholder" xml:space="preserve">
-    <value>Búsqueda por la oferta de</value>
+    <value>Tafutiza kwa kutoa</value>
   </data>
   <data name="YourAnnualPriceCaption" xml:space="preserve">
-    <value>Precio anual:</value>
+    <value>Bei kila mwaka:</value>
   </data>
   <data name="YourOfferingSubtitleCaption" xml:space="preserve">
-    <value>Subtítulo de la oferta:</value>
+    <value>Kutoa kichwa kidogo:</value>
   </data>
   <data name="YourOfferingTitleCaption" xml:space="preserve">
-    <value>Nombre de la oferta:</value>
+    <value>Kutoa jina:</value>
   </data>
   <data name="AddOfferFeaturesTooltip" xml:space="preserve">
-    <value>Añadir funciones de oferta</value>
+    <value>Kuongeza vipengee vya kutoa</value>
   </data>
   <data name="AddOfferFeatureTooltip" xml:space="preserve">
-    <value>Añadir la función de oferta después de esto</value>
+    <value>Ongeza kipengele cha kutoa baada ya hii</value>
   </data>
   <data name="AddSummaryPointsTooltip" xml:space="preserve">
-    <value>Añadir puntos Resumen oferta</value>
+    <value>Ongeza pointi ya muhtasari ya kutoa</value>
   </data>
   <data name="AddSummaryPointTooltip" xml:space="preserve">
-    <value>Añadir Extracto de oferta después de esto</value>
+    <value>Ongeza kutoa muhtasari baada ya hii</value>
   </data>
   <data name="BrandingSectionTooltip" xml:space="preserve">
-    <value>Haga clic para configurar la marca de su empresa.</value>
+    <value>Bofya ili kusanidi kampuni yako branding.</value>
   </data>
   <data name="OfferFeaturePlaceHolder" xml:space="preserve">
-    <value>Describir una característica que da a esta oferta</value>
+    <value>Kuelezea kipengele kutoa hii inatoa</value>
   </data>
   <data name="OffersSectionTooltip" xml:space="preserve">
-    <value>Haga clic para configurar sus ofertas</value>
+    <value>Bofya ili kusanidi yako inatoa</value>
   </data>
   <data name="OfferSummaryPlaceHolder" xml:space="preserve">
-    <value>Escriba un resumen de la oferta</value>
+    <value>Andika muhtasari ya kutoa</value>
   </data>
   <data name="PaymentSectionTooltip" xml:space="preserve">
-    <value>Haga clic para configurar las opciones de pago</value>
+    <value>Bofya ili kusanidi chaguo zako za malipo</value>
   </data>
   <data name="PriceHeader" xml:space="preserve">
-    <value>Precio:</value>
+    <value>Bei:</value>
   </data>
   <data name="RemoveOfferFeatureTooltip" xml:space="preserve">
-    <value>Quitar la función de oferta</value>
+    <value>Ondoa kipengele cha kutoa</value>
   </data>
   <data name="RemoveSummaryPointTooltip" xml:space="preserve">
-    <value>Resumen de oferta de quitar</value>
+    <value>Ondoa kutoa muhtasari</value>
   </data>
   <data name="DashboardItemConfigured" xml:space="preserve">
-    <value>Configurado</value>
+    <value>Kusakinishwa</value>
   </data>
   <data name="DashboardItemNeedsConfiguration" xml:space="preserve">
-    <value>Configuración de las necesidades</value>
+    <value>Usanidi wa mahitaji</value>
   </data>
   <data name="DashboardLoadingError" xml:space="preserve">
-    <value>No se pudo recuperar la información del tablero de instrumentos</value>
+    <value>Haiwezi kuepua taarifa dashibodi ya</value>
   </data>
   <data name="DashboardStatusNotOk" xml:space="preserve">
-    <value>Personalizar su sitio antes de empezar a vender</value>
+    <value>Kubinafsisha tovuti yako kabla ya kuanza kuuza</value>
   </data>
   <data name="DashboardStatusOk" xml:space="preserve">
-    <value>Eres bueno para ir y empezar a vender!</value>
+    <value>Wewe ni mzuri kwa kwenda na kuanza kuuza!</value>
   </data>
   <data name="AddOfferCaption" xml:space="preserve">
-    <value>Añadir una nueva oferta</value>
+    <value>Ongeza kutoa mpya</value>
   </data>
   <data name="Category" xml:space="preserve">
-    <value>Categoría</value>
+    <value>Kategoria</value>
   </data>
   <data name="CustomizationOfferListColumnCaption" xml:space="preserve">
-    <value>Arreglo para requisitos particulares</value>
+    <value>Ugeuzaji</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Eliminar</value>
+    <value>Futa</value>
   </data>
   <data name="DeleteOffersCaption" xml:space="preserve">
-    <value>Borrar oferta</value>
+    <value>Futa Offer(s)</value>
   </data>
   <data name="DeletingOfferMessage" xml:space="preserve">
-    <value>Eliminación de ofertas</value>
+    <value>Inafuta inatoa</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Descripción</value>
+    <value>Maelezo</value>
   </data>
   <data name="EmptyMicrosoftOfferListMessage" xml:space="preserve">
-    <value>No hay ofertas encontradas</value>
+    <value>Hakuna inatoa kupatikana</value>
   </data>
   <data name="EmptyOfferListMessage" xml:space="preserve">
-    <value>No tienes ofertas configuradas. Haga clic en Añadir oferta anterior para comenzar a añadir sus ofertas.</value>
+    <value>Huna lolote inatoa kusakinishwa. Bofya Ongeza kutoa juu kuanza kuongeza inatoa yako.</value>
   </data>
   <data name="MicrosoftOfferListColumnCaption" xml:space="preserve">
-    <value>Oferta de Microsoft</value>
+    <value>Sadaka ya Microsoft</value>
   </data>
   <data name="MicrosoftOfferRetrievalErrorMessage" xml:space="preserve">
-    <value>No se pudo recuperar ofertas de Microsoft</value>
+    <value>Haikuweza kufufua Microsoft inatoa</value>
   </data>
   <data name="Offer" xml:space="preserve">
-    <value>Oferta</value>
+    <value>Kutoa</value>
   </data>
   <data name="OfferAutomaticallyRenewable" xml:space="preserve">
-    <value>Renovables automáticamente</value>
+    <value>Mbadala otomatiki</value>
   </data>
   <data name="OfferAvailableForPurchase" xml:space="preserve">
-    <value>Disponibles para su compra</value>
+    <value>Inapatikana kwa ajili ya kununua</value>
   </data>
   <data name="OfferDeletionConfirmation" xml:space="preserve">
-    <value>Ofertas han sido borradas</value>
+    <value>Inatoa imefutwa</value>
   </data>
   <data name="OfferDeletionFailure" xml:space="preserve">
-    <value>No se puede eliminar la oferta</value>
+    <value>Haikuweza kufuta offer(s) ya</value>
   </data>
   <data name="OfferManuallyRenewable" xml:space="preserve">
-    <value>Manualmente renovables</value>
+    <value>Mbadala kwa mikono</value>
   </data>
   <data name="OfferSaveErrorMessage" xml:space="preserve">
-    <value>No se pueden guardar la oferta</value>
+    <value>Haikuweza kuakibisha kutoa</value>
   </data>
   <data name="OfferSaveSuccessMessage" xml:space="preserve">
-    <value>¡Oferta guardado correctamente!</value>
+    <value>Kutoa imehifadhiwa kimafanikio!</value>
   </data>
   <data name="OffersFetchFailure" xml:space="preserve">
-    <value>No se pudo recuperar las ofertas</value>
+    <value>Haiwezi kuepua inatoa</value>
   </data>
   <data name="OffersFetchProgress" xml:space="preserve">
-    <value>Recuperación de ofertas</value>
+    <value>Inaepua inatoa</value>
   </data>
   <data name="OfferUnavailableForPurchase" xml:space="preserve">
-    <value>No disponible para compra</value>
+    <value>Haipatikani kwa ajili ya kununua</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Guardar</value>
+    <value>Hifadhi</value>
   </data>
   <data name="SaveOfferCaption" xml:space="preserve">
-    <value>Guardar oferta</value>
+    <value>Hifadhi kutoa</value>
   </data>
   <data name="SavingOfferMessage" xml:space="preserve">
-    <value>Oferta de ahorro</value>
+    <value>Kuhifadhi kutoa</value>
   </data>
   <data name="Seats" xml:space="preserve">
-    <value>asientos</value>
+    <value>viti</value>
   </data>
   <data name="SelectOfferErrorMessage" xml:space="preserve">
-    <value>Por favor seleccione una oferta</value>
+    <value>Tafadhali teua kutoa</value>
   </data>
   <data name="To" xml:space="preserve">
-    <value>Para</value>
+    <value>kwa</value>
   </data>
   <data name="UpdatingOfferMessage" xml:space="preserve">
-    <value>Actualización oferta</value>
+    <value>Inasasisha kutoa</value>
   </data>
   <data name="DefaultOrganizationName" xml:space="preserve">
-    <value>Su nombre de la organización</value>
+    <value>Jina la Shirika</value>
   </data>
   <data name="Undo" xml:space="preserve">
-    <value>Deshacer</value>
+    <value>Tendua</value>
   </data>
   <data name="BrandingRetrievalErrorMessage" xml:space="preserve">
-    <value>No se pudo recuperar a socio marca</value>
+    <value>Haiwezi kuepua mpenzi uwekaji nembo</value>
   </data>
   <data name="BrandingRetrievalProgressMessage" xml:space="preserve">
-    <value>Recuperación socio marca</value>
+    <value>Mpenzi kufufua uwekaji nembo</value>
   </data>
   <data name="BrandingSetupPromptMessage" xml:space="preserve">
-    <value>Configurar tu tienda web</value>
+    <value>Sakinisha duka lako la wavuti</value>
   </data>
   <data name="BrandingSetupSecondaryMessage" xml:space="preserve">
-    <value>Proporcionar la información de la organización que será visible en el encabezado y pie de página en todas las páginas</value>
+    <value>Kutoa taarifa yako ya shirika ambayo itaonekana katika kimahsusijuu na Kijachini kwenye kurasa zote</value>
   </data>
   <data name="BrandingUpdateErrorMessage" xml:space="preserve">
-    <value>No se pueden guardar marca</value>
+    <value>Haikuhifadhi uwekaji nembo</value>
   </data>
   <data name="BrandingUpdateProgressMessage" xml:space="preserve">
-    <value>Actualizar la información de marca</value>
+    <value>Kusasaisha taarifa uwekaji nembo</value>
   </data>
   <data name="BrandingUpdateSuccessMessage" xml:space="preserve">
-    <value>Marca guardado. Haga clic en el botón actualizar en la barra de encabezado para ver los cambios</value>
+    <value>Uwekaji nembo kuokolewa. Bofya kitufe cha Pakia upya katika Mwambaa wa kichwa kuona mabadiliko yako</value>
   </data>
   <data name="ContactSalesHeader" xml:space="preserve">
-    <value>Contacto de ventas:</value>
+    <value>Mawasiliano ya mauzo:</value>
   </data>
   <data name="ContactUsFieldHeader" xml:space="preserve">
-    <value>Contacto de soporte:</value>
+    <value>Mwasiliani tegemezi:</value>
   </data>
   <data name="SupportEmailAddressHeader" xml:space="preserve">
-    <value>Soporte por correo electrónico</value>
+    <value>Msaada wa barua pepe</value>
   </data>
   <data name="HeaderImageFieldHeader" xml:space="preserve">
-    <value>Imagen del encabezado:</value>
+    <value>Taswira ya kichwa:</value>
   </data>
   <data name="HeaderImageSubText" xml:space="preserve">
-    <value>Se muestra en la parte superior de la página de inicio. (.jpg, .jpeg, .img, .gif). Subir un archivo o introduzca una URL de imagen válido</value>
+    <value>Inavyoonekana kwa juu ya ukurasa wa nyumbani. (.jpg, .jpeg, .img, .gif). Pakia faili au Ingiza URL halali taswira</value>
   </data>
   <data name="HeaderImageUploadTooltip" xml:space="preserve">
-    <value>Seleccione Archivo de encabezado de la imagen desde tu ordenador</value>
+    <value>Teua faili ya taswira ya kichwa kutoka kwa ngamizi yako</value>
   </data>
   <data name="OrganizationLogoFieldHeader" xml:space="preserve">
-    <value>Insignia:</value>
+    <value>Nembo:</value>
   </data>
   <data name="OrganizationLogoSubText" xml:space="preserve">
-    <value>Se muestra en el encabezado de cada página, imágenes de tamaño 32 por 32 funcionan mejor. Subir un archivo o introduzca una URL de imagen válido</value>
+    <value>Inavyoonyeshwa kwenye kichwa cha ukurasa kila, picha ya 32 ya ukubwa na 32 kazi bora. Pakia faili au Ingiza URL halali taswira</value>
   </data>
   <data name="OrganizationLogoUploadTooltip" xml:space="preserve">
-    <value>Seleccione el archivo de imagen de logotipo de organización de su computadora</value>
+    <value>Teua faili ya taswira ya nembo ya shirika kutoka kwa ngamizi yako</value>
   </data>
   <data name="OrganizationNameFieldHeader" xml:space="preserve">
-    <value>Nombre:</value>
+    <value>Jina:</value>
   </data>
   <data name="OrganizationNameFieldSubText" xml:space="preserve">
-    <value>Nombre legal de la empresa, que se muestra en el encabezado de cada página</value>
+    <value>Kampuni yako kisheria jina, inavyoonekana kwenye kichwa cha ukurasa kila</value>
   </data>
   <data name="PhoneHeaderCaption" xml:space="preserve">
-    <value>Número de teléfono</value>
+    <value>Namba ya simu</value>
   </data>
   <data name="ReloadPortalButtonCaption" xml:space="preserve">
-    <value>Portal de recarga</value>
+    <value>Pakia upya tovuti</value>
   </data>
   <data name="ReloadPortalButtonTooltip" xml:space="preserve">
-    <value>Cargar el portal para ver los cambios</value>
+    <value>Pakiza upya tovuti kuona mabadiliko yako</value>
   </data>
   <data name="UndoBrandingChangesTooltip" xml:space="preserve">
-    <value>Deshacer cambios marca locales</value>
+    <value>Tendua mabadiliko ndani ya uwekaji nembo</value>
   </data>
   <data name="FetchPaymentConfigurationErrorMessage" xml:space="preserve">
-    <value>No se pudo recuperar la información de pago</value>
+    <value>Haiwezi kuepua taarifa ya malipo</value>
   </data>
   <data name="FetchPaymentConfigurationProgressMessage" xml:space="preserve">
-    <value>Recuperar información de pago</value>
+    <value>Kufufua taarifa ya malipo</value>
   </data>
   <data name="LiveAccountTypeCaption" xml:space="preserve">
-    <value>Cuenta real</value>
+    <value>Akaunti ya kuishi</value>
   </data>
   <data name="PaymentConfigurationHeader" xml:space="preserve">
-    <value>Proporcionar su PayPal Pro configuración de la cuenta</value>
+    <value>Kutoa Pro yako PayPal mipangilio ya akaunti</value>
   </data>
   <data name="PaymentConfigurationSubTextPostfix" xml:space="preserve">
-    <value>para crear una nueva cuenta pro si no tienes uno.</value>
+    <value>kuunda akaunti mpya ya pro kama huna moja.</value>
   </data>
   <data name="PaymentConfigurationSubTextPrefix" xml:space="preserve">
-    <value>Para recibir los pagos de sus clientes, debe utilizar una cuenta de PayPal pro, por favor visite:</value>
+    <value>Kupokea malipo kutoka kwa wateja wako, unapaswa kutumia akaunti ya pro ya PayPal, tafadhali ziara:</value>
   </data>
   <data name="PayPalAccountTypeCaption" xml:space="preserve">
-    <value>Tipo de cuenta de PayPal:</value>
+    <value>Aina ya akaunti ya PayPal:</value>
   </data>
   <data name="PayPalAccountTypeSubText" xml:space="preserve">
-    <value>Puede seleccionar un tipo de cuenta de prueba para probar sus transacciones. Una vez en marcha, se puede cambiar a un tipo de cuenta para empezar a tramitar</value>
+    <value>Unaweza kuchagua aina ya akaunti ya mtihani mtihani shughuli yako. Mara baada ya kufanya kazi, unaweza kubadilisha kwa aina ya akaunti kuishi kuanza transacting</value>
   </data>
   <data name="PayPalClientIdCaption" xml:space="preserve">
-    <value>ID de cliente de PayPal:</value>
+    <value>TAM ya mteja ya PayPal:</value>
   </data>
   <data name="PayPalClientIdSubText" xml:space="preserve">
-    <value>Introduzca su ID de cliente de PayPal</value>
+    <value>Ingiza kitambulisho chako cha mteja PayPal</value>
   </data>
   <data name="PayPalClientSecretCaption" xml:space="preserve">
-    <value>Secreto de cliente de PayPal:</value>
+    <value>Siri ya PayPal mteja:</value>
   </data>
   <data name="PayPalClientSecretSubText" xml:space="preserve">
-    <value>Entrar en su secreto de cliente de PayPal</value>
+    <value>Ingiza siri yako ya mteja PayPal</value>
   </data>
   <data name="SandboxAccountTypeCaption" xml:space="preserve">
-    <value>Cuenta Sandbox</value>
+    <value>Kikasharawe akaunti</value>
   </data>
   <data name="UndoUnsavedChanges" xml:space="preserve">
-    <value>Deshacer los cambios no guardados pago</value>
+    <value>Tendua mabadiliko ya malipo zisohifadhiwa</value>
   </data>
   <data name="UpdatePaymentErrorMessage" xml:space="preserve">
-    <value>No se pueden guardar información de pago</value>
+    <value>Haikuweza kuakibisha taarifa ya malipo</value>
   </data>
   <data name="UpdatePaymentProgressMessage" xml:space="preserve">
-    <value>Actualizar la información de pago</value>
+    <value>Kusasaisha taarifa ya malipo</value>
   </data>
   <data name="UpdatePaymentSuccessMessage" xml:space="preserve">
-    <value>Información de pago actualizada</value>
+    <value>Taarifa ya malipo kusasaishwa</value>
   </data>
   <data name="CustomerProfileAddressLine1Caption" xml:space="preserve">
-    <value>Dirección línea 1</value>
+    <value>Anwani Mstari wa 1</value>
   </data>
   <data name="CustomerProfileAddressLine2Caption" xml:space="preserve">
-    <value>Dirección línea 2</value>
+    <value>Anwani Mstari wa 2</value>
   </data>
   <data name="CustomerProfileCityCaption" xml:space="preserve">
-    <value>Ciudad</value>
+    <value>Mji</value>
   </data>
   <data name="CustomerProfileCompanyCountryCaption" xml:space="preserve">
-    <value>País</value>
+    <value>Nchi</value>
   </data>
   <data name="CustomerProfileCompanyInfoSectionCaption" xml:space="preserve">
-    <value>Información de la empresa</value>
+    <value>Taarifa za kampuni</value>
   </data>
   <data name="CustomerProfileContactInfoSectionCaption" xml:space="preserve">
-    <value>Información de contacto</value>
+    <value>Taarifa ya mwasiliani</value>
   </data>
   <data name="CustomerProfileDomainInfoCaption" xml:space="preserve">
-    <value>El prefijo de su dominio aparecerá después de la @ en su dirección de correo electrónico de dominio. Tiene que ser único y no puede contener cualquier signos de puntuación. Ejemplo: yourcompany.</value>
+    <value>Prefiksi yako kikoa yataonekana baada ya @ katika anwani yako ya baruapepe kikoa. Ni lazima iwe ya kipekee na haliwezi kuwa na yoyote punctuations. Mfano: yourcompany.</value>
   </data>
   <data name="CustomerProfileDomainPrefixCaption" xml:space="preserve">
-    <value>Prefijo de número de dominio</value>
+    <value>Prefiksi ya kikoa</value>
   </data>
   <data name="CustomerProfileEmailAddressIdCaption" xml:space="preserve">
-    <value>Dirección de correo electrónico</value>
+    <value>Anwani ya barua pepe</value>
   </data>
   <data name="CustomerProfileEmailWarningCaption" xml:space="preserve">
-    <value>Asegúrese de que introducir una dirección válida de correo electrónico. Será el principal punto de contacto para enviarle información importante para comenzar y establecer sus datos de pago.</value>
+    <value>Hakikisha unaweza Ingiza anwani halali ya baruapepe. Itakuwa hoja kuu ya mwasiliani ili kukutumia taarifa muhimu kupata wewe ulianza na kuweka data yako ya malipo.</value>
   </data>
   <data name="CustomerProfileFirstNameCaption" xml:space="preserve">
-    <value>Nombre</value>
+    <value>Jina la kwanza</value>
   </data>
   <data name="CustomerProfileLastNameCaption" xml:space="preserve">
-    <value>Apellido</value>
+    <value>Jina la mwisho</value>
   </data>
   <data name="CustomerProfileOffice365EmailCaption" xml:space="preserve">
-    <value>Se trata de la identificación de usuario que utilizará con su cuenta de Office 365.</value>
+    <value>Hii itakuwa ni kitambulisho cha mtumiaji utatumia na akaunti yako ya Office 365.</value>
   </data>
   <data name="CustomerProfileOffice365UserNameCaption" xml:space="preserve">
-    <value>nombre de usuario</value>
+    <value>Jina la mtumiaji</value>
   </data>
   <data name="CustomerProfileStateCaption" xml:space="preserve">
-    <value>Estado/provincia</value>
+    <value>Jimbo/mkoa wa</value>
   </data>
   <data name="CustomerProfileZipPostalCaption" xml:space="preserve">
-    <value>Zip / Código Postal</value>
+    <value>ZIP / msimbo wa posta</value>
   </data>
   <data name="UnpaidSubscriptionSuffix" xml:space="preserve">
-    <value>-Sin pagar</value>
+    <value>-Hazijalipwa</value>
   </data>
   <data name="ConfigurePortalMessage" xml:space="preserve">
-    <value>Configurar su sitio de Internet</value>
+    <value>Sanidi tovuti yako</value>
   </data>
   <data name="PortalNotConfiguredYet" xml:space="preserve">
-    <value>Este sitio web todavía está en construcción. Por favor visite más adelante.</value>
+    <value>Tovuti hii ni bado chini ya ujenzi. Tafadhali tembelea baadaye.</value>
   </data>
   <data name="CouldNotRetrievePartnerOffers" xml:space="preserve">
-    <value>No se pudo recuperar ofertas</value>
+    <value>Haiwezi kuepua inatoa</value>
   </data>
   <data name="SubscriptionSummaryAmountPaidOnPrefixCaption" xml:space="preserve">
-    <value>Cantidad pagada en</value>
+    <value>Kiasi cha malipo katika</value>
   </data>
   <data name="SubscriptionSummaryAnnualPricePrefixCaption" xml:space="preserve">
-    <value>Precio pagado</value>
+    <value>Bei kulipwa</value>
   </data>
   <data name="SubscriptionSummaryRateCaption" xml:space="preserve">
-    <value>Tasa de</value>
+    <value>Kiwango cha</value>
   </data>
   <data name="SubscriptionSummaryRenewLinkCaption" xml:space="preserve">
-    <value>Renovar</value>
+    <value>Upya</value>
   </data>
   <data name="CommerceOperationTypeAddSeats" xml:space="preserve">
-    <value>Añadido asientos</value>
+    <value>Viti aliongeza</value>
   </data>
   <data name="CommerceOperationTypeAddSubscription" xml:space="preserve">
-    <value>Comprar</value>
+    <value>Kununuliwa</value>
   </data>
   <data name="CommerceOperationTypeRenewSubscription" xml:space="preserve">
-    <value>Renovación</value>
+    <value>Kufanywa upya</value>
   </data>
   <data name="CustomerRegistrationFailureMessage" xml:space="preserve">
-    <value>No se podrá registrar al cliente. Por favor Inténtalo más tarde.</value>
+    <value>Haikuweza kurajisi mteja. Tafadhali jaribu baadaye.</value>
   </data>
   <data name="CustomerRegistrationMessage" xml:space="preserve">
-    <value>Registro de cliente...</value>
+    <value>Kusajili wateja...</value>
   </data>
   <data name="CustomerRegistrationSuccessMessage" xml:space="preserve">
-    <value>Preparación de pedido y redirigiendo a la pasarela de pago...</value>
+    <value>Inaandaa utaratibu na upya kwa kiingilio cha malipo...</value>
   </data>
   <data name="OrderRegistrationFailureMessage" xml:space="preserve">
-    <value>Orden registro Error</value>
+    <value>Utaratibu wa usajili kosa</value>
   </data>
   <data name="BuyMoreSubscriptionsMessage" xml:space="preserve">
-    <value>Comprar suscripciones más</value>
+    <value>Kununua ada zaidi</value>
   </data>
   <data name="UserLicencesCaption" xml:space="preserve">
-    <value>Licencias</value>
+    <value>Leseni</value>
   </data>
   <data name="ProratedPaymentTotal" xml:space="preserve">
-    <value>Prorrateada</value>
+    <value>Lilipimwa na pro</value>
   </data>
   <data name="SelectPortalOfferCaption" xml:space="preserve">
-    <value>Seleccione una o más ofertas</value>
+    <value>Teua moja au zaidi hutoa</value>
   </data>
   <data name="AccessDeniedMessage" xml:space="preserve">
-    <value>No tienes los derechos necesarios para acceder a esta zona</value>
+    <value>Huna haki zinazohitajika kufikia eneo hili</value>
   </data>
   <data name="OrderUpdateFailureMessage" xml:space="preserve">
-    <value>Error de actualización de la orden</value>
+    <value>Utaratibu Update kosa</value>
   </data>
   <data name="BadInputGenericMessage" xml:space="preserve">
-    <value>Había un entrada ha producido un error. Por favor, compruebe las entradas e inténtelo de nuevo.</value>
+    <value>Kulikuwa na kosa la ingizo imekumbana. Tafadhali kagua pembejeo na ujaribu tena.</value>
   </data>
   <data name="DomainNotAvailable" xml:space="preserve">
-    <value>El dominio no está disponible. Introduce otro prefijo de dominio de</value>
+    <value>Kikoa hakipatikani. Tafadhali ingiza namba nyingine awali kikoa</value>
   </data>
   <data name="ImagesTooLarge" xml:space="preserve">
-    <value>Las imágenes son demasiado grandes. Por favor especificar imágenes más pequeñas o subir uno por uno</value>
+    <value>Picha teuliwa ni kubwa sana. Tafadhali Bainisha picha ndogo au kupakia moja kwa moja</value>
   </data>
   <data name="InvalidAddress" xml:space="preserve">
-    <value>Por favor, especificar una dirección válida</value>
+    <value>Tafadhali Bainisha anwani halali</value>
   </data>
   <data name="InvalidFileType" xml:space="preserve">
-    <value>Por favor, seleccione un archivo de imagen válido para cargar</value>
+    <value>Tafadhali teua faili ya taswira ya halali ili kupakia</value>
   </data>
   <data name="DeleteOffersPromptMessage" xml:space="preserve">
-    <value>¿Está seguro que desea eliminar las ofertas seleccionadas? Si sus clientes ya han comprado estas ofertas, las suscripciones adquiridas todavía ser honradas pero no será renovables.</value>
+    <value>Una uhakika unataka kufuta inatoa teuliwa? Kama wateja wako tayari kununuliwa inatoa haya, ada ya kununuliwa bado kuheshimiwa lakini itakuwa mbadala.</value>
   </data>
   <data name="RegistrationConfirmationPasswordNoticeCaption" xml:space="preserve">
-    <value>Por favor copia la cuenta de usuario Admin y la contraseña y guarde en un lugar seguro. No podrás recuperarlo después de salir de esta página.</value>
+    <value>Tafadhali nakili Admin akaunti ya mtumiaji na nywila na Hifadhi katika mahali salama. Huwezi kuwa na uwezo wa kufufua baada ya wewe kuondoka kwa ukurasa huu.</value>
   </data>
   <data name="SubscriptionSummaryAnnualCommitmentExpiryCaption" xml:space="preserve">
-    <value>caduca el</value>
+    <value>waku</value>
   </data>
   <data name="SubscriptionSummaryProratepriceCaption" xml:space="preserve">
-    <value>Precio pagado se muestra proporcional según sea el caso.</value>
+    <value>Bei kulipwa ni kuonyeshwa pro-lilipimwa kama inafaa.</value>
   </data>
   <data name="AnnualPriceCaption" xml:space="preserve">
-    <value>Precio anual</value>
+    <value>Bei ya kila mwaka</value>
   </data>
   <data name="EmptyListCaption" xml:space="preserve">
-    <value>Por favor añadir una suscripción</value>
+    <value>Tafadhali Ongeza michango</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-    <value>Página de inicio</value>
+    <value>Ukurasa wa nyumbani</value>
   </data>
   <data name="ContactUsTooltip" xml:space="preserve">
-    <value>Mostrar datos de contacto</value>
+    <value>Onyesha mafafanuzi ya mwasiliani</value>
   </data>
   <data name="NonAdminUnauthorizedMessage" xml:space="preserve">
-    <value>Administradores no socios no están autorizados a firmar.</value>
+    <value>Mpenzi yasiyo admins ni mamlaka ya kuingia.</value>
   </data>
   <data name="ContactSales" xml:space="preserve">
-    <value>Ventas contacto</value>
+    <value>Wasiliana na mauzo</value>
   </data>
   <data name="ContactUsEmailCaption" xml:space="preserve">
-    <value>Correo electrónico:</value>
+    <value>Barua pepe:</value>
   </data>
   <data name="ContactUsPhoneCaption" xml:space="preserve">
-    <value>Teléfono:</value>
+    <value>Simu:</value>
   </data>
   <data name="InvalidInputErrorPrefix" xml:space="preserve">
-    <value>Corrija la entrada no válida:</value>
+    <value>Tafadhali Sahihisha ingizo batili:</value>
   </data>
   <data name="DownstreamErrorPrefix" xml:space="preserve">
-    <value>Somos capaces de procesar su solicitud en este momento. Por favor Inténtalo más tarde o póngase en contacto con nosotros por correo electrónico. Detalles del error-</value>
+    <value>Sisi ni haiwezi kuchakata ombi lako kwa wakati huu. Tafadhali jaribu baadaye au wasiliana nasi kwa barua pepe. Mafafanuzi ya kosa-</value>
   </data>
   <data name="MoreThanOneSubscriptionUpdateErrorMessage" xml:space="preserve">
-    <value>Sólo una suscripción puede ser actualizado.</value>
+    <value>Subcription moja tu inaweza kuwa kusasaishwa.</value>
   </data>
   <data name="PreparingOrderAndRedirectingMessage" xml:space="preserve">
-    <value>Preparación de pedido y redirigiendo a la pasarela de pago...</value>
+    <value>Inaandaa utaratibu na upya kwa kiingilio cha malipo...</value>
   </data>
   <data name="OrderAddFailureMessage" xml:space="preserve">
-    <value>Error durante la adición de las suscripciones.</value>
+    <value>Kosa wakati wa kuongeza ada.</value>
   </data>
   <data name="PaymentGatewayErrorPrefix" xml:space="preserve">
-    <value>No podemos procesar su pago,</value>
+    <value>Hatuwezi kuchakata malipo yako –</value>
   </data>
   <data name="PortalStartupFailure" xml:space="preserve">
-    <value>Podría no iniciar el portal</value>
+    <value>Haikuweza si uwashaji kitovu hicho</value>
   </data>
   <data name="PaymentGatewayIdentityFailureDuringConfiguration" xml:space="preserve">
-    <value>Configuración de pago no es válida.</value>
+    <value>Usanidi wa malipo ni batili.</value>
   </data>
   <data name="PaymentGatewayIdentityFailureDuringPayment" xml:space="preserve">
-    <value>Su pago no se puede procesar en este momento. Póngase en contacto con nosotros por correo electrónico.</value>
+    <value>Malipo yako hauwezi kuchakatwa kwa wakati huu. Tafadhali wasiliana nasi kwa barua pepe.</value>
   </data>
   <data name="InvalidHeaderImageUri" xml:space="preserve">
-    <value>Uri de la imagen de encabezado no válido. Por favor, asegúrese de que el identificador Uri es válido.</value>
+    <value>Kichwa batili picha Uri. Tafadhali hakikisha Uri na ni halali.</value>
   </data>
   <data name="InvalidInput" xml:space="preserve">
-    <value>Hubo un problema en uno de los campos que escribiste:</value>
+    <value>Kulikuwa na tatizo katika moja ya mashamba uliyoingiza:</value>
   </data>
   <data name="InvalidOrganizationLogoUri" xml:space="preserve">
-    <value>Logotipo de la organización no válido Uri. Por favor, asegúrese de que el identificador Uri es válido.</value>
+    <value>Nembo ya shirika la batili Uri. Tafadhali hakikisha Uri na ni halali.</value>
   </data>
   <data name="InvalidPrivacyAgreementUri" xml:space="preserve">
-    <value>Privacidad no válido Uri. Por favor, asegúrese de que el identificador Uri es válido.</value>
+    <value>Batili faragha Uri. Tafadhali hakikisha Uri na ni halali.</value>
   </data>
   <data name="PrivacyAgreement" xml:space="preserve">
-    <value>Privacidad</value>
+    <value>Faragha</value>
   </data>
   <data name="PrivacyAgreementFieldHeader" xml:space="preserve">
-    <value>Enlace de privacidad:</value>
+    <value>Faragha kiungo:</value>
   </data>
   <data name="PrivacyAgreementFieldSubText" xml:space="preserve">
-    <value>Puede especificar un enlace que muestra los términos de privacidad a sus clientes aquí que se mostrarán en el pie de página de inicio</value>
+    <value>Unaweza kubainisha ni kiungo ambacho huonyesha faragha masharti kwa wateja wako hapa ambayo itaonyesha katika Kijachini cha ukurasa wa nyumbani</value>
   </data>
   <data name="PrivacyAgreementToolTip" xml:space="preserve">
-    <value>Vista esta términos de privacidad del sitio web</value>
+    <value>Onyesha hii tovuti faragha masharti</value>
   </data>
   <data name="CouldNotRetrieveCustomerAccount" xml:space="preserve">
-    <value>No se pudo recuperar su cuenta. Por favor Inténtalo más tarde.</value>
+    <value>Haiwezi kuepua akaunti yako. Tafadhali jaribu tena baadaye.</value>
   </data>
   <data name="CouldNotRetrieveSubscriptionsSummary" xml:space="preserve">
-    <value>No se pudo recuperar sus suscripciones. Por favor Inténtalo más tarde.</value>
+    <value>Haiwezi kuepua ada yako. Tafadhali jaribu tena baadaye.</value>
   </data>
   <data name="SalesEmailAddressHeader" xml:space="preserve">
-    <value>Correo electrónico ventas</value>
+    <value>Barua pepe mauzo</value>
   </data>
   <data name="RenewSubscriptionTitleCaption" xml:space="preserve">
-    <value>Renovar suscripción</value>
+    <value>Upya michango</value>
   </data>
   <data name="CustomerOrganizationNameCaption" xml:space="preserve">
-    <value>Nombre de la organización</value>
+    <value>Jina la kampuni</value>
   </data>
   <data name="CustomerPrimaryContactCaption" xml:space="preserve">
-    <value>Contacto principal</value>
+    <value>Msingi ya mwasiliani</value>
   </data>
   <data name="CouldNotRetrieveOffer" xml:space="preserve">
-    <value>No se pudo recuperar datos de la oferta. Por favor Inténtalo más tarde.</value>
+    <value>Haiwezi kuepua maelezo ya kutoa. Tafadhali jaribu tena baadaye.</value>
   </data>
   <data name="InvalidInputInFormCaption" xml:space="preserve">
-    <value>Uno o más campos no son válidos. Por favor corregirlos y luego enviar.</value>
+    <value>Uga mmoja au zaidi ni batili. Tafadhali Sahihisha na kisha kuwasilisha.</value>
   </data>
   <data name="PlaceOrderCaption" xml:space="preserve">
-    <value>Haga su pedido</value>
+    <value>Weka oda yako</value>
   </data>
   <data name="AnnualTotalCaption" xml:space="preserve">
-    <value>Total anual</value>
+    <value>Jumla ya mwaka</value>
   </data>
   <data name="PickOfferCaption" xml:space="preserve">
-    <value>Seleccionar oferta</value>
+    <value>Chukua kutoa</value>
   </data>
   <data name="PickOfferTooltip" xml:space="preserve">
-    <value>Escoge la oferta que desea vender</value>
+    <value>Chukua kutoa ungependa kuuza</value>
   </data>
   <data name="CannotAddExistingSubscriptionError" xml:space="preserve">
-    <value>Una o más ofertas que intentas añadir ya existe. Puede agregar más licencias a las suscripciones existentes.</value>
+    <value>Moja au zaidi ya inatoa unajaribu kuongeza tayari lipo. Unaweza kuongeza zaidi leseni kwa ada ya iliyopo.</value>
   </data>
   <data name="UserPerYear" xml:space="preserve">
-    <value>usuario/año</value>
+    <value>mtumiaji/mwaka</value>
   </data>
   <data name="InvalidContactSalesPhone" xml:space="preserve">
-    <value>Por favor ingrese un teléfono válido de ventas contacto</value>
+    <value>Tafadhali ingiza halali mawasiliano simu mauzo</value>
   </data>
   <data name="InvalidContactUsPhone" xml:space="preserve">
-    <value>Por favor ingrese un teléfono válido apoyo contacto</value>
+    <value>Tafadhali ingiza simu ya msaada ya halali ya mwasiliani</value>
   </data>
   <data name="ProcessingOrderMessage" xml:space="preserve">
-    <value>Información recogida, creación de cliente y orden de procesamiento...</value>
+    <value>Malipo taarifa iliyokusanywa, kuunda wateja na utaratibu wa kuchakata...</value>
   </data>
   <data name="ExistingCustomerProcessingOrderMessage" xml:space="preserve">
-    <value>Pago procesamiento de la información recopilada, ahora orden...</value>
+    <value>Taarifa ya malipo zilizokusanywa, sasa usindikaji ili...</value>
   </data>
   <data name="AddSeatsOperationCaption" xml:space="preserve">
-    <value>Añadiendo asientos a suscripción.</value>
+    <value>Kuongeza viti kwa michango.</value>
   </data>
   <data name="NewPurchaseOperationCaption" xml:space="preserve">
-    <value>Añadir suscripciones.</value>
+    <value>Kuongeza ada.</value>
   </data>
   <data name="RenewOperationCaption" xml:space="preserve">
-    <value>Renovar la suscripción.</value>
+    <value>Upya michango.</value>
   </data>
   <data name="OrderFailureMessage" xml:space="preserve">
-    <value>Error al orden de procesamiento. Por favor vuelva a intentarlo más tarde.</value>
+    <value>Kosa wakati utaratibu wa usindikaji. Tafadhali jaribu tena baadaye.</value>
   </data>
   <data name="OrderProcessingFailureNotification" xml:space="preserve">
-    <value>Falta en el orden de procesamiento. Por favor, haga clic en hecho y vuelva a intentarlo.</value>
+    <value>Kushindwa katika utaratibu wa usindikaji. Tafadhali bofya kifanywe na jaribu tena.</value>
   </data>
   <data name="PaymentReceiptFailureNotification" xml:space="preserve">
-    <value>Falla en la recepción de información de pago. Por favor, haga clic en terminado para intentarlo de nuevo.</value>
+    <value>Kushindwa katika kupokea taarifa ya malipo. Tafadhali bofya kifanywe ili kujaribu tena.</value>
   </data>
   <data name="ProcessingOrderNotification" xml:space="preserve">
-    <value>Recibido correctamente la información de pago. Orden de procesamiento...</value>
+    <value>Kwa ufanisi kupokea taarifa ya malipo. Usindikaji ili...</value>
   </data>
   <data name="ProcessOrderPageCaption" xml:space="preserve">
-    <value>Confirmación</value>
+    <value>Uthibitisho</value>
   </data>
   <data name="NewCustomerOrderSuccessMessage" xml:space="preserve">
-    <value>Su pedido de inscripción fue procesada con éxito.</value>
+    <value>Kitendo chako usajili kwa ufanisi kusindika.</value>
   </data>
   <data name="NewCustomerProcessOrderFailureReceivingPaymentMessage" xml:space="preserve">
-    <value>Falla en la recepción de información de pago. Inicia sesión y añadir suscripciones.</value>
+    <value>Kushindwa katika kupokea taarifa ya malipo. Tafadhali kuingia na kuongeza miungisho.</value>
   </data>
   <data name="PayPalUnableToProcessPayment" xml:space="preserve">
-    <value>Somos capaces de procesar su pago.</value>
+    <value>Sisi ni haiwezi kuchakata malipo yako.</value>
   </data>
   <data name="ShowInContactUsHeaderCaption" xml:space="preserve">
-    <value>Se muestra en el contacto nosotros sección del encabezado</value>
+    <value>Inavyoonyeshwa katika mwasiliani nasi sehemu ya kichwa</value>
   </data>
   <data name="ADTenantIsAlreadyRegisteredToCustomer" xml:space="preserve">
-    <value>{0} AD inquilino ya está registrado al cliente de centro asociado: {1}</value>
+    <value>{0} AD Mpangaji tayari kusajiliwa kwa wateja wa kituo cha mpenzi: {1}</value>
   </data>
   <data name="AssertNumberPositiveInvalidPrefix" xml:space="preserve">
-    <value>número</value>
+    <value>idadi</value>
   </data>
   <data name="AssertNumberPositiveInvalidError" xml:space="preserve">
-    <value>{0} debe ser mayor que cero</value>
+    <value>{0} lazima iwe zaidi ya sifuri</value>
   </data>
   <data name="AssertStringNotEmptyInvalidPrefix" xml:space="preserve">
-    <value>cadena</value>
+    <value>Tungo</value>
   </data>
   <data name="AssertStringNotEmptyInvalidError" xml:space="preserve">
-    <value>{0} no se establece</value>
+    <value>{0} ni kuweka</value>
   </data>
   <data name="RenewSubscriptionFailedMessage" xml:space="preserve">
-    <value>RenewSubscription.ExecuteAsync() error: {0}, SubscriptionId: {1}</value>
+    <value>RenewSubscription.ExecuteAsync() imeshindwa: {0}, SubscriptionId: {1}</value>
   </data>
   <data name="InvalidOrganizationLogoFileTypeMessage" xml:space="preserve">
-    <value>Proporcionan un tipo de archivo de imagen para el logo de la organización</value>
+    <value>Kutoa aina ya faili ya taswira kwa nembo ya shirika</value>
   </data>
   <data name="InvalidOrganizationLogoUriMessage" xml:space="preserve">
-    <value>Logo organización válido URI subido</value>
+    <value>Nembo ya shirika la batili URI uploaded</value>
   </data>
   <data name="InvalidHeaderImageMessage" xml:space="preserve">
-    <value>Proporcionan un tipo de archivo de imagen para la cabecera de la imagen</value>
+    <value>Kutoa aina ya faili ya taswira ya taswira ya kichwa</value>
   </data>
   <data name="InvalidHeaderImageUriMessage" xml:space="preserve">
-    <value>Imagen de encabezado no válido URI subido</value>
+    <value>Kichwa batili taswira URI uploaded</value>
   </data>
   <data name="InvalidPrivacyUriMessage" xml:space="preserve">
-    <value>Acuerdo de privacidad válido URI subido</value>
+    <value>Makubaliano ya faragha batili URI uploaded</value>
   </data>
   <data name="ErrorPageDetailsCaption" xml:space="preserve">
-    <value>Se ha producido un error mientras se procesaba su solicitud.</value>
+    <value>Kosa limetokea wakati wa kuchakata ombi lako.</value>
   </data>
   <data name="ErrorPageTitleCaption" xml:space="preserve">
-    <value>Error</value>
+    <value>Kosa</value>
   </data>
   <data name="InvalidOperationForOrderMessage" xml:space="preserve">
-    <value>Operación no válida se realiza.</value>
+    <value>Uendeshaji wa batili inafanywa.</value>
   </data>
   <data name="NotEnoughItemsInOrderErrorMessage" xml:space="preserve">
-    <value>Orden debe tener al menos un elemento de la suscripción.</value>
+    <value>Ili wawe angalau michango kipengee.</value>
   </data>
   <data name="InvalidPaymentModeErrorMessage" xml:space="preserve">
-    <value>No se admite el modo de pago</value>
+    <value>Hali ya malipo haitegemezwi</value>
   </data>
   <data name="OfferPriceShouldBeMoreThanZero" xml:space="preserve">
-    <value>Precio de oferta debe ser más de cero</value>
+    <value>Kutoa bei iwe zaidi ya sifuri</value>
   </data>
   <data name="MicrosoftOfferIdMustBeSet" xml:space="preserve">
-    <value>MicrosoftOfferId se debe establecer</value>
+    <value>MicrosoftOfferId lazima kuweka</value>
   </data>
   <data name="IdMustBeAValidGUID" xml:space="preserve">
-    <value>ID debe ser un GUID válido</value>
+    <value>Kitambulisho cha lazima GUID halali</value>
   </data>
   <data name="FailedToUpdatePartnerOffersStore" xml:space="preserve">
-    <value>No se pudo actualizar socio ofrece persistencia</value>
+    <value>Imeshindwa kusasisha mpenzi inatoa ustahimilivu</value>
   </data>
   <data name="MicrosoftOfferImmutableErrorMessage" xml:space="preserve">
-    <value>Oferta de Microsoft no debe actualizarse. Crear una nueva oferta en su lugar.</value>
+    <value>Microsoft kutoa hairuhusiwi kusasishwa. Unda ofa mpya badala yake.</value>
   </data>
   <data name="OfferNotFound" xml:space="preserve">
-    <value>Oferta no encontrado</value>
+    <value>Kutoa haikupatikana</value>
   </data>
   <data name="ContactUsSectionNotFound" xml:space="preserve">
-    <value>Sección de contacto con nosotros que no se encuentra en configuración portal de marca</value>
+    <value>Sehemu ya ContactUs haikupatikana katika usanidi portal uwekaji nembo</value>
   </data>
   <data name="InvalidContactUsEmailAddress" xml:space="preserve">
-    <value>Contacto válido nos dirección de correo electrónico</value>
+    <value>Mwasiliani batili sisi barua pepe</value>
   </data>
   <data name="InvalidContactUsPhoneExceptionMessage" xml:space="preserve">
-    <value>Inválido en contacto con nosotros teléfono</value>
+    <value>Batili wasiliana nasi simu</value>
   </data>
   <data name="InvalidContactSalesEmailAddress" xml:space="preserve">
-    <value>Ventas email de contacto</value>
+    <value>Anwani batili ya mawasiliano mauzo baruapepe</value>
   </data>
   <data name="InvalidContactSalesPhoneExceptionMessage" xml:space="preserve">
-    <value>Teléfono ventas contacto no válido</value>
+    <value>Mawasiliano batili ya simu ya mauzo</value>
   </data>
   <data name="AddMoreLicensesCaption" xml:space="preserve">
-    <value>Añadir más licencias</value>
+    <value>Ongeza leseni zaidi</value>
   </data>
   <data name="PayPalWebsiteCaption" xml:space="preserve">
     <value>PayPal.com</value>
   </data>
   <data name="CouldNotRegisterNewPartnerCenterCustomer" xml:space="preserve">
-    <value>No podrá registrar a nuevos clientes Partner Center</value>
+    <value>Haikuweza kurajisi kituo cha mpenzi mpya kwa wateja</value>
   </data>
   <data name="HomePluginDisplayName" xml:space="preserve">
-    <value>Página de inicio</value>
+    <value>Nyumbani</value>
   </data>
   <data name="AdminConsoleDisplayName" xml:space="preserve">
-    <value>Tienda Web Builder</value>
+    <value>Wajenzi wa duka la wavuti</value>
   </data>
   <data name="BrandingDisplayName" xml:space="preserve">
-    <value>Instalación marca</value>
+    <value>Muundo Uwekaji nembo</value>
   </data>
   <data name="OffersDisplayName" xml:space="preserve">
-    <value>Configuración de ofertas</value>
+    <value>Inatoa muundo</value>
   </data>
   <data name="PaymentDisplayName" xml:space="preserve">
-    <value>Configuración de pagos</value>
+    <value>Muundo wa malipo</value>
   </data>
   <data name="MySubscriptionsDisplayName" xml:space="preserve">
-    <value>Historia de la orden</value>
+    <value>Historia ya utaratibu</value>
   </data>
   <data name="MyAccountDisplayName" xml:space="preserve">
-    <value>Administrar suscripciones</value>
+    <value>Kudhibiti ada</value>
   </data>
   <data name="GoToHomePageCaption" xml:space="preserve">
-    <value>Ir a la página de inicio</value>
-  </data>
-  <data name="CountryNameAU" xml:space="preserve">
-    <value>Australia</value>
-  </data>
-  <data name="CountryNameAT" xml:space="preserve">
-    <value>Austria</value>
-  </data>
-  <data name="CountryNameBE" xml:space="preserve">
-    <value>Bélgica</value>
-  </data>
-  <data name="CountryNameBG" xml:space="preserve">
-    <value>Bulgaria</value>
-  </data>
-  <data name="CountryNameCA" xml:space="preserve">
-    <value>Canadá</value>
-  </data>
-  <data name="CountryNameHR" xml:space="preserve">
-    <value>Croacia</value>
-  </data>
-  <data name="CountryNameCY" xml:space="preserve">
-    <value>Chipre</value>
-  </data>
-  <data name="CountryNameCZ" xml:space="preserve">
-    <value>República Checa</value>
-  </data>
-  <data name="CountryNameDK" xml:space="preserve">
-    <value>Dinamarca</value>
-  </data>
-  <data name="CountryNameEE" xml:space="preserve">
-    <value>Estonia</value>
-  </data>
-  <data name="CountryNameFI" xml:space="preserve">
-    <value>Finlandia</value>
-  </data>
-  <data name="CountryNameFR" xml:space="preserve">
-    <value>Francia</value>
-  </data>
-  <data name="CountryNameDE" xml:space="preserve">
-    <value>Alemania</value>
-  </data>
-  <data name="CountryNameGR" xml:space="preserve">
-    <value>Grecia</value>
-  </data>
-  <data name="CountryNameHU" xml:space="preserve">
-    <value>Hungría</value>
-  </data>
-  <data name="CountryNameIS" xml:space="preserve">
-    <value>Islandia</value>
-  </data>
-  <data name="CountryNameIE" xml:space="preserve">
-    <value>Irlanda</value>
-  </data>
-  <data name="CountryNameIT" xml:space="preserve">
-    <value>Italia</value>
-  </data>
-  <data name="CountryNameJP" xml:space="preserve">
-    <value>Japón</value>
-  </data>
-  <data name="CountryNameLV" xml:space="preserve">
-    <value>Letonia</value>
-  </data>
-  <data name="CountryNameLI" xml:space="preserve">
-    <value>Liechtenstein</value>
-  </data>
-  <data name="CountryNameLT" xml:space="preserve">
-    <value>Lituania</value>
-  </data>
-  <data name="CountryNameLU" xml:space="preserve">
-    <value>Luxemburgo</value>
-  </data>
-  <data name="CountryNameMT" xml:space="preserve">
-    <value>Malta</value>
-  </data>
-  <data name="CountryNameMC" xml:space="preserve">
-    <value>Mónaco</value>
-  </data>
-  <data name="CountryNameNL" xml:space="preserve">
-    <value>Países Bajos</value>
-  </data>
-  <data name="CountryNameNZ" xml:space="preserve">
-    <value>Nueva Zelanda</value>
-  </data>
-  <data name="CountryNameNO" xml:space="preserve">
-    <value>Noruega</value>
-  </data>
-  <data name="CountryNamePT" xml:space="preserve">
-    <value>Portugal</value>
-  </data>
-  <data name="CountryNameRO" xml:space="preserve">
-    <value>Rumania</value>
-  </data>
-  <data name="CountryNameSK" xml:space="preserve">
-    <value>Eslovaquia</value>
-  </data>
-  <data name="CountryNameSL" xml:space="preserve">
-    <value>Sierra Leona</value>
-  </data>
-  <data name="CountryNameES" xml:space="preserve">
-    <value>España</value>
-  </data>
-  <data name="CountryNameSE" xml:space="preserve">
-    <value>Suecia</value>
-  </data>
-  <data name="CountryNameCH" xml:space="preserve">
-    <value>Suiza</value>
-  </data>
-  <data name="CountryNameGB" xml:space="preserve">
-    <value>Reino Unido</value>
-  </data>
-  <data name="CountryNameUS" xml:space="preserve">
-    <value>Estados Unidos</value>
+    <value>Nenda katika ukurasa nyumbani</value>
   </data>
   <data name="CustomerOrganizationRequired" xml:space="preserve">
-    <value>Nombre de la organización es necesario.</value>
+    <value>Jina la shirika ni required.</value>
   </data>
   <data name="CustomerProfileCompanyCountryRequired" xml:space="preserve">
-    <value>País es necesario.</value>
+    <value>Nchi inahitajika.</value>
   </data>
   <data name="CustomerProfileAddressLine1Required" xml:space="preserve">
-    <value>Dirección línea 1 se requiere.</value>
+    <value>Laini 1 ya anwani ni required.</value>
   </data>
   <data name="CustomerProfileCityRequired" xml:space="preserve">
-    <value>La ciudad es necesaria.</value>
+    <value>Mji ni required.</value>
   </data>
   <data name="CustomerProfileEmailAddressIdRequired" xml:space="preserve">
-    <value>El campo de correo electrónico no es una dirección válida de correo electrónico.</value>
+    <value>Uga wa barua pepe sio anwani halali ya baruapepe.</value>
   </data>
   <data name="CustomerProfileDomainPrefixRequired" xml:space="preserve">
-    <value>Prefijo de número de dominio es necesario.</value>
+    <value>Kiambishi awali kikoa inahitajika.</value>
   </data>
   <data name="CustomerProfileFirstNameRequired" xml:space="preserve">
-    <value>Nombre es requerido.</value>
+    <value>Jina la kwanza ni required.</value>
   </data>
   <data name="CustomerProfileLastNameRequired" xml:space="preserve">
-    <value>Apellido es requerido.</value>
+    <value>Jina la mwisho ni required.</value>
   </data>
   <data name="PhoneHeaderRequired" xml:space="preserve">
-    <value>Número de teléfono es requerido.</value>
+    <value>Simu inahitajika.</value>
   </data>
   <data name="SignOutToolTipCaption" xml:space="preserve">
-    <value>Salir de la aplicación</value>
+    <value>Aga toka kwa programu tumizi</value>
   </data>
   <data name="SubscriptionStatusTypeActive" xml:space="preserve">
-    <value>Activo</value>
+    <value>Amilifu</value>
   </data>
   <data name="SubscriptionStatusTypeDeleted" xml:space="preserve">
-    <value>Elimina</value>
+    <value>Kufutwa</value>
   </data>
   <data name="SubscriptionStatusTypeNone" xml:space="preserve">
-    <value>Ninguno</value>
+    <value>Hakuna</value>
   </data>
   <data name="SubscriptionStatusTypeSuspended" xml:space="preserve">
-    <value>Suspendido</value>
+    <value>Kusimamishwa</value>
   </data>
   <data name="LicenseCreatedDateCaption" xml:space="preserve">
-    <value>Fecha de creación</value>
+    <value>Tarehe ya kuundwa</value>
   </data>
   <data name="LicenseNameCaption" xml:space="preserve">
-    <value>Nombre</value>
+    <value>Jina</value>
   </data>
   <data name="LicenseQuantityCaption" xml:space="preserve">
-    <value>Cantidad</value>
+    <value>Wingi</value>
   </data>
   <data name="LicenseStatusCaption" xml:space="preserve">
-    <value>Estado</value>
+    <value>Hali</value>
   </data>
   <data name="LicenseBasedSubscriptionsCaption" xml:space="preserve">
-    <value>Suscripciones de clientes gestionados</value>
+    <value>Wateja imeweza ada</value>
   </data>
   <data name="PartnerManagedSubscriptionsCaption" xml:space="preserve">
-    <value>Suscripciones de socios administrados</value>
+    <value>Mpenzi imeweza ada</value>
   </data>
   <data name="OrdersCaption" xml:space="preserve">
-    <value>Órdenes de</value>
+    <value>Amri</value>
   </data>
   <data name="InstrumentationKeyFieldHeader" xml:space="preserve">
-    <value>Clave de instrumentación:</value>
+    <value>Instrumentation ufunguo:</value>
   </data>
   <data name="InstrumentationKeyFieldSubText" xml:space="preserve">
-    <value>Puede especificar una clave de instrumentación de aplicación de conocimientos con el fin de capturar los datos de telemetría desde el portal.</value>
+    <value>Unaweza kubainisha na ufahamu wa maombi instrumentation muhimu ili kukamata telemetry data kutoka kitovu hicho.</value>
   </data>
   <data name="UsageBasedSubscriptionsCaption" xml:space="preserve">
-    <value>Suscripciones de uso basado en</value>
+    <value>Ada ya matumizi kulingana na</value>
   </data>
   <data name="CustomerManagementDisplayName" xml:space="preserve">
-    <value>Clientes pre aprobados</value>
+    <value>Wateja kabla kupitishwa</value>
   </data>
   <data name="CustomerManagementHeader" xml:space="preserve">
-    <value>Gestión de clientes para las transacciones previamente aprobados.</value>
+    <value>Kusimamia wateja kwa ajili ya shughuli za kabla ya kupitishwa.</value>
   </data>
   <data name="CustomerManagementSubText" xml:space="preserve">
-    <value>"Seleccionar todo" va a marcar todos los actuales y futuros clientes como aprobados para tramitar en el frente de la tienda.</value>
+    <value>"Teua yote" kutakuwa sasa na baadaye wateja wote kama kabla ya kupitishwa kwa mbele ya duka.</value>
   </data>
   <data name="CustomerManagementAllCustomersToggleCaption" xml:space="preserve">
-    <value>Seleccionar todo</value>
+    <value>Teua yote</value>
   </data>
   <data name="CustomerManagementPreApprovedColumnCaption" xml:space="preserve">
-    <value>Aprobación previa</value>
+    <value>Kabla kupitishwa</value>
   </data>
   <data name="CustomerManagementCustomerNameColumnCaption" xml:space="preserve">
-    <value>Nombre del cliente</value>
+    <value>Jina la mteja</value>
   </data>
   <data name="CustomerManagementPrimaryDomainNameColumnCaption" xml:space="preserve">
-    <value>Nombre de dominio principal</value>
+    <value>Jina la kikoa msingi</value>
   </data>
   <data name="CustomerManagementMicrosoftIDColumnCaption" xml:space="preserve">
-    <value>ID de Microsoft</value>
+    <value>ID ya Microsoft</value>
   </data>
   <data name="FetchPreApprovedCustomersErrorMessage" xml:space="preserve">
-    <value>No se pudo recuperar datos de clientes pre-aprobados.</value>
+    <value>Haiwezi kuepua maelezo ya mteja kabla ya kupitishwa.</value>
   </data>
   <data name="UpdatePreApprovedCustomersProgressMessage" xml:space="preserve">
-    <value>Actualización información clientes aprobados</value>
+    <value>Kusasaisha taarifa ya wateja kabla ya kupitishwa</value>
   </data>
   <data name="UpdatePreApprovedCustomersSuccessMessage" xml:space="preserve">
-    <value>Información de los clientes aprobados actualizado</value>
+    <value>Taarifa za wateja kabla ya kupitishwa kusasaishwa</value>
   </data>
   <data name="UpdatePreApprovedCustomersErrorMessage" xml:space="preserve">
-    <value>No se pueden guardar a los clientes aprobados información</value>
+    <value>Haikuweza kuakibisha wateja kabla ya kupitishwa taarifa</value>
   </data>
   <data name="ProcessingPreApprovedTxNotification" xml:space="preserve">
-    <value>Esta transacción es aprobada previamente. Orden de procesamiento...</value>
+    <value>Shughuli hii ni kabla ya kupitishwa. Usindikaji ili...</value>
   </data>
   <data name="SelectSearchbyNameDomainPlaceholder" xml:space="preserve">
-    <value>Buscar por dominio o nombre de la empresa</value>
-  </data>
-  <data name="CountryNameIN" xml:space="preserve">
-    <value>India</value>
+    <value>Pekua kwa jina la kampuni au kikoa</value>
   </data>
   <data name="PayUAccountTypeCaption" xml:space="preserve">
-    <value>PayU el tipo de cuenta:</value>
+    <value>Aina ya akaunti ya PayU:</value>
   </data>
   <data name="PayUAccountTypeSubText" xml:space="preserve">
-    <value>Puede seleccionar un tipo de cuenta de prueba para probar sus transacciones. Una vez en marcha, se puede cambiar a un tipo de cuenta para empezar a tramitar</value>
+    <value>Unaweza kuchagua aina ya akaunti ya mtihani mtihani shughuli yako. Mara baada ya kufanya kazi, unaweza kubadilisha kwa aina ya akaunti kuishi kuanza transacting</value>
   </data>
   <data name="PayUMerchantKeyCaption" xml:space="preserve">
-    <value>Comerciante de PayU clave:</value>
+    <value>Mfanyabiashara PayU ufunguo:</value>
   </data>
   <data name="PayUMerchantSaltSubText" xml:space="preserve">
-    <value>Introduzca su sal PayU del comerciante</value>
+    <value>Kuingia yako PayU mfanyabiashara chumvi</value>
   </data>
   <data name="PayUSaltCaption" xml:space="preserve">
-    <value>PayU sal mercantil:</value>
+    <value>PayU biashara ya chumvi:</value>
   </data>
   <data name="PayUMerchantKeySubText" xml:space="preserve">
-    <value>Introduzca su código de comerciante PayU</value>
+    <value>Ingiza ufunguo wako wa mfanyabiashara PayU</value>
   </data>
   <data name="PayUAuthorizationCaption" xml:space="preserve">
-    <value>Autorización de PayU</value>
+    <value>Idhini ya PayU</value>
   </data>
   <data name="PayUAuthSubText" xml:space="preserve">
-    <value>Introduzca su autorización por PayU</value>
+    <value>Ingiza idhini yako PayU</value>
   </data>
   <data name="PayUPaymentConfigurationHeader" xml:space="preserve">
-    <value>Proporcionar al vendedor de PayUMoney configuración de la cuenta</value>
+    <value>Kutoa mfanyabiashara yako PayUMoney mipangilio ya akaunti</value>
   </data>
   <data name="PayUPaymentConfigurationSubTextPostfix" xml:space="preserve">
-    <value>para crear una nueva cuenta si no tienes uno.</value>
+    <value>kuunda akaunti mpya ya biashara kama huna moja.</value>
   </data>
   <data name="PayUPaymentConfigurationSubTextPrefix" xml:space="preserve">
-    <value>Para recibir los pagos de sus clientes, debe utilizar una cuenta de comerciante de PayUMoney, por favor visite:</value>
+    <value>Kupokea malipo kutoka kwa wateja wako, unapaswa kutumia akaunti ya PayUMoney mfanyabiashara, tafadhali ziara:</value>
   </data>
   <data name="PayUWebsiteCaption" xml:space="preserve">
     <value>payumoney.com</value>
   </data>
   <data name="AgreementUserIdFieldHeader" xml:space="preserve">
-    <value>Acuerdo usuario ID:</value>
+    <value>Makubaliano ya kitambulisho cha mtumiaji:</value>
   </data>
   <data name="AgreementUserIdSubText" xml:space="preserve">
-    <value>Identificador del usuario de la pareja para ser asociado a la aceptación del acuerdo de nube de Microsoft.</value>
+    <value>Kitambulisho ya mtumiaji kutoka mpenzi kuhusishwa na kukubali makubaliano ya wingu ya Microsoft.</value>
   </data>
   <data name="InvalidAgreementUserId" xml:space="preserve">
-    <value>Identificador de usuario no válido.</value>
+    <value>Kitambulishi cha mtumiaji ni batili.</value>
   </data>
   <data name="AcceptPhrase" xml:space="preserve">
-    <value>Acepto la</value>
+    <value>Ninakubali na</value>
   </data>
   <data name="TermsOfService" xml:space="preserve">
-    <value>términos de servicio</value>
-  </data>
-  <data name="CountryNameAO" xml:space="preserve">
-    <value>Angola</value>
+    <value>masharti ya huduma</value>
   </data>
   <data name="CountryNameAD" xml:space="preserve">
-    <value>Andorra</value>
+    <value>Andora</value>
   </data>
   <data name="CountryNameAE" xml:space="preserve">
-    <value>Emiratos Árabes Unidos</value>
+    <value>Falme za Kiarabu</value>
   </data>
   <data name="CountryNameAF" xml:space="preserve">
-    <value>Afganistán</value>
+    <value>Afghanistani</value>
   </data>
   <data name="CountryNameAG" xml:space="preserve">
-    <value>Antigua y Barbuda</value>
+    <value>Antigua na Barbuda</value>
   </data>
   <data name="CountryNameAI" xml:space="preserve">
     <value>Anguila</value>
@@ -1303,40 +1166,55 @@
     <value>Armenia</value>
   </data>
   <data name="CountryNameAN" xml:space="preserve">
-    <value>Países Bajos Antillas</value>
+    <value>Antili za Kiholanzi</value>
+  </data>
+  <data name="CountryNameAO" xml:space="preserve">
+    <value>Angola</value>
   </data>
   <data name="CountryNameAQ" xml:space="preserve">
-    <value>Antártida</value>
+    <value>Antaktika</value>
   </data>
   <data name="CountryNameAR" xml:space="preserve">
-    <value>Argentina</value>
+    <value>Ajentina</value>
   </data>
   <data name="CountryNameAS" xml:space="preserve">
-    <value>Samoa Americana</value>
+    <value>Samoa ya Marekani</value>
+  </data>
+  <data name="CountryNameAT" xml:space="preserve">
+    <value>Austria</value>
+  </data>
+  <data name="CountryNameAU" xml:space="preserve">
+    <value>Australia</value>
   </data>
   <data name="CountryNameAW" xml:space="preserve">
     <value>Aruba</value>
   </data>
   <data name="CountryNameAX" xml:space="preserve">
-    <value>Islas Åland</value>
+    <value>Visiwa vya Aland</value>
   </data>
   <data name="CountryNameAZ" xml:space="preserve">
-    <value>Azerbaiyán</value>
+    <value>Azerbaijani</value>
   </data>
   <data name="CountryNameBA" xml:space="preserve">
-    <value>Bosnia-Herzegovina</value>
+    <value>Bosnia na Herzegovina</value>
   </data>
   <data name="CountryNameBB" xml:space="preserve">
-    <value>Barbados</value>
+    <value>Tunisia</value>
   </data>
   <data name="CountryNameBD" xml:space="preserve">
     <value>Bangladesh</value>
   </data>
+  <data name="CountryNameBE" xml:space="preserve">
+    <value>Ubelgiji</value>
+  </data>
   <data name="CountryNameBF" xml:space="preserve">
-    <value>Burkina Faso</value>
+    <value>Bukinafaso</value>
+  </data>
+  <data name="CountryNameBG" xml:space="preserve">
+    <value>Bulgaria</value>
   </data>
   <data name="CountryNameBH" xml:space="preserve">
-    <value>Bahrein</value>
+    <value>Bahrain</value>
   </data>
   <data name="CountryNameBI" xml:space="preserve">
     <value>Burundi</value>
@@ -1348,7 +1226,7 @@
     <value>Saint-Barthélemy</value>
   </data>
   <data name="CountryNameBM" xml:space="preserve">
-    <value>Bermudas</value>
+    <value>Bermuda</value>
   </data>
   <data name="CountryNameBN" xml:space="preserve">
     <value>Brunei</value>
@@ -1360,115 +1238,148 @@
     <value>Bonaire</value>
   </data>
   <data name="CountryNameBR" xml:space="preserve">
-    <value>Brasil</value>
+    <value>Brazili</value>
   </data>
   <data name="CountryNameBS" xml:space="preserve">
     <value>Bahamas</value>
   </data>
   <data name="CountryNameBT" xml:space="preserve">
-    <value>Bután</value>
+    <value>Butani</value>
   </data>
   <data name="CountryNameBV" xml:space="preserve">
-    <value>Isla Bouvet</value>
+    <value>Kisiwa cha Bouvet</value>
   </data>
   <data name="CountryNameBW" xml:space="preserve">
     <value>Botswana</value>
   </data>
   <data name="CountryNameBY" xml:space="preserve">
-    <value>Bielorrusia</value>
+    <value>Belarusi</value>
   </data>
   <data name="CountryNameBZ" xml:space="preserve">
-    <value>Belice</value>
+    <value>Belize</value>
+  </data>
+  <data name="CountryNameCA" xml:space="preserve">
+    <value>Kanada</value>
   </data>
   <data name="CountryNameCC" xml:space="preserve">
-    <value>Islas Cocos (Keeling)</value>
+    <value>Visiwa vya Cocos (Keeling)</value>
   </data>
   <data name="CountryNameCD" xml:space="preserve">
-    <value>Congo (República Democrática del Congo)</value>
+    <value>Kongo (DRC)</value>
   </data>
   <data name="CountryNameCF" xml:space="preserve">
-    <value>República Centroafricana</value>
+    <value>Jamhuri ya Afrika ya kati</value>
   </data>
   <data name="CountryNameCG" xml:space="preserve">
-    <value>Congo</value>
+    <value>Kongo</value>
+  </data>
+  <data name="CountryNameCH" xml:space="preserve">
+    <value>Uswisi</value>
   </data>
   <data name="CountryNameCI" xml:space="preserve">
-    <value>Côte d ' Ivoire</value>
+    <value>Ivory Coast</value>
   </data>
   <data name="CountryNameCK" xml:space="preserve">
-    <value>Islas Cook</value>
+    <value>Visiwa vya Cook</value>
   </data>
   <data name="CountryNameCL" xml:space="preserve">
     <value>Chile</value>
   </data>
   <data name="CountryNameCM" xml:space="preserve">
-    <value>Camerún</value>
+    <value>Cameroon</value>
   </data>
   <data name="CountryNameCN" xml:space="preserve">
     <value>China</value>
   </data>
   <data name="CountryNameCO" xml:space="preserve">
-    <value>Colombia</value>
+    <value>Kolombia</value>
   </data>
   <data name="CountryNameCR" xml:space="preserve">
-    <value>Costa Rica</value>
+    <value>Kosta Rica</value>
   </data>
   <data name="CountryNameCV" xml:space="preserve">
-    <value>Cabo Verde</value>
+    <value>Mkoa wa Cabo Verde</value>
   </data>
   <data name="CountryNameCW" xml:space="preserve">
-    <value>Curazao</value>
+    <value>Curacao</value>
   </data>
   <data name="CountryNameCX" xml:space="preserve">
-    <value>Isla de Navidad</value>
+    <value>Kisiwa cha Krismasi</value>
+  </data>
+  <data name="CountryNameCY" xml:space="preserve">
+    <value>Kupro</value>
+  </data>
+  <data name="CountryNameCZ" xml:space="preserve">
+    <value>Czechia</value>
+  </data>
+  <data name="CountryNameDE" xml:space="preserve">
+    <value>Ujerumani</value>
   </data>
   <data name="CountryNameDJ" xml:space="preserve">
-    <value>Yibuti</value>
+    <value>Djibouti</value>
+  </data>
+  <data name="CountryNameDK" xml:space="preserve">
+    <value>Denmarki</value>
   </data>
   <data name="CountryNameDM" xml:space="preserve">
-    <value>Dominica</value>
+    <value>Dominika</value>
   </data>
   <data name="CountryNameDO" xml:space="preserve">
-    <value>República Dominicana</value>
+    <value>Jamhuri ya Dominikani</value>
   </data>
   <data name="CountryNameDZ" xml:space="preserve">
-    <value>Argelia</value>
+    <value>Aljeria</value>
   </data>
   <data name="CountryNameEC" xml:space="preserve">
-    <value>Ecuador</value>
+    <value>Ekuado</value>
+  </data>
+  <data name="CountryNameEE" xml:space="preserve">
+    <value>Estonia</value>
   </data>
   <data name="CountryNameEG" xml:space="preserve">
-    <value>Egipto</value>
+    <value>Misri</value>
   </data>
   <data name="CountryNameER" xml:space="preserve">
     <value>Eritrea</value>
   </data>
+  <data name="CountryNameES" xml:space="preserve">
+    <value>Uhispania</value>
+  </data>
   <data name="CountryNameET" xml:space="preserve">
-    <value>Etiopía</value>
+    <value>Ethiopia</value>
+  </data>
+  <data name="CountryNameFI" xml:space="preserve">
+    <value>Finili</value>
   </data>
   <data name="CountryNameFJ" xml:space="preserve">
     <value>Fiji</value>
   </data>
   <data name="CountryNameFK" xml:space="preserve">
-    <value>Las Islas Malvinas</value>
+    <value>Visiwa vya Falkland</value>
   </data>
   <data name="CountryNameFM" xml:space="preserve">
-    <value>Micronesia</value>
+    <value>Mikronesia</value>
   </data>
   <data name="CountryNameFO" xml:space="preserve">
-    <value>Islas Faroe</value>
+    <value>Visiwa vya Faroe</value>
+  </data>
+  <data name="CountryNameFR" xml:space="preserve">
+    <value>Ufaransa</value>
   </data>
   <data name="CountryNameGA" xml:space="preserve">
-    <value>Gabón</value>
+    <value>Gabon</value>
+  </data>
+  <data name="CountryNameGB" xml:space="preserve">
+    <value>Uingereza</value>
   </data>
   <data name="CountryNameGD" xml:space="preserve">
-    <value>Granada</value>
+    <value>Zilitumika</value>
   </data>
   <data name="CountryNameGE" xml:space="preserve">
-    <value>Georgia</value>
+    <value>Jojia</value>
   </data>
   <data name="CountryNameGF" xml:space="preserve">
-    <value>Guayana francesa</value>
+    <value>Guyana ya Kifaransa</value>
   </data>
   <data name="CountryNameGG" xml:space="preserve">
     <value>Guernsey</value>
@@ -1480,7 +1391,7 @@
     <value>Gibraltar</value>
   </data>
   <data name="CountryNameGL" xml:space="preserve">
-    <value>Groenlandia</value>
+    <value>Greenland</value>
   </data>
   <data name="CountryNameGM" xml:space="preserve">
     <value>Gambia</value>
@@ -1489,13 +1400,16 @@
     <value>Guinea</value>
   </data>
   <data name="CountryNameGP" xml:space="preserve">
-    <value>Guadalupe</value>
+    <value>Guadeloupe</value>
   </data>
   <data name="CountryNameGQ" xml:space="preserve">
-    <value>Guinea Ecuatorial</value>
+    <value>Guinea ya ikweta</value>
+  </data>
+  <data name="CountryNameGR" xml:space="preserve">
+    <value>Ugiriki</value>
   </data>
   <data name="CountryNameGS" xml:space="preserve">
-    <value>Georgia del sur e islas Sandwich del sur</value>
+    <value>Jojia Kusini na Visiwa vya Sandwich kusini</value>
   </data>
   <data name="CountryNameGT" xml:space="preserve">
     <value>Guatemala</value>
@@ -1504,85 +1418,109 @@
     <value>Guam</value>
   </data>
   <data name="CountryNameGW" xml:space="preserve">
-    <value>Guinea Bissau</value>
+    <value>Ginebisau</value>
   </data>
   <data name="CountryNameGY" xml:space="preserve">
     <value>Guyana</value>
   </data>
   <data name="CountryNameHK" xml:space="preserve">
-    <value>RAE de Hong Kong</value>
+    <value>Hong Kong SAR</value>
   </data>
   <data name="CountryNameHM" xml:space="preserve">
-    <value>Isla Heard e Islas McDonald</value>
+    <value>Kisiwa cha Heard na Visiwa vya McDonald</value>
   </data>
   <data name="CountryNameHN" xml:space="preserve">
-    <value>Honduras</value>
+    <value>Hondurasi</value>
+  </data>
+  <data name="CountryNameHR" xml:space="preserve">
+    <value>Kroatia</value>
   </data>
   <data name="CountryNameHT" xml:space="preserve">
-    <value>Haití</value>
+    <value>Haiti</value>
+  </data>
+  <data name="CountryNameHU" xml:space="preserve">
+    <value>Hungari</value>
   </data>
   <data name="CountryNameID" xml:space="preserve">
     <value>Indonesia</value>
   </data>
+  <data name="CountryNameIE" xml:space="preserve">
+    <value>Irelandi</value>
+  </data>
   <data name="CountryNameIL" xml:space="preserve">
-    <value>Israel</value>
+    <value>Uyahudi</value>
   </data>
   <data name="CountryNameIM" xml:space="preserve">
-    <value>Isla de Man</value>
+    <value>Kisiwa cha mtu</value>
+  </data>
+  <data name="CountryNameIN" xml:space="preserve">
+    <value>India</value>
   </data>
   <data name="CountryNameIO" xml:space="preserve">
-    <value>Territorio británico del océano Índico</value>
+    <value>Eneo la bahari hindi ya Uingereza</value>
   </data>
   <data name="CountryNameIQ" xml:space="preserve">
-    <value>Irak</value>
+    <value>Iraki</value>
+  </data>
+  <data name="CountryNameIS" xml:space="preserve">
+    <value>Aisilandi</value>
+  </data>
+  <data name="CountryNameIT" xml:space="preserve">
+    <value>Uitalia</value>
   </data>
   <data name="CountryNameJE" xml:space="preserve">
     <value>Jersey</value>
   </data>
   <data name="CountryNameJM" xml:space="preserve">
-    <value>Jamaica</value>
+    <value>Jamaika</value>
   </data>
   <data name="CountryNameJO" xml:space="preserve">
-    <value>Jordania</value>
+    <value>Jordani</value>
+  </data>
+  <data name="CountryNameJP" xml:space="preserve">
+    <value>Japani</value>
   </data>
   <data name="CountryNameKE" xml:space="preserve">
-    <value>Kenia</value>
+    <value>Kenya</value>
   </data>
   <data name="CountryNameKG" xml:space="preserve">
-    <value>Kirguizistán</value>
+    <value>Kyrgyzstani</value>
   </data>
   <data name="CountryNameKH" xml:space="preserve">
-    <value>Camboya</value>
+    <value>Kambodia</value>
   </data>
   <data name="CountryNameKI" xml:space="preserve">
-    <value>Kiribati</value>
+    <value>Utapiamlo</value>
   </data>
   <data name="CountryNameKM" xml:space="preserve">
-    <value>Comoras</value>
+    <value>Komori</value>
   </data>
   <data name="CountryNameKN" xml:space="preserve">
-    <value>Saint Kitts y Nevis</value>
+    <value>Saint Kitts na Nevis</value>
   </data>
   <data name="CountryNameKR" xml:space="preserve">
-    <value>Corea</value>
+    <value>Korea</value>
   </data>
   <data name="CountryNameKW" xml:space="preserve">
-    <value>Kuwait</value>
+    <value>Kuwaiti</value>
   </data>
   <data name="CountryNameKY" xml:space="preserve">
-    <value>Islas Caimán</value>
+    <value>Visiwa vya Cayman</value>
   </data>
   <data name="CountryNameKZ" xml:space="preserve">
-    <value>Kazajstán</value>
+    <value>Kazakhstani</value>
   </data>
   <data name="CountryNameLA" xml:space="preserve">
     <value>Laos</value>
   </data>
   <data name="CountryNameLB" xml:space="preserve">
-    <value>Líbano</value>
+    <value>Lebanoni</value>
   </data>
   <data name="CountryNameLC" xml:space="preserve">
-    <value>Santa Lucía</value>
+    <value>Mtakatifu Lusia</value>
+  </data>
+  <data name="CountryNameLI" xml:space="preserve">
+    <value>Liechtensteini</value>
   </data>
   <data name="CountryNameLK" xml:space="preserve">
     <value>Sri Lanka</value>
@@ -1593,11 +1531,23 @@
   <data name="CountryNameLS" xml:space="preserve">
     <value>Lesotho</value>
   </data>
+  <data name="CountryNameLT" xml:space="preserve">
+    <value>Lithuania</value>
+  </data>
+  <data name="CountryNameLU" xml:space="preserve">
+    <value>Lakismbag</value>
+  </data>
+  <data name="CountryNameLV" xml:space="preserve">
+    <value>Latvia</value>
+  </data>
   <data name="CountryNameLY" xml:space="preserve">
-    <value>Libia</value>
+    <value>Libya</value>
   </data>
   <data name="CountryNameMA" xml:space="preserve">
-    <value>Marruecos</value>
+    <value>Moroko</value>
+  </data>
+  <data name="CountryNameMC" xml:space="preserve">
+    <value>Monako</value>
   </data>
   <data name="CountryNameMD" xml:space="preserve">
     <value>Moldova</value>
@@ -1612,13 +1562,13 @@
     <value>Madagascar</value>
   </data>
   <data name="CountryNameMH" xml:space="preserve">
-    <value>Islas Marshall</value>
+    <value>Visiwa vya Marshall</value>
   </data>
   <data name="CountryNameMK" xml:space="preserve">
-    <value>Macedonia</value>
+    <value>Makedonia</value>
   </data>
   <data name="CountryNameML" xml:space="preserve">
-    <value>Malí</value>
+    <value>Mali</value>
   </data>
   <data name="CountryNameMM" xml:space="preserve">
     <value>Myanmar</value>
@@ -1627,58 +1577,67 @@
     <value>Mongolia</value>
   </data>
   <data name="CountryNameMO" xml:space="preserve">
-    <value>Administrativa especial de Macao</value>
+    <value>Makao SAR</value>
   </data>
   <data name="CountryNameMP" xml:space="preserve">
-    <value>Islas Marianas del norte</value>
+    <value>Visiwa vya Mariana ya Kaskazini</value>
   </data>
   <data name="CountryNameMQ" xml:space="preserve">
-    <value>Martinica</value>
+    <value>Matiniki</value>
   </data>
   <data name="CountryNameMR" xml:space="preserve">
     <value>Mauritania</value>
   </data>
   <data name="CountryNameMS" xml:space="preserve">
-    <value>Montserrat</value>
+    <value>Monserati</value>
+  </data>
+  <data name="CountryNameMT" xml:space="preserve">
+    <value>Malta</value>
   </data>
   <data name="CountryNameMU" xml:space="preserve">
-    <value>Mauricio</value>
+    <value>Mauritius</value>
   </data>
   <data name="CountryNameMV" xml:space="preserve">
-    <value>Maldivas</value>
+    <value>Maldives</value>
   </data>
   <data name="CountryNameMW" xml:space="preserve">
     <value>Malawi</value>
   </data>
   <data name="CountryNameMX" xml:space="preserve">
-    <value>México</value>
+    <value>Meksiko</value>
   </data>
   <data name="CountryNameMY" xml:space="preserve">
-    <value>Malasia</value>
+    <value>Malaysia</value>
   </data>
   <data name="CountryNameMZ" xml:space="preserve">
-    <value>Mozambique</value>
+    <value>Msumbiji</value>
   </data>
   <data name="CountryNameNA" xml:space="preserve">
     <value>Namibia</value>
   </data>
   <data name="CountryNameNC" xml:space="preserve">
-    <value>Nueva Caledonia</value>
+    <value>Kaledonia Mpya</value>
   </data>
   <data name="CountryNameNE" xml:space="preserve">
-    <value>Níger</value>
+    <value>Niger</value>
   </data>
   <data name="CountryNameNF" xml:space="preserve">
-    <value>Isla de Norfolk</value>
+    <value>Kisiwa cha Norfolk</value>
   </data>
   <data name="CountryNameNG" xml:space="preserve">
     <value>Nigeria</value>
   </data>
   <data name="CountryNameNI" xml:space="preserve">
-    <value>Nicaragua</value>
+    <value>Nikaragua</value>
+  </data>
+  <data name="CountryNameNL" xml:space="preserve">
+    <value>Uholanzi</value>
+  </data>
+  <data name="CountryNameNO" xml:space="preserve">
+    <value>Norwei</value>
   </data>
   <data name="CountryNameNP" xml:space="preserve">
-    <value>Nepal</value>
+    <value>Nepali</value>
   </data>
   <data name="CountryNameNR" xml:space="preserve">
     <value>Nauru</value>
@@ -1686,41 +1645,47 @@
   <data name="CountryNameNU" xml:space="preserve">
     <value>Niue</value>
   </data>
+  <data name="CountryNameNZ" xml:space="preserve">
+    <value>New Zealandi</value>
+  </data>
   <data name="CountryNameOM" xml:space="preserve">
-    <value>Omán</value>
+    <value>Omani</value>
   </data>
   <data name="CountryNamePA" xml:space="preserve">
-    <value>Panamá</value>
+    <value>Panama</value>
   </data>
   <data name="CountryNamePE" xml:space="preserve">
-    <value>Perú</value>
+    <value>Peru</value>
   </data>
   <data name="CountryNamePF" xml:space="preserve">
-    <value>Polinesia francesa</value>
+    <value>Polineshia ya Kifaransa</value>
   </data>
   <data name="CountryNamePG" xml:space="preserve">
-    <value>Papua Nueva Guinea</value>
+    <value>Papua Gine mpya</value>
   </data>
   <data name="CountryNamePH" xml:space="preserve">
-    <value>Filipinas</value>
+    <value>Ufilipino</value>
   </data>
   <data name="CountryNamePK" xml:space="preserve">
-    <value>Pakistán</value>
+    <value>Pakistan</value>
   </data>
   <data name="CountryNamePL" xml:space="preserve">
-    <value>Polonia</value>
+    <value>Polandi</value>
   </data>
   <data name="CountryNamePM" xml:space="preserve">
-    <value>San Pedro y Miquelón</value>
+    <value>Saint Pierre na Miquelon</value>
   </data>
   <data name="CountryNamePN" xml:space="preserve">
-    <value>Islas Pitcairn</value>
+    <value>Visiwa vya Pitcairn</value>
   </data>
   <data name="CountryNamePR" xml:space="preserve">
     <value>Puerto Rico</value>
   </data>
   <data name="CountryNamePS" xml:space="preserve">
-    <value>Autoridad Palestina</value>
+    <value>Mamlaka ya Palestina</value>
+  </data>
+  <data name="CountryNamePT" xml:space="preserve">
+    <value>Ureno</value>
   </data>
   <data name="CountryNamePW" xml:space="preserve">
     <value>Palau</value>
@@ -1729,40 +1694,52 @@
     <value>Paraguay</value>
   </data>
   <data name="CountryNameQA" xml:space="preserve">
-    <value>Qatar</value>
+    <value>Khatari</value>
   </data>
   <data name="CountryNameRE" xml:space="preserve">
-    <value>Reunión</value>
+    <value>Réunion</value>
+  </data>
+  <data name="CountryNameRO" xml:space="preserve">
+    <value>Romania</value>
   </data>
   <data name="CountryNameRS" xml:space="preserve">
     <value>Serbia</value>
   </data>
   <data name="CountryNameRU" xml:space="preserve">
-    <value>Rusia</value>
+    <value>Urusi</value>
   </data>
   <data name="CountryNameRW" xml:space="preserve">
     <value>Rwanda</value>
   </data>
   <data name="CountryNameSA" xml:space="preserve">
-    <value>Arabia Saudí</value>
+    <value>Saudi Arabia</value>
   </data>
   <data name="CountryNameSB" xml:space="preserve">
-    <value>Islas Salomón</value>
+    <value>Visiwa vya Solomon</value>
   </data>
   <data name="CountryNameSC" xml:space="preserve">
-    <value>Seychelles</value>
+    <value>Shelisheli</value>
+  </data>
+  <data name="CountryNameSE" xml:space="preserve">
+    <value>Swideni</value>
   </data>
   <data name="CountryNameSG" xml:space="preserve">
-    <value>Singapur</value>
+    <value>Singapori</value>
   </data>
   <data name="CountryNameSH" xml:space="preserve">
-    <value>Santa Elena</value>
+    <value>Mtakatifu Helena</value>
   </data>
   <data name="CountryNameSI" xml:space="preserve">
-    <value>Eslovenia</value>
+    <value>Slovenia</value>
   </data>
   <data name="CountryNameSJ" xml:space="preserve">
     <value>Svalbard</value>
+  </data>
+  <data name="CountryNameSK" xml:space="preserve">
+    <value>Slovakia</value>
+  </data>
+  <data name="CountryNameSL" xml:space="preserve">
+    <value>Sierra Leone</value>
   </data>
   <data name="CountryNameSM" xml:space="preserve">
     <value>San Marino</value>
@@ -1774,16 +1751,16 @@
     <value>Somalia</value>
   </data>
   <data name="CountryNameSR" xml:space="preserve">
-    <value>Suriname</value>
+    <value>Surinam</value>
   </data>
   <data name="CountryNameSS" xml:space="preserve">
-    <value>Sudán del sur</value>
+    <value>Sudan Kusini</value>
   </data>
   <data name="CountryNameST" xml:space="preserve">
-    <value>São Tomé y Príncipe</value>
+    <value>Sao Tome na Principe</value>
   </data>
   <data name="CountryNameSV" xml:space="preserve">
-    <value>El Salvador</value>
+    <value>El Salvado</value>
   </data>
   <data name="CountryNameSX" xml:space="preserve">
     <value>Sint Maarten</value>
@@ -1792,22 +1769,22 @@
     <value>eSwatini</value>
   </data>
   <data name="CountryNameTC" xml:space="preserve">
-    <value>Islas Turcas y Caicos</value>
+    <value>Visiwa vya Turks na Caicos</value>
   </data>
   <data name="CountryNameTD" xml:space="preserve">
     <value>Chad</value>
   </data>
   <data name="CountryNameTF" xml:space="preserve">
-    <value>Territorios franceses del sur</value>
+    <value>Maeneo ya kusini ya Ufaransa</value>
   </data>
   <data name="CountryNameTG" xml:space="preserve">
     <value>Togo</value>
   </data>
   <data name="CountryNameTH" xml:space="preserve">
-    <value>Tailandia</value>
+    <value>Thailandi</value>
   </data>
   <data name="CountryNameTJ" xml:space="preserve">
-    <value>Tayikistán</value>
+    <value>Tajikistan</value>
   </data>
   <data name="CountryNameTK" xml:space="preserve">
     <value>Tokelau</value>
@@ -1816,58 +1793,61 @@
     <value>Timor-Leste</value>
   </data>
   <data name="CountryNameTM" xml:space="preserve">
-    <value>Turkmenistán</value>
+    <value>Turkmenistan</value>
   </data>
   <data name="CountryNameTN" xml:space="preserve">
-    <value>Túnez</value>
+    <value>Tunisia</value>
   </data>
   <data name="CountryNameTO" xml:space="preserve">
     <value>Tonga</value>
   </data>
   <data name="CountryNameTR" xml:space="preserve">
-    <value>Turquía</value>
+    <value>Uturuki</value>
   </data>
   <data name="CountryNameTT" xml:space="preserve">
-    <value>Trinidad y Tobago</value>
+    <value>Trinidadi na Tobago</value>
   </data>
   <data name="CountryNameTV" xml:space="preserve">
-    <value>Tuvalu</value>
+    <value>Hayajafanikiwa</value>
   </data>
   <data name="CountryNameTW" xml:space="preserve">
-    <value>Taiwán</value>
+    <value>Taiwani</value>
   </data>
   <data name="CountryNameTZ" xml:space="preserve">
     <value>Tanzania</value>
   </data>
   <data name="CountryNameUA" xml:space="preserve">
-    <value>Ucrania</value>
+    <value>Ukreni</value>
   </data>
   <data name="CountryNameUG" xml:space="preserve">
     <value>Uganda</value>
   </data>
   <data name="CountryNameUM" xml:space="preserve">
-    <value>Islas ultramarinas de Estados Unidos</value>
+    <value>Visiwa vidogo vya nje vya Marekani</value>
+  </data>
+  <data name="CountryNameUS" xml:space="preserve">
+    <value>Marekani</value>
   </data>
   <data name="CountryNameUY" xml:space="preserve">
     <value>Uruguay</value>
   </data>
   <data name="CountryNameUZ" xml:space="preserve">
-    <value>Uzbekistán</value>
+    <value>Uzbekistani</value>
   </data>
   <data name="CountryNameVA" xml:space="preserve">
-    <value>Ciudad del Vaticano</value>
+    <value>Mji wa Vatikani</value>
   </data>
   <data name="CountryNameVC" xml:space="preserve">
-    <value>San Vicente y las Granadinas</value>
+    <value>Saint Vincent na Grenadines</value>
   </data>
   <data name="CountryNameVE" xml:space="preserve">
     <value>Venezuela</value>
   </data>
   <data name="CountryNameVG" xml:space="preserve">
-    <value>Islas Vírgenes Británicas</value>
+    <value>Visiwa vya Virgin vya Uingereza</value>
   </data>
   <data name="CountryNameVI" xml:space="preserve">
-    <value>Islas Vírgenes de los Estados Unidos</value>
+    <value>Visiwa vya Virgin vya Marekani</value>
   </data>
   <data name="CountryNameVN" xml:space="preserve">
     <value>Vietnam</value>
@@ -1876,7 +1856,7 @@
     <value>Vanuatu</value>
   </data>
   <data name="CountryNameWF" xml:space="preserve">
-    <value>Wallis y Futuna</value>
+    <value>Wallis na Futuna</value>
   </data>
   <data name="CountryNameWS" xml:space="preserve">
     <value>Samoa</value>
@@ -1894,18 +1874,18 @@
     <value>Saba</value>
   </data>
   <data name="CountryNameYE" xml:space="preserve">
-    <value>Yemen</value>
+    <value>Yemeni</value>
   </data>
   <data name="CountryNameYT" xml:space="preserve">
     <value>Mayotte</value>
   </data>
   <data name="CountryNameZA" xml:space="preserve">
-    <value>Sudáfrica</value>
+    <value>Afrika Kusini</value>
   </data>
   <data name="CountryNameZM" xml:space="preserve">
     <value>Zambia</value>
   </data>
   <data name="CountryNameZW" xml:space="preserve">
-    <value>Zimbabue</value>
+    <value>Zimbabwe</value>
   </data>
 </root>

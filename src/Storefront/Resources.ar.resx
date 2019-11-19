@@ -1,96 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
+		Microsoft ResX Schema
 
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,1803 +89,1803 @@
     <value>text/microsoft-resx</value>
   </resheader>
   <resheader name="version">
-    <value>2.0</value>
+    <value>1.3</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Back" xml:space="preserve">
-    <value>Atrás</value>
+    <value>مرة أخرى</value>
   </data>
   <data name="BuyNow" xml:space="preserve">
-    <value>Comprar ahora</value>
+    <value>اشتر الآن</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancelar</value>
+    <value>إلغاء الأمر</value>
   </data>
   <data name="ClearAll" xml:space="preserve">
-    <value>Borrar todo</value>
+    <value>مسح الكل</value>
   </data>
   <data name="ContactUs" xml:space="preserve">
-    <value>contáctenos</value>
+    <value>اتصل بنا</value>
   </data>
   <data name="CopyRight" xml:space="preserve">
-    <value>Copyright 2019</value>
+    <value>حقوق الطبع والنشر عام 2019</value>
   </data>
   <data name="Ellipsis" xml:space="preserve">
     <value>...</value>
   </data>
   <data name="EmptyListMessage" xml:space="preserve">
-    <value>No encuentra las entidades</value>
+    <value>أية كيانات يتم العثور على</value>
   </data>
   <data name="FailedToLoadPortal" xml:space="preserve">
-    <value>No se pudo obtener contenido de portal</value>
+    <value>لا يمكن الحصول على محتوى المدخل</value>
   </data>
   <data name="First" xml:space="preserve">
-    <value>Primero</value>
+    <value>الأولى</value>
   </data>
   <data name="InvalidPortalConfiguration" xml:space="preserve">
-    <value>Configuración de portal parece ser válido</value>
+    <value>يبدو أن تكوين المدخل غير صحيح</value>
   </data>
   <data name="Last" xml:space="preserve">
-    <value>Pasado</value>
+    <value>الماضي</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Carga</value>
+    <value>تحميل</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>Iniciar sesión</value>
+    <value>تسجيل الدخول</value>
   </data>
   <data name="MoreActionsTooltip" xml:space="preserve">
-    <value>Más acciones...</value>
+    <value>مزيد من الإجراءات...</value>
   </data>
   <data name="NavigateBackTo" xml:space="preserve">
-    <value>Volver a:</value>
+    <value>العودة إلى:</value>
   </data>
   <data name="Next" xml:space="preserve">
-    <value>próximo</value>
+    <value>القادم</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>No</value>
+    <value>لا</value>
   </data>
   <data name="NotificationSectionTooltip" xml:space="preserve">
-    <value>Notificaciones activadas</value>
+    <value>إعلامات نشطة</value>
   </data>
   <data name="NotificationsSummary" xml:space="preserve">
-    <value>nuevas notificaciones</value>
+    <value>الإخطارات الجديدة</value>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>De acuerdo</value>
+    <value>موافق</value>
   </data>
   <data name="PasswordLabel" xml:space="preserve">
-    <value>Contraseña</value>
+    <value>كلمة المرور</value>
   </data>
   <data name="PortalConfigurationNotFound" xml:space="preserve">
-    <value>No se encontró la configuración del portal</value>
+    <value>تعذر العثور على المدخل configuation</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
-    <value>Recuérdame</value>
+    <value>تذكر بياناتي</value>
   </data>
   <data name="RetryCapital" xml:space="preserve">
-    <value>Vuelva a intentarlo</value>
+    <value>إعادة المحاولة</value>
   </data>
   <data name="Signout" xml:space="preserve">
-    <value>Cerrar sesión</value>
+    <value>قم بتسجيل الخروج</value>
   </data>
   <data name="TemplateLoadFailureMessage" xml:space="preserve">
-    <value>No se pudo obtener el contenido de la función</value>
+    <value>لا يمكن الحصول على محتوى الميزة</value>
   </data>
   <data name="TemplateLoadRetryMessage" xml:space="preserve">
-    <value>Obtener contenido de característica</value>
+    <value>الحصول على ميزة المحتوى</value>
   </data>
   <data name="UserNameLabel" xml:space="preserve">
-    <value>Nombre de usuario:</value>
+    <value>اسم المستخدم:</value>
   </data>
   <data name="ViewTilesTooltip" xml:space="preserve">
-    <value>Ver azulejos</value>
+    <value>عرض البلاط</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Sí</value>
+    <value>نعم</value>
   </data>
   <data name="EmptyOffersErrorMessage" xml:space="preserve">
-    <value>Debe seleccionar al menos una oferta de compra.</value>
+    <value>يجب عليك تحديد واحد على الأقل من عرض لشراء.</value>
   </data>
   <data name="TotalAmountCaption" xml:space="preserve">
-    <value>Cantidad total</value>
+    <value>المبلغ الإجمالي</value>
   </data>
   <data name="RemoveFromCart" xml:space="preserve">
-    <value>Eliminar del carrito</value>
+    <value>إزالة من العربة</value>
   </data>
   <data name="Address" xml:space="preserve">
-    <value>Dirección</value>
+    <value>عنوان</value>
   </data>
   <data name="AdminUserAccount" xml:space="preserve">
-    <value>Cuenta de usuario admin</value>
+    <value>حساب المستخدم المسؤول</value>
   </data>
   <data name="Confirmation" xml:space="preserve">
-    <value>Confirmación</value>
+    <value>تأكيد</value>
   </data>
   <data name="ConfirmationMessage" xml:space="preserve">
-    <value>Gracias. El cliente fue creado y su solicitud fue procesada con éxito.</value>
+    <value>شكرا. تم إنشاء العميل وتم بنجاح معالجة طلبك.</value>
   </data>
   <data name="ContactInformation" xml:space="preserve">
-    <value>Información del cliente</value>
+    <value>معلومات العميل</value>
   </data>
   <data name="Done" xml:space="preserve">
-    <value>Hecho</value>
+    <value>عمله</value>
   </data>
   <data name="MicrosoftId" xml:space="preserve">
-    <value>ID de Microsoft</value>
+    <value>معرف Microsoft</value>
   </data>
   <data name="SetupInformation" xml:space="preserve">
-    <value>Detalles de cliente</value>
+    <value>تفاصيل العملاء</value>
   </data>
   <data name="Subscription" xml:space="preserve">
-    <value>Suscripción</value>
+    <value>الاشتراك</value>
   </data>
   <data name="Subscriptions" xml:space="preserve">
-    <value>Suscripciones</value>
+    <value>الاشتراكات</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>Total</value>
+    <value>المجموع</value>
   </data>
   <data name="AddSubscriptions" xml:space="preserve">
-    <value>Añadir suscripciones</value>
+    <value>إضافة اشتراكات</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Proceder al pago</value>
+    <value>الشروع في الدفع</value>
   </data>
   <data name="AcceptTerms" xml:space="preserve">
-    <value>Acepto los términos y condiciones</value>
+    <value>أقبل الشروط والأحكام</value>
   </data>
   <data name="DomainPrefixValidationMessage" xml:space="preserve">
-    <value>Por favor, introduzca un prefijo de dominio válido</value>
+    <value>الرجاء إدخال بادئة مجال صالح</value>
   </data>
   <data name="SubscriptionIDLabel" xml:space="preserve">
-    <value>ID de suscripción:</value>
+    <value>معرف الاشتراك:</value>
   </data>
   <data name="CompanyBrandingConfigurationCaption" xml:space="preserve">
-    <value>Actualizar la información de su empresa</value>
+    <value>تحديث معلومات الشركة</value>
   </data>
   <data name="DashboardBuildingProgressMessage" xml:space="preserve">
-    <value>Construcción de su</value>
+    <value>بناء لوحة المعلومات الخاصة بك</value>
   </data>
   <data name="OffersConfigurationCaption" xml:space="preserve">
-    <value>Elegir que ofrece a la venta</value>
+    <value>اختر الذي يقدم لبيع</value>
   </data>
   <data name="PaymentConfigurationCaption" xml:space="preserve">
-    <value>Añadir un método de pago</value>
+    <value>إضافة أسلوب الدفع</value>
   </data>
   <data name="WelcomeCaptionPrefix" xml:space="preserve">
-    <value>Bienvenida</value>
+    <value>اهلا وسهلا</value>
   </data>
   <data name="WelcomeCaptionSuffix" xml:space="preserve">
-    <value>¡a su constructor de tienda Web!</value>
+    <value>إلى "مخزن ويب منشئ" الخاص بك!</value>
   </data>
   <data name="BillingTypeListRowCaption" xml:space="preserve">
-    <value>facturación basada en</value>
+    <value>الفواتير على أساس</value>
   </data>
   <data name="Comma" xml:space="preserve">
-    <value>,</value>
+    <value>،</value>
   </data>
   <data name="Dash" xml:space="preserve">
     <value>-</value>
   </data>
   <data name="SummaryListRowCaption" xml:space="preserve">
-    <value>Resumen:</value>
+    <value>موجز:</value>
   </data>
   <data name="AddCaption" xml:space="preserve">
-    <value>Añadir</value>
+    <value>إضافة</value>
   </data>
   <data name="Customization" xml:space="preserve">
-    <value>Arreglo para requisitos particulares</value>
+    <value>التخصيص</value>
   </data>
   <data name="FeaturesCaption" xml:space="preserve">
-    <value>Funciones:</value>
+    <value>الميزات:</value>
   </data>
   <data name="SelectMicrosoftOfferCaption" xml:space="preserve">
-    <value>Seleccione una oferta de Microsoft:</value>
+    <value>حدد عرضاً ل Microsoft:</value>
   </data>
   <data name="SelectSearchByOffersPlaceholder" xml:space="preserve">
-    <value>Búsqueda por la oferta de</value>
+    <value>البحث عن طريق العرض</value>
   </data>
   <data name="YourAnnualPriceCaption" xml:space="preserve">
-    <value>Precio anual:</value>
+    <value>السعر السنوي:</value>
   </data>
   <data name="YourOfferingSubtitleCaption" xml:space="preserve">
-    <value>Subtítulo de la oferta:</value>
+    <value>عرض العنوان الفرعي:</value>
   </data>
   <data name="YourOfferingTitleCaption" xml:space="preserve">
-    <value>Nombre de la oferta:</value>
+    <value>اسم العرض:</value>
   </data>
   <data name="AddOfferFeaturesTooltip" xml:space="preserve">
-    <value>Añadir funciones de oferta</value>
+    <value>إضافة ميزات العرض</value>
   </data>
   <data name="AddOfferFeatureTooltip" xml:space="preserve">
-    <value>Añadir la función de oferta después de esto</value>
+    <value>إضافة ميزة عرض بعد ذلك</value>
   </data>
   <data name="AddSummaryPointsTooltip" xml:space="preserve">
-    <value>Añadir puntos Resumen oferta</value>
+    <value>إضافة عرض موجز النقاط</value>
   </data>
   <data name="AddSummaryPointTooltip" xml:space="preserve">
-    <value>Añadir Extracto de oferta después de esto</value>
+    <value>إضافة ملخص العرض بعد هذا</value>
   </data>
   <data name="BrandingSectionTooltip" xml:space="preserve">
-    <value>Haga clic para configurar la marca de su empresa.</value>
+    <value>انقر فوق تكوين العلامة التجارية للشركة الخاصة بك.</value>
   </data>
   <data name="OfferFeaturePlaceHolder" xml:space="preserve">
-    <value>Describir una característica que da a esta oferta</value>
+    <value>وصف ميزة يعطي هذا العرض</value>
   </data>
   <data name="OffersSectionTooltip" xml:space="preserve">
-    <value>Haga clic para configurar sus ofertas</value>
+    <value>انقر فوق تكوين العروض الخاصة بك</value>
   </data>
   <data name="OfferSummaryPlaceHolder" xml:space="preserve">
-    <value>Escriba un resumen de la oferta</value>
+    <value>كتابة ملخص العرض</value>
   </data>
   <data name="PaymentSectionTooltip" xml:space="preserve">
-    <value>Haga clic para configurar las opciones de pago</value>
+    <value>انقر فوق لتكوين خيارات الدفع الخاص بك</value>
   </data>
   <data name="PriceHeader" xml:space="preserve">
-    <value>Precio:</value>
+    <value>السعر:</value>
   </data>
   <data name="RemoveOfferFeatureTooltip" xml:space="preserve">
-    <value>Quitar la función de oferta</value>
+    <value>إزالة ميزة العرض</value>
   </data>
   <data name="RemoveSummaryPointTooltip" xml:space="preserve">
-    <value>Resumen de oferta de quitar</value>
+    <value>إزالة عرض موجز</value>
   </data>
   <data name="DashboardItemConfigured" xml:space="preserve">
-    <value>Configurado</value>
+    <value>تكوين</value>
   </data>
   <data name="DashboardItemNeedsConfiguration" xml:space="preserve">
-    <value>Configuración de las necesidades</value>
+    <value>احتياجات التكوين</value>
   </data>
   <data name="DashboardLoadingError" xml:space="preserve">
-    <value>No se pudo recuperar la información del tablero de instrumentos</value>
+    <value>تعذر استرداد معلومات لوحة المعلومات</value>
   </data>
   <data name="DashboardStatusNotOk" xml:space="preserve">
-    <value>Personalizar su sitio antes de empezar a vender</value>
+    <value>تخصيص موقع الويب الخاص بك قبل البدء في بيع</value>
   </data>
   <data name="DashboardStatusOk" xml:space="preserve">
-    <value>Eres bueno para ir y empezar a vender!</value>
+    <value>كنت جيدة للذهاب وبدء بيع!</value>
   </data>
   <data name="AddOfferCaption" xml:space="preserve">
-    <value>Añadir una nueva oferta</value>
+    <value>إضافة عرض جديد</value>
   </data>
   <data name="Category" xml:space="preserve">
-    <value>Categoría</value>
+    <value>الفئة</value>
   </data>
   <data name="CustomizationOfferListColumnCaption" xml:space="preserve">
-    <value>Arreglo para requisitos particulares</value>
+    <value>التخصيص</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Eliminar</value>
+    <value>حذف</value>
   </data>
   <data name="DeleteOffersCaption" xml:space="preserve">
-    <value>Borrar oferta</value>
+    <value>حذف عروض</value>
   </data>
   <data name="DeletingOfferMessage" xml:space="preserve">
-    <value>Eliminación de ofertas</value>
+    <value>حذف العروض</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Descripción</value>
+    <value>الوصف</value>
   </data>
   <data name="EmptyMicrosoftOfferListMessage" xml:space="preserve">
-    <value>No hay ofertas encontradas</value>
+    <value>العروض لم يتم العثور على</value>
   </data>
   <data name="EmptyOfferListMessage" xml:space="preserve">
-    <value>No tienes ofertas configuradas. Haga clic en Añadir oferta anterior para comenzar a añadir sus ofertas.</value>
+    <value>ليس لديك أي عروض تكوين. انقر فوق "إضافة العرض" أعلاه لبدء إضافة العروض الخاصة بك.</value>
   </data>
   <data name="MicrosoftOfferListColumnCaption" xml:space="preserve">
-    <value>Oferta de Microsoft</value>
+    <value>تقدم Microsoft</value>
   </data>
   <data name="MicrosoftOfferRetrievalErrorMessage" xml:space="preserve">
-    <value>No se pudo recuperar ofertas de Microsoft</value>
+    <value>تعذر استرداد عروض مايكروسوفت</value>
   </data>
   <data name="Offer" xml:space="preserve">
-    <value>Oferta</value>
+    <value>العرض</value>
   </data>
   <data name="OfferAutomaticallyRenewable" xml:space="preserve">
-    <value>Renovables automáticamente</value>
+    <value>تجديد تلقائي.</value>
   </data>
   <data name="OfferAvailableForPurchase" xml:space="preserve">
-    <value>Disponibles para su compra</value>
+    <value>متوفر للشراء</value>
   </data>
   <data name="OfferDeletionConfirmation" xml:space="preserve">
-    <value>Ofertas han sido borradas</value>
+    <value>تم حذف العروض</value>
   </data>
   <data name="OfferDeletionFailure" xml:space="preserve">
-    <value>No se puede eliminar la oferta</value>
+    <value>تعذر حذف عروض</value>
   </data>
   <data name="OfferManuallyRenewable" xml:space="preserve">
-    <value>Manualmente renovables</value>
+    <value>المتجددة يدوياً</value>
   </data>
   <data name="OfferSaveErrorMessage" xml:space="preserve">
-    <value>No se pueden guardar la oferta</value>
+    <value>تعذر حفظ العرض</value>
   </data>
   <data name="OfferSaveSuccessMessage" xml:space="preserve">
-    <value>¡Oferta guardado correctamente!</value>
+    <value>عرض حفظه بنجاح!</value>
   </data>
   <data name="OffersFetchFailure" xml:space="preserve">
-    <value>No se pudo recuperar las ofertas</value>
+    <value>تعذر استرداد العروض</value>
   </data>
   <data name="OffersFetchProgress" xml:space="preserve">
-    <value>Recuperación de ofertas</value>
+    <value>استرداد العروض</value>
   </data>
   <data name="OfferUnavailableForPurchase" xml:space="preserve">
-    <value>No disponible para compra</value>
+    <value>غير متوفر للشراء</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Guardar</value>
+    <value>حفظ</value>
   </data>
   <data name="SaveOfferCaption" xml:space="preserve">
-    <value>Guardar oferta</value>
+    <value>حفظ العرض</value>
   </data>
   <data name="SavingOfferMessage" xml:space="preserve">
-    <value>Oferta de ahorro</value>
+    <value>حفظ العرض</value>
   </data>
   <data name="Seats" xml:space="preserve">
-    <value>asientos</value>
+    <value>مقاعد</value>
   </data>
   <data name="SelectOfferErrorMessage" xml:space="preserve">
-    <value>Por favor seleccione una oferta</value>
+    <value>الرجاء تحديد العرض</value>
   </data>
   <data name="To" xml:space="preserve">
-    <value>Para</value>
+    <value>إلى</value>
   </data>
   <data name="UpdatingOfferMessage" xml:space="preserve">
-    <value>Actualización oferta</value>
+    <value>تحديث العرض</value>
   </data>
   <data name="DefaultOrganizationName" xml:space="preserve">
-    <value>Su nombre de la organización</value>
+    <value>اسم المؤسسة</value>
   </data>
   <data name="Undo" xml:space="preserve">
-    <value>Deshacer</value>
+    <value>التراجع عن</value>
   </data>
   <data name="BrandingRetrievalErrorMessage" xml:space="preserve">
-    <value>No se pudo recuperar a socio marca</value>
+    <value>تعذر استرداد الشريك العلامة التجارية</value>
   </data>
   <data name="BrandingRetrievalProgressMessage" xml:space="preserve">
-    <value>Recuperación socio marca</value>
+    <value>استرداد الشريك العلامة التجارية</value>
   </data>
   <data name="BrandingSetupPromptMessage" xml:space="preserve">
-    <value>Configurar tu tienda web</value>
+    <value>تكوين مخزن ويب الخاص بك</value>
   </data>
   <data name="BrandingSetupSecondaryMessage" xml:space="preserve">
-    <value>Proporcionar la información de la organización que será visible en el encabezado y pie de página en todas las páginas</value>
+    <value>توفير المعلومات الخاصة بك المنظمة التي ستكون مرئية في رأس وتذييل الصفحة على كافة الصفحات</value>
   </data>
   <data name="BrandingUpdateErrorMessage" xml:space="preserve">
-    <value>No se pueden guardar marca</value>
+    <value>تعذر حفظ العلامات التجارية</value>
   </data>
   <data name="BrandingUpdateProgressMessage" xml:space="preserve">
-    <value>Actualizar la información de marca</value>
+    <value>تحديث معلومات العلامة التجارية</value>
   </data>
   <data name="BrandingUpdateSuccessMessage" xml:space="preserve">
-    <value>Marca guardado. Haga clic en el botón actualizar en la barra de encabezado para ver los cambios</value>
+    <value>حفظ العلامات التجارية. انقر فوق الزر تحديث في شريط العنوان لرؤية التغييرات الخاصة بك</value>
   </data>
   <data name="ContactSalesHeader" xml:space="preserve">
-    <value>Contacto de ventas:</value>
+    <value>الاتصال المبيعات:</value>
   </data>
   <data name="ContactUsFieldHeader" xml:space="preserve">
-    <value>Contacto de soporte:</value>
+    <value>دعم الاتصال:</value>
   </data>
   <data name="SupportEmailAddressHeader" xml:space="preserve">
-    <value>Soporte por correo electrónico</value>
+    <value>دعم البريد الإلكتروني</value>
   </data>
   <data name="HeaderImageFieldHeader" xml:space="preserve">
-    <value>Imagen del encabezado:</value>
+    <value>عنوان الصورة:</value>
   </data>
   <data name="HeaderImageSubText" xml:space="preserve">
-    <value>Se muestra en la parte superior de la página de inicio. (.jpg, .jpeg, .img, .gif). Subir un archivo o introduzca una URL de imagen válido</value>
+    <value>يظهر في الجزء العلوي من الصفحة الرئيسية. (.jpg،.jpeg،.img،.gif). تحميل ملف أو إدخال URL صورة صالحة</value>
   </data>
   <data name="HeaderImageUploadTooltip" xml:space="preserve">
-    <value>Seleccione Archivo de encabezado de la imagen desde tu ordenador</value>
+    <value>حدد ملف صورة رأس من جهاز الكمبيوتر الخاص بك</value>
   </data>
   <data name="OrganizationLogoFieldHeader" xml:space="preserve">
-    <value>Insignia:</value>
+    <value>الشعار:</value>
   </data>
   <data name="OrganizationLogoSubText" xml:space="preserve">
-    <value>Se muestra en el encabezado de cada página, imágenes de tamaño 32 por 32 funcionan mejor. Subir un archivo o introduzca una URL de imagen válido</value>
+    <value>سيظهر في رأس كل صفحة، الصور من حجم 32 من 32 تعمل بشكل أفضل. تحميل ملف أو إدخال URL صورة صالحة</value>
   </data>
   <data name="OrganizationLogoUploadTooltip" xml:space="preserve">
-    <value>Seleccione el archivo de imagen de logotipo de organización de su computadora</value>
+    <value>حدد ملف صورة شعار المنظمة من جهاز الكمبيوتر الخاص بك</value>
   </data>
   <data name="OrganizationNameFieldHeader" xml:space="preserve">
-    <value>Nombre:</value>
+    <value>الاسم:</value>
   </data>
   <data name="OrganizationNameFieldSubText" xml:space="preserve">
-    <value>Nombre legal de la empresa, que se muestra en el encabezado de cada página</value>
+    <value>الاسم القانوني للشركة الخاصة بك، سيظهر على رأس كل صفحة</value>
   </data>
   <data name="PhoneHeaderCaption" xml:space="preserve">
-    <value>Número de teléfono</value>
+    <value>رقم الهاتف</value>
   </data>
   <data name="ReloadPortalButtonCaption" xml:space="preserve">
-    <value>Portal de recarga</value>
+    <value>بوابة تحديث</value>
   </data>
   <data name="ReloadPortalButtonTooltip" xml:space="preserve">
-    <value>Cargar el portal para ver los cambios</value>
+    <value>تحديث المدخل لمشاهدة التغييرات الخاصة بك</value>
   </data>
   <data name="UndoBrandingChangesTooltip" xml:space="preserve">
-    <value>Deshacer cambios marca locales</value>
+    <value>التراجع عن التغييرات العلامة التجارية المحلية</value>
   </data>
   <data name="FetchPaymentConfigurationErrorMessage" xml:space="preserve">
-    <value>No se pudo recuperar la información de pago</value>
+    <value>تعذر استرداد معلومات الدفع</value>
   </data>
   <data name="FetchPaymentConfigurationProgressMessage" xml:space="preserve">
-    <value>Recuperar información de pago</value>
+    <value>استرداد معلومات الدفع</value>
   </data>
   <data name="LiveAccountTypeCaption" xml:space="preserve">
-    <value>Cuenta real</value>
+    <value>حساب حقيقي</value>
   </data>
   <data name="PaymentConfigurationHeader" xml:space="preserve">
-    <value>Proporcionar su PayPal Pro configuración de la cuenta</value>
+    <value>توفير إعدادات الحساب الخاص بك بأي بال للمحترفين</value>
   </data>
   <data name="PaymentConfigurationSubTextPostfix" xml:space="preserve">
-    <value>para crear una nueva cuenta pro si no tienes uno.</value>
+    <value>لإنشاء حساب برو جديد إذا لم يكن لديك واحدة.</value>
   </data>
   <data name="PaymentConfigurationSubTextPrefix" xml:space="preserve">
-    <value>Para recibir los pagos de sus clientes, debe utilizar una cuenta de PayPal pro, por favor visite:</value>
+    <value>تلقي المدفوعات من العملاء الخاص بك، يجب عليك استخدام حساب بأي بال برو، يرجى زيارة:</value>
   </data>
   <data name="PayPalAccountTypeCaption" xml:space="preserve">
-    <value>Tipo de cuenta de PayPal:</value>
+    <value>نوع حساب بأي بال:</value>
   </data>
   <data name="PayPalAccountTypeSubText" xml:space="preserve">
-    <value>Puede seleccionar un tipo de cuenta de prueba para probar sus transacciones. Una vez en marcha, se puede cambiar a un tipo de cuenta para empezar a tramitar</value>
+    <value>يمكنك تحديد نوع حساب اختبار لاختبار المعاملات الخاصة بك. بمجرد العمل، يمكنك التبديل إلى نوع حساب حقيقي لبدء إجراء معاملات</value>
   </data>
   <data name="PayPalClientIdCaption" xml:space="preserve">
-    <value>ID de cliente de PayPal:</value>
+    <value>معرف العميل بأي بال:</value>
   </data>
   <data name="PayPalClientIdSubText" xml:space="preserve">
-    <value>Introduzca su ID de cliente de PayPal</value>
+    <value>أدخل معرف العميل الخاص بك بأي بال</value>
   </data>
   <data name="PayPalClientSecretCaption" xml:space="preserve">
-    <value>Secreto de cliente de PayPal:</value>
+    <value>بأي بال العميل السري:</value>
   </data>
   <data name="PayPalClientSecretSubText" xml:space="preserve">
-    <value>Entrar en su secreto de cliente de PayPal</value>
+    <value>أدخل السري العميل الخاص بك بأي بال</value>
   </data>
   <data name="SandboxAccountTypeCaption" xml:space="preserve">
-    <value>Cuenta Sandbox</value>
+    <value>حساب رمل</value>
   </data>
   <data name="UndoUnsavedChanges" xml:space="preserve">
-    <value>Deshacer los cambios no guardados pago</value>
+    <value>التراجع عن التغييرات الدفع غير المحفوظة</value>
   </data>
   <data name="UpdatePaymentErrorMessage" xml:space="preserve">
-    <value>No se pueden guardar información de pago</value>
+    <value>تعذر حفظ معلومات الدفع</value>
   </data>
   <data name="UpdatePaymentProgressMessage" xml:space="preserve">
-    <value>Actualizar la información de pago</value>
+    <value>تحديث معلومات الدفع</value>
   </data>
   <data name="UpdatePaymentSuccessMessage" xml:space="preserve">
-    <value>Información de pago actualizada</value>
+    <value>تحديث معلومات الدفع</value>
   </data>
   <data name="CustomerProfileAddressLine1Caption" xml:space="preserve">
-    <value>Dirección línea 1</value>
+    <value>سطر العنوان 1</value>
   </data>
   <data name="CustomerProfileAddressLine2Caption" xml:space="preserve">
-    <value>Dirección línea 2</value>
+    <value>سطر العنوان 2</value>
   </data>
   <data name="CustomerProfileCityCaption" xml:space="preserve">
-    <value>Ciudad</value>
+    <value>مدينة</value>
   </data>
   <data name="CustomerProfileCompanyCountryCaption" xml:space="preserve">
-    <value>País</value>
+    <value>البلد</value>
   </data>
   <data name="CustomerProfileCompanyInfoSectionCaption" xml:space="preserve">
-    <value>Información de la empresa</value>
+    <value>معلومات عن الشركة</value>
   </data>
   <data name="CustomerProfileContactInfoSectionCaption" xml:space="preserve">
-    <value>Información de contacto</value>
+    <value>معلومات الاتصال</value>
   </data>
   <data name="CustomerProfileDomainInfoCaption" xml:space="preserve">
-    <value>El prefijo de su dominio aparecerá después de la @ en su dirección de correo electrónico de dominio. Tiene que ser único y no puede contener cualquier signos de puntuación. Ejemplo: yourcompany.</value>
+    <value>سوف تظهر البادئة المجال الخاص بك بعد @ في عنوان البريد الإلكتروني الخاص بك المجال. يجب أن تكون فريدة من نوعها، وأنها لا تحتوي على أي علامات التنقيط. مثال: يوركومباني.</value>
   </data>
   <data name="CustomerProfileDomainPrefixCaption" xml:space="preserve">
-    <value>Prefijo de número de dominio</value>
+    <value>بادئة المجال</value>
   </data>
   <data name="CustomerProfileEmailAddressIdCaption" xml:space="preserve">
-    <value>Dirección de correo electrónico</value>
+    <value>عنوان البريد الإلكتروني</value>
   </data>
   <data name="CustomerProfileEmailWarningCaption" xml:space="preserve">
-    <value>Asegúrese de que introducir una dirección válida de correo electrónico. Será el principal punto de contacto para enviarle información importante para comenzar y establecer sus datos de pago.</value>
+    <value>تأكد من إدخال عنوان بريد إلكتروني صالح. سوف تكون النقطة الرئيسية للاتصال لإرسال معلومات هامة للحصول على أنك بدأته وإعداد بيانات الدفع الخاصة بك.</value>
   </data>
   <data name="CustomerProfileFirstNameCaption" xml:space="preserve">
-    <value>Nombre</value>
+    <value>الاسم الأول</value>
   </data>
   <data name="CustomerProfileLastNameCaption" xml:space="preserve">
-    <value>Apellido</value>
+    <value>الاسم الأخير</value>
   </data>
   <data name="CustomerProfileOffice365EmailCaption" xml:space="preserve">
-    <value>Se trata de la identificación de usuario que utilizará con su cuenta de Office 365.</value>
+    <value>وسيكون هذا معرف المستخدم الذي ستستخدمه مع حساب Office 365 الخاص بك.</value>
   </data>
   <data name="CustomerProfileOffice365UserNameCaption" xml:space="preserve">
-    <value>nombre de usuario</value>
+    <value>اسم المستخدم</value>
   </data>
   <data name="CustomerProfileStateCaption" xml:space="preserve">
-    <value>Estado/provincia</value>
+    <value>الولاية/المقاطعة</value>
   </data>
   <data name="CustomerProfileZipPostalCaption" xml:space="preserve">
-    <value>Zip / Código Postal</value>
+    <value>الرمز البريدي/الرمز البريدي</value>
   </data>
   <data name="UnpaidSubscriptionSuffix" xml:space="preserve">
-    <value>-Sin pagar</value>
+    <value>--غير مدفوعة الأجر</value>
   </data>
   <data name="ConfigurePortalMessage" xml:space="preserve">
-    <value>Configurar su sitio de Internet</value>
+    <value>تكوين موقع الويب الخاص بك</value>
   </data>
   <data name="PortalNotConfiguredYet" xml:space="preserve">
-    <value>Este sitio web todavía está en construcción. Por favor visite más adelante.</value>
+    <value>هذا الموقع لا يزال قيد البناء. الرجاء زيارة في وقت لاحق.</value>
   </data>
   <data name="CouldNotRetrievePartnerOffers" xml:space="preserve">
-    <value>No se pudo recuperar ofertas</value>
+    <value>تعذر استرداد العروض</value>
   </data>
   <data name="SubscriptionSummaryAmountPaidOnPrefixCaption" xml:space="preserve">
-    <value>Cantidad pagada en</value>
+    <value>المبلغ المدفوع على</value>
   </data>
   <data name="SubscriptionSummaryAnnualPricePrefixCaption" xml:space="preserve">
-    <value>Precio pagado</value>
+    <value>السعر المدفوع</value>
   </data>
   <data name="SubscriptionSummaryRateCaption" xml:space="preserve">
-    <value>Tasa de</value>
+    <value>معدل</value>
   </data>
   <data name="SubscriptionSummaryRenewLinkCaption" xml:space="preserve">
-    <value>Renovar</value>
+    <value>تجديد</value>
   </data>
   <data name="CommerceOperationTypeAddSeats" xml:space="preserve">
-    <value>Añadido asientos</value>
+    <value>مقاعد إضافية</value>
   </data>
   <data name="CommerceOperationTypeAddSubscription" xml:space="preserve">
-    <value>Comprar</value>
+    <value>التي تم شراؤها</value>
   </data>
   <data name="CommerceOperationTypeRenewSubscription" xml:space="preserve">
-    <value>Renovación</value>
+    <value>تجديد</value>
   </data>
   <data name="CustomerRegistrationFailureMessage" xml:space="preserve">
-    <value>No se podrá registrar al cliente. Por favor Inténtalo más tarde.</value>
+    <value>تعذر تسجيل العميل. الرجاء المحاولة في وقت لاحق.</value>
   </data>
   <data name="CustomerRegistrationMessage" xml:space="preserve">
-    <value>Registro de cliente...</value>
+    <value>تسجيل العملاء...</value>
   </data>
   <data name="CustomerRegistrationSuccessMessage" xml:space="preserve">
-    <value>Preparación de pedido y redirigiendo a la pasarela de pago...</value>
+    <value>إعداد ترتيب وإعادة توجيه إلى بوابة الدفع...</value>
   </data>
   <data name="OrderRegistrationFailureMessage" xml:space="preserve">
-    <value>Orden registro Error</value>
+    <value>خطأ في تسجيل النظام</value>
   </data>
   <data name="BuyMoreSubscriptionsMessage" xml:space="preserve">
-    <value>Comprar suscripciones más</value>
+    <value>شراء المزيد من الاشتراكات</value>
   </data>
   <data name="UserLicencesCaption" xml:space="preserve">
-    <value>Licencias</value>
+    <value>التراخيص</value>
   </data>
   <data name="ProratedPaymentTotal" xml:space="preserve">
-    <value>Prorrateada</value>
+    <value>تناسبي</value>
   </data>
   <data name="SelectPortalOfferCaption" xml:space="preserve">
-    <value>Seleccione una o más ofertas</value>
+    <value>حدد واحد أو أكثر من العروض</value>
   </data>
   <data name="AccessDeniedMessage" xml:space="preserve">
-    <value>No tienes los derechos necesarios para acceder a esta zona</value>
+    <value>ليس لديك الحقوق المطلوبة للوصول إلى هذه المنطقة</value>
   </data>
   <data name="OrderUpdateFailureMessage" xml:space="preserve">
-    <value>Error de actualización de la orden</value>
+    <value>خطأ في تحديث النظام</value>
   </data>
   <data name="BadInputGenericMessage" xml:space="preserve">
-    <value>Había un entrada ha producido un error. Por favor, compruebe las entradas e inténtelo de nuevo.</value>
+    <value>كان هناك خطأ في إدخال مصادفة. الرجاء التحقق من المدخلات وحاول مرة أخرى.</value>
   </data>
   <data name="DomainNotAvailable" xml:space="preserve">
-    <value>El dominio no está disponible. Introduce otro prefijo de dominio de</value>
+    <value>المجال غير متوفر. الرجاء إدخال آخر المجال بادئة</value>
   </data>
   <data name="ImagesTooLarge" xml:space="preserve">
-    <value>Las imágenes son demasiado grandes. Por favor especificar imágenes más pequeñas o subir uno por uno</value>
+    <value>الصور المختارة كبيرة جداً. الرجاء تحديد الصور أصغر أو تحميل واحداً تلو الآخر</value>
   </data>
   <data name="InvalidAddress" xml:space="preserve">
-    <value>Por favor, especificar una dirección válida</value>
+    <value>الرجاء تحديد عنوان صالح</value>
   </data>
   <data name="InvalidFileType" xml:space="preserve">
-    <value>Por favor, seleccione un archivo de imagen válido para cargar</value>
+    <value>الرجاء تحديد ملف صورة صالحة للتحميل</value>
   </data>
   <data name="DeleteOffersPromptMessage" xml:space="preserve">
-    <value>¿Está seguro que desea eliminar las ofertas seleccionadas? Si sus clientes ya han comprado estas ofertas, las suscripciones adquiridas todavía ser honradas pero no será renovables.</value>
+    <value>هل أنت متأكد من أنك تريد حذف العروض المحددة؟ إذا كان العملاء قد اشتريت بالفعل هذه العروض، الاشتراكات التي تم شراؤها سيتم تكريم لا يزال لكن سوف لا تكون قابلة للتجديد.</value>
   </data>
   <data name="RegistrationConfirmationPasswordNoticeCaption" xml:space="preserve">
-    <value>Por favor copia la cuenta de usuario Admin y la contraseña y guarde en un lugar seguro. No podrás recuperarlo después de salir de esta página.</value>
+    <value>الرجاء نسخ حساب المستخدم المسؤول وكلمة المرور وحفظها في مكان أمن. لن تتمكن من استعادته بعد أن تغادر هذه الصفحة.</value>
   </data>
   <data name="SubscriptionSummaryAnnualCommitmentExpiryCaption" xml:space="preserve">
-    <value>caduca el</value>
+    <value>وتنتهي في</value>
   </data>
   <data name="SubscriptionSummaryProratepriceCaption" xml:space="preserve">
-    <value>Precio pagado se muestra proporcional según sea el caso.</value>
+    <value>يتم عرض الأسعار المدفوعة تناسبي حسب الاقتضاء.</value>
   </data>
   <data name="AnnualPriceCaption" xml:space="preserve">
-    <value>Precio anual</value>
+    <value>السعر السنوي</value>
   </data>
   <data name="EmptyListCaption" xml:space="preserve">
-    <value>Por favor añadir una suscripción</value>
+    <value>الرجاء إضافة اشتراك</value>
   </data>
   <data name="HomePage" xml:space="preserve">
-    <value>Página de inicio</value>
+    <value>الصفحة الرئيسية</value>
   </data>
   <data name="ContactUsTooltip" xml:space="preserve">
-    <value>Mostrar datos de contacto</value>
+    <value>عرض تفاصيل الاتصال</value>
   </data>
   <data name="NonAdminUnauthorizedMessage" xml:space="preserve">
-    <value>Administradores no socios no están autorizados a firmar.</value>
+    <value>شريك غير المسؤولين غير مخول لتسجيل الدخول.</value>
   </data>
   <data name="ContactSales" xml:space="preserve">
-    <value>Ventas contacto</value>
+    <value>اتصل بالمبيعات</value>
   </data>
   <data name="ContactUsEmailCaption" xml:space="preserve">
-    <value>Correo electrónico:</value>
+    <value>البريد الإلكتروني:</value>
   </data>
   <data name="ContactUsPhoneCaption" xml:space="preserve">
-    <value>Teléfono:</value>
+    <value>الهاتف:</value>
   </data>
   <data name="InvalidInputErrorPrefix" xml:space="preserve">
-    <value>Corrija la entrada no válida:</value>
+    <value>الرجاء تصحيح الإدخال غير صالح:</value>
   </data>
   <data name="DownstreamErrorPrefix" xml:space="preserve">
-    <value>Somos capaces de procesar su solicitud en este momento. Por favor Inténtalo más tarde o póngase en contacto con nosotros por correo electrónico. Detalles del error-</value>
+    <value>ونحن غير قادر على معالجة الطلب الخاص بك في هذا الوقت. يرجى المحاولة لاحقاً أو الاتصال بنا عبر البريد الإلكتروني. تفاصيل الخطأ-</value>
   </data>
   <data name="MoreThanOneSubscriptionUpdateErrorMessage" xml:space="preserve">
-    <value>Sólo una suscripción puede ser actualizado.</value>
+    <value>يمكن تحديث subcription واحد فقط.</value>
   </data>
   <data name="PreparingOrderAndRedirectingMessage" xml:space="preserve">
-    <value>Preparación de pedido y redirigiendo a la pasarela de pago...</value>
+    <value>إعداد ترتيب وإعادة توجيه إلى بوابة الدفع...</value>
   </data>
   <data name="OrderAddFailureMessage" xml:space="preserve">
-    <value>Error durante la adición de las suscripciones.</value>
+    <value>حدث خطأ أثناء إضافة اشتراكات.</value>
   </data>
   <data name="PaymentGatewayErrorPrefix" xml:space="preserve">
-    <value>No podemos procesar su pago,</value>
+    <value>نحن غير قادرين على عملية الدفع –</value>
   </data>
   <data name="PortalStartupFailure" xml:space="preserve">
-    <value>Podría no iniciar el portal</value>
+    <value>ويمكن عدم بدء تشغيل البوابة</value>
   </data>
   <data name="PaymentGatewayIdentityFailureDuringConfiguration" xml:space="preserve">
-    <value>Configuración de pago no es válida.</value>
+    <value>دفع التكوين غير صالح.</value>
   </data>
   <data name="PaymentGatewayIdentityFailureDuringPayment" xml:space="preserve">
-    <value>Su pago no se puede procesar en este momento. Póngase en contacto con nosotros por correo electrónico.</value>
+    <value>لا يمكن معالجة الدفع الخاص بك في هذا الوقت. الرجاء الاتصال بنا عن طريق البريد الإلكتروني.</value>
   </data>
   <data name="InvalidHeaderImageUri" xml:space="preserve">
-    <value>Uri de la imagen de encabezado no válido. Por favor, asegúrese de que el identificador Uri es válido.</value>
+    <value>صورة رأس غير صالح Uri. الرجاء التأكد من Uri صالحاً.</value>
   </data>
   <data name="InvalidInput" xml:space="preserve">
-    <value>Hubo un problema en uno de los campos que escribiste:</value>
+    <value>كانت هناك مشكلة في أحد الحقول قمت بإدخالها:</value>
   </data>
   <data name="InvalidOrganizationLogoUri" xml:space="preserve">
-    <value>Logotipo de la organización no válido Uri. Por favor, asegúrese de que el identificador Uri es válido.</value>
+    <value>شعار المنظمة غير صالحة Uri. الرجاء التأكد من Uri صالحاً.</value>
   </data>
   <data name="InvalidPrivacyAgreementUri" xml:space="preserve">
-    <value>Privacidad no válido Uri. Por favor, asegúrese de que el identificador Uri es válido.</value>
+    <value>غير صالح الخصوصية Uri. الرجاء التأكد من Uri صالحاً.</value>
   </data>
   <data name="PrivacyAgreement" xml:space="preserve">
-    <value>Privacidad</value>
+    <value>الخصوصية</value>
   </data>
   <data name="PrivacyAgreementFieldHeader" xml:space="preserve">
-    <value>Enlace de privacidad:</value>
+    <value>رابط الخصوصية:</value>
   </data>
   <data name="PrivacyAgreementFieldSubText" xml:space="preserve">
-    <value>Puede especificar un enlace que muestra los términos de privacidad a sus clientes aquí que se mostrarán en el pie de página de inicio</value>
+    <value>يمكنك تحديد ارتباط يوضح شروط الخصوصية للعملاء الخاص بك هنا التي سوف تظهر في تذييل الصفحة الرئيسية</value>
   </data>
   <data name="PrivacyAgreementToolTip" xml:space="preserve">
-    <value>Vista esta términos de privacidad del sitio web</value>
+    <value>عرض شروط خصوصية هذا الموقع</value>
   </data>
   <data name="CouldNotRetrieveCustomerAccount" xml:space="preserve">
-    <value>No se pudo recuperar su cuenta. Por favor Inténtalo más tarde.</value>
+    <value>تعذر استرداد الحساب الخاص بك. الرجاء المحاولة مرة أخرى لاحقاً.</value>
   </data>
   <data name="CouldNotRetrieveSubscriptionsSummary" xml:space="preserve">
-    <value>No se pudo recuperar sus suscripciones. Por favor Inténtalo más tarde.</value>
+    <value>تعذر استرداد الاشتراكات الخاصة بك. الرجاء المحاولة مرة أخرى لاحقاً.</value>
   </data>
   <data name="SalesEmailAddressHeader" xml:space="preserve">
-    <value>Correo electrónico ventas</value>
+    <value>بريد المبيعات</value>
   </data>
   <data name="RenewSubscriptionTitleCaption" xml:space="preserve">
-    <value>Renovar suscripción</value>
+    <value>تجديد الاشتراك</value>
   </data>
   <data name="CustomerOrganizationNameCaption" xml:space="preserve">
-    <value>Nombre de la organización</value>
+    <value>اسم المؤسسة</value>
   </data>
   <data name="CustomerPrimaryContactCaption" xml:space="preserve">
-    <value>Contacto principal</value>
+    <value>جهة الاتصال الرئيسية</value>
   </data>
   <data name="CouldNotRetrieveOffer" xml:space="preserve">
-    <value>No se pudo recuperar datos de la oferta. Por favor Inténtalo más tarde.</value>
+    <value>تعذر استرداد تفاصيل العرض. الرجاء المحاولة مرة أخرى لاحقاً.</value>
   </data>
   <data name="InvalidInputInFormCaption" xml:space="preserve">
-    <value>Uno o más campos no son válidos. Por favor corregirlos y luego enviar.</value>
+    <value>حقل واحد أو أكثر غير صالحة. يرجى تصحيحها ويقدم بعد ذلك.</value>
   </data>
   <data name="PlaceOrderCaption" xml:space="preserve">
-    <value>Haga su pedido</value>
+    <value>مكان طلبك</value>
   </data>
   <data name="AnnualTotalCaption" xml:space="preserve">
-    <value>Total anual</value>
+    <value>المجموع السنوي</value>
   </data>
   <data name="PickOfferCaption" xml:space="preserve">
-    <value>Seleccionar oferta</value>
+    <value>اختر العرض</value>
   </data>
   <data name="PickOfferTooltip" xml:space="preserve">
-    <value>Escoge la oferta que desea vender</value>
+    <value>اختر العرض الذي ترغب في بيع</value>
   </data>
   <data name="CannotAddExistingSubscriptionError" xml:space="preserve">
-    <value>Una o más ofertas que intentas añadir ya existe. Puede agregar más licencias a las suscripciones existentes.</value>
+    <value>واحد أو أكثر من العروض تحاول إضافة الفعل موجود. يمكنك إضافة المزيد من التراخيص للاشتراكات الموجودة.</value>
   </data>
   <data name="UserPerYear" xml:space="preserve">
-    <value>usuario/año</value>
+    <value>المستخدم في السنة</value>
   </data>
   <data name="InvalidContactSalesPhone" xml:space="preserve">
-    <value>Por favor ingrese un teléfono válido de ventas contacto</value>
+    <value>الرجاء إدخال هاتف مبيعات اتصال صحيحة</value>
   </data>
   <data name="InvalidContactUsPhone" xml:space="preserve">
-    <value>Por favor ingrese un teléfono válido apoyo contacto</value>
+    <value>الرجاء إدخال هاتف صالح اتصل بالدعم</value>
   </data>
   <data name="ProcessingOrderMessage" xml:space="preserve">
-    <value>Información recogida, creación de cliente y orden de procesamiento...</value>
+    <value>معلومات الدفع التي تم جمعها، إنشاء العملاء وترتيب المعالجة...</value>
   </data>
   <data name="ExistingCustomerProcessingOrderMessage" xml:space="preserve">
-    <value>Pago procesamiento de la información recopilada, ahora orden...</value>
+    <value>جمع معلومات الدفع، ترتيب معالجة الآن...</value>
   </data>
   <data name="AddSeatsOperationCaption" xml:space="preserve">
-    <value>Añadiendo asientos a suscripción.</value>
+    <value>إضافة مقاعد للاشتراك.</value>
   </data>
   <data name="NewPurchaseOperationCaption" xml:space="preserve">
-    <value>Añadir suscripciones.</value>
+    <value>إضافة اشتراكات.</value>
   </data>
   <data name="RenewOperationCaption" xml:space="preserve">
-    <value>Renovar la suscripción.</value>
+    <value>تجديد الاشتراك.</value>
   </data>
   <data name="OrderFailureMessage" xml:space="preserve">
-    <value>Error al orden de procesamiento. Por favor vuelva a intentarlo más tarde.</value>
+    <value>حدث خطأ أثناء معالجة الأمر. الرجاء إعادة المحاولة لاحقاً.</value>
   </data>
   <data name="OrderProcessingFailureNotification" xml:space="preserve">
-    <value>Falta en el orden de procesamiento. Por favor, haga clic en hecho y vuelva a intentarlo.</value>
+    <value>فشل في معالجة الأمر. الرجاء انقر فوق عمله، ثم حاول مرة أخرى.</value>
   </data>
   <data name="PaymentReceiptFailureNotification" xml:space="preserve">
-    <value>Falla en la recepción de información de pago. Por favor, haga clic en terminado para intentarlo de nuevo.</value>
+    <value>فشل في الحصول على معلومات الدفع. الرجاء انقر فوق تم للمحاولة مرة أخرى.</value>
   </data>
   <data name="ProcessingOrderNotification" xml:space="preserve">
-    <value>Recibido correctamente la información de pago. Orden de procesamiento...</value>
+    <value>تلقيها معلومات الدفع بنجاح. ترتيب معالجة...</value>
   </data>
   <data name="ProcessOrderPageCaption" xml:space="preserve">
-    <value>Confirmación</value>
+    <value>تأكيد</value>
   </data>
   <data name="NewCustomerOrderSuccessMessage" xml:space="preserve">
-    <value>Su pedido de inscripción fue procesada con éxito.</value>
+    <value>تم بنجاح معالجة أمر التسجيل الخاص بك.</value>
   </data>
   <data name="NewCustomerProcessOrderFailureReceivingPaymentMessage" xml:space="preserve">
-    <value>Falla en la recepción de información de pago. Inicia sesión y añadir suscripciones.</value>
+    <value>فشل في الحصول على معلومات الدفع. الرجاء تسجيل الدخول وإضافة اشتراكات.</value>
   </data>
   <data name="PayPalUnableToProcessPayment" xml:space="preserve">
-    <value>Somos capaces de procesar su pago.</value>
+    <value>نحن غير قادرين على عملية الدفع.</value>
   </data>
   <data name="ShowInContactUsHeaderCaption" xml:space="preserve">
-    <value>Se muestra en el contacto nosotros sección del encabezado</value>
+    <value>سيظهر في الاتصال بنا قسم رأس</value>
   </data>
   <data name="ADTenantIsAlreadyRegisteredToCustomer" xml:space="preserve">
-    <value>{0} AD inquilino ya está registrado al cliente de centro asociado: {1}</value>
+    <value>مسجل بالفعل المستأجر {0} الإعلانية للعملاء مركز الشريك: {1}</value>
   </data>
   <data name="AssertNumberPositiveInvalidPrefix" xml:space="preserve">
-    <value>número</value>
+    <value>عدد</value>
   </data>
   <data name="AssertNumberPositiveInvalidError" xml:space="preserve">
-    <value>{0} debe ser mayor que cero</value>
+    <value>يجب أن يكون أكبر من الصفر {0}</value>
   </data>
   <data name="AssertStringNotEmptyInvalidPrefix" xml:space="preserve">
-    <value>cadena</value>
+    <value>السلسلة</value>
   </data>
   <data name="AssertStringNotEmptyInvalidError" xml:space="preserve">
-    <value>{0} no se establece</value>
+    <value>لم يتم تعيين {0}</value>
   </data>
   <data name="RenewSubscriptionFailedMessage" xml:space="preserve">
-    <value>RenewSubscription.ExecuteAsync() error: {0}, SubscriptionId: {1}</value>
+    <value>فشل RenewSubscription.ExecuteAsync(): {0}، سوبسكريبتيونيد: {1}</value>
   </data>
   <data name="InvalidOrganizationLogoFileTypeMessage" xml:space="preserve">
-    <value>Proporcionan un tipo de archivo de imagen para el logo de la organización</value>
+    <value>توفر نوع ملف صورة لشعار المنظمة</value>
   </data>
   <data name="InvalidOrganizationLogoUriMessage" xml:space="preserve">
-    <value>Logo organización válido URI subido</value>
+    <value>حملت شعار المنظمة غير صالحة أوري</value>
   </data>
   <data name="InvalidHeaderImageMessage" xml:space="preserve">
-    <value>Proporcionan un tipo de archivo de imagen para la cabecera de la imagen</value>
+    <value>توفر نوع ملف صورة للصورة رأس</value>
   </data>
   <data name="InvalidHeaderImageUriMessage" xml:space="preserve">
-    <value>Imagen de encabezado no válido URI subido</value>
+    <value>تحميل صورة رأس غير صالح أوري</value>
   </data>
   <data name="InvalidPrivacyUriMessage" xml:space="preserve">
-    <value>Acuerdo de privacidad válido URI subido</value>
+    <value>تحميل اتفاقية الخصوصية غير صالح أوري</value>
   </data>
   <data name="ErrorPageDetailsCaption" xml:space="preserve">
-    <value>Se ha producido un error mientras se procesaba su solicitud.</value>
+    <value>حدث خطأ أثناء معالجة طلبك.</value>
   </data>
   <data name="ErrorPageTitleCaption" xml:space="preserve">
-    <value>Error</value>
+    <value>خطأ</value>
   </data>
   <data name="InvalidOperationForOrderMessage" xml:space="preserve">
-    <value>Operación no válida se realiza.</value>
+    <value>يتم إجراء عملية غير صالحة.</value>
   </data>
   <data name="NotEnoughItemsInOrderErrorMessage" xml:space="preserve">
-    <value>Orden debe tener al menos un elemento de la suscripción.</value>
+    <value>يجب أن يكون ترتيب عنصر اشتراك واحد على الأقل.</value>
   </data>
   <data name="InvalidPaymentModeErrorMessage" xml:space="preserve">
-    <value>No se admite el modo de pago</value>
+    <value>طريقة الدفع غير معتمد</value>
   </data>
   <data name="OfferPriceShouldBeMoreThanZero" xml:space="preserve">
-    <value>Precio de oferta debe ser más de cero</value>
+    <value>سعر العرض يجب أن تكون أكبر من الصفر</value>
   </data>
   <data name="MicrosoftOfferIdMustBeSet" xml:space="preserve">
-    <value>MicrosoftOfferId se debe establecer</value>
+    <value>يجب أن يتم تعيين ميكروسوفتوفيريد</value>
   </data>
   <data name="IdMustBeAValidGUID" xml:space="preserve">
-    <value>ID debe ser un GUID válido</value>
+    <value>يجب أن يكون معرف فريد صالح</value>
   </data>
   <data name="FailedToUpdatePartnerOffersStore" xml:space="preserve">
-    <value>No se pudo actualizar socio ofrece persistencia</value>
+    <value>فشل تحديث استمرار عروض الشريك</value>
   </data>
   <data name="MicrosoftOfferImmutableErrorMessage" xml:space="preserve">
-    <value>Oferta de Microsoft no debe actualizarse. Crear una nueva oferta en su lugar.</value>
+    <value>غير مسموح بعرض Microsoft ليتم تحديثه. إنشاء عرض جديد بدلاً من ذلك.</value>
   </data>
   <data name="OfferNotFound" xml:space="preserve">
-    <value>Oferta no encontrado</value>
+    <value>لم يتم العثور على العرض</value>
   </data>
   <data name="ContactUsSectionNotFound" xml:space="preserve">
-    <value>Sección de contacto con nosotros que no se encuentra en configuración portal de marca</value>
+    <value>اتصل بنا قسم غير موجود في تكوين العلامة التجارية المدخل</value>
   </data>
   <data name="InvalidContactUsEmailAddress" xml:space="preserve">
-    <value>Contacto válido nos dirección de correo electrónico</value>
+    <value>جهة الاتصال غير صالح لنا عنوان البريد الإلكتروني</value>
   </data>
   <data name="InvalidContactUsPhoneExceptionMessage" xml:space="preserve">
-    <value>Inválido en contacto con nosotros teléfono</value>
+    <value>صالح هاتف للاتصال بنا</value>
   </data>
   <data name="InvalidContactSalesEmailAddress" xml:space="preserve">
-    <value>Ventas email de contacto</value>
+    <value>المبيعات الاتصال غير صالحة عنوان البريد الإلكتروني</value>
   </data>
   <data name="InvalidContactSalesPhoneExceptionMessage" xml:space="preserve">
-    <value>Teléfono ventas contacto no válido</value>
+    <value>هاتف المبيعات الاتصال غير صالح</value>
   </data>
   <data name="AddMoreLicensesCaption" xml:space="preserve">
-    <value>Añadir más licencias</value>
+    <value>إضافة المزيد من التراخيص</value>
   </data>
   <data name="PayPalWebsiteCaption" xml:space="preserve">
     <value>PayPal.com</value>
   </data>
   <data name="CouldNotRegisterNewPartnerCenterCustomer" xml:space="preserve">
-    <value>No podrá registrar a nuevos clientes Partner Center</value>
+    <value>تعذر تسجيل العميل مركز الشريك الجديد</value>
   </data>
   <data name="HomePluginDisplayName" xml:space="preserve">
-    <value>Página de inicio</value>
+    <value>الصفحة الرئيسية</value>
   </data>
   <data name="AdminConsoleDisplayName" xml:space="preserve">
-    <value>Tienda Web Builder</value>
+    <value>مخزن ويب منشئ</value>
   </data>
   <data name="BrandingDisplayName" xml:space="preserve">
-    <value>Instalación marca</value>
+    <value>إعداد العلامة التجارية</value>
   </data>
   <data name="OffersDisplayName" xml:space="preserve">
-    <value>Configuración de ofertas</value>
+    <value>إعداد عروض</value>
   </data>
   <data name="PaymentDisplayName" xml:space="preserve">
-    <value>Configuración de pagos</value>
+    <value>إعداد الدفع</value>
   </data>
   <data name="MySubscriptionsDisplayName" xml:space="preserve">
-    <value>Historia de la orden</value>
+    <value>تاريخ النظام</value>
   </data>
   <data name="MyAccountDisplayName" xml:space="preserve">
-    <value>Administrar suscripciones</value>
+    <value>إدارة الاشتراكات</value>
   </data>
   <data name="GoToHomePageCaption" xml:space="preserve">
-    <value>Ir a la página de inicio</value>
+    <value>الانتقال إلى الصفحة الرئيسية</value>
   </data>
   <data name="CountryNameAU" xml:space="preserve">
-    <value>Australia</value>
+    <value>أستراليا</value>
   </data>
   <data name="CountryNameAT" xml:space="preserve">
-    <value>Austria</value>
+    <value>النمسا</value>
   </data>
   <data name="CountryNameBE" xml:space="preserve">
-    <value>Bélgica</value>
+    <value>بلجيكا</value>
   </data>
   <data name="CountryNameBG" xml:space="preserve">
-    <value>Bulgaria</value>
+    <value>بلغاريا</value>
   </data>
   <data name="CountryNameCA" xml:space="preserve">
-    <value>Canadá</value>
+    <value>كندا</value>
   </data>
   <data name="CountryNameHR" xml:space="preserve">
-    <value>Croacia</value>
+    <value>كرواتيا</value>
   </data>
   <data name="CountryNameCY" xml:space="preserve">
-    <value>Chipre</value>
+    <value>قبرص</value>
   </data>
   <data name="CountryNameCZ" xml:space="preserve">
-    <value>República Checa</value>
+    <value>تشيك</value>
   </data>
   <data name="CountryNameDK" xml:space="preserve">
-    <value>Dinamarca</value>
+    <value>الدانمارك</value>
   </data>
   <data name="CountryNameEE" xml:space="preserve">
-    <value>Estonia</value>
+    <value>إستونيا</value>
   </data>
   <data name="CountryNameFI" xml:space="preserve">
-    <value>Finlandia</value>
+    <value>فنلندا</value>
   </data>
   <data name="CountryNameFR" xml:space="preserve">
-    <value>Francia</value>
+    <value>فرنسا</value>
   </data>
   <data name="CountryNameDE" xml:space="preserve">
-    <value>Alemania</value>
+    <value>ألمانيا</value>
   </data>
   <data name="CountryNameGR" xml:space="preserve">
-    <value>Grecia</value>
+    <value>اليونان</value>
   </data>
   <data name="CountryNameHU" xml:space="preserve">
-    <value>Hungría</value>
+    <value>المجر</value>
   </data>
   <data name="CountryNameIS" xml:space="preserve">
-    <value>Islandia</value>
+    <value>أيسلندا</value>
   </data>
   <data name="CountryNameIE" xml:space="preserve">
-    <value>Irlanda</value>
+    <value>أيرلندا</value>
   </data>
   <data name="CountryNameIT" xml:space="preserve">
-    <value>Italia</value>
+    <value>إيطاليا</value>
   </data>
   <data name="CountryNameJP" xml:space="preserve">
-    <value>Japón</value>
+    <value>اليابان</value>
   </data>
   <data name="CountryNameLV" xml:space="preserve">
-    <value>Letonia</value>
+    <value>لاتفيا</value>
   </data>
   <data name="CountryNameLI" xml:space="preserve">
-    <value>Liechtenstein</value>
+    <value>ليشتنشتاين</value>
   </data>
   <data name="CountryNameLT" xml:space="preserve">
-    <value>Lituania</value>
+    <value>لتوانيا</value>
   </data>
   <data name="CountryNameLU" xml:space="preserve">
-    <value>Luxemburgo</value>
+    <value>لوكسمبورج</value>
   </data>
   <data name="CountryNameMT" xml:space="preserve">
-    <value>Malta</value>
+    <value>مالطا</value>
   </data>
   <data name="CountryNameMC" xml:space="preserve">
-    <value>Mónaco</value>
+    <value>موناكو</value>
   </data>
   <data name="CountryNameNL" xml:space="preserve">
-    <value>Países Bajos</value>
+    <value>هولندا</value>
   </data>
   <data name="CountryNameNZ" xml:space="preserve">
-    <value>Nueva Zelanda</value>
+    <value>نيوزيلندا</value>
   </data>
   <data name="CountryNameNO" xml:space="preserve">
-    <value>Noruega</value>
+    <value>النرويج</value>
   </data>
   <data name="CountryNamePT" xml:space="preserve">
-    <value>Portugal</value>
+    <value>البرتغال</value>
   </data>
   <data name="CountryNameRO" xml:space="preserve">
-    <value>Rumania</value>
+    <value>رومانيا</value>
   </data>
   <data name="CountryNameSK" xml:space="preserve">
-    <value>Eslovaquia</value>
+    <value>سلوفاكيا</value>
   </data>
   <data name="CountryNameSL" xml:space="preserve">
-    <value>Sierra Leona</value>
+    <value>سيراليون</value>
   </data>
   <data name="CountryNameES" xml:space="preserve">
-    <value>España</value>
+    <value>إسبانيا</value>
   </data>
   <data name="CountryNameSE" xml:space="preserve">
-    <value>Suecia</value>
+    <value>السويد</value>
   </data>
   <data name="CountryNameCH" xml:space="preserve">
-    <value>Suiza</value>
+    <value>سويسرا</value>
   </data>
   <data name="CountryNameGB" xml:space="preserve">
-    <value>Reino Unido</value>
+    <value>المملكة المتحدة</value>
   </data>
   <data name="CountryNameUS" xml:space="preserve">
-    <value>Estados Unidos</value>
+    <value>الولايات المتحدة الأمريكية</value>
   </data>
   <data name="CustomerOrganizationRequired" xml:space="preserve">
-    <value>Nombre de la organización es necesario.</value>
+    <value>مطلوب اسم المنظمة.</value>
   </data>
   <data name="CustomerProfileCompanyCountryRequired" xml:space="preserve">
-    <value>País es necesario.</value>
+    <value>البلد المطلوب.</value>
   </data>
   <data name="CustomerProfileAddressLine1Required" xml:space="preserve">
-    <value>Dirección línea 1 se requiere.</value>
+    <value>سطر العنوان 1 المطلوب.</value>
   </data>
   <data name="CustomerProfileCityRequired" xml:space="preserve">
-    <value>La ciudad es necesaria.</value>
+    <value>مطلوب المدينة.</value>
   </data>
   <data name="CustomerProfileEmailAddressIdRequired" xml:space="preserve">
-    <value>El campo de correo electrónico no es una dirección válida de correo electrónico.</value>
+    <value>حقل البريد الإلكتروني ليس عنوان بريد إلكتروني صالح.</value>
   </data>
   <data name="CustomerProfileDomainPrefixRequired" xml:space="preserve">
-    <value>Prefijo de número de dominio es necesario.</value>
+    <value>بادئة المجال مطلوب.</value>
   </data>
   <data name="CustomerProfileFirstNameRequired" xml:space="preserve">
-    <value>Nombre es requerido.</value>
+    <value>الاسم الأول المطلوب.</value>
   </data>
   <data name="CustomerProfileLastNameRequired" xml:space="preserve">
-    <value>Apellido es requerido.</value>
+    <value>الاسم الأخير المطلوب.</value>
   </data>
   <data name="PhoneHeaderRequired" xml:space="preserve">
-    <value>Número de teléfono es requerido.</value>
+    <value>مطلوب رقم الهاتف.</value>
   </data>
   <data name="SignOutToolTipCaption" xml:space="preserve">
-    <value>Salir de la aplicación</value>
+    <value>قم بتسجيل الخروج من التطبيق</value>
   </data>
   <data name="SubscriptionStatusTypeActive" xml:space="preserve">
-    <value>Activo</value>
+    <value>النشطة</value>
   </data>
   <data name="SubscriptionStatusTypeDeleted" xml:space="preserve">
-    <value>Elimina</value>
+    <value>حذف</value>
   </data>
   <data name="SubscriptionStatusTypeNone" xml:space="preserve">
-    <value>Ninguno</value>
+    <value>لا شيء</value>
   </data>
   <data name="SubscriptionStatusTypeSuspended" xml:space="preserve">
-    <value>Suspendido</value>
+    <value>تعليق</value>
   </data>
   <data name="LicenseCreatedDateCaption" xml:space="preserve">
-    <value>Fecha de creación</value>
+    <value>تاريخ الإنشاء</value>
   </data>
   <data name="LicenseNameCaption" xml:space="preserve">
-    <value>Nombre</value>
+    <value>الاسم</value>
   </data>
   <data name="LicenseQuantityCaption" xml:space="preserve">
-    <value>Cantidad</value>
+    <value>الكمية</value>
   </data>
   <data name="LicenseStatusCaption" xml:space="preserve">
-    <value>Estado</value>
+    <value>مركز</value>
   </data>
   <data name="LicenseBasedSubscriptionsCaption" xml:space="preserve">
-    <value>Suscripciones de clientes gestionados</value>
+    <value>اشتراكات العملاء المدارة</value>
   </data>
   <data name="PartnerManagedSubscriptionsCaption" xml:space="preserve">
-    <value>Suscripciones de socios administrados</value>
+    <value>شريك إدارة الاشتراكات</value>
   </data>
   <data name="OrdersCaption" xml:space="preserve">
-    <value>Órdenes de</value>
+    <value>أوامر</value>
   </data>
   <data name="InstrumentationKeyFieldHeader" xml:space="preserve">
-    <value>Clave de instrumentación:</value>
+    <value>الأجهزة الرئيسية:</value>
   </data>
   <data name="InstrumentationKeyFieldSubText" xml:space="preserve">
-    <value>Puede especificar una clave de instrumentación de aplicación de conocimientos con el fin de capturar los datos de telemetría desde el portal.</value>
+    <value>ويمكنك تحديد مفتاح أجهزة "رؤى التطبيق" بغية التقاط بيانات القياس عن بعد من المدخل.</value>
   </data>
   <data name="UsageBasedSubscriptionsCaption" xml:space="preserve">
-    <value>Suscripciones de uso basado en</value>
+    <value>الاستخدام على أساس الاشتراكات</value>
   </data>
   <data name="CustomerManagementDisplayName" xml:space="preserve">
-    <value>Clientes pre aprobados</value>
+    <value>العملاء المعتمدة مسبقاً</value>
   </data>
   <data name="CustomerManagementHeader" xml:space="preserve">
-    <value>Gestión de clientes para las transacciones previamente aprobados.</value>
+    <value>إدارة العملاء للمعاملات المعتمدة مسبقاً.</value>
   </data>
   <data name="CustomerManagementSubText" xml:space="preserve">
-    <value>"Seleccionar todo" va a marcar todos los actuales y futuros clientes como aprobados para tramitar en el frente de la tienda.</value>
+    <value>وسيشهد "تحديد الكل" كافة العملاء الحالية والمستقبلية كالمعتمدة مسبقاً بالعمليات في واجهة المتجر.</value>
   </data>
   <data name="CustomerManagementAllCustomersToggleCaption" xml:space="preserve">
-    <value>Seleccionar todo</value>
+    <value>حدد كافة</value>
   </data>
   <data name="CustomerManagementPreApprovedColumnCaption" xml:space="preserve">
-    <value>Aprobación previa</value>
+    <value>وافق مسبقاً</value>
   </data>
   <data name="CustomerManagementCustomerNameColumnCaption" xml:space="preserve">
-    <value>Nombre del cliente</value>
+    <value>اسم العميل</value>
   </data>
   <data name="CustomerManagementPrimaryDomainNameColumnCaption" xml:space="preserve">
-    <value>Nombre de dominio principal</value>
+    <value>اسم المجال الأساسي</value>
   </data>
   <data name="CustomerManagementMicrosoftIDColumnCaption" xml:space="preserve">
-    <value>ID de Microsoft</value>
+    <value>معرف Microsoft</value>
   </data>
   <data name="FetchPreApprovedCustomersErrorMessage" xml:space="preserve">
-    <value>No se pudo recuperar datos de clientes pre-aprobados.</value>
+    <value>تعذر استرداد تفاصيل العملاء المعتمدة مسبقاً.</value>
   </data>
   <data name="UpdatePreApprovedCustomersProgressMessage" xml:space="preserve">
-    <value>Actualización información clientes aprobados</value>
+    <value>تحديث معلومات العملاء المعتمدة مسبقاً</value>
   </data>
   <data name="UpdatePreApprovedCustomersSuccessMessage" xml:space="preserve">
-    <value>Información de los clientes aprobados actualizado</value>
+    <value>تحديث المعلومات المعتمدة من قبل العميل</value>
   </data>
   <data name="UpdatePreApprovedCustomersErrorMessage" xml:space="preserve">
-    <value>No se pueden guardar a los clientes aprobados información</value>
+    <value>تعذر حفظ معلومات العملاء المعتمدة مسبقاً</value>
   </data>
   <data name="ProcessingPreApprovedTxNotification" xml:space="preserve">
-    <value>Esta transacción es aprobada previamente. Orden de procesamiento...</value>
+    <value>هذه الحركة المعتمدة مسبقاً. ترتيب معالجة...</value>
   </data>
   <data name="SelectSearchbyNameDomainPlaceholder" xml:space="preserve">
-    <value>Buscar por dominio o nombre de la empresa</value>
+    <value>البحث عن طريق اسم الشركة أو المجال</value>
   </data>
   <data name="CountryNameIN" xml:space="preserve">
-    <value>India</value>
+    <value>الهند</value>
   </data>
   <data name="PayUAccountTypeCaption" xml:space="preserve">
-    <value>PayU el tipo de cuenta:</value>
+    <value>بايو نوع الحساب:</value>
   </data>
   <data name="PayUAccountTypeSubText" xml:space="preserve">
-    <value>Puede seleccionar un tipo de cuenta de prueba para probar sus transacciones. Una vez en marcha, se puede cambiar a un tipo de cuenta para empezar a tramitar</value>
+    <value>يمكنك تحديد نوع حساب اختبار لاختبار المعاملات الخاصة بك. بمجرد العمل، يمكنك التبديل إلى نوع حساب حقيقي لبدء إجراء معاملات</value>
   </data>
   <data name="PayUMerchantKeyCaption" xml:space="preserve">
-    <value>Comerciante de PayU clave:</value>
+    <value>مفتاح بايو التاجر:</value>
   </data>
   <data name="PayUMerchantSaltSubText" xml:space="preserve">
-    <value>Introduzca su sal PayU del comerciante</value>
+    <value>أدخل الخاص بك "بايو تاجر الملح"</value>
   </data>
   <data name="PayUSaltCaption" xml:space="preserve">
-    <value>PayU sal mercantil:</value>
+    <value>بايو الملح التاجر:</value>
   </data>
   <data name="PayUMerchantKeySubText" xml:space="preserve">
-    <value>Introduzca su código de comerciante PayU</value>
+    <value>أدخل "مفتاح التاجر بايو"</value>
   </data>
   <data name="PayUAuthorizationCaption" xml:space="preserve">
-    <value>Autorización de PayU</value>
+    <value>إذن بايو</value>
   </data>
   <data name="PayUAuthSubText" xml:space="preserve">
-    <value>Introduzca su autorización por PayU</value>
+    <value>أدخل الخاص بك "إذن بايو"</value>
   </data>
   <data name="PayUPaymentConfigurationHeader" xml:space="preserve">
-    <value>Proporcionar al vendedor de PayUMoney configuración de la cuenta</value>
+    <value>يقدم التاجر بايوموني الخاص بك إعدادات الحساب</value>
   </data>
   <data name="PayUPaymentConfigurationSubTextPostfix" xml:space="preserve">
-    <value>para crear una nueva cuenta si no tienes uno.</value>
+    <value>لإنشاء حساب تاجر جديد إذا لم يكن لديك واحدة.</value>
   </data>
   <data name="PayUPaymentConfigurationSubTextPrefix" xml:space="preserve">
-    <value>Para recibir los pagos de sus clientes, debe utilizar una cuenta de comerciante de PayUMoney, por favor visite:</value>
+    <value>تلقي المدفوعات من العملاء الخاص بك، يجب عليك استخدام حساب التاجر بايوموني، يرجى زيارة:</value>
   </data>
   <data name="PayUWebsiteCaption" xml:space="preserve">
     <value>payumoney.com</value>
   </data>
   <data name="AgreementUserIdFieldHeader" xml:space="preserve">
-    <value>Acuerdo usuario ID:</value>
+    <value>اتفاق معرف المستخدم:</value>
   </data>
   <data name="AgreementUserIdSubText" xml:space="preserve">
-    <value>Identificador del usuario de la pareja para ser asociado a la aceptación del acuerdo de nube de Microsoft.</value>
+    <value>المعرف الخاص بالمستخدم من الشريك أن تكون مرتبطة بقبول الاتفاق سحابة Microsoft.</value>
   </data>
   <data name="InvalidAgreementUserId" xml:space="preserve">
-    <value>Identificador de usuario no válido.</value>
+    <value>معرف المستخدم غير صالح.</value>
   </data>
   <data name="AcceptPhrase" xml:space="preserve">
-    <value>Acepto la</value>
+    <value>أقبل</value>
   </data>
   <data name="TermsOfService" xml:space="preserve">
-    <value>términos de servicio</value>
-  </data>
-  <data name="CountryNameAO" xml:space="preserve">
-    <value>Angola</value>
+    <value>شروط الخدمة</value>
   </data>
   <data name="CountryNameAD" xml:space="preserve">
-    <value>Andorra</value>
+    <value>أندورا</value>
   </data>
   <data name="CountryNameAE" xml:space="preserve">
-    <value>Emiratos Árabes Unidos</value>
+    <value>الإمارات العربية المتحدة</value>
   </data>
   <data name="CountryNameAF" xml:space="preserve">
-    <value>Afganistán</value>
+    <value>أفغانستان</value>
   </data>
   <data name="CountryNameAG" xml:space="preserve">
-    <value>Antigua y Barbuda</value>
+    <value>أنتيغوا وبربودا</value>
   </data>
   <data name="CountryNameAI" xml:space="preserve">
-    <value>Anguila</value>
+    <value>أنغيلا</value>
   </data>
   <data name="CountryNameAL" xml:space="preserve">
-    <value>Albania</value>
+    <value>ألبانيا</value>
   </data>
   <data name="CountryNameAM" xml:space="preserve">
-    <value>Armenia</value>
+    <value>أرمينيا</value>
   </data>
   <data name="CountryNameAN" xml:space="preserve">
-    <value>Países Bajos Antillas</value>
+    <value>جزر اﻷنتيل الهولندية</value>
+  </data>
+  <data name="CountryNameAO" xml:space="preserve">
+    <value>أنغوﻻ</value>
   </data>
   <data name="CountryNameAQ" xml:space="preserve">
-    <value>Antártida</value>
+    <value>القارة القطبية الجنوبية</value>
   </data>
   <data name="CountryNameAR" xml:space="preserve">
-    <value>Argentina</value>
+    <value>الأرجنتين</value>
   </data>
   <data name="CountryNameAS" xml:space="preserve">
-    <value>Samoa Americana</value>
+    <value>ساموا الأمريكية</value>
   </data>
   <data name="CountryNameAW" xml:space="preserve">
-    <value>Aruba</value>
+    <value>أروبا</value>
   </data>
   <data name="CountryNameAX" xml:space="preserve">
-    <value>Islas Åland</value>
+    <value>جزر ألاند</value>
   </data>
   <data name="CountryNameAZ" xml:space="preserve">
-    <value>Azerbaiyán</value>
+    <value>أذربيجان</value>
   </data>
   <data name="CountryNameBA" xml:space="preserve">
-    <value>Bosnia-Herzegovina</value>
+    <value>البوسنة والهرسك</value>
   </data>
   <data name="CountryNameBB" xml:space="preserve">
-    <value>Barbados</value>
+    <value>بربادوس</value>
   </data>
   <data name="CountryNameBD" xml:space="preserve">
-    <value>Bangladesh</value>
+    <value>بنغلاديش</value>
   </data>
   <data name="CountryNameBF" xml:space="preserve">
-    <value>Burkina Faso</value>
+    <value>بوركينا فاسو</value>
   </data>
   <data name="CountryNameBH" xml:space="preserve">
-    <value>Bahrein</value>
+    <value>البحرين</value>
   </data>
   <data name="CountryNameBI" xml:space="preserve">
-    <value>Burundi</value>
+    <value>بوروندي</value>
   </data>
   <data name="CountryNameBJ" xml:space="preserve">
-    <value>Benin</value>
+    <value>بنن</value>
   </data>
   <data name="CountryNameBL" xml:space="preserve">
-    <value>Saint-Barthélemy</value>
+    <value>سان بارتليمي</value>
   </data>
   <data name="CountryNameBM" xml:space="preserve">
-    <value>Bermudas</value>
+    <value>برمودا</value>
   </data>
   <data name="CountryNameBN" xml:space="preserve">
-    <value>Brunei</value>
+    <value>بروناي</value>
   </data>
   <data name="CountryNameBO" xml:space="preserve">
-    <value>Bolivia</value>
+    <value>بوليفيا</value>
   </data>
   <data name="CountryNameBQ" xml:space="preserve">
-    <value>Bonaire</value>
+    <value>بونير</value>
   </data>
   <data name="CountryNameBR" xml:space="preserve">
-    <value>Brasil</value>
+    <value>البرازيل</value>
   </data>
   <data name="CountryNameBS" xml:space="preserve">
-    <value>Bahamas</value>
+    <value>جزر البهاما</value>
   </data>
   <data name="CountryNameBT" xml:space="preserve">
-    <value>Bután</value>
+    <value>بوتان</value>
   </data>
   <data name="CountryNameBV" xml:space="preserve">
-    <value>Isla Bouvet</value>
+    <value>جزيرة بوفيت</value>
   </data>
   <data name="CountryNameBW" xml:space="preserve">
-    <value>Botswana</value>
+    <value>بوتسوانا</value>
   </data>
   <data name="CountryNameBY" xml:space="preserve">
-    <value>Bielorrusia</value>
+    <value>بيلاروسيا</value>
   </data>
   <data name="CountryNameBZ" xml:space="preserve">
-    <value>Belice</value>
+    <value>بيلز</value>
   </data>
   <data name="CountryNameCC" xml:space="preserve">
-    <value>Islas Cocos (Keeling)</value>
+    <value>جزر كوكوس (كيلينغ)</value>
   </data>
   <data name="CountryNameCD" xml:space="preserve">
-    <value>Congo (República Democrática del Congo)</value>
+    <value>الكونغو (جمهورية الكونغو الديمقراطية)</value>
   </data>
   <data name="CountryNameCF" xml:space="preserve">
-    <value>República Centroafricana</value>
+    <value>جمهورية أفريقيا الوسطى</value>
   </data>
   <data name="CountryNameCG" xml:space="preserve">
-    <value>Congo</value>
+    <value>الكونغو</value>
   </data>
   <data name="CountryNameCI" xml:space="preserve">
-    <value>Côte d ' Ivoire</value>
+    <value>كوت ديفوار</value>
   </data>
   <data name="CountryNameCK" xml:space="preserve">
-    <value>Islas Cook</value>
+    <value>جزر كوك</value>
   </data>
   <data name="CountryNameCL" xml:space="preserve">
-    <value>Chile</value>
+    <value>شيلي</value>
   </data>
   <data name="CountryNameCM" xml:space="preserve">
-    <value>Camerún</value>
+    <value>الكاميرون</value>
   </data>
   <data name="CountryNameCN" xml:space="preserve">
-    <value>China</value>
+    <value>الصين</value>
   </data>
   <data name="CountryNameCO" xml:space="preserve">
-    <value>Colombia</value>
+    <value>كولومبيا</value>
   </data>
   <data name="CountryNameCR" xml:space="preserve">
-    <value>Costa Rica</value>
+    <value>كوستاريكا</value>
   </data>
   <data name="CountryNameCV" xml:space="preserve">
-    <value>Cabo Verde</value>
+    <value>الرأس الأخضر</value>
   </data>
   <data name="CountryNameCW" xml:space="preserve">
-    <value>Curazao</value>
+    <value>كوراساو</value>
   </data>
   <data name="CountryNameCX" xml:space="preserve">
-    <value>Isla de Navidad</value>
+    <value>جزيرة عيد الميلاد</value>
   </data>
   <data name="CountryNameDJ" xml:space="preserve">
-    <value>Yibuti</value>
+    <value>جيبوتي</value>
   </data>
   <data name="CountryNameDM" xml:space="preserve">
-    <value>Dominica</value>
+    <value>دومينيكا</value>
   </data>
   <data name="CountryNameDO" xml:space="preserve">
-    <value>República Dominicana</value>
+    <value>جمهورية الدومينيكان</value>
   </data>
   <data name="CountryNameDZ" xml:space="preserve">
-    <value>Argelia</value>
+    <value>الجزائر</value>
   </data>
   <data name="CountryNameEC" xml:space="preserve">
-    <value>Ecuador</value>
+    <value>الإكوادور</value>
   </data>
   <data name="CountryNameEG" xml:space="preserve">
-    <value>Egipto</value>
+    <value>مصر</value>
   </data>
   <data name="CountryNameER" xml:space="preserve">
-    <value>Eritrea</value>
+    <value>إريتريا</value>
   </data>
   <data name="CountryNameET" xml:space="preserve">
-    <value>Etiopía</value>
+    <value>إثيوبيا</value>
   </data>
   <data name="CountryNameFJ" xml:space="preserve">
-    <value>Fiji</value>
+    <value>فيجي</value>
   </data>
   <data name="CountryNameFK" xml:space="preserve">
-    <value>Las Islas Malvinas</value>
+    <value>جزر فوكلاند</value>
   </data>
   <data name="CountryNameFM" xml:space="preserve">
-    <value>Micronesia</value>
+    <value>ميكرونيزيا</value>
   </data>
   <data name="CountryNameFO" xml:space="preserve">
-    <value>Islas Faroe</value>
+    <value>جزر الفارو</value>
   </data>
   <data name="CountryNameGA" xml:space="preserve">
-    <value>Gabón</value>
+    <value>غابون</value>
   </data>
   <data name="CountryNameGD" xml:space="preserve">
-    <value>Granada</value>
+    <value>غرينادا</value>
   </data>
   <data name="CountryNameGE" xml:space="preserve">
-    <value>Georgia</value>
+    <value>جورجيا</value>
   </data>
   <data name="CountryNameGF" xml:space="preserve">
-    <value>Guayana francesa</value>
+    <value>غويانا الفرنسية</value>
   </data>
   <data name="CountryNameGG" xml:space="preserve">
-    <value>Guernsey</value>
+    <value>جيرنزي</value>
   </data>
   <data name="CountryNameGH" xml:space="preserve">
-    <value>Ghana</value>
+    <value>غانا</value>
   </data>
   <data name="CountryNameGI" xml:space="preserve">
-    <value>Gibraltar</value>
+    <value>جبل طارق</value>
   </data>
   <data name="CountryNameGL" xml:space="preserve">
-    <value>Groenlandia</value>
+    <value>غرينلاند</value>
   </data>
   <data name="CountryNameGM" xml:space="preserve">
-    <value>Gambia</value>
+    <value>غامبيا</value>
   </data>
   <data name="CountryNameGN" xml:space="preserve">
-    <value>Guinea</value>
+    <value>غينيا</value>
   </data>
   <data name="CountryNameGP" xml:space="preserve">
-    <value>Guadalupe</value>
+    <value>غواديلوب</value>
   </data>
   <data name="CountryNameGQ" xml:space="preserve">
-    <value>Guinea Ecuatorial</value>
+    <value>غينيا الاستوائية</value>
   </data>
   <data name="CountryNameGS" xml:space="preserve">
-    <value>Georgia del sur e islas Sandwich del sur</value>
+    <value>جورجيا الجنوبية وجزر ساندويتش الجنوبية</value>
   </data>
   <data name="CountryNameGT" xml:space="preserve">
-    <value>Guatemala</value>
+    <value>جواتيمالا</value>
   </data>
   <data name="CountryNameGU" xml:space="preserve">
-    <value>Guam</value>
+    <value>غوام</value>
   </data>
   <data name="CountryNameGW" xml:space="preserve">
-    <value>Guinea Bissau</value>
+    <value>غينيا-بيساو</value>
   </data>
   <data name="CountryNameGY" xml:space="preserve">
-    <value>Guyana</value>
+    <value>غيانا</value>
   </data>
   <data name="CountryNameHK" xml:space="preserve">
-    <value>RAE de Hong Kong</value>
+    <value>هونغ كونغ الإدارية الخاصة</value>
   </data>
   <data name="CountryNameHM" xml:space="preserve">
-    <value>Isla Heard e Islas McDonald</value>
+    <value>جزيرة هيرد وجزر ماكدونالد</value>
   </data>
   <data name="CountryNameHN" xml:space="preserve">
-    <value>Honduras</value>
+    <value>هندوراس</value>
   </data>
   <data name="CountryNameHT" xml:space="preserve">
-    <value>Haití</value>
+    <value>هايتي</value>
   </data>
   <data name="CountryNameID" xml:space="preserve">
-    <value>Indonesia</value>
+    <value>إندونيسيا</value>
   </data>
   <data name="CountryNameIL" xml:space="preserve">
-    <value>Israel</value>
+    <value>إسرائيل</value>
   </data>
   <data name="CountryNameIM" xml:space="preserve">
-    <value>Isla de Man</value>
+    <value>جزيرة إيل أوف مان</value>
   </data>
   <data name="CountryNameIO" xml:space="preserve">
-    <value>Territorio británico del océano Índico</value>
+    <value>إقليم المحيط الهندي البريطاني</value>
   </data>
   <data name="CountryNameIQ" xml:space="preserve">
-    <value>Irak</value>
+    <value>العراق</value>
   </data>
   <data name="CountryNameJE" xml:space="preserve">
-    <value>Jersey</value>
+    <value>جيرسي</value>
   </data>
   <data name="CountryNameJM" xml:space="preserve">
-    <value>Jamaica</value>
+    <value>جامايكا</value>
   </data>
   <data name="CountryNameJO" xml:space="preserve">
-    <value>Jordania</value>
+    <value>الأردن</value>
   </data>
   <data name="CountryNameKE" xml:space="preserve">
-    <value>Kenia</value>
+    <value>كينيا</value>
   </data>
   <data name="CountryNameKG" xml:space="preserve">
-    <value>Kirguizistán</value>
+    <value>قيرغيزستان</value>
   </data>
   <data name="CountryNameKH" xml:space="preserve">
-    <value>Camboya</value>
+    <value>كمبوديا</value>
   </data>
   <data name="CountryNameKI" xml:space="preserve">
-    <value>Kiribati</value>
+    <value>كيريباس</value>
   </data>
   <data name="CountryNameKM" xml:space="preserve">
-    <value>Comoras</value>
+    <value>جزر القمر</value>
   </data>
   <data name="CountryNameKN" xml:space="preserve">
-    <value>Saint Kitts y Nevis</value>
+    <value>سانت كيتس ونيفيس</value>
   </data>
   <data name="CountryNameKR" xml:space="preserve">
-    <value>Corea</value>
+    <value>كوريا</value>
   </data>
   <data name="CountryNameKW" xml:space="preserve">
-    <value>Kuwait</value>
+    <value>الكويت</value>
   </data>
   <data name="CountryNameKY" xml:space="preserve">
-    <value>Islas Caimán</value>
+    <value>جزر كايمان</value>
   </data>
   <data name="CountryNameKZ" xml:space="preserve">
-    <value>Kazajstán</value>
+    <value>كازاخستان</value>
   </data>
   <data name="CountryNameLA" xml:space="preserve">
-    <value>Laos</value>
+    <value>لاوس</value>
   </data>
   <data name="CountryNameLB" xml:space="preserve">
-    <value>Líbano</value>
+    <value>لبنان</value>
   </data>
   <data name="CountryNameLC" xml:space="preserve">
-    <value>Santa Lucía</value>
+    <value>سانت لوسيا</value>
   </data>
   <data name="CountryNameLK" xml:space="preserve">
-    <value>Sri Lanka</value>
+    <value>سري لانكا</value>
   </data>
   <data name="CountryNameLR" xml:space="preserve">
-    <value>Liberia</value>
+    <value>ليبريا</value>
   </data>
   <data name="CountryNameLS" xml:space="preserve">
-    <value>Lesotho</value>
+    <value>ليسوتو</value>
   </data>
   <data name="CountryNameLY" xml:space="preserve">
-    <value>Libia</value>
+    <value>ليبيا</value>
   </data>
   <data name="CountryNameMA" xml:space="preserve">
-    <value>Marruecos</value>
+    <value>المغرب</value>
   </data>
   <data name="CountryNameMD" xml:space="preserve">
-    <value>Moldova</value>
+    <value>مولدوفا</value>
   </data>
   <data name="CountryNameME" xml:space="preserve">
-    <value>Montenegro</value>
+    <value>الجبل الأسود</value>
   </data>
   <data name="CountryNameMF" xml:space="preserve">
-    <value>Saint Martin</value>
+    <value>سانت مارتن</value>
   </data>
   <data name="CountryNameMG" xml:space="preserve">
-    <value>Madagascar</value>
+    <value>مدغشقر</value>
   </data>
   <data name="CountryNameMH" xml:space="preserve">
-    <value>Islas Marshall</value>
+    <value>جزر مارشال</value>
   </data>
   <data name="CountryNameMK" xml:space="preserve">
-    <value>Macedonia</value>
+    <value>مقدونيا</value>
   </data>
   <data name="CountryNameML" xml:space="preserve">
-    <value>Malí</value>
+    <value>مالي</value>
   </data>
   <data name="CountryNameMM" xml:space="preserve">
-    <value>Myanmar</value>
+    <value>ميانمار</value>
   </data>
   <data name="CountryNameMN" xml:space="preserve">
-    <value>Mongolia</value>
+    <value>منغوليا</value>
   </data>
   <data name="CountryNameMO" xml:space="preserve">
-    <value>Administrativa especial de Macao</value>
+    <value>منطقة ماكاو الإدارية الخاصة</value>
   </data>
   <data name="CountryNameMP" xml:space="preserve">
-    <value>Islas Marianas del norte</value>
+    <value>جزر ماريانا الشمالية</value>
   </data>
   <data name="CountryNameMQ" xml:space="preserve">
-    <value>Martinica</value>
+    <value>جزر المارتينيك</value>
   </data>
   <data name="CountryNameMR" xml:space="preserve">
-    <value>Mauritania</value>
+    <value>موريتانيا</value>
   </data>
   <data name="CountryNameMS" xml:space="preserve">
-    <value>Montserrat</value>
+    <value>مونتسيرات</value>
   </data>
   <data name="CountryNameMU" xml:space="preserve">
-    <value>Mauricio</value>
+    <value>موريشيوس</value>
   </data>
   <data name="CountryNameMV" xml:space="preserve">
-    <value>Maldivas</value>
+    <value>جزر المالديف</value>
   </data>
   <data name="CountryNameMW" xml:space="preserve">
-    <value>Malawi</value>
+    <value>ملاوي</value>
   </data>
   <data name="CountryNameMX" xml:space="preserve">
-    <value>México</value>
+    <value>المكسيك</value>
   </data>
   <data name="CountryNameMY" xml:space="preserve">
-    <value>Malasia</value>
+    <value>ماليزيا</value>
   </data>
   <data name="CountryNameMZ" xml:space="preserve">
-    <value>Mozambique</value>
+    <value>موزامبيق</value>
   </data>
   <data name="CountryNameNA" xml:space="preserve">
-    <value>Namibia</value>
+    <value>ناميبيا</value>
   </data>
   <data name="CountryNameNC" xml:space="preserve">
-    <value>Nueva Caledonia</value>
+    <value>كاليدونيا الجديدة</value>
   </data>
   <data name="CountryNameNE" xml:space="preserve">
-    <value>Níger</value>
+    <value>النيجر</value>
   </data>
   <data name="CountryNameNF" xml:space="preserve">
-    <value>Isla de Norfolk</value>
+    <value>جزيرة نورفولك</value>
   </data>
   <data name="CountryNameNG" xml:space="preserve">
-    <value>Nigeria</value>
+    <value>نيجيريا</value>
   </data>
   <data name="CountryNameNI" xml:space="preserve">
-    <value>Nicaragua</value>
+    <value>نيكاراجوا</value>
   </data>
   <data name="CountryNameNP" xml:space="preserve">
-    <value>Nepal</value>
+    <value>نيبال</value>
   </data>
   <data name="CountryNameNR" xml:space="preserve">
-    <value>Nauru</value>
+    <value>ناورو</value>
   </data>
   <data name="CountryNameNU" xml:space="preserve">
-    <value>Niue</value>
+    <value>نيوي</value>
   </data>
   <data name="CountryNameOM" xml:space="preserve">
-    <value>Omán</value>
+    <value>عُمان</value>
   </data>
   <data name="CountryNamePA" xml:space="preserve">
-    <value>Panamá</value>
+    <value>بنما</value>
   </data>
   <data name="CountryNamePE" xml:space="preserve">
-    <value>Perú</value>
+    <value>بيرو</value>
   </data>
   <data name="CountryNamePF" xml:space="preserve">
-    <value>Polinesia francesa</value>
+    <value>بولينيزيا الفرنسية</value>
   </data>
   <data name="CountryNamePG" xml:space="preserve">
-    <value>Papua Nueva Guinea</value>
+    <value>بابوا غينيا الجديدة</value>
   </data>
   <data name="CountryNamePH" xml:space="preserve">
-    <value>Filipinas</value>
+    <value>الفلبين</value>
   </data>
   <data name="CountryNamePK" xml:space="preserve">
-    <value>Pakistán</value>
+    <value>باكستان</value>
   </data>
   <data name="CountryNamePL" xml:space="preserve">
-    <value>Polonia</value>
+    <value>بولندا</value>
   </data>
   <data name="CountryNamePM" xml:space="preserve">
-    <value>San Pedro y Miquelón</value>
+    <value>سانت بيير وميكلون</value>
   </data>
   <data name="CountryNamePN" xml:space="preserve">
-    <value>Islas Pitcairn</value>
+    <value>جزر بيتكيرن</value>
   </data>
   <data name="CountryNamePR" xml:space="preserve">
-    <value>Puerto Rico</value>
+    <value>بويرتوريكو</value>
   </data>
   <data name="CountryNamePS" xml:space="preserve">
-    <value>Autoridad Palestina</value>
+    <value>السلطة الفلسطينية</value>
   </data>
   <data name="CountryNamePW" xml:space="preserve">
-    <value>Palau</value>
+    <value>باﻻو</value>
   </data>
   <data name="CountryNamePY" xml:space="preserve">
-    <value>Paraguay</value>
+    <value>باراجواي</value>
   </data>
   <data name="CountryNameQA" xml:space="preserve">
-    <value>Qatar</value>
+    <value>قطر</value>
   </data>
   <data name="CountryNameRE" xml:space="preserve">
-    <value>Reunión</value>
+    <value>جزيرة ريونيون</value>
   </data>
   <data name="CountryNameRS" xml:space="preserve">
-    <value>Serbia</value>
+    <value>صربيا</value>
   </data>
   <data name="CountryNameRU" xml:space="preserve">
-    <value>Rusia</value>
+    <value>روسيا</value>
   </data>
   <data name="CountryNameRW" xml:space="preserve">
-    <value>Rwanda</value>
+    <value>رواندا</value>
   </data>
   <data name="CountryNameSA" xml:space="preserve">
-    <value>Arabia Saudí</value>
+    <value>المملكة العربية السعودية</value>
   </data>
   <data name="CountryNameSB" xml:space="preserve">
-    <value>Islas Salomón</value>
+    <value>جزر سليمان</value>
   </data>
   <data name="CountryNameSC" xml:space="preserve">
-    <value>Seychelles</value>
+    <value>سيشيل</value>
   </data>
   <data name="CountryNameSG" xml:space="preserve">
-    <value>Singapur</value>
+    <value>سنغافورة</value>
   </data>
   <data name="CountryNameSH" xml:space="preserve">
-    <value>Santa Elena</value>
+    <value>سانت هيلانة</value>
   </data>
   <data name="CountryNameSI" xml:space="preserve">
-    <value>Eslovenia</value>
+    <value>سلوفينيا</value>
   </data>
   <data name="CountryNameSJ" xml:space="preserve">
-    <value>Svalbard</value>
+    <value>سفالبارد</value>
   </data>
   <data name="CountryNameSM" xml:space="preserve">
-    <value>San Marino</value>
+    <value>سان مارينو</value>
   </data>
   <data name="CountryNameSN" xml:space="preserve">
-    <value>Senegal</value>
+    <value>السنغال</value>
   </data>
   <data name="CountryNameSO" xml:space="preserve">
-    <value>Somalia</value>
+    <value>الصومال</value>
   </data>
   <data name="CountryNameSR" xml:space="preserve">
-    <value>Suriname</value>
+    <value>سورينام</value>
   </data>
   <data name="CountryNameSS" xml:space="preserve">
-    <value>Sudán del sur</value>
+    <value>جنوب السودان</value>
   </data>
   <data name="CountryNameST" xml:space="preserve">
-    <value>São Tomé y Príncipe</value>
+    <value>ساو تومي وبرينسيبي</value>
   </data>
   <data name="CountryNameSV" xml:space="preserve">
-    <value>El Salvador</value>
+    <value>السلفادور</value>
   </data>
   <data name="CountryNameSX" xml:space="preserve">
-    <value>Sint Maarten</value>
+    <value>سانت مارتن</value>
   </data>
   <data name="CountryNameSZ" xml:space="preserve">
-    <value>eSwatini</value>
+    <value>اسواتيني</value>
   </data>
   <data name="CountryNameTC" xml:space="preserve">
-    <value>Islas Turcas y Caicos</value>
+    <value>جزر تركس وكايكوس</value>
   </data>
   <data name="CountryNameTD" xml:space="preserve">
-    <value>Chad</value>
+    <value>تشاد</value>
   </data>
   <data name="CountryNameTF" xml:space="preserve">
-    <value>Territorios franceses del sur</value>
+    <value>الأقاليم الجنوبية الفرنسية</value>
   </data>
   <data name="CountryNameTG" xml:space="preserve">
-    <value>Togo</value>
+    <value>توغو</value>
   </data>
   <data name="CountryNameTH" xml:space="preserve">
-    <value>Tailandia</value>
+    <value>تايلاند</value>
   </data>
   <data name="CountryNameTJ" xml:space="preserve">
-    <value>Tayikistán</value>
+    <value>طاجيكستان</value>
   </data>
   <data name="CountryNameTK" xml:space="preserve">
-    <value>Tokelau</value>
+    <value>توكيلاو</value>
   </data>
   <data name="CountryNameTL" xml:space="preserve">
-    <value>Timor-Leste</value>
+    <value>تيمور-ليشتي</value>
   </data>
   <data name="CountryNameTM" xml:space="preserve">
-    <value>Turkmenistán</value>
+    <value>تركمانستان</value>
   </data>
   <data name="CountryNameTN" xml:space="preserve">
-    <value>Túnez</value>
+    <value>تونس</value>
   </data>
   <data name="CountryNameTO" xml:space="preserve">
-    <value>Tonga</value>
+    <value>تونغا</value>
   </data>
   <data name="CountryNameTR" xml:space="preserve">
-    <value>Turquía</value>
+    <value>تركيا</value>
   </data>
   <data name="CountryNameTT" xml:space="preserve">
-    <value>Trinidad y Tobago</value>
+    <value>ترنداد وتوباجو</value>
   </data>
   <data name="CountryNameTV" xml:space="preserve">
-    <value>Tuvalu</value>
+    <value>توفالو</value>
   </data>
   <data name="CountryNameTW" xml:space="preserve">
-    <value>Taiwán</value>
+    <value>تايوان</value>
   </data>
   <data name="CountryNameTZ" xml:space="preserve">
-    <value>Tanzania</value>
+    <value>تنزانيا</value>
   </data>
   <data name="CountryNameUA" xml:space="preserve">
-    <value>Ucrania</value>
+    <value>أوكرانيا</value>
   </data>
   <data name="CountryNameUG" xml:space="preserve">
-    <value>Uganda</value>
+    <value>أوغندا</value>
   </data>
   <data name="CountryNameUM" xml:space="preserve">
-    <value>Islas ultramarinas de Estados Unidos</value>
+    <value>جزر الولايات المتحدة البعيدة</value>
   </data>
   <data name="CountryNameUY" xml:space="preserve">
-    <value>Uruguay</value>
+    <value>اوروجواي</value>
   </data>
   <data name="CountryNameUZ" xml:space="preserve">
-    <value>Uzbekistán</value>
+    <value>أوزبكستان</value>
   </data>
   <data name="CountryNameVA" xml:space="preserve">
-    <value>Ciudad del Vaticano</value>
+    <value>مدينة الفاتيكان</value>
   </data>
   <data name="CountryNameVC" xml:space="preserve">
-    <value>San Vicente y las Granadinas</value>
+    <value>سانت فنسنت وجزر غرينادين</value>
   </data>
   <data name="CountryNameVE" xml:space="preserve">
-    <value>Venezuela</value>
+    <value>فنزويلا</value>
   </data>
   <data name="CountryNameVG" xml:space="preserve">
-    <value>Islas Vírgenes Británicas</value>
+    <value>جزر فرجن البريطانية</value>
   </data>
   <data name="CountryNameVI" xml:space="preserve">
-    <value>Islas Vírgenes de los Estados Unidos</value>
+    <value>جزر فرجن التابعة للولايات المتحدة</value>
   </data>
   <data name="CountryNameVN" xml:space="preserve">
-    <value>Vietnam</value>
+    <value>فيتنام</value>
   </data>
   <data name="CountryNameVU" xml:space="preserve">
-    <value>Vanuatu</value>
+    <value>فانواتو</value>
   </data>
   <data name="CountryNameWF" xml:space="preserve">
-    <value>Wallis y Futuna</value>
+    <value>واليس وفوتونا</value>
   </data>
   <data name="CountryNameWS" xml:space="preserve">
-    <value>Samoa</value>
+    <value>ساموا</value>
   </data>
   <data name="CountryNameXE" xml:space="preserve">
-    <value>Sint Eustatius</value>
+    <value>اوستاتيوس</value>
   </data>
   <data name="CountryNameXJ" xml:space="preserve">
-    <value>Jan Mayen</value>
+    <value>جان مايان</value>
   </data>
   <data name="CountryNameXK" xml:space="preserve">
-    <value>Kosovo</value>
+    <value>كوسوفو</value>
   </data>
   <data name="CountryNameXS" xml:space="preserve">
-    <value>Saba</value>
+    <value>سابا</value>
   </data>
   <data name="CountryNameYE" xml:space="preserve">
-    <value>Yemen</value>
+    <value>اليمن</value>
   </data>
   <data name="CountryNameYT" xml:space="preserve">
-    <value>Mayotte</value>
+    <value>جزيرة مايوت</value>
   </data>
   <data name="CountryNameZA" xml:space="preserve">
-    <value>Sudáfrica</value>
+    <value>جنوب أفريقيا</value>
   </data>
   <data name="CountryNameZM" xml:space="preserve">
-    <value>Zambia</value>
+    <value>زامبيا</value>
   </data>
   <data name="CountryNameZW" xml:space="preserve">
-    <value>Zimbabue</value>
+    <value>زيمبابوي</value>
   </data>
 </root>
