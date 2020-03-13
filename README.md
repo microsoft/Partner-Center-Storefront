@@ -1,6 +1,6 @@
 # Partner Center Storefront
 
-![Build status](https://dev.azure.com/ms/Partner-Center-Storefront/_apis/build/status/Partner-Center-Storefront)
+[![Build Status](https://dev.azure.com/isaiahwilliams/public/_apis/build/status/partner-center-storefront?branchName=master)](https://dev.azure.com/isaiahwilliams/public/_build/latest?definitionId=43&branchName=master)
 
 [![GitHub issues](https://img.shields.io/github/issues/Microsoft/Partner-Center-Storefront.svg)](https://github.com/Microsoft/Partner-Center-Storefront/issues/) [![GitHub pull-requests](https://img.shields.io/github/issues-pr/Microsoft/Partner-Center-Storefront.svg)](https://gitHub.com/Microsoft/Partner-Center-Storefront/pull/)
 
@@ -23,7 +23,9 @@ Customers can
 
 ## Deployment
 
-You can perform this deployment through Partner Center, to start this process click [here](https://partnercenter.microsoft.com/en-us/pcv/webstore/preparedeployment). Also, there is a deployment project included in the solution through which, deployment can be started with the specified inputs.
+You can perform this deployment through Partner Center, to start this process click [here](https://partnercenter.microsoft.com/pcv/webstore/preparedeployment). Also, there is a deployment project included in the solution through which, deployment can be started with the specified inputs.
+
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2FPartner-Center-Storefront%2Fmaster%2Fazuredeploy.json)
 
 [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
 [![Visualize](http://armviz.io/visualizebutton.png)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FPartner-Center-Storefront%2Fmaster%2Fazuredeploy.json)
